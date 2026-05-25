@@ -582,6 +582,30 @@
   .stage-card:hover::before { opacity: 1; }
   .stage-card:hover { background: var(--bg-3); }
 
+  .stage-img-wrapper {
+    width: 100%;
+    height: 150px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    border: 1px solid var(--gold-dim);
+    position: relative;
+    border-radius: 4px;
+    background: var(--bg-deep);
+  }
+  
+  .stage-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.55;
+    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.6s ease;
+  }
+  
+  .stage-card:hover .stage-img-wrapper img {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+
   .stage-num {
     font-family: 'Cinzel Decorative', serif;
     font-size: 3rem;
@@ -998,6 +1022,9 @@
 
     <div class="stages-grid reveal-block">
       <div class="stage-card">
+        <div class="stage-img-wrapper">
+          <img src="sacred_city.png" alt="Śrī Cakra concentric city plan">
+        </div>
         <div class="stage-num">I</div>
         <div class="stage-label">The First Pillar</div>
         <h3 class="stage-title">Nagara Nirmana</h3>
@@ -1014,6 +1041,9 @@
       </div>
 
       <div class="stage-card">
+        <div class="stage-img-wrapper">
+          <img src="flying_manuscript.png" alt="Palm leaf Upanishad manuscripts">
+        </div>
         <div class="stage-num">II</div>
         <div class="stage-label">The Second Pillar</div>
         <h3 class="stage-title">Rājya Palanam</h3>
@@ -1030,6 +1060,9 @@
       </div>
 
       <div class="stage-card">
+        <div class="stage-img-wrapper">
+          <img src="ancient_weapons.png" alt="Ancient static physical weapons">
+        </div>
         <div class="stage-num">III</div>
         <div class="stage-label">The Third Pillar</div>
         <h3 class="stage-title">Yuddham</h3>

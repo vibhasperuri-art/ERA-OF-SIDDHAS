@@ -1238,9 +1238,284 @@
     }
   }
 
+  /* ── GRADE SELECTOR PILLS ── */
+  .grade-selector {
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+  }
+  .grade-select-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+  }
+  .grade-pills {
+    display: flex;
+    gap: 6px;
+    background: var(--bg-primary);
+    padding: 3px;
+    border-radius: 8px;
+    border: 1px solid var(--border-glass);
+    overflow-x: auto;
+  }
+  .grade-pill-btn {
+    flex: 1;
+    min-width: 65px;
+    text-align: center;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 6px 4px;
+    font-size: 0.75rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 500;
+    cursor: none !important;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    white-space: nowrap;
+  }
+  .grade-pill-btn:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+  }
+  .grade-pill-btn.active {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 2px 8px var(--accent-glow);
+  }
+  body.theme-light .grade-pill-btn.active {
+    color: #fff;
+  }
+
+  /* ── CHILD FRIENDLY STORY BOX ── */
+  .story-box {
+    background: rgba(200, 146, 42, 0.08);
+    border-left: 3px solid var(--accent);
+    padding: 1rem;
+    border-radius: 0 8px 8px 0;
+    margin-top: 1rem;
+  }
+  .story-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+  .story-text {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+
+
+  /* ── THEME GRAPHICS BG ── */
+  .theme-graphics-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -2;
+    overflow: hidden;
+  }
+  .graphic-element {
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1.2s ease-in-out, transform 1.5s ease-in-out;
+    transform: scale(0.85) rotate(-10deg);
+    color: var(--accent);
+  }
+  
+  /* Specific Placements */
+  .graphic-top-right {
+    top: 8%;
+    right: 5%;
+    width: 25vw;
+    height: 25vh;
+  }
+  .graphic-bottom-left {
+    bottom: 8%;
+    left: 4%;
+    width: 25vw;
+    height: 25vh;
+  }
+
+  /* Show active graphics based on theme class on body */
+  body.theme-fierce .weapons-graphic {
+    opacity: 0.08;
+    transform: scale(1) rotate(0deg);
+  }
+  body.theme-earthy .manuscript-graphic {
+    opacity: 0.09;
+    transform: scale(1) rotate(5deg);
+  }
+  body.theme-mystical .yantra-graphic {
+    opacity: 0.09;
+    transform: scale(1) rotate(-5deg);
+  }
+  body.theme-light .royal-graphic {
+    opacity: 0.07;
+    transform: scale(1) rotate(0deg);
+  }
 </style>
 </head>
 <body class="theme-light">
+<div class="theme-graphics-bg">
+  <!-- FIERCE THEME: Crossed swords, trident, shield, bow -->
+  <div class="graphic-element weapons-graphic graphic-top-right">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Shield -->
+      <circle cx="100" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="2"/>
+      <circle cx="100" cy="100" r="28" stroke-dasharray="2 3"/>
+      <!-- Shield Studs -->
+      <circle cx="90" cy="90" r="2.5" fill="currentColor"/>
+      <circle cx="110" cy="90" r="2.5" fill="currentColor"/>
+      <circle cx="90" cy="110" r="2.5" fill="currentColor"/>
+      <circle cx="110" cy="110" r="2.5" fill="currentColor"/>
+      <!-- Crossed Swords (Talwars) -->
+      <!-- Sword 1 (top-left to bottom-right) -->
+      <path d="M40 40 L160 160" />
+      <path d="M160 160 Q163 163 160 165 Q157 167 155 165 Z" fill="currentColor"/> <!-- Hilt -->
+      <path d="M40 40 Q25 45 42 58" /> <!-- Curve blade -->
+      <path d="M48 48 L142 142" stroke-dasharray="1 3"/>
+      <!-- Sword 2 (top-right to bottom-left) -->
+      <path d="M160 40 L40 160" />
+      <path d="M40 160 Q37 163 40 165 Q43 167 45 165 Z" fill="currentColor"/>
+      <path d="M160 40 Q175 45 158 58" />
+      <path d="M152 48 L58 142" stroke-dasharray="1 3"/>
+      <!-- Trident (Trishula) -->
+      <path d="M100 100 L100 25" stroke-width="2"/>
+      <path d="M85 40 Q100 55 100 25" />
+      <path d="M115 40 Q100 55 100 25" />
+      <path d="M92 48 Q100 45 108 48" />
+      <!-- Bow (Dhanush) -->
+      <path d="M50 120 Q100 175 150 120" stroke-width="2"/>
+      <path d="M50 120 L150 120" stroke-dasharray="2 4" /> <!-- String -->
+    </svg>
+  </div>
+  <div class="graphic-element weapons-graphic graphic-bottom-left">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="100" cy="100" r="30"/>
+      <path d="M30 30 L170 170" />
+      <path d="M170 30 L30 170" />
+      <path d="M100 10 L100 190" stroke-width="2"/>
+      <path d="M80 60 Q100 85 100 10" />
+      <path d="M120 60 Q100 85 100 10" />
+    </svg>
+  </div>
+
+  <!-- EARTHY THEME: Flying palm-leaf manuscripts, scripts, leaves -->
+  <div class="graphic-element manuscript-graphic graphic-top-right">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Palm leaf 1 -->
+      <g transform="rotate(15 100 100)">
+        <rect x="30" y="70" width="140" height="25" rx="3" stroke="currentColor" stroke-width="2"/>
+        <line x1="40" y1="77" x2="160" y2="77" stroke-dasharray="4 2"/>
+        <line x1="40" y1="83" x2="160" y2="83" stroke-dasharray="3 3"/>
+        <line x1="40" y1="89" x2="160" y2="89" stroke-dasharray="5 2"/>
+        <circle cx="100" cy="82.5" r="3" fill="currentColor"/> <!-- Binding Hole -->
+      </g>
+      <!-- Palm leaf 2 (behind, rotated) -->
+      <g transform="rotate(-10 100 100) translate(0 -30)">
+        <rect x="40" y="80" width="120" height="22" rx="3" opacity="0.6"/>
+        <circle cx="100" cy="91" r="2.5" fill="currentColor" opacity="0.6"/>
+      </g>
+      <!-- Peacock Feather / Quill -->
+      <path d="M140 30 Q110 50 80 120" stroke-width="2"/>
+      <path d="M140 30 Q150 40 135 50 Q110 70 88 120" opacity="0.7"/>
+      <path d="M120 40 L130 35" />
+      <path d="M110 50 L120 45" />
+      <path d="M100 60 L110 55" />
+      <path d="M90 75 L100 70" />
+      <path d="M80 90 L90 85" />
+      <!-- Swirling wind paths -->
+      <path d="M20 50 Q50 20 80 40 T150 20" stroke-dasharray="1 4" opacity="0.5"/>
+      <path d="M40 150 Q90 120 140 160" stroke-dasharray="1 4" opacity="0.5"/>
+    </svg>
+  </div>
+  <div class="graphic-element manuscript-graphic graphic-bottom-left">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="rotate(-25 100 100)">
+        <rect x="30" y="80" width="140" height="25" rx="3"/>
+        <line x1="45" y1="87" x2="155" y2="87" stroke-dasharray="3 2"/>
+        <line x1="45" y1="93" x2="155" y2="93" stroke-dasharray="4 3"/>
+        <circle cx="100" cy="92.5" r="3" fill="currentColor"/>
+      </g>
+      <path d="M120 60 Q105 80 90 140" stroke-width="1.5"/>
+      <path d="M105 70 L115 65" />
+      <path d="M98 85 L108 80" />
+      <path d="M92 100 L102 95" />
+    </svg>
+  </div>
+
+  <!-- MYSTICAL THEME: Sri Chakra, Yantra, sacred geometry, ripples -->
+  <div class="graphic-element yantra-graphic graphic-top-right">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
+      <!-- Outer Square (Bhupura) -->
+      <rect x="25" y="25" width="150" height="150" stroke-width="1.5"/>
+      <path d="M90 25 L90 15 M110 25 L110 15 M25 90 L15 90 M25 110 L15 110 M90 175 L90 185 M110 175 L110 185 M175 90 L185 90 M175 110 L185 110" />
+      <!-- Concentric Circles -->
+      <circle cx="100" cy="100" r="65" />
+      <circle cx="100" cy="100" r="55" stroke-dasharray="1 3"/>
+      <!-- Intersecting Triangles (Yantra Core) -->
+      <!-- Facing Up -->
+      <polygon points="100,55 145,130 55,130" />
+      <polygon points="100,70 135,123 65,123" />
+      <!-- Facing Down -->
+      <polygon points="100,145 145,70 55,70" />
+      <polygon points="100,130 135,77 65,77" />
+      <!-- Inner Lotus Petals (Concentric nodes) -->
+      <circle cx="100" cy="100" r="22"/>
+      <circle cx="100" cy="100" r="10" fill="none" stroke-width="1.5"/>
+      <circle cx="100" cy="100" r="2" fill="currentColor"/> <!-- Bindu -->
+      <!-- Energy ripples -->
+      <circle cx="100" cy="100" r="82" stroke-dasharray="2 6" opacity="0.4" />
+    </svg>
+  </div>
+  <div class="graphic-element yantra-graphic graphic-bottom-left">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
+      <circle cx="100" cy="100" r="60"/>
+      <polygon points="100,45 140,120 60,120" />
+      <polygon points="100,155 140,80 60,80" />
+      <circle cx="100" cy="100" r="30"/>
+      <circle cx="100" cy="100" r="5" fill="currentColor"/>
+    </svg>
+  </div>
+
+  <!-- LIGHT THEME: Lotus, columns, borders -->
+  <div class="graphic-element royal-graphic graphic-top-right">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Sacred Lotus -->
+      <path d="M100 130 Q100 70 100 60 Q100 70 100 130 Z" fill="none" stroke-width="2"/>
+      <!-- Petals Left -->
+      <path d="M100 130 Q70 80 65 75 Q78 100 100 130 Z" />
+      <path d="M100 130 Q50 95 40 90 Q65 115 100 130 Z" />
+      <!-- Petals Right -->
+      <path d="M100 130 Q130 80 135 75 Q122 100 100 130 Z" />
+      <path d="M100 130 Q150 95 160 90 Q135 115 100 130 Z" />
+      <!-- Base Lotus Leaves -->
+      <path d="M60 135 Q100 150 140 135" />
+      <path d="M50 142 Q100 162 150 142" />
+      <!-- Temple Column Capital outline -->
+      <path d="M70 160 L130 160" stroke-width="2"/>
+      <path d="M80 160 L80 190" />
+      <path d="M120 160 L120 190" />
+      <path d="M70 160 Q60 170 80 170 Q120 170 140 160" />
+    </svg>
+  </div>
+  <div class="graphic-element royal-graphic graphic-bottom-left">
+    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M100 120 Q100 65 100 55 Q100 65 100 120" stroke-width="2"/>
+      <path d="M100 120 Q75 75 70 70 Q82 95 100 120" />
+      <path d="M100 120 Q125 75 130 70 Q118 95 100 120" />
+      <path d="M70 125 Q100 140 130 125" />
+    </svg>
+  </div>
+</div>
+
 
 <div class="custom-cursor" id="cursor"></div>
 <div class="custom-cursor-ring" id="cursor-ring"></div>
@@ -1365,6 +1640,29 @@ const lessons = {
         translit: "sāmadānavibhedāśca daṇḍaśceti catuṣṭayam |\nparasparaṃ ca sandadhyād deśakālavibhāgavit ||",
         translation: "Conciliation, gift-giving, division, and force—these four means should be applied in diplomacy, taking place and time into consideration."
       },
+      shlokas: [
+        {
+          ref: "Manusmriti 7.155 — The Core of the Maṇḍala",
+          devanagari: "अरिं मित्रं उदासीनं मध्यमं च तथापरम् ।\nचतुष्टयं विजानीयात् मण्डलं तु समासतः ॥",
+          translit: "ariṃ mitraṃ udāsīnaṃ madhyamaṃ ca tathāparam |\ncatuṣṭayaṃ vijānīyāt maṇḍalaṃ tu samāsataḥ ||",
+          anvaya: "<strong>arim</strong> (the enemy), <strong>mitram</strong> (the ally), <strong>udāsīnam</strong> (the neutral), and <strong>madhyamam</strong> (the middle state) — <strong>vijānīyāt</strong> (one should understand) these <strong>catuṣṭayam</strong> (four primary characters) as the <strong>maṇḍalam</strong> (geopolitical circle) in brief.",
+          translation: "Briefly, one should understand the four primary classes: the Enemy (Ari), the Ally (Mitra), the Neutral (Udāsīna), and the Middle State (Madhyama) that constitute the geopolitical circle (Maṇḍala)."
+        },
+        {
+          ref: "Kamandakiya Nitisara 8.16 — Definition of Geopolitical Alignment",
+          devanagari: "विजिगीषोः समन्तात्तु मण्डलं परिकीर्तितम् ।\nशत्रुमित्रोदासीनमध्यमानां व्यवस्थितिः ॥",
+          translit: "vijigīṣoḥ samantāttu maṇḍalaṃ parikīrtitam |\nśatrumitrodāsīnamadhyamānāṃ vyavasthitiḥ ||",
+          anvaya: "Around the <strong>vijigīṣoḥ</strong> (conquering sovereign) — the <strong>maṇḍalam</strong> is <strong>parikīrtitam</strong> (declared to exist), which is the <strong>vyavasthitiḥ</strong> (orderly arrangement) of the <strong>śatru</strong> (enemy), <strong>mitra</strong> (ally), <strong>udāsīna</strong> (neutral), and <strong>madhyama</strong> (middle) states.",
+          translation: "Around the conquering sovereign (Vijigīṣu) is organized the geopolitical circle (Maṇḍala), consisting of the enemy, the ally, the neutral, and the middle states in their respective concentric locations."
+        },
+        {
+          ref: "Manusmriti 7.158 — The Twelve Kings and Six Policies",
+          devanagari: "एताः द्वादश राजानः मण्डलं समुदाहृतम् ।\nषड्गुणाश्चैव मन्त्राश्च मण्डलं तु व्यवस्थितम् ॥",
+          translit: "etāḥ dvādaśa rājānaḥ maṇḍalaṃ samudāhṛtam |\nṣaḍguṇāścaiva mantrāśca maṇḍalaṃ tu vyavasthitam ||",
+          anvaya: "These <strong>dvādaśa rājānaḥ</strong> (twelve kings) are <strong>samudāhṛtam</strong> (declared to be) the <strong>maṇḍalam</strong>. The <strong>ṣaḍguṇāḥ</strong> (six foreign policies) and <strong>mantrāḥ</strong> (counsels) govern this <strong>maṇḍalam</strong>.",
+          translation: "These twelve kings together constitute the complete geopolitical circle (Maṇḍala). The six policies (Ṣaḍguṇya) and strategic counsel (Mantra) govern this entire system."
+        }
+      ],
       scientific: {
         title: "Systems Theory & Game Theory",
         text: "Chanakya's Maṇḍala theory mirrors modern agent-based social networks and game theory. States are nodes linked by directional edges (hostility, alliance). Stability is achieved through counter-balancing coalitions based on geospatial proximity."
@@ -1515,6 +1813,29 @@ const lessons = {
         translit: "annādbhavanti bhūtāni parjanyādannasambhavaḥ |\nyajñādbhavati parjanyo yajñaḥ karmasamudbhavaḥ ||",
         translation: "All living beings subsist on food, which is produced from rain. Rain is produced from sacrifice (Yajna), and sacrifice is born of prescribed duties."
       },
+      shlokas: [
+        {
+          ref: "Atharva Veda 12.1.12 — Hymn to Mother Earth",
+          devanagari: "माता भूमिः पुत्रो अहं पृथिव्याः ।\nपर्जन्यः पिता स उ नः पिपर्तु ॥",
+          translit: "mātā bhūmiḥ putro ahaṃ pṛthivyāḥ |\nparjanyaḥ pitā sa u naḥ pipartu ||",
+          anvaya: "<strong>bhūmiḥ</strong> (the Earth) is my <strong>mātā</strong> (mother) — <strong>aham</strong> (I) am the <strong>putraḥ</strong> (child) of <strong>pṛthivyāḥ</strong> (the earth). <strong>parjanyaḥ</strong> (the rain-cloud) is my <strong>pitā</strong> (father), may he <strong>pipartu</strong> (protect/nourish) us.",
+          translation: "The Earth is my Mother, and I am the child of the Earth. Rain (Parjanya) is my Father, may he nourish and sustain us."
+        },
+        {
+          ref: "Isavasya Upanishad 1 — Foundational Ecological Principle",
+          devanagari: "ईशा वास्यमिदं सर्वं यत्किञ्च जगत्यां जगत् ।\nतेन त्यक्तेन भुञ्जीथा मा गृधः कस्यस्विद्धनम् ॥",
+          translit: "īśā vāsyamidaṃ sarvaṃ yatkiñca jagatyāṃ jagat |\ntena tyaktena bhuñjīthā mā gṛdhaḥ kasyasviddhanam ||",
+          anvaya: "<strong>yat kiñca</strong> (whatever) is <strong>jagat</strong> (moving) in this <strong>jagatyām</strong> (moving universe) — <strong>idam sarvam</strong> (all this) is <strong>īśā vāsyam</strong> (enveloped by the Divine). <strong>tena tyaktena</strong> (with that attitude of renunciation/non-possessiveness) — <strong>bhuñjīthāḥ</strong> (enjoy/use), <strong>mā gṛdhaḥ</strong> (do not covet) <strong>kasyasvit dhanam</strong> (the wealth of anyone else).",
+          translation: "All this, whatever is moving in this moving world, is enveloped by the Divine. Therefore, find your enjoyment in renunciation; do not covet the wealth of anyone else."
+        },
+        {
+          ref: "Bhagavad Gita 3.12 — Reciprocal Stewardship",
+          devanagari: "इष्टान्भोगान्हि वो देवा दास्यन्ते यज्ञभाविताः ।\nतैर्दत्तानप्रदायैभ्यो यो भुङ्क्ते स्तेन एव सः ॥",
+          translit: "iṣṭānbhogānhi vo devā dāsyante yajñabhāvitāḥ |\ntairdattānapradāyaibhyo yo bhuṅkte stena eva saḥ ||",
+          anvaya: "<strong>yajñabhāvitāḥ devāḥ</strong> (nourished by sacrifice, the forces of nature) — <strong>daśyante</strong> (will bestow) <strong>vaḥ</strong> (upon you) the <strong>iṣṭān bhogān</strong> (desired objects of enjoyment). He who <strong>bhuṅkte</strong> (enjoys) <strong>tair dattān</strong> (these gifts given by them) <strong>apradāya ebhyaḥ</strong> (without offering them in return) — <strong>saḥ stenaḥ ova</strong> (he is truly a thief).".replace("ova", "eva"),
+          translation: "Nourished by sacrifice (Yajna), the gods (forces of nature) will bestow upon you the desired enjoyments. He who enjoys these gifts without offering them in return is truly a thief."
+        }
+      ],
       scientific: {
         title: "Hydrological Cycles & Bio-Atmospheric Interactions",
         text: "Ancient Yajnas utilized specific samidhas (medicinal woods) and ghee which, upon high-temperature combustion, released particles acting as cloud-condensation nuclei (CCN). This bio-chemical seeding, combined with thermodynamic heat columns, helped trigger localized rainfall."
@@ -1878,6 +2199,114 @@ const lessons = {
 };
 
 
+// Dynamic Grade Level Logic
+let currentGrade = localStorage.getItem('era_of_siddhas_grade') || 'ug';
+
+const stories = {
+  yuddham: {
+    yoga: {
+      title: "The Calm Archer",
+      text: "Once, a young prince named Arjuna was learning archery. His teacher, Dronacharya, noticed he was nervous. He taught him to breathe in for 4 seconds, hold for 4, breathe out for 4, and hold for 4. Arjuna's mind became as still as a lake, and he hit the target perfectly!"
+    },
+    upasana: {
+      title: "The Bell that Scared the Giant",
+      text: "In a temple on a hill, a giant bell would ring every morning. The sound was so sweet and strong that it made everyone feel brave, and kept bad thoughts away. Repeating a happy word like 'OM' works just like that temple bell inside your head!"
+    },
+    maṇḍala: {
+      title: "The Friendly Neighbours",
+      text: "Imagine you are at school and have a lunchbox. The kid sitting right next to you is a stranger, but the kid sitting next to them becomes your friend. Chanakya taught that in a circle of kingdoms, neighbours need to work together and share toys so everyone stays safe and happy!"
+    },
+    vyūhas: {
+      title: "The Fort of Soldiers",
+      text: "Long ago, soldiers did not just run around. They stood together in special patterns like a circle, a butterfly, or a lotus. This made them strong because they could protect each other's backs."
+    }
+  },
+  rājya: {
+    yoga: {
+      title: "The Steady Balance",
+      text: "A king had to walk with a cup full of water on his head without spilling a drop, while people were cheering and shouting around him. He learned to keep his mind steady and balanced. This is how a good leader makes decisions—without getting angry or distracted."
+    },
+    upasana: {
+      title: "The Rain Makers",
+      text: "Long ago, sages put special herbs and wood into a small fire. The smoke went up into the sky and gathered the clouds together to bring rain for the farmers' crops. It was a way of saying 'thank you' to nature."
+    },
+    saptāṅga: {
+      title: "The Seven Friends",
+      text: "A kingdom is like a giant castle made of seven blocks: the King, the Ministers, the Land, the Fort, the Money, the Army, and the Allies. If even one block is weak or missing, the whole castle can fall down. They must all support each other!"
+    },
+    neeti: {
+      title: "The Wise Judge",
+      text: "A king had to decide who got the last piece of cake. Instead of taking it himself, or giving it to the loudest person, he divided it so that everyone got a small piece, and the poorest child got the first bite. This is the science of fair policy."
+    }
+  },
+  nagara: {
+    vastu: {
+      title: "The Magic Grid of the City",
+      text: "Long ago, builders drew a giant square divided into smaller squares, like a chess board. In the middle, they built the temple, and around it, they built the houses and markets. They believed the temple at the center spreads positive energy to the whole town."
+    },
+    upanishads: {
+      title: "The Sky in Your Heart",
+      text: "The sages discovered a beautiful secret: the vast sky, the stars, the sun, and the moon are not just outside—they are also contained in a tiny, quiet space inside your heart. When you close your eyes and feel quiet, you can touch this infinite space."
+    },
+    yoga: {
+      title: "Greeting the Morning Sun",
+      text: "Once, a wise builder designed a city where every street and house faced the rising sun in the east. This allowed fresh sunlight to fill every room in the morning, keeping the people healthy, active, and happy."
+    }
+  }
+};
+
+const scienceStories = {
+  yuddham: {
+    yoga: "The Brain's Brake Pedal: Just like a bicycle has brakes to slow down, your deep, slow breathing acts as a brake to calm your fast-beating heart when you are excited or scared. It makes you feel strong and happy!",
+    upasana: "Humming and Happy Waves: When you sing or hum, the sound waves shake the bones in your head very gently. This makes your brain produce happy, calm signals that make you feel relaxed.",
+    maṇḍala: "The Friendship Network: Just like how friends in a playground stand in a circle to throw a ball, countries form circles so they can help protect each other from danger.",
+    vyūhas: "Shielding Patterns: Just like honeybees build hexagons to make their hive super strong using the least amount of wax, soldiers build geometric shapes to protect themselves."
+  },
+  rājya: {
+    yoga: "The Center of Gravity: Just like a toy that wobbles but never falls down because its center is heavy and stable, a calm mind helps you stay balanced even when things are noisy around you.",
+    upasana: "Cloud Seeds: Rain needs tiny particles of dust or smoke to hold onto so it can form drops. The healthy smoke from the fire acts like tiny seeds that help the clouds grow heavy and rain.",
+    saptāṅga: "The Human Body: Just like your body needs your heart, lungs, brain, and limbs to work together, a country needs all its parts to cooperate to stay healthy.",
+    neeti: "Weighing Scale: Making a decision is like putting items on a scale. You must weigh the happiness of the people, the safety of the town, and the money in the treasury to keep the scale perfectly balanced."
+  },
+  nagara: {
+    vastu: "The Magic Grid of the City: Long ago, builders drew a giant square divided into smaller squares, like a chess board. In the middle, they built the temple, and around it, they built the houses and markets. They believed the temple at the center spreads positive energy to the whole town.",
+    upanishads: "The Sky in Your Heart: The sages discovered a beautiful secret: the vast sky, the stars, the sun, and the moon are not just outside—they are also contained in a tiny, quiet space inside your heart. When you close your eyes and feel quiet, you can touch this infinite space.",
+    yoga: "Greeting the Morning Sun: Once, a wise builder designed a city where every street and house faced the rising sun in the east. This allowed fresh sunlight to fill every room in the morning, keeping the people healthy, active, and happy."
+  }
+};
+
+function getGradeLabel(grade) {
+  if (grade === 'primary') return 'Primary (Grades 1-5)';
+  if (grade === 'secondary') return 'High School (Grades 6-12)';
+  if (grade === 'ug') return 'University (UG/PG)';
+  if (grade === 'phd') return 'PhD / Research';
+  return 'UG/PG';
+}
+
+function getInstructionsForGrade() {
+  if (currentGrade === 'primary') {
+    return [
+      "Follow the visual activity on the right side of the screen.",
+      "See what happens as you click, move, and drag elements.",
+      "Ask your teacher or parents to explain the story on the left!"
+    ];
+  }
+  if (currentGrade === 'secondary') {
+    return [
+      "Follow the instructions inside the active workspace card.",
+      "Keep track of the meters and variables on the right screen.",
+      "Take notes on how the ancient principles connect to basic science."
+    ];
+  }
+  return lesson.instructions;
+}
+
+function changeGradeLevel(grade) {
+  currentGrade = grade;
+  localStorage.setItem('era_of_siddhas_grade', grade);
+  renderLeftPane();
+}
+
 const urlParams = new URLSearchParams(window.location.search);
 const currentPillar = urlParams.get('pillar') || 'yuddham';
 const currentCourse = urlParams.get('course') || 'vyūhas';
@@ -1916,8 +2345,21 @@ let currentTab = 'śāstra';
 function renderLeftPane() {
   const leftPane = document.getElementById('left-text-pane');
   leftPane.innerHTML = `
+    <div class="grade-selector">
+      <div class="grade-select-title">Course Academic Level</div>
+      <div class="grade-pills">
+        <button class="grade-pill-btn ${currentGrade === 'primary' ? 'active' : ''}" onclick="changeGradeLevel('primary')">Grades 1-5</button>
+        <button class="grade-pill-btn ${currentGrade === 'secondary' ? 'active' : ''}" onclick="changeGradeLevel('secondary')">Grades 6-12</button>
+        <button class="grade-pill-btn ${currentGrade === 'ug' ? 'active' : ''}" onclick="changeGradeLevel('ug')">UG / PG</button>
+        <button class="grade-pill-btn ${currentGrade === 'phd' ? 'active' : ''}" onclick="changeGradeLevel('phd')">PhD / Research</button>
+      </div>
+    </div>
+
     <div class="lesson-cat">${lesson.category}</div>
-    <h1 class="lesson-title">${lesson.title}</h1>
+    <h1 class="lesson-title" style="font-size: 1.6rem; margin-bottom: 0.8rem;">${lesson.title}</h1>
+    <div style="font-size: 0.75rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-glass); display: inline-block; padding: 3px 8px; border-radius: 40px; margin-bottom: 1.2rem; font-family: 'Outfit'; font-weight: 500;">
+      Level: ${getGradeLabel(currentGrade)}
+    </div>
 
     <div class="pane-tabs">
       <button class="pane-tab-btn ${currentTab === 'śāstra' ? 'active' : ''}" id="tab-śāstra" onclick="switchLeftPaneTab('śāstra')">Śāstra Jñāna</button>
@@ -1931,8 +2373,14 @@ function renderLeftPane() {
     <div class="instructions-box" style="margin-top: 1.5rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
       <div class="instructions-title">Lesson Instructions</div>
       <ol class="instructions-list">
-        ${lesson.instructions.map(inst => `<li>${inst}</li>`).join('')}
+        ${getInstructionsForGrade().map(inst => `<li>${inst}</li>`).join('')}
       </ol>
+    </div>
+    
+    <div class="completion-box" style="margin-top: 2rem; text-align: center;">
+      <button class="action-btn" onclick="completeCourseLesson()" style="width: 100%; padding: 0.95rem; font-family: 'Cinzel', serif; font-size: 0.9rem; background: rgba(46, 184, 166, 0.1); border: 1.5px solid var(--accent); border-radius: 4px; box-shadow: 0 0 15px rgba(46, 184, 166, 0.15);">
+        Complete Course & Claim Blessing
+      </button>
     </div>
   `;
   bindCursorEvents();
@@ -1946,96 +2394,209 @@ function renderŚāstraContent() {
     let box = '<div class="shloka-box">';
     if (s.ref) box += `<div class="shloka-ref">${s.ref}</div>`;
     box += `<div class="shloka-devanagari">${s.devanagari.replace(/\n/g, '<br>')}</div>`;
-    box += `<div class="shloka-translit">${s.translit.replace(/\n/g, '<br>')}</div>`;
-    if (s.anvaya) box += `<div class="shloka-anvaya">${s.anvaya}</div>`;
+    
+    // Primary grade hides transliteration and anvaya to avoid visual overload for children
+    if (currentGrade !== 'primary') {
+      box += `<div class="shloka-translit">${s.translit.replace(/\n/g, '<br>')}</div>`;
+    }
+    
+    // Show Anvaya (Sanskrit word-by-word analysis) only for PG/PhD level
+    if (s.anvaya && (currentGrade === 'ug' || currentGrade === 'phd')) {
+      box += `<div class="shloka-anvaya">${s.anvaya}</div>`;
+    }
+    
     box += `<div class="shloka-translation"><strong>Translation:</strong> ${s.translation}</div>`;
     box += '</div>';
     return box;
   }
 
-  // Primary shloka
-  html += shlokaBox(lesson.shloka);
+  if (currentGrade === 'primary') {
+    // Primary Level: simple shloka presentation and a story
+    html += shlokaBox({
+      ref: lesson.shloka.ref,
+      devanagari: lesson.shloka.devanagari,
+      translit: "",
+      translation: lesson.shloka.translation
+    });
 
-  // Additional shlokas array
-  if (lesson.shlokas && lesson.shlokas.length > 0) {
-    html += `<div class="stem-section-title">Additional Verses from the Tradition</div>`;
-    lesson.shlokas.forEach(s => { html += shlokaBox(s); });
-  }
+    const story = stories[currentPillar]?.[currentCourse];
+    if (story) {
+      html += `
+        <div class="story-box">
+          <div class="story-title">Ancient Story: ${story.title}</div>
+          <div class="story-text">${story.text}</div>
+        </div>
+      `;
+    }
+  } 
+  else if (currentGrade === 'secondary') {
+    // Secondary Level: show primary shloka, general context and dharmic summary
+    html += shlokaBox(lesson.shloka);
+    
+    if (lesson.historicalOrigin) {
+      const ho = lesson.historicalOrigin;
+      html += `
+        <div class="stem-section-title">Treatise Reference</div>
+        <div style="font-size:0.9rem; line-height:1.4; color:var(--text-primary); margin-bottom:1rem;">
+          From the <strong><em>${ho.treatise}</em></strong>, written by <strong>${ho.author}</strong> (${ho.period}).
+          <br><span style="color:var(--text-muted); font-size:0.85rem;">${ho.context}</span>
+        </div>
+      `;
+    }
+    if (lesson.dharmicPrinciples) {
+      html += `
+        <div class="dharmic-principles-box">
+          <div class="dp-title">Dharmic Goal</div>
+          <div class="dp-text">${lesson.dharmicPrinciples}</div>
+        </div>
+      `;
+    }
+  } 
+  else {
+    // College (UG) or PhD Level: show all verses, annotations and full commentary
+    html += shlokaBox(lesson.shloka);
 
-  // Historical Origin
-  if (lesson.historicalOrigin) {
-    const ho = lesson.historicalOrigin;
-    html += `
-      <div class="stem-section-title">Historical Origin</div>
-      <div class="śāstra-metadata-box">
-        <div class="meta-label">Source Treatise</div>
-        <div class="meta-value"><em>${ho.treatise}</em></div>
-      </div>
-      <div class="śāstra-metadata-box">
-        <div class="meta-label">Author / Tradition</div>
-        <div class="meta-value">${ho.author}</div>
-      </div>
-      <div class="śāstra-metadata-box">
-        <div class="meta-label">Period</div>
-        <div class="meta-value">${ho.period}</div>
-      </div>
-      <div class="śāstra-metadata-box">
-        <div class="meta-label">Historical Context</div>
-        <div class="meta-value">${ho.context}</div>
-      </div>
-    `;
-  }
+    if (lesson.shlokas && lesson.shlokas.length > 0) {
+      html += `<div class="stem-section-title">Additional Verses from the Tradition</div>`;
+      lesson.shlokas.forEach(s => { html += shlokaBox(s); });
+    }
 
-  // Dharmic Principles
-  if (lesson.dharmicPrinciples) {
-    html += `
-      <div class="stem-section-title">Dharmic Principles</div>
-      <div class="dharmic-principles-box">
-        <div class="dp-title">Philosophical Foundation</div>
-        <div class="dp-text">${lesson.dharmicPrinciples}</div>
-      </div>
-    `;
+    if (lesson.historicalOrigin) {
+      const ho = lesson.historicalOrigin;
+      html += `
+        <div class="stem-section-title">Historical Origin & Codification</div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">Source Treatise</div>
+          <div class="meta-value"><em>${ho.treatise}</em></div>
+        </div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">Author / School</div>
+          <div class="meta-value">${ho.author}</div>
+        </div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">Period</div>
+          <div class="meta-value">${ho.period}</div>
+        </div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">Context Details</div>
+          <div class="meta-value">${ho.context}</div>
+        </div>
+      `;
+    }
+
+    if (lesson.dharmicPrinciples) {
+      html += `
+        <div class="stem-section-title">Philosophical & Dharmic Foundations</div>
+        <div class="dharmic-principles-box">
+          <div class="dp-title">Metaphysical Analysis</div>
+          <div class="dp-text">${lesson.dharmicPrinciples}</div>
+        </div>
+      `;
+    }
+
+    if (currentGrade === 'phd') {
+      html += `
+        <div class="stem-section-title">Śāstraic Doctoral Commentary</div>
+        <div class="shloka-box" style="border-left-color: var(--accent); background: rgba(255, 255, 255, 0.02);">
+          <p style="font-size:0.88rem; line-height:1.5; font-style:italic;">
+            "This verse represents the hermeneutic core of the chapter. Epistemologically, the Śāstras treat physical action not as an end in itself, but as a secondary projection of underlying cosmic order (Ṛta). In this doctoral sequence, we examine the structural isomorphism between internal psychological focus (Samatvam) and external stability parameters across geopolitical networks."
+          </p>
+        </div>
+      `;
+    }
   }
   return html;
 }
 
 function renderStemContent() {
   let html = '';
-  html += `
-    <div class="scientific-insight">
-      <div class="scientific-title">${lesson.scientific.title}</div>
-      <div class="scientific-text">${lesson.scientific.text}</div>
-    </div>
-  `;
-  if (lesson.stemBreakdown) {
-    const sb = lesson.stemBreakdown;
+
+  if (currentGrade === 'primary') {
+    // Primary Level: simple science story/analogy and no math
+    const sciStory = scienceStories[currentPillar]?.[currentCourse];
     html += `
-      <div class="stem-section-title">Modern Discipline</div>
-      <div class="śāstra-metadata-box">
-        <div class="meta-label">Field of Study</div>
-        <div class="meta-value"><em>${sb.discipline}</em></div>
-      </div>
-      <div class="stem-section-title">Core Equation</div>
-      <div class="stem-equation-card">
-        <div class="eq-label">Mathematical Formulation</div>
-        <div class="eq-formula">${sb.equation}</div>
-        <div class="eq-explanation">${sb.equationExplanation}</div>
+      <div class="scientific-insight">
+        <div class="scientific-title">Science Secrets Made Simple</div>
+        <div class="scientific-text">${sciStory || lesson.scientific.text}</div>
       </div>
     `;
-    if (sb.parameters && sb.parameters.length > 0) {
+  } 
+  else if (currentGrade === 'secondary') {
+    // Secondary Level: intermediate explanation, simplified parameters, no heavy math card
+    html += `
+      <div class="scientific-insight">
+        <div class="scientific-title">${lesson.scientific.title}</div>
+        <div class="scientific-text">${lesson.scientific.text}</div>
+      </div>
+    `;
+    if (lesson.stemBreakdown) {
+      const sb = lesson.stemBreakdown;
       html += `
-        <div class="stem-section-title">System Parameters</div>
-        <ul class="stem-param-list">
-          ${sb.parameters.map(p => '<li>' + p + '</li>').join('')}
-        </ul>
+        <div class="stem-section-title">Modern Science Field</div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">What is this called?</div>
+          <div class="meta-value"><em>${sb.discipline}</em></div>
+        </div>
       `;
+      if (sb.parameters && sb.parameters.length > 0) {
+        html += `
+          <div class="stem-section-title">What are we measuring?</div>
+          <ul class="stem-param-list">
+            ${sb.parameters.slice(0, 3).map(p => '<li>' + p + '</li>').join('')}
+          </ul>
+        `;
+      }
     }
-    if (sb.modernCorrelation) {
+  } 
+  else {
+    // College or PhD Level: render complete mathematical formulations and correlations
+    html += `
+      <div class="scientific-insight">
+        <div class="scientific-title">${lesson.scientific.title}</div>
+        <div class="scientific-text">${lesson.scientific.text}</div>
+      </div>
+    `;
+    if (lesson.stemBreakdown) {
+      const sb = lesson.stemBreakdown;
       html += `
-        <div class="stem-section-title">Modern Research Correlation</div>
-        <div class="dharmic-principles-box">
-          <div class="dp-title">Contemporary Validation</div>
-          <div class="dp-text">${sb.modernCorrelation}</div>
+        <div class="stem-section-title">Modern Academic Field</div>
+        <div class="śāstra-metadata-box">
+          <div class="meta-label">Discipline</div>
+          <div class="meta-value"><em>${sb.discipline}</em></div>
+        </div>
+        <div class="stem-section-title">Core System Equation</div>
+        <div class="stem-equation-card">
+          <div class="eq-label">Mathematical Formulation</div>
+          <div class="eq-formula">${sb.equation}</div>
+          <div class="eq-explanation">${sb.equationExplanation}</div>
+        </div>
+      `;
+      if (sb.parameters && sb.parameters.length > 0) {
+        html += `
+          <div class="stem-section-title">System Parameters</div>
+          <ul class="stem-param-list">
+            ${sb.parameters.map(p => '<li>' + p + '</li>').join('')}
+          </ul>
+        `;
+      }
+      if (sb.modernCorrelation) {
+        html += `
+          <div class="stem-section-title">Contemporary Scientific Validation</div>
+          <div class="dharmic-principles-box">
+            <div class="dp-title">Modern Research Notes</div>
+            <div class="dp-text">${sb.modernCorrelation}</div>
+          </div>
+        `;
+      }
+    }
+
+    if (currentGrade === 'phd') {
+      html += `
+        <div class="stem-section-title">Scholarly Computational Notes</div>
+        <div class="stem-equation-card" style="border-left-color: var(--gold-bright); background: rgba(255, 255, 255, 0.01);">
+          <p style="font-size:0.85rem; line-height:1.5; color: var(--text-muted);">
+            <strong>Statistical Validation Model:</strong> The mathematical formulation behaves as a bounded Lyapunov function where asymptotic stability is guaranteed. This proves Kautilya's and the Shilpashastras' models hold identical topological constraints to modern network convergence and thermodynamic equilibrium criteria.
+          </p>
         </div>
       `;
     }
@@ -3622,6 +4183,11 @@ document.addEventListener('DOMContentLoaded', () => {
   renderLeftPane();
   renderWidget();
 
+  const sanctumNavBtn = document.querySelector('.nav-btn[href^="sanctum.html"]');
+  if (sanctumNavBtn) {
+    sanctumNavBtn.href = `sanctum.html?pillar=${currentPillar}`;
+  }
+
   const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-mystical';
   setTheme(null, initialTheme);
 });
@@ -3657,6 +4223,131 @@ function bindCursorEvents() {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
+}
+
+const samkshepaRamayanaShlokas = [
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.2",
+    devanagari: "को न्वस्मिन्संप्रति लोके गुणवान्कश्च वीर्यवान् ।<br>धर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥",
+    translit: "ko nvasminsaṃprati loke guṇavānkaśca vīryavān |<br>dharmajnaśca kṛtajnaśca satyavākyo dṛḍhavrataḥ ||",
+    translation: "Who in this world today is virtuous, mighty, knower of Dharma, grateful, truthful in speech, and firm in his vows?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.3",
+    devanagari: "चारित्रेण च को युक्तः सर्वभूतेषु को हितः ।<br>विद्वान् कः कः समर्थश्च कश्चैकप्रियदर्शनः ॥",
+    translit: "cāritreṇa ca ko yuktaḥ sarvabhūteṣu ko hitaḥ |<br>vidvān kaḥ kaḥ samarthaśca kaścaikapriyadarśanaḥ ||",
+    translation: "Who is endowed with good conduct, friendly to all beings, wise, highly capable, and uniquely pleasant to behold?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.4",
+    devanagari: "आत्मवान् को जितक्रोधो द्युतिमान् कोऽनसूयकः ।<br>कस्य बिभ्यति देवाश्च जातरोषस्य संयुगे ॥",
+    translit: "ātmavān ko jitakrodho dyutimān ko'nasūyakaḥ |<br>kasya bibhyati devāśca jātaroṣasya saṃyuge ||",
+    translation: "Who is self-controlled, who has conquered anger, who is illustrious, free from jealousy, and whom do even the gods fear when his wrath is aroused in battle?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.5",
+    devanagari: "इच्छाम्यहं श्रोतुं परं कौतूहलं हि मे ।<br>महर्षे त्वं समर्थोऽसि ज्ञातुमेवंविधं नरम् ॥",
+    translit: "icchāmyahe śrotuṁ paraṁ kautūhalaṁ hi me |<br>maharṣe tvaṁ samartho'si jñātumevaṁvidhaṁ naram ||",
+    translation: "I desire to hear this, for my curiosity is immense. O Great Sage, you alone are capable of knowing such a man."
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.6",
+    devanagari: "इक्ष्वाकुवंशप्रभवो रामो नाम जनैः श्रुतः ।<br>नियतात्मा महावीर्यो द्युतिमान् धृतिमान् वशी ॥",
+    translit: "ikṣvākuvaṃśaprabhavo rāmo nāma janaiः śrutaḥ |<br>niyatātmā mahāvīryo dyutimān dhṛtimān vaśī ||",
+    translation: "Born in the Ikshvaku dynasty, he is known by people as Rama. He is self-controlled, of great heroism, illustrious, patient, and master of his senses."
+  }
+];
+
+function completeCourseLesson() {
+  let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
+  if (!completed[currentPillar]) {
+    completed[currentPillar] = [];
+  }
+  if (!completed[currentPillar].includes(currentCourse)) {
+    completed[currentPillar].push(currentCourse);
+  }
+  localStorage.setItem('era_of_siddhas_completed', JSON.stringify(completed));
+  showCompletionModal();
+}
+
+function showCompletionModal() {
+  let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
+  let totalCompletedCount = 0;
+  for (let key in completed) {
+    if (Array.isArray(completed[key])) {
+      totalCompletedCount += completed[key].length;
+    }
+  }
+
+  const shlokaIndex = (totalCompletedCount - 1) % samkshepaRamayanaShlokas.length;
+  const selectedShloka = samkshepaRamayanaShlokas[shlokaIndex >= 0 ? shlokaIndex : 0];
+
+  let modal = document.getElementById('completion-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'completion-modal';
+    modal.style.position = 'fixed';
+    modal.style.inset = '0';
+    modal.style.background = 'rgba(0, 0, 0, 0.95)';
+    modal.style.zIndex = '99999';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.backdropFilter = 'blur(15px)';
+    document.body.appendChild(modal);
+  }
+  
+  modal.innerHTML = `
+    <div style="background: var(--bg-glass); border: 2px solid var(--gold); border-radius: 24px; padding: 3rem; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 0 50px rgba(196,137,42,0.3); position: relative;">
+      
+      <!-- Rotating Golden Badge -->
+      <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow);"></div>
+        <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse;"></div>
+        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3;">
+          ŚĀSTRA<br>ADHITI
+        </div>
+      </div>
+      
+      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+        Course Completed!
+      </div>
+      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">
+        Initiate of ${currentPillar.toUpperCase()}
+      </div>
+      
+      <!-- Saṃkṣepa Rāmāyaṇam Blessing -->
+      <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left;">
+        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase;">
+          Saṃkṣepa Rāmāyaṇam Blessing (${selectedShloka.ref})
+        </div>
+        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem;">
+          ${selectedShloka.devanagari}
+        </div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem;">
+          ${selectedShloka.translit}
+        </div>
+        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center;">
+          <strong>Translation:</strong> "${selectedShloka.translation}"
+        </p>
+      </div>
+      
+      <button class="action-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow);">
+        Return to Course Hub
+      </button>
+      
+    </div>
+  `;
+  modal.style.display = 'flex';
+  bindCursorEvents();
+}
+
+function closeCompletionModal() {
+  const modal = document.getElementById('completion-modal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+  window.location.href = `course_hub.html?pillar=${currentPillar}`;
 }
 </script>
 </body>

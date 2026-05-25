@@ -475,6 +475,39 @@ function switchPillar(btnElement, pillar) {
   });
 }
 
+const samkshepaRamayanaShlokas = [
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.2",
+    devanagari: "को न्वस्मिन्संप्रति लोके गुणवान्कश्च वीर्यवान् ।<br>धर्मज्ञश्च कृतज्ञश्च सत्यवाक्यो दृढव्रतः ॥",
+    translit: "ko nvasminsaṃprati loke guṇavānkaśca vīryavān |<br>dharmajnaśca kṛtajnaśca satyavākyo dṛḍhavrataḥ ||",
+    translation: "Who in this world today is virtuous, mighty, knower of Dharma, grateful, truthful in speech, and firm in his vows?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.3",
+    devanagari: "चारित्रेण च को युक्तः सर्वभूतेषु को हितः ।<br>विद्वान् कः कः समर्थश्च कश्चैकप्रियदर्शनः ॥",
+    translit: "cāritreṇa ca ko yuktaḥ sarvabhūteṣu ko hitaḥ |<br>vidvān kaḥ kaḥ samarthaśca kaścaikapriyadarśanaḥ ||",
+    translation: "Who is endowed with good conduct, friendly to all beings, wise, highly capable, and uniquely pleasant to behold?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.4",
+    devanagari: "आत्मवान् को जितक्रोधो द्युतिमान् कोऽनसूयकः ।<br>कस्य बिभ्यति देवाश्च जातरोषस्य संयुगे ॥",
+    translit: "ātmavān ko jitakrodho dyutimān ko'nasūyakaḥ |<br>kasya bibhyati devāśca jātaroṣasya saṃyuge ||",
+    translation: "Who is self-controlled, who has conquered anger, who is illustrious, free from jealousy, and whom do even the gods fear when his wrath is aroused in battle?"
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.5",
+    devanagari: "इच्छाम्यहं श्रोतुं परं कौतूहलं हि मे ।<br>महर्षे त्वं समर्थोऽसि ज्ञातुमेवंविधं नरम् ॥",
+    translit: "icchāmyahe śrotuṁ paraṁ kautūhalaṁ hi me |<br>maharṣe tvaṁ samartho'si jñātumevaṁvidhaṁ naram ||",
+    translation: "I desire to hear this, for my curiosity is immense. O Great Sage, you alone are capable of knowing such a man."
+  },
+  {
+    ref: "Saṃkṣepa Rāmāyaṇam 1.6",
+    devanagari: "इक्ष्वाकुवंशप्रभवो रामो नाम जनैः श्रुतः ।<br>नियतात्मा महावीर्यो द्युतिमान् धृतिमान् वशी ॥",
+    translit: "ikṣvākuvaṃśaprabhavo rāmo nāma janaiः śrutaḥ |<br>niyatātmā mahāvīryo dyutimān dhṛtimān vaśī ||",
+    translation: "Born in the Ikshvaku dynasty, he is known by people as Rama. He is self-controlled, of great heroism, illustrious, patient, and master of his senses."
+  }
+];
+
 function submitReflection() {
   const text = document.getElementById('reflection-textarea').value.trim();
   if (!text) {
@@ -482,44 +515,121 @@ function submitReflection() {
     return;
   }
   localStorage.setItem('era_of_siddhas_reflection_' + activePillar, text);
-  alert("Your reflection has been submitted successfully to the Guru's Mirror.");
+  
+  // Add to completed
+  let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
+  if (!completed[activePillar]) {
+    completed[activePillar] = [];
+  }
+  if (!completed[activePillar].includes('sanctum')) {
+    completed[activePillar].push('sanctum');
+  }
+  localStorage.setItem('era_of_siddhas_completed', JSON.stringify(completed));
+  
   document.getElementById('reflection-textarea').value = "";
+  showCompletionModal();
+}
+
+function showCompletionModal() {
+  let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
+  let totalCompletedCount = 0;
+  for (let key in completed) {
+    if (Array.isArray(completed[key])) {
+      totalCompletedCount += completed[key].length;
+    }
+  }
+
+  const shlokaIndex = (totalCompletedCount - 1) % samkshepaRamayanaShlokas.length;
+  const selectedShloka = samkshepaRamayanaShlokas[shlokaIndex >= 0 ? shlokaIndex : 0];
+
+  let modal = document.getElementById('completion-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'completion-modal';
+    modal.style.position = 'fixed';
+    modal.style.inset = '0';
+    modal.style.background = 'rgba(0, 0, 0, 0.95)';
+    modal.style.zIndex = '99999';
+    modal.style.display = 'flex';
+    modal.style.alignItems = 'center';
+    modal.style.justifyContent = 'center';
+    modal.style.backdropFilter = 'blur(15px)';
+    document.body.appendChild(modal);
+  }
+  
+  modal.innerHTML = `
+    <div style="background: var(--bg-glass); border: 2px solid var(--gold); border-radius: 24px; padding: 3rem; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 0 50px rgba(196,137,42,0.3); position: relative;">
+      
+      <!-- Rotating Golden Badge -->
+      <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;">
+        <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow);"></div>
+        <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse;"></div>
+        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3;">
+          ŚĀSTRA<br>ADHITI
+        </div>
+      </div>
+      
+      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+        Course Completed!
+      </div>
+      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">
+        Initiate of ${activePillar.toUpperCase()}
+      </div>
+      
+      <!-- Saṃkṣepa Rāmāyaṇam Blessing -->
+      <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left;">
+        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase;">
+          Saṃkṣepa Rāmāyaṇam Blessing (${selectedShloka.ref})
+        </div>
+        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem;">
+          ${selectedShloka.devanagari}
+        </div>
+        <div style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem;">
+          ${selectedShloka.translit}
+        </div>
+        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center;">
+          <strong>Translation:</strong> "${selectedShloka.translation}"
+        </p>
+      </div>
+      
+      <button class="submit-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow);">
+        Return to Course Hub
+      </button>
+      
+    </div>
+  `;
+  modal.style.display = 'flex';
+  bindCursorEvents();
+}
+
+function closeCompletionModal() {
+  const modal = document.getElementById('completion-modal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+  window.location.href = `course_hub.html?pillar=${activePillar}`;
+}
+
+function bindCursorEvents() {
+  document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell, #completion-modal button').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
 }
 
 // Load persisted theme on start
 const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
 setTheme(null, initialTheme);
 
-// Custom Cursor Logic
-const cursor = document.getElementById('cursor');
-const cursorRing = document.getElementById('cursor-ring');
-let mouseX = 0, mouseY = 0;
-let ringX = 0, ringY = 0;
-
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursor.style.left = mouseX + 'px';
-  cursor.style.top = mouseY + 'px';
-});
-
-function animateRing() {
-  ringX += (mouseX - ringX) * 0.2;
-  ringY += (mouseY - ringY) * 0.2;
-  cursorRing.style.left = ringX + 'px';
-  cursorRing.style.top = ringY + 'px';
-  requestAnimationFrame(animateRing);
+// Parse url param for starting pillar
+const urlParams = new URLSearchParams(window.location.search);
+const initialPillar = urlParams.get('pillar') || 'yuddham';
+const initialTabBtn = document.querySelector(`.tab[onclick*="${initialPillar}"]`);
+if (initialTabBtn) {
+  switchPillar(initialTabBtn, initialPillar);
+} else {
+  switchPillar(null, initialPillar);
 }
-
-if (cursor && cursorRing) {
-  document.body.classList.add('custom-cursor-active');
-  animateRing();
-}
-
-document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell').forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-});
 </script>
 </body>
 </html>
