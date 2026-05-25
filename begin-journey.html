@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Begin Your Journey — Era of Siddhas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --earth: #1a0e00;
+    --gold: #c8922a;
+    --gold-bright: #f0c060;
+    --gold-pale: #f5dfa0;
+    --ember: #c44a1a;
+    --ash: #8a7a6a;
+    --cream: #f2e8d5;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--earth);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: auto;
+  }
+
+  /* PROGRESS BAR TOP */
+  .top-bar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,5,0,0.95);
+    border-bottom: 1px solid rgba(200,146,42,0.1);
+    padding: 1rem 3rem;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  .top-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    white-space: nowrap;
+    text-decoration: none;
+  }
+  .step-dots {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+  }
+  .step-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(200,146,42,0.15);
+    border: 1px solid rgba(200,146,42,0.2);
+    transition: all 0.3s;
+  }
+  .step-dot.active { background: var(--gold); border-color: var(--gold); transform: scale(1.2); }
+  .step-dot.done { background: rgba(200,146,42,0.4); border-color: rgba(200,146,42,0.4); }
+  .step-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--ash);
+    white-space: nowrap;
+  }
+
+  /* SCREENS */
+  .screen {
+    display: none;
+    min-height: 100vh;
+    padding: 8rem 2rem 4rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .screen.active { display: flex; }
+
+  /* SCREEN 0 — COSMIC INTRO */
+  .cosmic-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--gold-pale);
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.3s forwards;
+    text-shadow: 0 0 60px rgba(200,146,42,0.3);
+  }
+  .cosmic-devanagari {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--gold);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.6s forwards;
+    text-shadow: 0 0 40px rgba(200,146,42,0.4);
+  }
+  .cosmic-body {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-style: italic;
+    color: var(--ash);
+    max-width: 600px;
+    line-height: 1.9;
+    margin-bottom: 3rem;
+    opacity: 0;
+    animation: fadeUp 1.2s ease 0.9s forwards;
+  }
+
+  /* MANDALA bg for screen 0 */
+  .maṇḍala-bg {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.04;
+  }
+  .maṇḍala-bg svg { width: 90vmin; height: 90vmin; animation: spin 120s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* QUESTION SCREENS */
+  .question-wrap {
+    max-width: 680px;
+    width: 100%;
+  }
+  .q-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .q-text {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-weight: 600;
+    color: var(--gold-pale);
+    line-height: 1.5;
+    margin-bottom: 0.75rem;
+  }
+  .q-sub {
+    font-size: 1rem;
+    font-style: italic;
+    color: var(--ash);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+  }
+  .q-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: left;
+  }
+  .q-option {
+    padding: 1.1rem 1.5rem;
+    border: 1px solid rgba(200,146,42,0.18);
+    background: rgba(20,10,0,0.5);
+    cursor: pointer;
+    transition: all 0.25s;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .q-option:hover { border-color: rgba(200,146,42,0.5); background: rgba(200,146,42,0.06); }
+  .q-option.selected { border-color: var(--gold); background: rgba(200,146,42,0.12); }
+  .q-option-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    min-width: 1.2rem;
+    margin-top: 3px;
+  }
+  .q-option-text {
+    font-size: 1rem;
+    color: var(--cream);
+    line-height: 1.6;
+  }
+  .q-option-sub {
+    font-size: 0.85rem;
+    color: var(--ash);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  /* OPEN QUESTION */
+  .q-textarea {
+    width: 100%;
+    min-height: 140px;
+    background: rgba(0,0,0,0.3);
+    border: 1px solid rgba(200,146,42,0.2);
+    color: var(--cream);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    padding: 1.25rem;
+    resize: vertical;
+    outline: none;
+    line-height: 1.8;
+    text-align: left;
+    margin-bottom: 1.5rem;
+    cursor: text;
+  }
+  .q-textarea:focus { border-color: rgba(200,146,42,0.5); }
+  .q-textarea::placeholder { color: rgba(138,122,106,0.4); font-style: italic; }
+
+  /* RESULT SCREEN */
+  .result-badge {
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 4rem;
+    color: var(--gold);
+    text-shadow: 0 0 40px rgba(200,146,42,0.5);
+    margin-bottom: 1rem;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { text-shadow: 0 0 30px rgba(200,146,42,0.4); }
+    50% { text-shadow: 0 0 60px rgba(200,146,42,0.8); }
+  }
+  .result-level {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    color: var(--gold-pale);
+    margin-bottom: 0.5rem;
+  }
+  .result-sublevel {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .result-desc {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ash);
+    max-width: 560px;
+    line-height: 1.9;
+    margin-bottom: 3rem;
+  }
+  .result-path {
+    background: rgba(20,10,0,0.6);
+    border: 1px solid rgba(200,146,42,0.2);
+    padding: 2rem;
+    max-width: 560px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 2.5rem;
+  }
+  .result-path-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .result-path-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(200,146,42,0.07);
+    font-size: 0.95rem;
+    color: var(--cream);
+  }
+  .result-path-item:last-child { border-bottom: none; }
+  .result-path-check { color: var(--gold); font-size: 0.8rem; }
+
+  /* DIVIDER */
+  .gold-divider {
+    width: 80px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: 2rem auto;
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 1rem 2.8rem;
+    background: var(--gold);
+    color: var(--earth);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
+  .btn-secondary {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.9rem 2rem;
+    background: transparent;
+    color: var(--ash);
+    border: 1px solid rgba(200,146,42,0.25);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold-pale); }
+
+  .btn-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-in { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+
+  @media (max-width: 600px) {
+    .top-bar { padding: 1rem; }
+    .screen { padding: 6rem 1.25rem 3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <a href="index.html" class="top-logo">Era of Siddhas</a>
+  <div class="step-dots" id="stepDots">
+    <div class="step-dot active" id="dot0"></div>
+    <div class="step-dot" id="dot1"></div>
+    <div class="step-dot" id="dot2"></div>
+    <div class="step-dot" id="dot3"></div>
+    <div class="step-dot" id="dot4"></div>
+    <div class="step-dot" id="dot5"></div>
+  </div>
+  <span class="step-label" id="stepLabel">Awakening</span>
+</div>
+
+<!-- MANDALA BACKGROUND -->
+<div class="maṇḍala-bg">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="95" fill="none" stroke="#c8922a" stroke-width="0.3"/>
+    <circle cx="100" cy="100" r="75" fill="none" stroke="#c8922a" stroke-width="0.3"/>
+    <circle cx="100" cy="100" r="55" fill="none" stroke="#c8922a" stroke-width="0.3"/>
+    <circle cx="100" cy="100" r="35" fill="none" stroke="#c8922a" stroke-width="0.5"/>
+    <polygon points="100,5 195,155 5,155" fill="none" stroke="#c8922a" stroke-width="0.3"/>
+    <polygon points="100,195 5,45 195,45" fill="none" stroke="#c8922a" stroke-width="0.3"/>
+    <polygon points="100,15 185,148 15,148" fill="none" stroke="#c8922a" stroke-width="0.2"/>
+    <polygon points="100,185 15,52 185,52" fill="none" stroke="#c8922a" stroke-width="0.2"/>
+  </svg>
+</div>
+
+<!-- SCREEN 0: COSMIC INTRO -->
+<div class="screen active" id="screen0" style="position:relative; z-index:1;">
+  <div class="cosmic-devanagari">॥ अथातो ब्रह्मजिज्ञासा ॥</div>
+  <h1 class="cosmic-title">Now, the inquiry into Brahman begins.</h1>
+  <p class="cosmic-body">Before the Gurukula can know you, it must meet you. These questions are not a test of knowledge — they are a mirror. Answer from the gut, not the head. There are no wrong answers. Only honest ones.</p>
+  <div class="gold-divider"></div>
+  <div class="btn-row">
+    <button class="btn-primary" onclick="goTo(1)">I am ready to begin</button>
+  </div>
+</div>
+
+<!-- SCREEN 1: WHERE ARE YOU -->
+<div class="screen" id="screen1">
+  <div class="question-wrap fade-in">
+    <div class="q-label">Question 1 of 4 — Your Starting Ground</div>
+    <div class="q-text">Where do you find yourself right now on the path of Dharma?</div>
+    <div class="q-sub">Not where you wish you were — where you actually are.</div>
+    <div class="q-options" id="q1options">
+      <div class="q-option" onclick="selectOption('q1','A',this)">
+        <span class="q-option-letter">A</span>
+        <div>
+          <div class="q-option-text">Complete beginner — I know Dharma exists but I haven't seriously studied it</div>
+          <div class="q-option-sub">The seed has not yet touched soil</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q1','B',this)">
+        <span class="q-option-letter">B</span>
+        <div>
+          <div class="q-option-text">I've read some texts, attended discourses, have a basic foundation</div>
+          <div class="q-option-sub">The seed has sprouted but the roots are shallow</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q1','C',this)">
+        <span class="q-option-letter">C</span>
+        <div>
+          <div class="q-option-text">I've studied seriously — I know the Darshanas, have a Sadhana practice</div>
+          <div class="q-option-sub">The roots run deep but the branches seek more sky</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q1','D',this)">
+        <span class="q-option-letter">D</span>
+        <div>
+          <div class="q-option-text">Advanced — I've lived in or studied from a Gurukula or traditional lineage</div>
+          <div class="q-option-sub">The tree bears fruit. It now seeks to give shade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 2: WHAT BURNS -->
+<div class="screen" id="screen2">
+  <div class="question-wrap fade-in">
+    <div class="q-label">Question 2 of 4 — The Fire Within</div>
+    <div class="q-text">What is the deepest question that brought you here?</div>
+    <div class="q-sub">The Upanishads say: only the burning question finds the burning answer.</div>
+    <div class="q-options" id="q2options">
+      <div class="q-option" onclick="selectOption('q2','A',this)">
+        <span class="q-option-letter">A</span>
+        <div>
+          <div class="q-option-text">Who am I? What is the nature of consciousness and the Self?</div>
+          <div class="q-option-sub">The path of Jñāna — Tat Tvam Asi</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q2','B',this)">
+        <span class="q-option-letter">B</span>
+        <div>
+          <div class="q-option-text">How should I live? What is Dharma in the modern world?</div>
+          <div class="q-option-sub">The path of Karma — righteous action</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q2','C',this)">
+        <span class="q-option-letter">C</span>
+        <div>
+          <div class="q-option-text">Is God real? What is the nature of the Divine — Ishvara, Brahman, Shakti?</div>
+          <div class="q-option-sub">The path of Bhakti and Agama</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q2','D',this)">
+        <span class="q-option-letter">D</span>
+        <div>
+          <div class="q-option-text">How does ancient wisdom connect to modern science and reality?</div>
+          <div class="q-option-sub">The bridge between Ganita and Darshana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 3: COMMITMENT -->
+<div class="screen" id="screen3">
+  <div class="question-wrap fade-in">
+    <div class="q-label">Question 3 of 4 — The Vow</div>
+    <div class="q-text">The Gurukula is not a course you consume. It is a discipline you enter. What can you honestly commit to?</div>
+    <div class="q-sub">The Guru values honesty above ambition.</div>
+    <div class="q-options" id="q3options">
+      <div class="q-option" onclick="selectOption('q3','A',this)">
+        <span class="q-option-letter">A</span>
+        <div>
+          <div class="q-option-text">15–20 minutes of focused study daily, reflection journal weekly</div>
+          <div class="q-option-sub">Steady. The tortoise pace.</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q3','B',this)">
+        <span class="q-option-letter">B</span>
+        <div>
+          <div class="q-option-text">1 hour daily, deep dives on weekends, full marathon challenges</div>
+          <div class="q-option-sub">Serious intent. The warrior's pace.</div>
+        </div>
+      </div>
+      <div class="q-option" onclick="selectOption('q3','C',this)">
+        <span class="q-option-letter">C</span>
+        <div>
+          <div class="q-option-text">Flexible — intense bursts when inspiration strikes, rest when life calls</div>
+          <div class="q-option-sub">The seeker trusts the tide.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 4: OPEN REFLECTION -->
+<div class="screen" id="screen4">
+  <div class="question-wrap fade-in">
+    <div class="q-label">Question 4 of 4 — The Guru Listens</div>
+    <div class="q-text">In your own words: what do you bring to the Gurukula, and what do you hope to leave with?</div>
+    <div class="q-sub">No right answer. The Guru reads your sincerity, not your eloquence.</div>
+    <textarea class="q-textarea" id="openAnswer" placeholder="Speak freely. This is between you and the path..."></textarea>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="finishAssessment()">Complete Assessment ↗</button>
+    </div>
+  </div>
+</div>
+
+<!-- SCREEN 5: RESULT -->
+<div class="screen" id="screen5">
+  <div id="resultContent" class="fade-in">
+    <div class="result-badge" id="resultBadge">शि</div>
+    <div class="result-level" id="resultLevel">Shishya</div>
+    <div class="result-sublevel" id="resultSublevel">The Earnest Seeker</div>
+    <div class="gold-divider"></div>
+    <p class="result-desc" id="resultDesc">Loading your path...</p>
+    <div class="result-path" id="resultPath"></div>
+    <div class="btn-row">
+      <a href="pillar_hub.html" class="btn-primary" id="enterGurukulaBtn">Enter the Gurukula →</a>
+      <a href="index.html" class="btn-secondary">Return Home</a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const answers = { q1: null, q2: null, q3: null };
+  const stepLabels = ['Awakening', 'Your Ground', 'The Fire', 'The Vow', 'Reflection', 'Your Path'];
+
+  function goTo(n) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.getElementById('screen' + n).classList.add('active');
+    document.querySelectorAll('.step-dot').forEach((d, i) => {
+      d.classList.remove('active', 'done');
+      if (i < n) d.classList.add('done');
+      if (i === n) d.classList.add('active');
+    });
+    document.getElementById('stepLabel').textContent = stepLabels[n];
+    window.scrollTo(0, 0);
+  }
+
+  function selectOption(q, val, el) {
+    document.querySelectorAll(`#${q}options .q-option`).forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    answers[q] = val;
+    setTimeout(() => {
+      const next = { q1: 2, q2: 3, q3: 4 };
+      goTo(next[q]);
+    }, 400);
+  }
+
+  function finishAssessment() {
+    const openText = document.getElementById('openAnswer').value.trim();
+    goTo(5);
+
+    const levels = {
+      A: { badge: 'मु', level: 'Mumukshu', sub: 'The Burning Seeker', key: 'mumukshu',
+           path: ['Isha Upanishad — foundation texts', 'Story-first micro learning', 'Daily 15-min sessions', 'Weekly reflection journal', 'Guru AI in guided mode'] },
+      B: { badge: 'शि', level: 'Shishya', sub: 'The Earnest Student', key: 'shishya',
+           path: ['Isha + Kena Upanishad track', 'Full Anvaya word analysis', 'Science-Dharma bridge modules', 'Marathon challenges unlocked', 'Guru AI in Socratic mode'] },
+      C: { badge: 'साध', level: 'Sadhaka', sub: 'The Disciplined Practitioner', key: 'sadhaka',
+           path: ['Advanced Darshana texts', 'Brahma Sutras & Yoga Sutras', 'Deep Ganita modules', 'Full marathon track', 'Mentor candidacy open'] },
+      D: { badge: 'सि', level: 'Siddha', sub: 'The Illumined One', key: 'siddha',
+           path: ['All texts unlocked', 'Peer teaching mode enabled', 'Sangha mentor track', 'Real-world Shiva Leela invitations', 'Direct admin channel'] }
+    };
+
+    const dominantLevel = answers.q1 || 'A';
+    const data = levels[dominantLevel];
+
+    // Persist to localStorage for the rest of the application
+    localStorage.setItem('eos_level', data.level);
+    localStorage.setItem('eos_level_key', data.key);
+    localStorage.setItem('eos_sub', data.sub);
+    localStorage.setItem('eos_q2', answers.q2 || '');
+    localStorage.setItem('eos_q3', answers.q3 || '');
+    localStorage.setItem('eos_reflection', openText);
+    localStorage.setItem('eos_assessment_date', new Date().toISOString());
+
+    document.getElementById('resultBadge').textContent = data.badge;
+    document.getElementById('resultLevel').textContent = data.level;
+    document.getElementById('resultSublevel').textContent = data.sub;
+
+    const pathHTML = data.path.map(p => `
+      <div class="result-path-item">
+        <span class="result-path-check">✦</span>
+        <span>${p}</span>
+      </div>`).join('');
+    document.getElementById('resultPath').innerHTML = `
+      <div class="result-path-label">Your Curriculum Path</div>
+      ${pathHTML}`;
+
+    // Use locally generated personalized message (no external API needed)
+    document.getElementById('resultDesc').textContent = getPersonalizedMessage(data.level, answers.q2, openText);
+  }
+
+  function getPersonalizedMessage(level, q2, reflection) {
+    const paths = {
+      A: 'Jñāna — the inquiry into Self',
+      B: 'Karma — the way of righteous action',
+      C: 'Bhakti — the path of devotion and divine connection',
+      D: 'Vijñāna — the bridge between ancient wisdom and modern understanding'
+    };
+    const pathNote = paths[q2] || '';
+
+    const msgs = {
+      'Mumukshu': `The flame is lit. Not by us — it was always burning within you. The Gurukula simply gives it oxygen.${pathNote ? ' Your heart leans toward ' + pathNote + ' — the Śāstras will meet you there.' : ''} Begin slowly. Begin honestly. The texts will do the rest.`,
+      'Shishya': `You arrive not as an empty vessel but as one already stirred by the winds of Dharma.${pathNote ? ' The pull toward ' + pathNote + ' runs deep in you — we will honour that current.' : ''} Walk with patience. The deeper truths reward the unhurried mind.`,
+      'Sadhaka': `You have already walked far — far enough to know that what remains is not more knowledge but the dissolution of the boundary between knower and known.${pathNote ? ' Your path of ' + pathNote + ' has prepared the ground.' : ''} The Gurukula will be your final mirror, not your teacher.`,
+      'Siddha': `The river has found its course. What remains is to become the ocean.${pathNote ? ' Through ' + pathNote + ', you have tasted what cannot be taught.' : ''} Welcome, elder. The Sangha awaits not your learning but your presence.`
+    };
+    return msgs[level] || msgs['Mumukshu'];
+  }
+</script>
+</body>
+</html>

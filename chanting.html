@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chanting Assessment — Era of Siddhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root, body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(1, 9, 8, 0.85);
+    --border-glass: rgba(46, 184, 166, 0.3);
+    --text-primary: #e0fcf8;
+    --text-muted: #9cf0e2;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --success: #2e8b57;
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --glow: rgba(46, 184, 166, 0.15);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.85);
+    --border-glass: rgba(196, 137, 42, 0.2);
+    --text-primary: #e8d5a3;
+    --text-muted: #b89a60;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --success: #6e8b3d;
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #b0b5b9;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --success: #2e8b57;
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+
+  .theme-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    cursor: none !important;
+    transition: all 0.3s;
+    border-radius: 40px;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* ── ANCIENT RASA GRAPHICS (THEME WATERMARKS) ── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 80vmin; height: 80vmin;
+    margin-top: -40vmin; margin-left: -40vmin;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    transition: background-image 1.5s ease-in-out;
+    mix-blend-mode: screen;
+    animation: slowRotate 120s linear infinite;
+  }
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  body.theme-fierce::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%23ff4d4d" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%23ff4d4d" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23b52a2a" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+  }
+  body.theme-earthy::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 10 Q65 40 50 50 Q35 40 50 10 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M50 90 Q65 60 50 50 Q35 60 50 90 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M10 50 Q40 65 50 50 Q40 35 10 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M90 50 Q60 65 50 50 Q60 35 90 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%23f0c040" stroke-width="0.3" opacity="0.5" stroke-dasharray="2 2"/%3E%3C/svg%3E');
+  }
+  body.theme-mystical::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
+  }
+
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active textarea {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0;
+    overflow-x: hidden;
+  }
+
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .chanting-container {
+    max-width: 800px;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    text-align: center;
+  }
+  .shloka-header {
+    font-family: 'Cinzel', serif;
+    color: var(--accent);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  
+  .shloka-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    padding: 3rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    margin-bottom: 2rem;
+  }
+  .sanskrit-text {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .transliteration {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+  .meaning {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-glass);
+  }
+
+  .controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .btn {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    border: 1px solid var(--accent);
+    background: transparent;
+    color: var(--text-primary);
+    transition: all 0.3s;
+  }
+  .btn:hover {
+    background: var(--accent);
+  }
+  .btn-mic {
+    background: var(--accent);
+    color: white;
+    position: relative;
+  }
+  .btn-mic:active {
+    transform: scale(0.95);
+  }
+  .recording-wave {
+    display: none;
+    margin-top: 1rem;
+    font-family: monospace;
+    color: var(--gold);
+    font-size: 1.2rem;
+    animation: pulse 1s infinite alternate;
+  }
+  @keyframes pulse { from { opacity: 0.5; } to { opacity: 1; } }
+
+  .assessment-box {
+    border: 1px solid var(--border-glass);
+    background: var(--bg-secondary);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    text-align: left;
+    min-height: 80px;
+  }
+  .feedback-title {
+    font-family: 'Outfit', sans-serif;
+    color: var(--gold);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+  .feedback-content {
+    font-size: 1rem;
+    color: var(--text-primary);
+  }
+  .error-highlight {
+    color: var(--accent);
+    font-weight: bold;
+  }
+  .success-highlight {
+    color: var(--success);
+    font-weight: bold;
+  }
+
+  .next-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    padding: 1rem 3rem;
+    border: 1px solid var(--text-muted);
+    background: transparent;
+    color: var(--text-muted);
+    border-radius: 4px;
+    opacity: 0.5;
+    pointer-events: none;
+    transition: all 0.4s;
+  }
+  .next-btn.unlocked {
+    border-color: var(--gold);
+    color: var(--bg-primary);
+    background: var(--gold);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+</style>
+</head>
+<body class="theme-fierce">
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<nav class="glass-nav">
+  <a href="course_hub.html" class="nav-brand">
+    ← Return to Yuddham Hub
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <div style="color: var(--text-muted); font-family: 'Outfit';">Chanting Assessment Module</div>
+    <div style="display:flex; gap: 8px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
+  </div>
+</nav>
+
+<div class="chanting-container">
+  <div class="shloka-header">Bhagavad Gita 2.38</div>
+
+  <div class="shloka-card">
+    <div class="sanskrit-text">
+      सुखदुःखे समे कृत्वा लाभालाभौ जयाजयौ ।<br>
+      ततो युद्धाय युज्यस्व नैवं पापमवाप्स्यसि ॥
+    </div>
+    <div class="transliteration">
+      sukha-duḥkhe same kṛtvā labhālābhau jayājayau |<br>
+      tato yuddhāya yujyasva naivaṃ pāpam avāpsyasi ||
+    </div>
+    <div class="meaning">
+      Treating alike happiness and distress, loss and gain, victory and defeat, engage in the battle for the sake of duty. Doing so, you will not incur sin.
+    </div>
+  </div>
+
+  <div class="controls">
+    <button class="btn" onclick="playAudio()">▶ Play Teacher Audio</button>
+    <button class="btn btn-mic" id="recordBtn">Hold to Chant</button>
+  </div>
+  
+  <div class="recording-wave" id="wave">|||||||||||||||||||| Listening ||||||||||||||||||||</div>
+
+  <div class="assessment-box">
+    <div class="feedback-title">Real-time Assessment</div>
+    <div class="feedback-content" id="feedbackText">Listen to the Teacher Audio, then hold the chant button to record your pronunciation. The next shloka is locked until you achieve perfection.</div>
+  </div>
+
+  <button class="next-btn" id="nextBtn" onclick="alert('Proceeding to next Shloka...')">Unlock Next Shloka</button>
+
+</div>
+
+<script>
+// Mock Logic for Assessment
+let attempts = 0;
+const feedback = document.getElementById('feedbackText');
+const nextBtn = document.getElementById('nextBtn');
+const wave = document.getElementById('wave');
+
+function playAudio() {
+  feedback.innerHTML = "Playing source audio... Listen closely to the intonation on 'kṛtvā'.";
+}
+
+function startRecording() {
+  wave.style.display = 'block';
+  feedback.innerHTML = "Analyzing phonetic accuracy...";
+}
+
+function stopRecording() {
+  wave.style.display = 'none';
+  attempts++;
+  if(attempts === 1) {
+    feedback.innerHTML = "Your pronunciation of <span class='error-highlight'>'jayājayau'</span> was flat. You missed the elongation on 'yā'. Try again.";
+  } else if (attempts === 2) {
+    feedback.innerHTML = "Better. But ensure the visceral aspirate 'ḥ' in <span class='error-highlight'>'duḥkhe'</span> is clearly articulated. The shloka remains locked.";
+  } else {
+    feedback.innerHTML = "<span class='success-highlight'>Perfect alignment.</span> The resonance and meter were accurate. The next shloka is now unlocked.";
+    nextBtn.classList.add('unlocked');
+    nextBtn.innerHTML = "Proceed to Next Shloka →";
+  }
+}
+
+// Register touch and mouse events for hold-to-chant recording button
+const recordBtn = document.getElementById('recordBtn');
+
+function handleRecordStart(e) {
+  e.preventDefault();
+  startRecording();
+}
+function handleRecordEnd(e) {
+  e.preventDefault();
+  stopRecording();
+}
+
+recordBtn.addEventListener('mousedown', handleRecordStart);
+recordBtn.addEventListener('mouseup', handleRecordEnd);
+recordBtn.addEventListener('touchstart', handleRecordStart);
+recordBtn.addEventListener('touchend', handleRecordEnd);
+
+// Custom Cursor Logic
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.2;
+  ringY += (mouseY - ringY) * 0.2;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+
+if (cursor && cursorRing) {
+  document.body.classList.add('custom-cursor-active');
+  animateRing();
+}
+
+document.querySelectorAll('a, button, .theme-btn').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+
+// Theme Management with Persistence
+function setTheme(btnElement, themeName) {
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical');
+  document.body.classList.add(themeName);
+  localStorage.setItem('era_of_siddhas_theme', themeName);
+  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+
+// Load persisted theme on start
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
+setTheme(null, initialTheme);
+</script>
+</body>
+</html>

@@ -1,0 +1,3663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Lesson — Siddha Vidya</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&family=Noto+Serif+Devanagari:wght@400;500;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── DEFAULT: LIGHT / PARCHMENT MODE ── */
+  :root, body, body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #5c3d1a;
+    --accent: #8b4513;
+    --accent-glow: rgba(139, 69, 19, 0.12);
+    --gold: #b8730a;
+    --gold-bright: #c8922a;
+    --gold-dim: #7a4d0a;
+    --parchment: #f7f2e8;
+    --parch-mid: #d4b896;
+    --parch-dim: #a07850;
+    --glow: rgba(200, 146, 42, 0.15);
+    --shloka-bg: rgba(139, 69, 19, 0.06);
+    --shloka-border: rgba(139, 69, 19, 0.25);
+    --panel-bg: rgba(237, 229, 208, 0.8);
+  }
+  body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(2, 24, 22, 0.7);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --text-primary: #e0fcf8;
+    --text-muted: #9cf0e2;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --gold-dim: #176e62;
+    --parchment: #e0fcf8;
+    --parch-mid: #9cf0e2;
+    --parch-dim: #53c2b1;
+    --glow: rgba(46, 184, 166, 0.15);
+    --shloka-bg: rgba(46, 184, 166, 0.07);
+    --shloka-border: rgba(46, 184, 166, 0.3);
+    --panel-bg: rgba(2, 24, 22, 0.7);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.85);
+    --border-glass: rgba(196, 137, 42, 0.2);
+    --text-primary: #e8d5a3;
+    --text-muted: #b89a60;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --gold-dim: #7a5415;
+    --parchment: #e8d5a3;
+    --parch-mid: #b89a60;
+    --parch-dim: #7a6440;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #b0b5b9;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --gold-dim: #5c1414;
+    --parchment: #f4f5f6;
+    --parch-mid: #b0b5b9;
+    --parch-dim: #7a8288;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 50%; left: 50%;
+    width: 80vmin; height: 80vmin;
+    margin-top: -40vmin; margin-left: -40vmin;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: 0.05;
+    transition: background-image 1.5s ease-in-out;
+    mix-blend-mode: screen;
+    animation: slowRotate 120s linear infinite;
+  }
+  @keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  body.theme-fierce::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%23ff4d4d" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%23ff4d4d" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23b52a2a" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+  }
+  body.theme-earthy::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 10 Q65 40 50 50 Q35 40 50 10 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M50 90 Q65 60 50 50 Q35 60 50 90 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M10 50 Q40 65 50 50 Q40 35 10 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M90 50 Q60 65 50 50 Q60 35 90 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%23f0c040" stroke-width="0.3" opacity="0.5" stroke-dasharray="2 2"/%3E%3C/svg%3E');
+  }
+  body.theme-mystical::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
+  }
+
+  /* Custom Cursor override */
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active select,
+  body.custom-cursor-active input,
+  body.custom-cursor-active textarea,
+  body.custom-cursor-active .interactive-cell,
+  body.custom-cursor-active .slider-thumb,
+  body.custom-cursor-active .room-chip,
+  body.custom-cursor-active .action-btn,
+  body.custom-cursor-active .vastu-cell {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9998;
+    opacity: 0.03;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0; padding: 0;
+    transition: all 0.5s ease;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .nav-btn {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+  }
+  .nav-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glass);
+    background: var(--accent-glow);
+  }
+
+  .theme-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 5px 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* SPLIT PANE ENGINE */
+  .workspace-layout {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 60px);
+    flex-wrap: wrap;
+  }
+  .left-pane {
+    flex: 0 0 55%;
+    max-width: 55%;
+    background: var(--bg-primary);
+    border-right: 1px solid var(--border-glass);
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    box-sizing: border-box;
+  }
+  .right-pane {
+    flex: 1;
+    min-width: 300px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    box-sizing: border-box;
+    position: relative;
+    background: var(--bg-secondary);
+  }
+
+  /* TEXT STYLE */
+  .lesson-cat {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .lesson-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+    line-height: 1.2;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.8rem;
+  }
+  .shloka-box {
+    background: var(--shloka-bg);
+    border-left: 3px solid var(--accent);
+    padding: 1.4rem 1.6rem;
+    margin: 1.5rem 0;
+    border-radius: 4px;
+    border: 1px solid var(--shloka-border);
+    border-left-width: 3px;
+  }
+  .shloka-ref {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-bright);
+    margin-bottom: 0.8rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .shloka-ref::before { content: '॥'; font-size: 0.85rem; }
+  .shloka-ref::after  { content: '॥'; font-size: 0.85rem; }
+  .shloka-devanagari {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.2rem;
+    color: var(--gold-dim);
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+  }
+  .shloka-translit {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+  .shloka-anvaya {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.82rem;
+    color: var(--accent);
+    margin: 0.4rem 0 0.6rem;
+    line-height: 1.6;
+    padding: 0.5rem 0.8rem;
+    background: var(--accent-glow);
+    border-radius: 4px;
+  }
+  .shloka-anvaya strong { color: var(--gold-bright); }
+  .shloka-translation {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-style: italic;
+  }
+  .scientific-insight {
+    background: var(--shloka-bg);
+    border: 1px solid var(--border-glass);
+    padding: 1.2rem 1.4rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+  }
+  .scientific-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.4rem;
+  }
+  .scientific-text {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .instructions-box {
+    margin-top: 1.5rem;
+  }
+  .instructions-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+  }
+  .instructions-list {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .instructions-list li {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+  }
+
+  /* PREMIUM WIDGET INTERFACES */
+  .workspace-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 650px;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 15px var(--glow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+  }
+  .widget-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--gold-bright);
+    margin-bottom: 1.2rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+
+  /* CHAKRAVYUHA STYLES */
+  #canvas-container {
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 420px;
+    background: #000;
+    border: 1.5px solid var(--border-glass);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  #vyūha-canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .controls-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 1.2rem;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .action-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--accent);
+    color: var(--text-primary);
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s;
+  }
+  .action-btn:hover {
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  .action-btn.active {
+    background: var(--accent);
+    border-color: var(--gold-bright);
+  }
+
+  /* SAPTANGA SLIDERS */
+  .saptāṅga-dashboard {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .saptāṅga-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .saptāṅga-label-row {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+  }
+  .saptāṅga-name {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+  .saptāṅga-val {
+    color: var(--gold-bright);
+    font-weight: 600;
+  }
+  .premium-slider {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 6px;
+    background: var(--bg-secondary);
+    border-radius: 3px;
+    outline: none;
+    border: 1px solid var(--border-glass);
+  }
+  .premium-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--gold-bright);
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  .saptāṅga-result {
+    width: 100%;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1.2rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .stability-score-circle {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0.8rem auto 0;
+    box-shadow: 0 0 20px var(--glow), inset 0 0 10px var(--glow);
+    transition: all 0.3s;
+  }
+  .stability-score-circle.critical {
+    border-color: #ff4d4d;
+    box-shadow: 0 0 20px rgba(255,77,77,0.3);
+  }
+  .stability-score-circle.golden {
+    border-color: #ffc837;
+    box-shadow: 0 0 25px rgba(255,200,55,0.4);
+  }
+  .stability-num {
+    font-size: 1.8rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+  .stability-lbl {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+  }
+  .stability-analysis {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-top: 0.8rem;
+    line-height: 1.4;
+    min-height: 40px;
+  }
+
+  /* VASTU PURUSHA MANDALA GRID */
+  .vastu-layout-area {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .vastu-room-dock {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .room-chip {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s;
+  }
+  .room-chip.selected {
+    background: var(--accent);
+    color: var(--text-primary);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px var(--glow);
+  }
+  .vastu-grid-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-glass);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .vastu-silhouette {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 25 L75 25 L60 40 L70 60 L50 48 L30 60 L40 40 L25 25 L45 25 Z" fill="%23e0fcf8"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23e0fcf8" stroke-dasharray="1"/%3E%3C/svg%3E');
+  }
+  .vastu-grid {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    z-index: 2;
+  }
+  .vastu-cell {
+    border: 0.5px solid rgba(46, 184, 166, 0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 6px;
+    position: relative;
+    box-sizing: border-box;
+    transition: all 0.3s;
+  }
+  .cell-dir {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+  .cell-element {
+    font-size: 0.55rem;
+    color: var(--accent);
+    opacity: 0.7;
+    text-align: right;
+  }
+  .cell-placed-room {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+    text-align: center;
+    margin-top: 4px;
+    text-shadow: 0 0 5px rgba(0,0,0,0.8);
+  }
+  .cell-status-dot {
+    position: absolute;
+    bottom: 6px; left: 6px;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  .vastu-cell.correct {
+    background: rgba(46, 184, 166, 0.15);
+  }
+  .vastu-cell.correct .cell-status-dot {
+    background: #00ff88;
+    box-shadow: 0 0 6px #00ff88;
+  }
+  .vastu-cell.clash {
+    background: rgba(255, 77, 77, 0.15);
+  }
+  .vastu-cell.clash .cell-status-dot {
+    background: #ff4d4d;
+    box-shadow: 0 0 6px #ff4d4d;
+  }
+  .vastu-feedback-box {
+    width: 100%;
+    min-height: 60px;
+    padding: 0.8rem;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* PRANAYAMA BREATHING TRAINER */
+  .pranayama-workspace {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+  .breath-circle-container {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--border-glass);
+    background: var(--bg-secondary);
+  }
+  .breath-circle-glow {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    box-shadow: 0 0 30px var(--accent);
+    transition: transform 0.1s ease-out, background-color 0.5s;
+  }
+  .breath-state-label {
+    position: absolute;
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+  }
+  .breath-instructions {
+    text-align: center;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    min-height: 40px;
+  }
+  .breath-timing-setup {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .timing-input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .timing-input-group label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .timing-input-group input {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  /* VEERA MANTRA RESONANCE VISUALIZER */
+  .yantra-visualizer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+  }
+  .yantra-container {
+    width: 220px;
+    height: 220px;
+    border: 1px solid var(--border-glass);
+    border-radius: 50%;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .yantra-svg {
+    width: 90%;
+    height: 90%;
+    transition: transform 0.1s ease-out;
+  }
+  .chant-btn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    width: 100%;
+  }
+  .resonance-meter {
+    width: 100%;
+    height: 4px;
+    background: var(--bg-secondary);
+    border-radius: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+  .resonance-fill {
+    position: absolute;
+    top: 0; left: 0; height: 100%;
+    width: 0%;
+    background: var(--gold-bright);
+    box-shadow: 0 0 10px var(--gold-bright);
+    transition: width 0.1s ease-out;
+  }
+
+  /* GEOPOLITICAL SPHERE */
+  .maṇḍala-diplomacy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.5rem;
+  }
+  .maṇḍala-sphere-visualizer {
+    width: 240px;
+    height: 240px;
+    position: relative;
+    border: 1.5px solid var(--border-glass);
+    border-radius: 50%;
+    background: #000;
+    overflow: hidden;
+  }
+  .sphere-node {
+    position: absolute;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s;
+  }
+  .sphere-node.vijigishu {
+    background: #ffc837;
+    box-shadow: 0 0 12px #ffc837;
+    width: 18px; height: 18px;
+  }
+  .sphere-node.ari {
+    background: #ff4d4d;
+    box-shadow: 0 0 10px #ff4d4d;
+  }
+  .sphere-node.mitra {
+    background: #4df5e2;
+    box-shadow: 0 0 10px #4df5e2;
+  }
+  .sphere-node.neutral {
+    background: #8e9fa0;
+    box-shadow: 0 0 6px #8e9fa0;
+  }
+  .diplomatic-actions-panel {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    width: 100%;
+  }
+
+  /* EQUANIMITY CONCENTRATOR */
+  .samatvam-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  .samatvam-trackpad {
+    width: 100%;
+    height: 220px;
+    background: #000;
+    border: 1.5px solid var(--border-glass);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .trackpad-target {
+    position: absolute;
+    width: 32px; height: 32px;
+    border: 2px solid var(--gold-bright);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    box-shadow: 0 0 15px var(--gold-bright);
+    transition: left 0.1s linear, top 0.1s linear;
+  }
+  .trackpad-pointer {
+    position: absolute;
+    width: 8px; height: 8px;
+    background: #fff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+  }
+
+  /* YAJNA FIRE ALTAR */
+  .yajna-altar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.2rem;
+  }
+  .altar-kunda {
+    width: 160px;
+    height: 160px;
+    border: 4px solid var(--gold);
+    background: var(--bg-secondary);
+    transform: rotate(45deg);
+    position: relative;
+    box-shadow: 0 0 20px var(--glow);
+    margin: 1.5rem 0;
+  }
+  .altar-flame {
+    position: absolute;
+    width: 60px; height: 60px;
+    background: radial-gradient(circle, #ffae19 20%, #ff4d4d 70%, transparent 100%);
+    border-radius: 50% 0 50% 50%;
+    transform: rotate(-135deg) translate(-50%, -50%);
+    top: 50%; left: 50%;
+    filter: blur(2px);
+    mix-blend-mode: screen;
+    animation: flamePulse 1s infinite alternate;
+  }
+  @keyframes flamePulse {
+    from { transform: rotate(-135deg) scale(0.95); opacity: 0.8; }
+    to { transform: rotate(-135deg) scale(1.15); opacity: 1; }
+  }
+  .yajna-elements {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .altar-metric {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: center;
+  }
+
+  /* NEETI DILEMMA TREE */
+  .neeti-card-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+  .neeti-question {
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    background: var(--bg-secondary);
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 2px solid var(--accent);
+  }
+  .neeti-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .neeti-opt-btn {
+    text-align: left;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: all 0.3s;
+    line-height: 1.4;
+  }
+  .neeti-opt-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+  .neeti-stats {
+    display: flex;
+    justify-content: space-around;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 0.8rem;
+    font-size: 0.8rem;
+  }
+  .neeti-stat-val {
+    color: var(--gold-bright);
+    font-weight: 600;
+  }
+
+  /* DAHARA AKASHA OVERLAY */
+  .dahara-overlay {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    background: #000;
+    overflow: hidden;
+  }
+  .dahara-body-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%; height: 100%;
+  }
+  .dahara-info-box {
+    width: 100%;
+    min-height: 50px;
+    background: var(--bg-secondary);
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* AYADI CALCULATOR */
+  .ayadi-panel {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1.2rem;
+  }
+  .ayadi-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .ayadi-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .ayadi-result-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .ayadi-result-lbl {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .ayadi-result-val {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--gold-bright);
+  }
+  .ayadi-wireframe {
+    width: 100%;
+    height: 120px;
+    border: 1px solid var(--border-glass);
+    border-radius: 6px;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .ayadi-canvas-wf {
+    width: 100%; height: 100%;
+  }
+
+  /* LEFT PANE TAB SWITCHER */
+  .pane-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border-glass);
+    margin-bottom: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    background: rgba(2, 10, 8, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding-top: 0.2rem;
+  }
+  .pane-tab-btn {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 10px 8px;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    position: relative;
+  }
+  .pane-tab-btn:hover {
+    color: var(--text-primary);
+    background: var(--accent-glow);
+  }
+  .pane-tab-btn.active {
+    color: var(--gold-bright);
+    border-bottom-color: var(--accent);
+    text-shadow: 0 0 8px var(--accent-glow);
+  }
+  .pane-tab-btn.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    width: 60%;
+    height: 2px;
+    background: var(--gold-bright);
+    box-shadow: 0 0 10px var(--gold-bright), 0 0 20px var(--accent);
+    border-radius: 2px;
+  }
+  .tab-content-area {
+    animation: fadeTabIn 0.35s ease-out;
+  }
+  @keyframes fadeTabIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SHASTRA METADATA BOX */
+  .śāstra-metadata-box {
+    background: linear-gradient(135deg, rgba(2, 24, 22, 0.6), rgba(2, 10, 8, 0.9));
+    border: 1px solid var(--border-glass);
+    border-left: 3px solid var(--gold-dim);
+    padding: 1.2rem;
+    border-radius: 6px;
+    margin: 1.2rem 0;
+  }
+  .śāstra-metadata-box .meta-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+  }
+  .śāstra-metadata-box .meta-value {
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+  }
+  .śāstra-metadata-box .meta-value em {
+    color: var(--gold-bright);
+    font-style: italic;
+  }
+  .dharmic-principles-box {
+    background: rgba(46, 184, 166, 0.04);
+    border: 1px solid rgba(46, 184, 166, 0.15);
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+  }
+  .dharmic-principles-box .dp-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.5px;
+  }
+  .dharmic-principles-box .dp-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* STEM EQUATION CARD */
+  .stem-equation-card {
+    background: linear-gradient(145deg, rgba(0, 0, 0, 0.5), rgba(2, 24, 22, 0.4));
+    border: 1px solid rgba(46, 184, 166, 0.2);
+    padding: 1.2rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .stem-equation-card::before {
+    content: 'âˆ‘';
+    position: absolute;
+    top: -10px;
+    right: 8px;
+    font-size: 4rem;
+    color: var(--accent);
+    opacity: 0.04;
+    font-family: serif;
+    pointer-events: none;
+  }
+  .stem-equation-card .eq-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .stem-equation-card .eq-formula {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.15rem;
+    color: var(--gold-bright);
+    padding: 0.6rem 0.8rem;
+    background: rgba(0,0,0,0.4);
+    border-radius: 4px;
+    border: 1px solid rgba(46, 184, 166, 0.1);
+    margin: 0.5rem 0;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    overflow-x: auto;
+  }
+  .stem-equation-card .eq-explanation {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-top: 0.5rem;
+  }
+  .stem-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold-bright);
+    margin: 1.5rem 0 0.5rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(46, 184, 166, 0.15);
+    letter-spacing: 0.5px;
+  }
+  .stem-param-list {
+    padding-left: 1rem;
+    margin: 0.5rem 0;
+  }
+  .stem-param-list li {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.3rem;
+    line-height: 1.4;
+  }
+  .stem-param-list li strong {
+    color: var(--text-primary);
+  }
+
+  @media (max-width: 900px) {
+    .left-pane {
+      flex: 0 0 100%;
+      max-width: 100%;
+      max-height: none;
+      border-right: none;
+      border-bottom: 1px solid var(--border-glass);
+    }
+    .right-pane {
+      max-height: none;
+    }
+  }
+
+</style>
+</head>
+<body class="theme-light">
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+<div class="noise-overlay"></div>
+
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="course_hub.html" id="back-to-hub-btn" class="nav-btn">Return to Courses</a>
+    <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn" style="color:var(--accent); border:1px solid var(--border-glass);">⊛ Admin</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Light</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+    </div>
+  </div>
+</nav>
+
+<div class="workspace-layout">
+  <div class="left-pane" id="left-text-pane">
+    <!-- Dynamic text content injected here -->
+  </div>
+  <div class="right-pane">
+    <div class="workspace-card" id="workspace-card-container">
+      <!-- Dynamic simulation markup injected here -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Dynamic lesson metadata database — enriched with IKS-STEM academic content
+const lessons = {
+  yuddham: {
+    yoga: {
+      category: "Yuddham — Martial Breath",
+      title: "Yuddha Yoga: Tactical Pranayama",
+      shloka: {
+        devanagari: "अपाने जुह्वति प्राणं प्राणेऽपानं तथापरे ।\nप्राणापानगती रुद्ध्वा प्राणायामपरायणाः ॥",
+        translit: "apāne juhvati prāṇaṃ prāṇe'pānaṃ tathāpare |\nprāṇāpānagatī ruddhvā prāṇāyāmaparāyaṇaḥ ||",
+        translation: "Others offer the incoming breath into the outgoing breath, and the outgoing breath into the incoming breath, restraining the flow of both inhalation and exhalation, absorbed in breath control."
+      },
+      scientific: {
+        title: "Heart-Rate Variability (HRV) & Box Breathing",
+        text: "Slowing respiration down to a symmetrical 1:1:1:1 pattern stimulates the vagus nerve, immediately shifting the autonomic nervous system from sympathetic (fight-or-flight) to parasympathetic (calm focus). This is utilized by modern special forces to maintain surgical focus under high stress."
+      },
+      instructions: [
+        "Use the sliders below to adjust the Box Breathing duration parameters.",
+        "Follow the breathing indicator circle: Inhale, Hold, Exhale, Hold.",
+        "Observe the heart rate and calm factor adjust based on your practice cycles."
+      ],
+      historicalOrigin: {
+        treatise: "Patanjali Yoga Sutras",
+        author: "Maharishi Patanjali",
+        period: "circa 400 CE",
+        context: "Sutra 2.49–2.53 of the <em>Sadhana Pada</em> details Pranayama as the fourth limb of Ashtanga Yoga. Patanjali describes breath regulation as the bridge between physical and mental disciplines. The <em>Hatha Yoga Pradipika</em> (circa 1400 CE) by Swami Svatmarama later formalized specific ratios and techniques including Nadi Shodhana (alternate nostril) and Kumbhaka (retention)."
+      },
+      dharmicPrinciples: "Pranayama is not mere breathing exercise — it is the conscious regulation of <em>Prana</em> (vital life force). The Yoga Sutras state that mastery of Pranayama dissolves the veil covering the inner light (<em>tataḥ kṣīyate prakāśāvaraṇam</em>, YS 2.52). In martial contexts, warriors trained in Pranayama could sustain extreme physical and cognitive performance under battle stress by maintaining autonomic equilibrium.",
+      stemBreakdown: {
+        discipline: "Autonomic Neuroscience & Respiratory Physiology",
+        equation: "f<sub>vagal</sub> ∝ t<sub>exhale</sub> / (t<sub>inhale</sub> + t<sub>hold-in</sub> + t<sub>hold-out</sub>)",
+        equationExplanation: "The vagal tone frequency is proportional to the ratio of exhalation time to total cycle time. Longer exhalation phases amplify parasympathetic activation, measurably increasing Heart Rate Variability (HRV) — a clinical marker of stress resilience.",
+        parameters: [
+          "<strong>t<sub>exhale</sub></strong> — Duration of exhalation phase (seconds)",
+          "<strong>t<sub>inhale</sub></strong> — Duration of inhalation phase (seconds)",
+          "<strong>HRV</strong> — Heart Rate Variability (ms), target > 60ms for peak coherence",
+          "<strong>RSA</strong> — Respiratory Sinus Arrhythmia amplitude, increases with slow breathing"
+        ],
+        modernCorrelation: "US Navy SEALs use 'Box Breathing' (4-4-4-4 pattern) derived from these principles. Clinical studies (Zaccaro et al., 2018) confirm that slow breathing below 10 breaths/minute significantly increases prefrontal cortex oxygenation and reduces cortisol levels."
+      }
+    },
+    upasana: {
+      category: "Yuddham — Deity Resonance",
+      title: "Yuddha Upasana: Mantra & Yantra Resonance",
+      shloka: {
+        devanagari: "ॐ जयन्ती मङ्गला काली भद्रकाली कपालिनी ।\nदुर्गा क्षमा शिवा धात्री स्वाहा स्वधा नमोऽस्तु ते ॥",
+        translit: "oṃ jayantī maṅgalā kālī bhadrakālī kapālinī |\ndurgā kṣamā śivā dhātrī svāhā svadhā namo'stu te ||",
+        translation: "Om. Victory, Auspiciousness, Goddess Kali, Bhadrakali, Kapalini. Durga, Forgiving, Auspicious, Supporter of the Universe, Hail Swaha and Swadha, Salutations to You."
+      },
+      scientific: {
+        title: "Vibrational Acoustics & Neuro-Resonance",
+        text: "Low-frequency vocal resonance (like OM and seed mantras) produces mechanical vibrations that stimulate the vagal receptors in the larynx. Repeating rhythmic sounds promotes coherence in neural oscillations, reducing amygdala hyperactivity and building high stress-immunity."
+      },
+      instructions: [
+        "Click the bells or press the key selectors below to ring virtual temple bells.",
+        "Press the mantra seeds in sequence to build a coherent focus wave.",
+        "Watch the yantra geometric vibrations expand as your alignment increases."
+      ],
+      historicalOrigin: {
+        treatise: "Mandukya Upanishad & Rig Veda",
+        author: "Vedic Rishis / Compiled by Veda Vyasa",
+        period: "circa 1500 BCE – 500 BCE",
+        context: "The <em>Mandukya Upanishad</em> dedicates its 12 verses entirely to the syllable OM, mapping its phonemic components (A-U-M) to waking, dreaming, and deep sleep states of consciousness. The <em>Rig Veda</em> (1.164.39) declares: <em>'In the imperishable highest space, all the devas have taken their seat.'</em> Mantra science was later codified in the <em>Tantrasara</em> by Abhinavagupta (circa 1000 CE)."
+      },
+      dharmicPrinciples: "Upasana (concentrated worship) harnesses <em>Shabda Brahman</em> — the concept that primordial sound is the substrate of creation. Each Bija (seed) mantra corresponds to a specific energy center and deity archetype. The warrior performs Upasana not for external boons but to cultivate <em>Abhaya</em> (fearlessness) and <em>Sthairya</em> (unwavering steadiness) in the face of mortal danger.",
+      stemBreakdown: {
+        discipline: "Wave Acoustics & Neuroscience",
+        equation: "f<sub>n</sub> = n × v / (2L)",
+        equationExplanation: "The fundamental resonance frequency of a standing wave inside a cavity of length L. When chanting OM, the oral-nasal cavity acts as a resonant tube. The fundamental frequency (~136 Hz) and its harmonics create standing waves that mechanically vibrate the cranial bones and stimulate the vagus nerve at the laryngeal branch.",
+        parameters: [
+          "<strong>f<sub>n</sub></strong> — nth harmonic frequency (Hz)",
+          "<strong>v</strong> — Speed of sound in air (~343 m/s at 20°C)",
+          "<strong>L</strong> — Effective cavity length (oral-nasal tract ~17 cm)",
+          "<strong>n</strong> — Harmonic number (1 = fundamental, 2 = first overtone)"
+        ],
+        modernCorrelation: "fMRI studies (Kalyani et al., 2011) show that chanting OM specifically deactivates the limbic system (amygdala, hippocampus) while activating the bilateral orbitofrontal, anterior cingulate, and thalamic regions — mimicking the neural signature of deep meditative states. This effect is absent with other phonemes."
+      }
+    },
+    maṇḍala: {
+      category: "Yuddham — Geopolitical Alignment",
+      title: "Maṇḍala Siddhanta: The Circle of States",
+      shloka: {
+        devanagari: "सामदानविभेदाश्च दण्डश्चेति चतुष्टयम् ।\nपरस्परं च सन्दध्याद् देशकालविभागवित् ॥",
+        translit: "sāmadānavibhedāśca daṇḍaśceti catuṣṭayam |\nparasparaṃ ca sandadhyād deśakālavibhāgavit ||",
+        translation: "Conciliation, gift-giving, division, and force—these four means should be applied in diplomacy, taking place and time into consideration."
+      },
+      scientific: {
+        title: "Systems Theory & Game Theory",
+        text: "Chanakya's Maṇḍala theory mirrors modern agent-based social networks and game theory. States are nodes linked by directional edges (hostility, alliance). Stability is achieved through counter-balancing coalitions based on geospatial proximity."
+      },
+      instructions: [
+        "You represent the Sovereign King (Vijigishu, Golden Node) at the center.",
+        "Use the treaty and spy buttons to change relations with the surrounding circles.",
+        "Understand how adjacent rings naturally emerge as allies or enemies based on location."
+      ],
+      historicalOrigin: {
+        treatise: "Arthaśāstra",
+        author: "Acharya Chanakya (Kautilya)",
+        period: "circa 300 BCE",
+        context: "Book VI of the <em>Arthaśāstra</em> codifies the <em>Rajamaṇḍala</em> theory — a concentric model of geopolitics where a king (Vijigishu) is surrounded by alternating rings of enemies (Ari) and allies (Mitra). Chanakya identifies 12 types of kings in the geopolitical sphere and prescribes the four Upayas (Sama, Dana, Bheda, Danda) as diplomatic instruments. This predates Machiavelli's <em>The Prince</em> by 1800 years."
+      },
+      dharmicPrinciples: "The Maṇḍala principle arises from the Dharmic concept of <em>Matsya Nyāya</em> (law of the fish) — in the absence of order, the strong devour the weak. A righteous king must therefore proactively structure alliances to prevent anarchy. The ultimate goal is not conquest but <em>Yogakshema</em> — the welfare and security of all beings within one's domain.",
+      stemBreakdown: {
+        discipline: "Network Theory & Game Theory",
+        equation: "A<sub>ij</sub> = k<sub>trade</sub> / d<sub>ij</sub> ∑ λ H<sub>ij</sub>",
+        equationExplanation: "Alliance strength (A) between states i and j is proportional to trade connectivity (k) inversely weighted by geographic distance (d), minus a friction term driven by historical hostility (H). The parameter λ captures the memory weight of past conflicts.",
+        parameters: [
+          "<strong>A<sub>ij</sub></strong> — Alliance strength index between states i and j",
+          "<strong>k<sub>trade</sub></strong> — Trade flow coefficient (resources, marriages, treaties)",
+          "<strong>d<sub>ij</sub></strong> — Geographic distance between capital cities",
+          "<strong>H<sub>ij</sub></strong> — Historical hostility score (wars, betrayals)",
+          "<strong>λ</strong> — Memory decay parameter (how quickly past hostility fades)"
+        ],
+        modernCorrelation: "The Maṇḍala model is a precursor to modern Balance of Power theory (Kenneth Waltz, 1979) and is structurally isomorphic to signed graph theory where positive/negative edges represent alliances/enmities. Modern computational geopolitics at RAND Corporation uses similar agent-based models."
+      }
+    },
+    vyūhas: {
+      category: "Yuddham — Military Formations",
+      title: "Vyūhas: Concentric Battlefield Lock",
+      shloka: {
+        ref: "Mahabharata, Drona Parva — On Vyūha Formation",
+        devanagari: "व्यूहानवेक्षेत सदा सुसमाहितमानसः ।\nयथाव्यूहेन युध्येत तथा चक्रव्यूहं विशेत् ॥",
+        translit: "vyūhānavekṣeta sadā susamāhitamānasaḥ |\nyathāvyūhena yudhyeta tathā cakravyūhaṃ viśet ||",
+        translation: "A leader must always inspect the battle formations with a steady mind, knowing how to fight within the array, and how to enter the concentric wheel formation."
+      },
+      shlokas: [
+        {
+          ref: "Mahabharata 7.34 — Abhimanyu & the Chakravyūha",
+          devanagari: "प्रविश्य चक्रव्यूहं तं वीरो अभिमन्युरमर्षणः ।\nभेदनं वेद न निर्गमं स शूरः प्राप्तवान् अन्तकम् ॥",
+          translit: "praviśya cakravyūhaṃ taṃ vīro abhimanyuramarṣaṇaḥ |\nbhedanaṃ veda na nirgamaṃ sa śūraḥ prāptavān antakam ||",
+          anvaya: "<strong>abhimanyuḥ</strong> (Abhimanyu), the <strong>vīra</strong> (hero), <strong>amarṣaṇaḥ</strong> (impatient), entered the <strong>cakravyūha</strong>. He knew <strong>bhedanam</strong> (the breaking-in) but not <strong>nirgamam</strong> (the way out). That <strong>śūraḥ</strong> (brave one) met <strong>antaka</strong> (death).",
+          translation: "The brave Abhimanyu, impatient hero, entered the Chakravyūha. He knew how to break in but not how to exit. That courageous warrior met his end within."
+        },
+        {
+          ref: "Shukraniti 4.7.314–316 — Classification of Formations",
+          devanagari: "क्रौञ्चं गरुडमर्धेन्दुं पद्मं शकटमेव च ।\nमकरं वज्रसूच्यादि व्यूहान् कुर्वीत पण्डितः ॥",
+          translit: "krauñcaṃ garuḍamardhenduṃ padmaṃ śakaṭameva ca |\nmakaraṃ vajrasūcyādi vyūhān kurvīta paṇḍitaḥ ||",
+          anvaya: "The learned commander should deploy formations: <strong>Krauñca</strong> (heron), <strong>Garuḍa</strong> (eagle), <strong>Ardhendu</strong> (half-moon), <strong>Padma</strong> (lotus), <strong>Śakaṭa</strong> (wagon), <strong>Makara</strong> (crocodile), <strong>Vajra</strong> (thunderbolt), <strong>Sūcī</strong> (needle) — and others.",
+          translation: "The wise commander should form the heron, the eagle, the crescent, the lotus, the wagon, the crocodile, the thunderbolt, the needle — and other formations as the situation demands."
+        }
+      ],
+      scientific: {
+        title: "Mathematical Spirals & Spatial Lockouts",
+        text: "The Chakravyūha is a self-closing concentric Archimedean spiral. As an opposing force enters, the circular rotations of the defensive tiers close the gap, isolating the penetrator and cutting off their communication lines. It is a spatial topological lock."
+      },
+      instructions: [
+        "The concentric rings spin at relative speeds. The openings align only periodically.",
+        "Click 'Auto-Trace Entry' to see the spiral path leading to the center.",
+        "Use 'Defensive Lock' to see how the openings immediately close when a breach is detected."
+      ],
+      historicalOrigin: {
+        treatise: "Mahabharata (Drona Parva) & Shukraniti",
+        author: "Attributed to Veda Vyasa / Shukracharya",
+        period: "circa 3100 BCE (traditional) / 400 BCE (scholarly dating)",
+        context: "The <em>Drona Parva</em> (Book 7) of the Mahabharata describes the Chakravyūha deployed by Dronacharya on the 13th day of the Kurukshetra war. Only Arjuna and Krishna knew how to both enter and exit. Abhimanyu knew only the entry, leading to his tragic entrapment. <em>Shukraniti</em> by Shukracharya later classified 20+ military formations including Krauncha (heron), Garuda (eagle), and Padma (lotus) vyūhas."
+      },
+      dharmicPrinciples: "The Vyūha system embodies the Dharmic principle of <em>Niyata Yuddha</em> (regulated warfare) — battles fought within an agreed framework of ethical rules. The Chakravyūha's design ensures that the formation protects the weakest (non-combatants, supplies) at the center while presenting maximum defensive geometry to the enemy. Its circular form symbolizes <em>Kalachakra</em> — the wheel of time from which none can escape.",
+      stemBreakdown: {
+        discipline: "Topology & Analytic Geometry",
+        equation: "r(Î¸) = a + bÎ¸",
+        equationExplanation: "The Archimedean spiral equation defines the radial distance r from the center as a linear function of the angle Î¸. In the Chakravyūha, each concentric ring is phase-shifted such that the gap openings (entry points) rotate at different angular velocities, creating a time-locked maze where entry and exit windows are non-simultaneously aligned.",
+        parameters: [
+          "<strong>r</strong> — Radial distance from formation center (meters)",
+          "<strong>Î¸</strong> — Angular position (radians)",
+          "<strong>a</strong> — Initial radius offset (inner ring radius)",
+          "<strong>b</strong> — Spiral growth factor (spacing between rings)",
+          "<strong>Î”Î¸<sub>gap</sub></strong> — Angular width of each ring opening (~0.6 radians)"
+        ],
+        modernCorrelation: "Modern layered defense architectures (including cybersecurity 'defense-in-depth') use the same concentric isolation principle. Each security ring has independent access control, ensuring that breaching one layer does not grant access to subsequent layers — a direct topological analog of the Chakravyūha."
+      }
+    }
+  },
+  rājya: {
+    yoga: {
+      category: "Rājya Palanam — Mindful Governance",
+      title: "Rājya Yoga: Equanimity in Power",
+      shloka: {
+        ref: "Bhagavad Gita 2.47–48 — Karma Yoga",
+        devanagari: "योगस्थः कुरु कर्माणि सङ्गं त्यक्त्वा धनञ्जय ।\nसिद्ध्यसिद्ध्योः समो भूत्वा समत्वं योग उच्यते ॥",
+        translit: "yogasthaḥ kuru karmāṇi saṅgaṃ tyaktvā dhanañjaya |\nsiddhyasiddhyoḥ samo bhūtvā samatvaṃ yoga ucyate ||",
+        translation: "Be steadfast in yoga, Arjuna. Perform your duty and abandon all attachment to success or failure. Such equanimity is called Yoga."
+      },
+      shlokas: [
+        {
+          ref: "Bhagavad Gita 3.35 — Svadharma",
+          devanagari: "श्रेयान् स्वधर्मो विगुणः परधर्मात् स्वनुष्ठितात् ।\nस्वधर्मे निधनं श्रेयः परधर्मो भयावहः ॥",
+          translit: "śreṣyān svadharmo viguṇaḥ paradharmo svanushthitāt |\nsvadharme nidhanaṃ śreyaḥ paradharmo bhayāvahaḥ ||",
+          anvaya: "<strong>śreṣyān</strong> (better) is one’s own <strong>svadharma</strong> (one’s own duty), even if <strong>viguṇaḥ</strong> (imperfect), than <strong>paradharma</strong> (another’s duty) well performed. Death in one’s own dharma is <strong>śreyaḥ</strong> (auspicious); another’s dharma is <strong>bhayāvahaḥ</strong> (dangerous).",
+          translation: "Better is one’s own dharma, though imperfectly performed, than the dharma of another well performed. Death in the performance of one’s own duty is preferable; the dharma of another is fraught with danger."
+        },
+        {
+          ref: "Bhagavad Gita 18.66 — Sarva Dharma Parityaga",
+          devanagari: "सर्वधर्मान् परित्यज्य मामेकं शरणं व्रज ।\nअहं त्वा सर्वपापेभ्यो मोक्षयिष्यामि मा शुचः ॥",
+          translit: "sarvadharmān parityajya māmekaṃ śaraṇaṃ vraja |\nahaṃ tvā sarvapāpebhyo mokṣayiṣyāmi mā śucaḥ ||",
+          anvaya: "<strong>sarvadharmān parityajya</strong> (abandoning all dharmas) — <strong>mām ekam śaraṇam vraja</strong> (come to Me alone as refuge). <strong>aham</strong> (I) shall <strong>mokṣayiṣyāmi</strong> (liberate) <strong>tvā</strong> (you) from <strong>sarvapāpebhyaḥ</strong> (all sins). <strong>mā śucaḥ</strong> (do not grieve).",
+          translation: "Abandoning all dharmas, take refuge in Me alone. I shall liberate you from all sin. Do not grieve."
+        }
+      ],
+      scientific: {
+        title: "Cognitive Neutrality & Decisions",
+        text: "Decisions made under emotional stress suffer from cognitive tunneling and loss-aversion bias. Practicing concentration (Dharana) increases activation in the prefrontal cortex, stabilizing judgment and allowing a leader to look past immediate losses for long-term state stability."
+      },
+      instructions: [
+        "Move your cursor inside the tracking area on the right.",
+        "Keep your focus dot aligned inside the fluctuating golden center target.",
+        "This simulates maintaining calm leadership focus (Samatvam) amidst high external volatility."
+      ],
+      historicalOrigin: {
+        treatise: "Bhagavad Gita (Chapter 2, Verses 47-48)",
+        author: "Lord Krishna, compiled by Veda Vyasa",
+        period: "circa 3100 BCE (traditional) / 200 BCE (scholarly)",
+        context: "The <em>Bhagavad Gita</em> is delivered on the battlefield of Kurukshetra as a crisis intervention — Arjuna, the greatest warrior, collapses under decision paralysis. Krishna's teaching of <em>Samatvam</em> (equanimity) addresses the cognitive bias that paralyzes leaders when consequences are extreme. Verse 2.48 defines Yoga itself as equanimity: <em>samatvaá¹ yoga ucyate</em>. Later, the <em>Raja Yoga</em> tradition (Patanjali YS 1.2) formalized concentration training."
+      },
+      dharmicPrinciples: "A ruler must act from <em>Nishkama Karma</em> — selfless action without attachment to outcomes. This is not apathy but heightened engagement free from cognitive distortion. The Gita distinguishes between <em>Tamasic</em> (ignorant), <em>Rajasic</em> (emotionally reactive), and <em>Sattvic</em> (balanced) decision-making. Only Sattvic decisions account for long-term dharmic consequences.",
+      stemBreakdown: {
+        discipline: "Cognitive Neuroscience & Decision Theory",
+        equation: "C<sub>focus</sub> = S<sub>PFC</sub> / (S<sub>amygdala</sub> + β Ïƒ<sub>ext</sub><sup>2</sup>)",
+        equationExplanation: "The cognitive control index models focus stability as the ratio of prefrontal cortex activation (S_PFC) to amygdala reactivity plus external noise variance. As environmental volatility (ÏƒÂ²) increases, the amygdala drives fight-or-flight, reducing executive function — unless trained through Dharana (concentration practices).",
+        parameters: [
+          "<strong>C<sub>focus</sub></strong> — Cognitive Focus Index (dimensionless, target > 1.0)",
+          "<strong>S<sub>PFC</sub></strong> — Prefrontal cortex activation signal strength",
+          "<strong>S<sub>amygdala</sub></strong> — Amygdala threat-response signal",
+          "<strong>Ïƒ<sub>ext</sub><sup>2</sup></strong> — External environmental noise variance",
+          "<strong>β</strong> — Individual stress sensitivity coefficient (decreases with meditation training)"
+        ],
+        modernCorrelation: "Mindfulness-Based Stress Reduction (MBSR) developed by Jon Kabat-Zinn (1979) is clinically proven to reduce amygdala volume by 5% after 8 weeks. Military programs (US Army's Master Resilience Training) incorporate concentration drills directly descended from Dharana techniques to improve battlefield decision quality."
+      }
+    },
+    upasana: {
+      category: "Rājya Palanam — Ecological Balance",
+      title: "Rājya Upasana: Yajna & Ecology",
+      shloka: {
+        devanagari: "अन्नाद्भवन्ति भूतानि पर्जन्यादन्नसम्भवः ।\nयज्ञाद्भवति पर्जन्यो यज्ञः कर्मसमुद्भवः ॥",
+        translit: "annādbhavanti bhūtāni parjanyādannasambhavaḥ |\nyajñādbhavati parjanyo yajñaḥ karmasamudbhavaḥ ||",
+        translation: "All living beings subsist on food, which is produced from rain. Rain is produced from sacrifice (Yajna), and sacrifice is born of prescribed duties."
+      },
+      scientific: {
+        title: "Hydrological Cycles & Bio-Atmospheric Interactions",
+        text: "Ancient Yajnas utilized specific samidhas (medicinal woods) and ghee which, upon high-temperature combustion, released particles acting as cloud-condensation nuclei (CCN). This bio-chemical seeding, combined with thermodynamic heat columns, helped trigger localized rainfall."
+      },
+      instructions: [
+        "Interact with the fire altar (Homa Kunda) by selecting raw ingredients: Ghee, Samidha, Grains, Herbs.",
+        "Observe how adding the right proportions seeds the atmosphere and balances the Rainfall and Harvest meters.",
+        "Maintain perfect ecological equilibrium without depleting your state resources."
+      ],
+      historicalOrigin: {
+        treatise: "Yajur Veda & Shatapatha Brahmana",
+        author: "Yajnavalkya / Vedic Rishis",
+        period: "circa 1200–800 BCE",
+        context: "The <em>Yajur Veda</em> (both Shukla and Krishna recensions) is the liturgical manual for Yajna performance. The <em>Shatapatha Brahmana</em> (14 Kandas) provides the most detailed instructions for fire-altar construction, specifying exact brick dimensions (Agnicayana) and fuel compositions. The Agnihotra (daily fire ritual) prescribes burning specific combinations of medicinal woods at sunrise and sunset — aligning with peak atmospheric convection periods."
+      },
+      dharmicPrinciples: "The Bhagavad Gita (3.14) describes a closed ecological loop: <em>Yajna → Rain → Food → Beings → Karma → Yajna</em>. This is not metaphorical but describes a bio-atmospheric feedback cycle. The Dharmic framework mandates that humans actively participate in sustaining natural cycles rather than merely extracting from nature. The concept of <em>Rta</em> (cosmic order) requires this reciprocity.",
+      stemBreakdown: {
+        discipline: "Atmospheric Chemistry & Cloud Physics",
+        equation: "dN/dt = α T<sub>combustion</sub> ∑ β N<sup>2</sup>",
+        equationExplanation: "The rate of cloud condensation nuclei (CCN) production is proportional to the combustion temperature (high-temp ghee burning releases fine aerosols) minus a quadratic coagulation loss term. Optimal CCN production occurs in the 650–850°C range where volatile organic compounds from herbs sublimate without complete oxidation.",
+        parameters: [
+          "<strong>N</strong> — Concentration of cloud condensation nuclei (particles/cmÂ³)",
+          "<strong>T<sub>combustion</sub></strong> — Altar flame temperature (°C), optimal 650–850°C",
+          "<strong>α</strong> — Aerosol generation coefficient (depends on fuel composition)",
+          "<strong>β</strong> — Coagulation loss rate (particles aggregate and settle out)",
+          "<strong>CCN</strong> — Cloud Condensation Nuclei that serve as seed particles for water droplet formation"
+        ],
+        modernCorrelation: "Modern cloud seeding (silver iodide dispersal) operates on the same principle: introducing aerosol particles into super-saturated air masses to trigger rainfall. Research by IIT Bombay (2019) confirmed that Agnihotra smoke produces sub-micron particles with hygroscopic properties consistent with effective CCN activity."
+      }
+    },
+    saptāṅga: {
+      category: "Rājya Palanam — Statecraft Systems",
+      title: "Rājyanga Saptāṅga: 7 Limbs of State",
+      shloka: {
+        ref: "Arthaśāstra 6.1.1 — Seven Limbs of the State",
+        devanagari: "स्वाम्यमात्यजनपददुर्गकोशदण्डमित्राणि प्रकृतयः ।\nएतासां तु परस्परोपकारित्वात् राज्यं प्रवर्तते ॥",
+        translit: "svāmyamātyajanapadadurgakośadaṇḍamitrāṇi prakṛtayaḥ |\netāsāṃ tu parasparopakāritvāt rājyaṃ pravartate ||",
+        translation: "The King, Minister, Territory, Fort, Treasury, Army, and Ally constitute the seven limbs of state. Through their mutual cooperation, the state functions."
+      },
+      scientific: {
+        title: "Socio-Technical Network Dynamics",
+        text: "The Saptāṅga theory treats state governance as a closed-loop system of seven interdependent variables. Adjusting one parameter (e.g. inflating the Treasury via taxation) feeds back into other variables, affecting citizen loyalty (Janapada) and defense resilience (Danda)."
+      },
+      instructions: [
+        "Adjust the sliders representing the seven limbs of state.",
+        "Observe how shifting one slider pulls or pushes others based on structural relationships.",
+        "Try to maximize the overall 'Dharma Stability Score' without throwing the system into critical imbalance."
+      ],
+      historicalOrigin: {
+        treatise: "Arthaśāstra & Manusmriti",
+        author: "Acharya Chanakya / Manu",
+        period: "circa 300 BCE – 200 CE",
+        context: "Book VI, Chapter 1 of the <em>Arthaśāstra</em> enumerates the Saptāṅga (seven limbs): Swami (Sovereign), Amatya (Minister), Janapada (Territory/People), Durga (Fort), Kosha (Treasury), Danda (Army/Justice), and Mitra (Allies). Chanakya specifies that these are listed in decreasing order of importance — a weak king cannot be compensated by a strong treasury. The <em>Manusmriti</em> (7.157) adds that a ruler who neglects any single limb causes the entire state organism to weaken."
+      },
+      dharmicPrinciples: "The state is conceived as a living organism (<em>Rājya Sharira</em>) where each limb serves a vital function. Just as the human body cannot function with a missing organ, the state collapses when any dimension is neglected. The Dharmic ideal is <em>Sama</em> (balance) — not maximization of any single variable but harmonious optimization across all seven. This directly counters purely wealth-maximizing or militaristic governance models.",
+      stemBreakdown: {
+        discipline: "Systems Dynamics & Control Theory",
+        equation: "S<sub>state</sub> = Î  w<sub>i</sub>x<sub>i</sub> ∑ γ Σ(x<sub>i</sub> ∑ x<sub>j</sub>)<sup>2</sup>",
+        equationExplanation: "The State Stability Score is a weighted product of all seven limb values (capturing synergy) minus a variance penalty term. High imbalance between any two limbs (e.g., very high military but very low citizen welfare) generates exponential instability, regardless of the absolute values.",
+        parameters: [
+          "<strong>S<sub>state</sub></strong> — Overall state stability index (0–100%)",
+          "<strong>x<sub>i</sub></strong> — Current value of the i-th limb (Swami, Amatya, etc.)",
+          "<strong>w<sub>i</sub></strong> — Weight/importance of each limb (Swami highest)",
+          "<strong>γ</strong> — Variance sensitivity coefficient (penalizes imbalance)",
+          "<strong>Σ(x<sub>i</sub>∑x<sub>j</sub>)<sup>2</sup></strong> — Pairwise variance sum across all limb pairs"
+        ],
+        modernCorrelation: "This model directly maps to Stafford Beer's Viable System Model (1972) where organizations require five interacting systems for viability. The World Bank's Worldwide Governance Indicators (WGI) similarly measure six dimensions of institutional quality, confirming that single-axis optimization leads to state fragility."
+      }
+    },
+    neeti: {
+      category: "Rājya Palanam — Diplomacy",
+      title: "Neeti Śāstras: Administrative Decision Dilemmas",
+      shloka: {
+        ref: "Arthaśāstra 2.8.1–2 — On the Treasury",
+        devanagari: "कोशपूर्वाः सर्वा आरम्भाः तस्मात् पूर्वं कोशमवेक्षेत ।\nधर्ममूलं हि राज्यं स्यात् काममूलं तु नाशनम् ॥",
+        translit: "kośapūrvāḥ sarvā ārambhāḥ tasmāt pūrvaṃ kośamavekṣeta |\ndharmamūlaṃ hi rājyaṃ syāt kāmamūlaṃ tu nāśanam ||",
+        translation: "All undertakings depend on finance; therefore, let the King attend to the treasury first. Governance must root itself in Dharma; absolute self-indulgence leads to ruin."
+      },
+      scientific: {
+        title: "Multi-Criteria Decision Analysis (MCDA)",
+        text: "State management demands evaluating actions across conflicting criteria: resource preservation, citizen morale, security, and ethical alignment. The Neeti simulator uses multi-attribute scoring to illustrate dynamic policy trade-offs."
+      },
+      instructions: [
+        "Read each diplomatic dilemma presented in the queue.",
+        "Select the course of action you believe best aligns with Dharma and state preservation.",
+        "Track how your decisions impact the Justice, Security, and Treasury meters."
+      ],
+      historicalOrigin: {
+        treatise: "Vidura Neeti & Panchatantra",
+        author: "Vidura (Mahabharata) / Vishnu Sharma",
+        period: "circa 300 BCE – 200 CE",
+        context: "The <em>Vidura Neeti</em> (Udyoga Parva, Mahabharata) contains 500+ verses of political wisdom delivered by minister Vidura to King Dhritarashtra. The <em>Panchatantra</em> by Vishnu Sharma uses animal fables to teach five core principles of governance: <em>Mitra Bheda</em> (loss of friends), <em>Mitra Labha</em> (winning friends), <em>Kakolukiyam</em> (war/peace), <em>Labdhapranasam</em> (loss of gains), and <em>Aparikshitakarakam</em> (hasty action). These were translated into Persian (<em>Kalila wa Dimna</em>), Arabic, and Latin, influencing governance thought worldwide."
+      },
+      dharmicPrinciples: "Neeti (policy/ethics) in the Dharmic framework is not situational relativism. It operates under the hierarchy: <em>Dharma > Artha > Kama</em>. A policy that generates wealth (Artha) but violates Dharma is fundamentally unsustainable. Vidura teaches that the wisest decisions often appear to be the slowest — patience (<em>Kshama</em>) and thorough deliberation (<em>Mantra</em>) prevent the catastrophic consequences of impulsive rule.",
+      stemBreakdown: {
+        discipline: "Multi-Criteria Decision Analysis (MCDA)",
+        equation: "U(a) = Σ w<sub>i</sub> × v<sub>i</sub>(a)",
+        equationExplanation: "The total utility of a policy action (a) is the weighted sum of its performance across multiple criteria. Each criterion (Justice, Security, Treasury) has a weight reflecting its importance and a value function measuring how well the action satisfies it. Optimal governance maximizes this utility without violating minimum thresholds on any single criterion.",
+        parameters: [
+          "<strong>U(a)</strong> — Total utility of action a",
+          "<strong>w<sub>i</sub></strong> — Weight of criterion i (Justice, Security, Treasury)",
+          "<strong>v<sub>i</sub>(a)</strong> — Value function: performance of action a on criterion i",
+          "<strong>Constraint</strong> — v<sub>i</sub>(a) ≥ threshold<sub>i</sub> for all i (no criterion may collapse to zero)"
+        ],
+        modernCorrelation: "The Analytical Hierarchy Process (AHP) by Thomas Saaty (1980) and modern governance dashboards (UN SDG monitoring) use identical multi-criteria utility frameworks. The key insight from Neeti Śāstra — that decisions must satisfy minimum thresholds across ALL dimensions — predates Herbert Simon's concept of 'satisficing' by two millennia."
+      }
+    }
+  },
+  nagara: {
+    vastu: {
+      category: "Nagara Nirmana — Divine City Cosmology",
+      title: "Vastu Purusha Maṇḍala: The Blueprint of Civilization",
+      shloka: {
+        ref: "Rig Veda 10.90.1–4 — Purusha Sukta",
+        devanagari: "सहस्रशीर्षा पुरुषः सहस्राक्षः सहस्रपात् ।\nस भूमिं विश्वतो वृत्वा अत्यतिष्ठद्दशाङ्गुलम् ॥\nपुरुष एवेदं सर्वं यद्भूतं यच्च भव्यम् ।\nउतामृतत्वस्येशानो यदन्नेनातिरोहति ॥",
+        translit: "sahasraśīrṣā puruṣaḥ sahasrākṣaḥ sahasrapāt |\nsa bhūmiṃ viśvato vṛtvā atyatiṣṭhaddaśāṅgulam ||\npuruṣa evedaṃ sarvaṃ yadbhūtaṃ yacca bhavyam |\nutāmṛtatvasyeśāno yadannenātirohati ||",
+        anvaya: "<strong>sahasraśīrṣā</strong> (thousand-headed) <strong>puruṣaḥ</strong> (the Cosmic Person) — <strong>sa bhūmiṃ vṛtvā</strong> (having enveloped the earth) — <strong>atyatiṣṭhat</strong> (transcends) <strong>daśāṅgulam</strong> (by ten fingers-breadth). All of existence — past and future — is THIS Purusha.",
+        translation: "The Cosmic Person has a thousand heads, a thousand eyes, a thousand feet. Enveloping the whole earth on all sides, He stands beyond it by the measure of ten fingers. Truly, all this is the Purusha — whatever has been and whatever shall be."
+      },
+      shlokas: [
+        {
+          ref: "Manasara 9.1–3 — On Nagara Classification",
+          devanagari: "नगरं ग्रामतः श्रेष्ठं खेटं नगरतः परम् ।\nद्रोणमुखं खेटतोऽपि पत्तनं द्रोणतः परम् ॥\nमहानगरमेवैषां सर्वेषां श्रेष्ठमुच्यते ।\nदेवनगरमेवैतत् ब्रह्माण्डस्य प्रतिकृतिः ॥",
+          translit: "nagaraṃ grāmataḥ śreṣṭhaṃ kheṭaṃ nagarataḥ param |\ndroṇamukhaṃ kheṭato'pi pattanaṃ droṇataḥ param ||\nmahānagaramevaṣāṃ sarveṣāṃ śreṣṭhamucyate |\ndevanagaramevaitat brahmāṇḍasya pratikṛtiḥ ||",
+          anvaya: "<strong>Nagara</strong> (city) is superior to <strong>grāma</strong> (village). <strong>Mahānagara</strong> (great city) is the highest of all settlements. The <strong>Deva-nagara</strong> (divine city) is the <em>pratikṛti</em> — the living reflection — of the brahmāṇḍa (cosmos) itself.",
+          translation: "A city is superior to a village; a market town is superior to a city; a trade port surpasses that. But above all stands the Mahānagara — the great city. And the divine city is declared the highest of all: it is the very image of the cosmos."
+        },
+        {
+          ref: "Mayamata 6.1–4 — On the Brahmasthana",
+          devanagari: "ब्रह्मस्थानं नगरस्य मध्ये स्थापयेत् सुधीः ।\nतस्मात् सर्वा दिशः क्रमेण विस्तरेत् पुरम् ॥\nदेवालयः केन्द्रभूतः सर्वस्य पालकः स्मृतः ।\nसंसारस्तस्य आवरणं ब्रह्म तु तत्त्वतः ॥",
+          translit: "brahmasthānaṃ nagarasya madhye sthāpayet sudhīḥ |\ntasmāt sarvā diśaḥ krameṇa vistaret puram ||\ndevālayaḥ kendrabūtaḥ sarvasya pālakaḥ smṛtaḥ |\nsaṃsārastasya āvaraṇaṃ brahma tu tattvataḥ ||",
+          anvaya: "<strong>brahmasthānam</strong> (the divine centre) must be placed at the <strong>madhye</strong> (middle) of the nagara. From that centre, all <strong>diśaḥ</strong> (directions) of the city radiate. The <strong>devālayaḥ</strong> (temple) as the centre is the <em>pālaka</em> (protector) of all. <strong>Saṃsāra</strong> is but the <em>āvaraṇa</em> (veil/sheath); <strong>Brahman</strong> is the true reality.",
+          translation: "The wise planner must establish the Brahmasthana — the sacred divine centre — in the very middle of the city. From that point, all parts of the city must radiate outward in orderly progression. The temple at the centre is declared the guardian of all life. The world of becoming (samsara) is merely its sheath; Brahman alone is the ultimate truth."
+        },
+        {
+          ref: "Arthaśāstra 2.4.1–3 — Kautilya on City Planning",
+          devanagari: "प्राक्प्रवणे देशे नगरं कारयेत् ।\nचतुर्मार्गसंधिषु देवगृहं प्रतिष्ठापयेत् ॥\nब्राह्मणानां पूर्वभागः क्षत्रियाणां दक्षिणभागः ।\nवैश्यशूद्राणां पश्चिमोत्तरभागावित्याचार्याः ॥",
+          translit: "prākpravaṇe deśe nagaraṃ kārayet |\ncaturmārgasaṃdhiṣu devagṛhaṃ pratiṣṭhāpayet ||\nbrāhmaṇānāṃ pūrvabhāgaḥ kṣatriyāṇāṃ dakṣiṇabhāgaḥ |\nvaiśyaśūdrāṇāṃ paścimotar abhāgāvityācāryāḥ ||",
+          anvaya: "<strong>prākpravaṇe deśe</strong> (in land sloping to the east) — build the <strong>nagara</strong>. At the <strong>caturmārgasaṃdhiṣu</strong> (intersection of the four great roads) — <strong>devagṛham pratiṣṭhāpayet</strong> (establish the divine dwelling). The teachers declare: east for Brahmanas, south for Kṣatriyas, west-north for Vaiśyas and Śūdras.",
+          translation: "The king shall build the city on land sloping toward the east. At the intersection of the four great roads, the temple must be established. The eastern quarter belongs to Brahmanas, the southern to Kṣatriyas, the western and northern to Vaiśyas and Śūdras — so declare the Ācāryas."
+        }
+      ],
+      scientific: {
+        title: "Sacred Urban Geometry — Concentric Ring City Planning",
+        text: "The Vastu Purusha Maṇḍala is a 8×8 or 9×9 grid encoding the cosmos as a city plan. Modern urban theorists (Christopher Alexander, 'A Pattern Language', 1977) independently arrived at concentric zone planning with public/civic structures at the centre. Biophilic urban design research confirms that cities organized around natural focal centres (rivers, hills, sacred groves) show measurably lower cortisol levels and higher civic cohesion among residents. Madurai, Varanasi, Srirangam, Tirupati, and Vijayanagara are all living implementations of this ancient template — the Divine at the centre, concentric rings of sacred, civic, and material life radiating outward."
+      },
+      instructions: [
+        "Study the Vastu Purusha Maṇḍala diagram — 64 zones mapped to 45 devas governing every corner of the city.",
+        "Trace how Madurai's layout radiates from the Meenakshi Amman temple through the four prakara walls outward.",
+        "Reflect: in what way is your own life organized — is the Divine at your centre, or at the periphery?",
+        "Explore how the 8 Dikpalas (directional guardians) correspond to city planning zones."
+      ],
+      historicalOrigin: {
+        treatise: "Manasara Shilpaśāstra, Mayamata, Arthaśāstra (Book II), Vishwakarma Prakash",
+        author: "Maya Danava (Mayamata) / Manasara Tradition / Kautilya",
+        period: "circa 3000 BCE (Indus Valley cities) — 600 CE (codification period)",
+        context: "Mohenjo-daro and Harappa already showed grid planning with a 'citadel' (presumably sacred) at the centre surrounded by the lower city. The <em>Manasara</em> (96 chapters, the most comprehensive Shilpaśāstra) and <em>Mayamata</em> (36 chapters) codify the complete science of city planning. The <em>Arthaśāstra</em>'s Book II, Chapter 4 gives the most detailed secular treatment — street widths, market placement, drainage, fortification, and the mandatory placement of the Brahmasthana (divine centre). Cities like Madurai follow this template exactly: Meenakshi temple at the centre, four Gopuram-marked boundaries at the cardinal directions, four prakaras (concentric walls), and the city spreading outward. Vijayanagara (now Hampi) showed the same pattern with Virupaksha temple as the cosmic axis."
+      },
+      dharmicPrinciples: "The Indian city is not organized around commerce, the military, or the monarch — it is organized around the Divine. This is not superstition but a profound statement of ontology: <em>Brahman is the only ultimate reality</em>. The city's physical form makes this metaphysical truth visible and liveable. The temple at the centre is the representation of the Self — the eternal, unchanging consciousness — and the city radiating outward represents the successive sheaths (Pancha Kosha) of manifestation. A city built this way is not merely infrastructure; it is a <em>guru in stone</em>, constantly reminding its inhabitants of the true order of existence. The modern city, by contrast, places commerce, transport hubs, or entertainment at its centre — and produces a civilization centred on consumption, not consciousness.",
+      stemBreakdown: {
+        discipline: "Sacred Geometry, Urban Planning & Cognitive Architecture",
+        equation: "R_n = R_0 × φⁿ where φ = (1+√5)/2 (Golden Ratio)",
+        equationExplanation: "The concentric rings of the traditional Indian city expand outward in Golden Ratio proportions from the central temple. R₀ is the radius of the Garbhagriha (innermost sanctum), and each successive ring (sacred precinct → residential → market → outer wall) expands by φ. This Fibonacci-golden spiral growth pattern is the same seen in nautilus shells, galaxy arms, and plant phyllotaxis — it minimizes material while maximizing enclosed area, and creates a visual experience of infinite expansion from a finite centre.",
+        parameters: [
+          "<strong>R₀</strong> — Radius of the Garbhagriha (sanctum sanctorum), the innermost sacred core",
+          "<strong>φ = 1.618</strong> — The Golden Ratio, the universal growth constant of living forms",
+          "<strong>R_n = R₀φⁿ</strong> — Radius of the nth concentric zone (n=1: inner precinct, n=2: residential, n=3: market, n=4: outer wall)",
+          "<strong>Brahmasthana</strong> — The 9 central padas of the 9×9 Vastu grid — reserved exclusively for the Divine, never built upon",
+          "<strong>Dikpalas</strong> — Eight directional guardians: Indra (E), Agni (SE), Yama (S), Nirrti (SW), Varuna (W), Vayu (NW), Kubera (N), Ishana (NE)"
+        ],
+        modernCorrelation: "Christopher Alexander's 'A Pattern Language' (1977) — one of the most influential books in architecture — independently derives 253 patterns for human-scale cities, the most critical being Pattern 4 ('Distributed Work') and Pattern 10 ('Magic of the City') which place sacred/civic structures at the centre of neighbourhoods. The biophilic design movement (Kellert, 2008) confirms that humans have measurably lower stress responses in spaces with natural focal centres, fractal geometry, and clear hierarchical ordering — exactly what the Maṇḍala city provides. Studies of Jaipur (built 1727 CE following Vastu principles) show its orthogonal grid with central palace-temple complex correlates with significantly higher visitor well-being scores vs. comparably-aged European cities of the same size."
+      }
+    },
+    upanishads: {
+      category: "Nagara Nirmana — Cosmic Correspondence",
+      title: "Dahara Vidya: The Temple as the Universe Within",
+      shloka: {
+        ref: "Chandogya Upanishad 8.1.1–3 — Dahara Akasha Vidya",
+        devanagari: "अथ यदिदमस्मिन् ब्रह्मपुरे दहरं पुण्डरीकं वेश्म ।\nदहरोऽस्मिन्नन्तराकाशस्तस्मिन् यदन्तः ।\nतदन्वेष्टव्यं तद्वाव विजिज्ञासितव्यम् ॥",
+        translit: "atha yadidamasmin brahmapure daharaṃ puṇḍarīkaṃ veśma |\ndaharo'sminnantarākāśastasmin yadantaḥ |\ntadanveṣṭavyaṃ tadvāva vijijñāsitavyam ||",
+        anvaya: "<strong>brahmapure</strong> (in the city of Brahman — the body/the temple) — there is a <strong>daharam puṇḍarīkam veśma</strong> (tiny lotus-dwelling). Within that tiny space is the <strong>antarākāśa</strong> (inner space). THAT which is within — <strong>tadanveṣṭavyam</strong> — THAT is to be sought. THAT is to be known.",
+        translation: "Now, in this city of Brahman — this body — there is a tiny dwelling, the lotus of the heart. Within that tiny space is an inner sky. What is within that — THAT is to be sought, THAT is to be known with unwavering longing."
+      },
+      shlokas: [
+        {
+          ref: "Chandogya Upanishad 8.1.3 — The Infinite Within the Finite",
+          devanagari: "यावान् वा अयमाकाशस्तावान् एषोऽन्तर्हृदय आकाशः ।\nउभे अस्मिन्द्यावापृथिवी अन्तरेव समाहिते ।\nउभावग्निश्च वायुश्च सूर्याचन्द्रमसौ उभौ ॥",
+          translit: "yāvān vā ayamākāśastāvān eṣo'ntarhṛdaya ākāśaḥ |\nubhe asmindyāvāpṛthivī antareva samāhite |\nubhāvagniśca vāyuśca sūryācandramasau ubhau ||",
+          anvaya: "<strong>yāvān</strong> (as vast as) this outer <strong>ākāśa</strong> (space) — <strong>tāvān eṣaḥ</strong> (equally vast is) the <strong>antarhṛdaya ākāśaḥ</strong> (space within the heart). Both heaven and earth — both fire and wind — both sun and moon — all are contained within it.",
+          translation: "As vast as this outer space is — equally vast is the space within the heart. Both heaven and earth are contained here within. Both fire and wind, both sun and moon — all are held here within this inner sky."
+        },
+        {
+          ref: "Brihadaranyaka Upanishad 2.1.19 — The Self as the Innermost City",
+          devanagari: "एष सर्वेश्वरः एष सर्वज्ञः एषोऽन्तर्याम्येष योनिः सर्वस्य ।\nप्रभवाप्ययौ हि भूतानाम् ॥",
+          translit: "eṣa sarveśvaraḥ eṣa sarvajñaḥ eṣo'ntaryāmyeṣa yoniḥ sarvasya |\nprabhavāpyayau hi bhūtānām ||",
+          anvaya: "<strong>eṣaḥ</strong> (THIS — the inner Self) is <strong>sarveśvara</strong> (lord of all), <strong>sarvajña</strong> (knower of all), the <strong>antaryāmin</strong> (inner controller), the <strong>yoniḥ sarvasya</strong> (womb/source of everything). From IT all beings arise; into IT all return.",
+          translation: "THIS is the Lord of all, THIS is the Knower of all, THIS is the Inner Controller — the source and womb of everything that exists. All beings arise from THIS; into THIS alone all return."
+        },
+        {
+          ref: "Taittiriya Upanishad 2.1 — Five Sheaths of the City-Body",
+          devanagari: "अन्नमयो हि सोम्यमनः आपोमयाः प्राणाः ।\nतेजोमयी वाक् ॥\nयतो वा इमानि भूतानि जायन्ते ।\nयेन जातानि जीवन्ति ॥",
+          translit: "annamayo hi somyamanaḥ āpomayāḥ prāṇāḥ |\ntejomayī vāk ||\nyato vā imāni bhūtāni jāyante |\nyena jātāni jīvanti ||",
+          anvaya: "The <strong>manaḥ</strong> (mind) is made of <strong>anna</strong> (food/matter). The <strong>prāṇāḥ</strong> (vital forces) are made of <strong>āpas</strong> (water/energy). Speech is made of <strong>tejas</strong> (fire/light). From THAT all beings are born; by THAT alone the born continue to live.",
+          translation: "The mind is truly made of food; the vital forces are made of water; speech is made of fire. From THAT which is beyond all sheaths — from THAT all beings are born; by THAT alone the born continue to live; and into THAT they return."
+        }
+      ],
+      scientific: {
+        title: "Fractal Architecture — From Body to City to Cosmos",
+        text: "The Indian architectural tradition treats the body, the temple, and the cosmos as three scales of the same pattern (Brahmanda-Pindanda). Modern fractal geometry confirms that self-similar patterns at multiple scales (the hallmark of living systems) are experienced by humans as beautiful and calming. Jonathan Haidt's 'awe research' shows that witnessing something that forces a 'vast, interconnected' worldview produces lasting increases in generosity, creativity, and wellbeing — precisely what well-designed sacred architecture achieves."
+      },
+      instructions: [
+        "Close your eyes and locate the 'tiny space' at the centre of your heart — the Dahara Akasha.",
+        "Now open them and see the temple plan before you — the Garbhagriha IS that tiny space, made visible in stone.",
+        "The Mandapa (hall) maps to the subtle body; the Gopuram to the gross body. You are walking through yourself.",
+        "Study how the five-kosha model (five sheaths of the Self) maps onto the five concentric walls of a South Indian temple complex."
+      ],
+      historicalOrigin: {
+        treatise: "Chandogya Upanishad 8.1, Brihadaranyaka Upanishad 2.1, Taittiriya Upanishad 2.1–5",
+        author: "Vedic Rishis — Shandilya, Yajnavalkya traditions",
+        period: "circa 800–600 BCE",
+        context: "The <em>Chandogya Upanishad's</em> Dahara Akasha Vidya is one of the most radical ideas in world philosophy: the infinite cosmos is contained within the tiny space in the human heart. This became the architectural-philosophical foundation for the Indian temple — the temple IS the heart externalized. The <em>Agama Śāstras</em> (temple construction manuals) explicitly state that the Garbhagriha (sanctum) represents the heart, the Shikhara (tower) the skull, the Ardhamandapa the throat, the Mahamandapa the chest. A devotee circumambulating the temple is circumambulating their own inner being."
+      },
+      dharmicPrinciples: "The ultimate insight of Nagara Nirmana is that the city is not built to house people — it is built to remind people who they truly are. The temple at the centre says: <em>the Divine is not far away in a heaven — it is right here, at the core of everything, including you.</em> The city, the body, and the cosmos are three concentric expressions of the same single Atman. This is why the Rishi built not just temples but entire sacred geographies — pilgrimage routes that trace the subtle body (Nadi map) across the landscape of Bharat itself. Every tirtha (sacred crossing-point) is a doorway to the interior.",
+      stemBreakdown: {
+        discipline: "Neuroscience of Awe, Psychoacoustics & Fractal Geometry",
+        equation: "D_f = log(N) / log(1/r) — Fractal Dimension of Sacred Forms",
+        equationExplanation: "The fractal dimension D_f measures how complexity scales with size. A Hausdorff dimension between 1.3 and 1.5 is found universally appealing to humans (Aks & Sprott, 1996). Gothic cathedrals and Indian gopurams both fall in this range. The self-similar repetition of the shikara form at multiple scales is not decorative — it encodes the fractal dimension of the cosmos into stone, triggering the hardwired human recognition of living-pattern beauty.",
+        parameters: [
+          "<strong>D_f</strong> — Fractal dimension (1.3–1.5 = maximally pleasing to human perception)",
+          "<strong>N</strong> — Number of self-similar pieces at each scale of the structure",
+          "<strong>r</strong> — Scaling ratio between levels (each sub-shikara to the whole)",
+          "<strong>Pancha Kosha</strong> — Five sheaths of consciousness mapped to five spatial zones of the temple",
+          "<strong>RT60</strong> — Reverberation time (seconds) — optimal 4–6s for 100Hz chanting in stone sanctums"
+        ],
+        modernCorrelation: "Research by Nikos Salingaros (University of Texas) and Philip Ball (Nature) confirms that built environments with fractal scaling patterns between D_f = 1.3–1.5 measurably reduce stress biomarkers (cortisol, skin conductance) by 60% compared to modernist flat-surface environments. Salingaros explicitly cites the Indian temple as the optimal built form for human neurological health. This is not nostalgia — it is backed by measurable psychophysiological data."
+      }
+    },
+    yoga: {
+      category: "Nagara Nirmana — Directional & Solar Intelligence",
+      title: "Dik-Shakti: The City as Cosmic Compass",
+      shloka: {
+        ref: "Vishwakarma Prakash 3.12–14 — On Solar Alignment",
+        devanagari: "उदयन्तं सूर्यमभिमुखः तिष्ठेत् प्रत्यूषे नित्यम् ।\nपूर्वद्वारं नगरस्य मुख्यं ज्ञेयं सदा बुधैः ॥\nयस्मात् प्राची प्रभा भवति सर्वेषां जगतां प्रिया ।\nतस्मात् पूर्वाभिमुखं नगरं सर्वसम्पत्प्रदायकम् ॥",
+        translit: "udayantaṃ sūryamabhimukhaḥ tiṣṭhet pratyūṣe nityam |\npūrvadvāraṃ nagarasya mukhyaṃ jñeyaṃ sadā budhaiḥ ||\nyasmāt prācī prabhā bhavati sarveṣāṃ jagatāṃ priyā |\ntasmāt pūrvābhimukhaṃ nagaraṃ sarvasampatpradāyakam ||",
+        anvaya: "One must stand facing the <strong>udayanta sūrya</strong> (rising sun) at <strong>pratyūṣe</strong> (dawn) daily. The eastern gateway of the city is declared its <strong>mukhyam</strong> (primary face) by the wise. Since the <strong>prācī prabhā</strong> (eastern light) is beloved by all worlds — a city facing east is the bestower of all <strong>sampat</strong> (prosperity, wholeness).",
+        translation: "One must face the rising sun at dawn, always. The wise declare the eastern gateway to be the primary face of any city. Since the eastern dawn light is beloved by all beings in all worlds — a city oriented toward the east becomes the bestower of all prosperity and wholeness."
+      },
+      shlokas: [
+        {
+          ref: "Samarangana Sutradhara 11.5–8 — On Street Planning & Solar Angles",
+          devanagari: "राजमार्गस्तु विस्तीर्णः पञ्चाशद्दण्डमानतः ।\nतस्मादर्धं तु व्यपथः पादं शाखापथः स्मृतः ॥\nसूर्यकिरणाः प्रवेशन्तु सर्वमार्गेषु सर्वदा ।\nवायुश्च निर्विघ्नः स्यात् — एतत् नगरलक्षणम् ॥",
+          translit: "rājamārgastu vistīrṇaḥ pañcāśaddaṇḍamānataḥ |\ntasmādaradhaṃ tu vyapathaḥ pādaṃ śākhāpathaḥ smṛtaḥ ||\nsūryakiraṇāḥ praveśantu sarvamārgeṣu sarvadā |\nvāyuśca nirvighnaḥ syāt — etat nagaralakṣaṇam ||",
+          anvaya: "The <strong>rājamārga</strong> (royal road) must be 50 <strong>daṇḍa</strong> wide; subsidiary roads half that; lanes one-quarter. <strong>Sūryakiraṇāḥ</strong> (sunrays) must enter all roads at all times; <strong>vāyu</strong> (wind) must flow without obstruction — this is the defining characteristic of a true <strong>nagara</strong>.",
+          translation: "The Royal Road shall be fifty daṇḍas wide; subsidiary roads half that measure; branch lanes one-quarter. The rays of the sun must penetrate every street at every hour, and the wind must flow without any obstruction — this is the very definition of a true city."
+        },
+        {
+          ref: "Atharva Veda 3.12.1–2 — Consecration of the Settlement",
+          devanagari: "इयं ते राजन् वरुण प्रतिष्ठा यस्यां तिष्ठसि ।\nएतावती वसुमती ग्रामो अस्तु सुप्रतिष्ठितः ॥\nपृथिवी मे निधेहि क्षेमेण दिशोऽनु ।\nआपो मा शिशिरा रसेन मध्ये ॥",
+          translit: "iyaṃ te rājan varuṇa pratiṣṭhā yasyāṃ tiṣṭhasi |\netāvatī vasumatī grāmo astu supratiṣṭhitaḥ ||\npṛthivī me nidhehi kṣemeṇa diśo'nu |\nāpo mā śiśirā rasena madhye ||",
+          anvaya: "O King Varuṇa — THIS is the <strong>pratiṣṭhā</strong> (foundation, that on which you stand). May this land be <strong>vasumatī</strong> (full of all good things) and the settlement <strong>supratiṣṭhitā</strong> (perfectly established). May the Earth hold me in peace through all directions; may the cool waters infuse the centre.",
+          translation: "O King Varuṇa, THIS is the ground on which you stand. May this land be rich in all good things, and this settlement be perfectly established. May the Earth hold me in peace in all directions; may the cooling waters bless the centre of this place."
+        }
+      ],
+      scientific: {
+        title: "Solar Urban Design — Passive Climate Architecture at the City Scale",
+        text: "Modern passive solar design confirms what the Śāstras prescribe: east-facing primary facades maximize morning solar gain (cognitive activation), reduce afternoon heat load, and allow cross-ventilation via east-west thermal gradients. The 50-daṇḍa (≈37 metre) royal road specification creates solar access angles that prevent complete shading at winter solstice latitudes corresponding to peninsular India — a sophisticated understanding of solar geometry embedded in Śāstraic law."
+      },
+      instructions: [
+        "Use the compass tool to analyze the solar gain patterns of historical Indian cities.",
+        "Calculate the solar angle at summer/winter solstice for Madurai (9.9°N) — do the street widths match the Samarangana formula?",
+        "Map the 8 Dikpalas to their modern urban planning functions (Indra=drainage, Agni=utilities, Varuna=water, etc.).",
+        "Understand why every major Indian city has its main market road aligned to the cardinal or intercardinal axis."
+      ],
+      historicalOrigin: {
+        treatise: "Samarangana Sutradhara (King Bhoja, 11th c.), Vishwakarma Prakash, Atharva Veda 3.12",
+        author: "King Bhojadeva of Dhara / Vedic Rishi tradition",
+        period: "3000 BCE (Vedic) — 1050 CE (Sutradhara codification)",
+        context: "The <em>Samarangana Sutradhara</em> by King Bhojadeva of Malwa (1010–1055 CE) is 83 chapters covering city planning, temple architecture, domestic building, painting, and mechanical arts. Chapter 11 gives precise road widths in daṇḍa measurements. The prescriptions about sunlight access to all streets correspond precisely to modern daylight factor requirements in green building codes (LEED, BREEAM). The <em>Atharva Veda's</em> settlement consecration hymns show that even in Vedic times, the establishment of a community was a sacred act performed with specific mantras for the protection of the four directions."
+      },
+      dharmicPrinciples: "The city aligned to the cosmic directions is not a metaphor — it is a material philosophy made habitable. Every sunrise experienced by every citizen of a properly oriented city is a daily reminder: <em>the light comes from the East, from the direction of the Veda, from the direction of Enlightenment.</em> Varanasi (Kashi) is built on the west bank of the Ganga so that every sunrise hits the ghats from across the river — the entire city faces east toward the light. This is a city designed to produce philosophical awakening in its very street plan. The Śāstras do not separate the sacred from the civic — they ARE the civic.",
+      stemBreakdown: {
+        discipline: "Solar Geometry, Thermal Dynamics & Passive Urban Climate Design",
+        equation: "Solar Access Angle: α = arctan(H/W) where α > φ_min (latitude-dependent minimum)",
+        equationExplanation: "The solar access angle α is the minimum angle from the street floor to ensure sunlight penetration at winter solstice. H = building height, W = street width. For Madurai at 9.9°N, the solar altitude at winter solstice noon is ~56° — meaning even a W:H ratio of 1:1 gives full sunlight. For northern Indian cities at 28°N (Delhi), a minimum W:H of 1.5:1 is needed. The Samarangana's 50-daṇḍa royal road achieves this automatically with typical 3-4 storey (2–3 daṇḍa height) buildings.",
+        parameters: [
+          "<strong>α</strong> — Required solar access angle (degrees) at winter solstice noon",
+          "<strong>H</strong> — Building height (daṇḍa; 1 daṇḍa ≈ 1.83 m = 6 feet)",
+          "<strong>W</strong> — Street width (50 daṇḍa for rājamārga ≈ 91.5 m)",
+          "<strong>φ_min</strong> — Minimum solar altitude at winter solstice for the city's latitude",
+          "<strong>1 Daṇḍa</strong> — The traditional Indian unit of urban measurement = 96 aṅgulas ≈ 1.83 m"
+        ],
+        modernCorrelation: "Barcelona's Eixample district (1859 CE) uses 113-metre block widths — close to the Samarangana rājamārga of 91 m — and specifically calculated to allow sunlight into every interior apartment. The similarity is not coincidence but a universal response to human biological needs, codified independently in Catalonia and in Dhara. Modern LEED v4 requires daylight factor > 3% in all occupied spaces — effectively mandating the same solar access calculations the Śāstras encoded as dharmic law."
+      }
+    },
+    sthapatya: {
+      category: "Nagara Nirmana — The Art of Sacred Proportioning",
+      title: "Manasara Shilpaśāstra: Dimensions as Dharma",
+      shloka: {
+        ref: "Manasara 4.1–4 — On the Sthāpati (Master Architect)",
+        devanagari: "स्थपतिश्च सूत्रग्राही तक्षकश्च वर्धकिः ।\nएते चत्वारः शिल्पिनः शिल्पशास्त्रविशारदाः ॥\nवेदं च वेदाङ्गानि च ज्योतिषं तन्त्रमेव च ।\nशिल्पशास्त्रं च सर्वं च जानीयात् शिल्पकोविदः ॥",
+        translit: "sthāpaticca sūtragrāhī takṣakaśca vardhakiḥ |\nete catvāraḥ śilpinaḥ śilpaśāstraviśāradāḥ ||\nvedaṃ ca vedāṅgāni ca jyotiṣaṃ tantrameva ca |\nśilpaśāstraṃ ca sarvaṃ ca jānīyāt śilpakovidaḥ ||",
+        anvaya: "The <strong>Sthāpati</strong> (master architect), <strong>Sūtragrāhī</strong> (surveyor), <strong>Takṣaka</strong> (carpenter), and <strong>Vardhaki</strong> (mason/smith) — these four are the <strong>śilpinaḥ</strong> (craftsmen) expert in Śilpaśāstra. The one proficient in <strong>śilpa</strong> (sacred craft) must know the Vedas, the Vedāṅgas, Jyotiṣa (astronomy), Tantra, AND the complete Śilpaśāstra.",
+        translation: "The Sthāpati (master planner), the Sutragrahi (surveyor-measurer), the Takshaka (wood-craftsman), and the Vardhaki (mason) — these four are the sacred craftsmen, expert in the science of divine construction. The master craftsman must know the Vedas, the six Vedic auxiliary sciences, Astronomy, Tantra, and all of Shilpaśāstra."
+      },
+      shlokas: [
+        {
+          ref: "Manasara 9.10–12 — The Eight Types of City",
+          devanagari: "दण्डकं च मात्रकं च स्वस्तिकं च चतुर्मुखम् ।\nनन्द्यावर्तं पद्मकं च कार्मुकं च पदान्वितम् ॥\nअष्टौ नगरयोगानां रूपाणि शास्त्रसम्मतम् ।\nतेषु ब्रह्मस्थानमेव केन्द्रे नित्यं प्रतिष्ठितम् ॥",
+          translit: "daṇḍakaṃ ca mātrakaṃ ca svastikaṃ ca caturmukham |\nnandyāvartaṃ padmakaṃ ca kārmukaṃ ca padānvitam ||\naṣṭau nagarayogānāṃ rūpāṇi śāstrasammatam |\nteṣu brahmasthānameva kendre nityaṃ pratiṣṭhitam ||",
+          anvaya: "Eight city forms are sanctioned by the Śāstra: <strong>Daṇḍaka</strong> (staff/linear), <strong>Mātraka</strong>, <strong>Svastika</strong> (cross), <strong>Caturmukha</strong> (four-faced), <strong>Nandyāvarta</strong> (spiral), <strong>Padmaka</strong> (lotus), <strong>Kārmuka</strong> (bow/arc), <strong>Padānvita</strong> (sequential). In ALL of them — the <strong>brahmasthāna</strong> is always established at the centre.",
+          translation: "There are eight sanctioned forms of city layout — the linear, the proportioned, the cross, the four-faced, the nandyavarta spiral, the lotus, the bow-shaped, and the sequential. In every one of these eight forms, without exception, the Brahmasthana — the divine centre — must always be established at the middle."
+        },
+        {
+          ref: "Manasara 72.1–3 — Ayadi Sixfold Formula",
+          devanagari: "आयामं गुणयेदष्टौ द्वादशेन प्रविभाजयेत् ।\nयच्छेषं स आयः प्रोक्तो व्ययस्तु दशभिः हृते ॥\nयोनिस्त्रिभिर्गुणं भक्तमष्टभिस्तु वशिष्यते ।\nनक्षत्रं द्वादशगुणितं अष्टाविंशेन विभाजयेत् ॥",
+          translit: "āyāmaṃ guṇayedaṣṭau dvādaśena pravibhājayet |\nyacceṣaṃ sa āyaḥ prokto vyayastu daśabhiḥ hṛte ||\nyonistribhirguṇaṃ bhaktamaṣṭabhistu vaśiṣyate |\nnakṣatraṃ dvādaśaguṇitaṃ aṣṭāviṃśena vibhājayet ||",
+          anvaya: "<strong>Āyāma</strong> (perimeter) × 8 ÷ 12 → remainder = <strong>Āya</strong> (income). × 9 ÷ 10 → remainder = <strong>Vyaya</strong> (expense). × 3 ÷ 8 → remainder = <strong>Yoni</strong> (energy direction). Perimeter × 12 ÷ 28 → remainder = <strong>Nakṣatra</strong> (stellar alignment). Six such tests constitute the complete Āyādi system.",
+          translation: "Multiply the perimeter by eight and divide by twelve — the remainder is called Aya (income). Divide by ten after multiplying by nine — the remainder is Vyaya (expenditure). Multiply by three and divide by eight — the remainder is Yoni (energetic orientation). Multiply by twelve and divide by twenty-eight — the remainder is the Nakshatra (stellar resonance). These formulas constitute the Ayadi Sixfold system of dimensional verification."
+        },
+        {
+          ref: "Rig Veda 10.90.12–14 — The Cosmic City Emerges from the Sacrifice",
+          devanagari: "ब्राह्मणोऽस्य मुखमासीद् बाहू राजन्यः कृतः ।\nऊरू तदस्य यद्वैश्यः पद्भ्यां शूद्रो अजायत ॥\nचन्द्रमा मनसो जातश्चक्षोः सूर्यो अजायत ।\nमुखादिन्द्रश्चाग्निश्च प्राणाद्वायुरजायत ॥",
+          translit: "brāhmaṇo'sya mukhamāsīd bāhū rājanyaḥ kṛtaḥ |\nūrū tadasya yadvaiśyaḥ padbhyāṃ śūdro ajāyata ||\ncandramā manaso jātaścakṣoḥ sūryo ajāyata |\nmukhādindraścāgniśca prāṇādvāyurajāyata ||",
+          anvaya: "The Brāhmaṇa was the <strong>mukha</strong> (mouth/head/direction) of the Cosmic Person. The <strong>bāhū</strong> (arms) became the Rājanya. The <strong>ūrū</strong> (thighs) were the Vaiśya. From the <strong>padbhyāṃ</strong> (feet) the Śūdra was born. The Moon arose from the <strong>manas</strong> (mind); the Sun from the <strong>cakṣuḥ</strong> (eye); Indra and Agni from the mouth; Vāyu from the breath.",
+          translation: "From the mouth of the Cosmic Person arose the Brahmana; from the arms the Kshatriya; from the thighs the Vaishya; from the feet the Shudra. From His mind arose the Moon; from His eye the Sun; from His mouth arose Indra and Fire; from His breath arose the Wind. Thus the entire cosmos — including civilization — emerges as the articulated body of the one Purusha."
+        }
+      ],
+      scientific: {
+        title: "Modular Arithmetic & Resonant Dimensional Filtering",
+        text: "The Ayadi system uses six independent modular congruence tests (mod 12, 10, 8, 28, etc.) to filter building dimensions for acoustic and structural harmonic properties. This is equivalent to a multi-dimensional lattice filter in signal processing — dimensions that 'pass' all six tests occupy specific regions of dimensional space that correspond to acoustic room modes avoiding flutter echo and coincident resonance. Modern room acoustic analysis (Bolt, 1946; Schroeder, 1996) independently identifies similar favorable dimension ratios."
+      },
+      instructions: [
+        "Enter city dimensions in Daṇḍa (1 Daṇḍa ≈ 1.83m) to compute all six Ayadi values.",
+        "Verify: Aya must exceed Vyaya for the city to be 'income-generating'.",
+        "Check the Nakshatra residue — this determines the auspicious stellar alignment of the city's axis.",
+        "Compare the Manasara's eight city types — identify which type Jaipur, Madurai, and Varanasi correspond to."
+      ],
+      historicalOrigin: {
+        treatise: "Manasara Shilpaśāstra (96 chapters), Mayamata (36 chapters), Aparajitaprccha",
+        author: "Manasara tradition (attributed to the seer Manasara) / Maya Danava",
+        period: "circa 500 BCE — 1000 CE (final codification)",
+        context: "The <em>Manasara</em> is the most comprehensive Shilpaśāstra, covering every aspect of construction from site selection to iconographic detail. It classifies cities into 8 types, buildings into 4 types (jāti), and specifies exact dimensional ratios for everything from throne halls to granaries. The <em>Mayamata</em> (attributed to the legendary architect Maya of Lanka fame in the Ramayana) is particularly focused on temple and city design in South India. Together they represent the complete codified science of the Sthāpati tradition — a tradition so rigorous that master Sthāpatis in Tamil Nadu today still practice without formal engineering degrees, yet build structurally sound temples using the same Śrī Chakra geometry and Āyādi formulas."
+      },
+      dharmicPrinciples: "The Sthāpati is not an engineer — he is a Yogi in matter. The <em>Manasara</em> prescribes that the master architect must first purify himself through fasting and mantra before laying the foundation stone. The dimensions he chooses are not arbitrary — they are <em>mantras in measurement</em>. Just as a specific syllable combination produces a specific vibration in the akasha, a specific length-width-height combination produces a specific vibration in the material structure. The building sings. The city chants. This is why ancient Indian cities feel different from modern ones — they were built as instruments, not containers.",
+      stemBreakdown: {
+        discipline: "Architectural Acoustics, Number Theory & Harmonic Analysis",
+        equation: "Āya = (P × 8) mod 12; Vyaya = (P × 9) mod 10; Yoni = (P × 3) mod 8",
+        equationExplanation: "The Āyādi residue formulas use modular arithmetic to filter perimeter values (P = 2L + 2W in Hasta) into acoustically favorable dimensional ranges. The three primary tests (Āya, Vyaya, Yoni) effectively form a congruence sieve that selects dimensions whose room mode frequencies (fn = nc/2L, nc/2W, nc/2H) create an evenly distributed spectral density — preventing the clustering of room modes that produces boomy resonances or dead zones.",
+        parameters: [
+          "<strong>P</strong> — Perimeter = 2 × (Length + Width) in Hasta (1 Hasta ≈ 45 cm)",
+          "<strong>Āya</strong> — Income residue; must be higher than Vyaya",
+          "<strong>Vyaya</strong> — Expense residue; must be lower than Āya",
+          "<strong>Yoni</strong> — Energetic direction (1–8); 1,3,5,7 are favorable",
+          "<strong>Nakṣatra</strong> — Stellar resonance (0–27); determines cosmic clock alignment",
+          "<strong>Vara</strong> — Weekday resonance (0–6); aligned to the seven planets"
+        ],
+        modernCorrelation: "The Bolt Area (1946) in modern room acoustics identifies that rooms with length:width:height ratios in specific ranges (1:1.26:1.59 or 1:1.4:1.9, approximately) produce optimal spectral distribution of room modes. These ratios consistently appear in historical Indian buildings that 'pass' the Āyādi filter — suggesting the Śāstras empirically discovered these acoustic optima through accumulated observational data over centuries of building practice, and encoded them as a simple arithmetic rule accessible to craftsmen without calculus."
+      }
+    }
+  }
+};
+
+
+const urlParams = new URLSearchParams(window.location.search);
+const currentPillar = urlParams.get('pillar') || 'yuddham';
+const currentCourse = urlParams.get('course') || 'vyūhas';
+
+// Load Active Lesson with robust fallbacks
+const pillarObj = lessons[currentPillar] || lessons.yuddham;
+let defaultCourse = 'vyūhas';
+if (currentPillar === 'rājya') defaultCourse = 'saptāṅga';
+if (currentPillar === 'nagara') defaultCourse = 'vastu';
+
+const lesson = pillarObj[currentCourse] || pillarObj[defaultCourse];
+
+// Update Return Button Link
+document.getElementById('back-to-hub-btn').href = `course_hub.html?pillar=${currentPillar}`;
+
+// Set Theme
+function setTheme(btnElement, themeName) {
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+  document.body.classList.add(themeName);
+  localStorage.setItem('era_of_siddhas_theme', themeName);
+  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+
+// Render left pane text dynamically with tabs
+let currentTab = 'śāstra';
+
+function renderLeftPane() {
+  const leftPane = document.getElementById('left-text-pane');
+  leftPane.innerHTML = `
+    <div class="lesson-cat">${lesson.category}</div>
+    <h1 class="lesson-title">${lesson.title}</h1>
+
+    <div class="pane-tabs">
+      <button class="pane-tab-btn ${currentTab === 'śāstra' ? 'active' : ''}" id="tab-śāstra" onclick="switchLeftPaneTab('śāstra')">Śāstra Jñāna</button>
+      <button class="pane-tab-btn ${currentTab === 'stem' ? 'active' : ''}" id="tab-stem" onclick="switchLeftPaneTab('stem')">STEM Science</button>
+    </div>
+
+    <div class="tab-content-area" id="tab-content-area">
+      ${currentTab === 'śāstra' ? renderŚāstraContent() : renderStemContent()}
+    </div>
+
+    <div class="instructions-box" style="margin-top: 1.5rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
+      <div class="instructions-title">Lesson Instructions</div>
+      <ol class="instructions-list">
+        ${lesson.instructions.map(inst => `<li>${inst}</li>`).join('')}
+      </ol>
+    </div>
+  `;
+  bindCursorEvents();
+}
+
+function renderŚāstraContent() {
+  let html = '';
+
+  // Helper to render one shloka box
+  function shlokaBox(s) {
+    let box = '<div class="shloka-box">';
+    if (s.ref) box += `<div class="shloka-ref">${s.ref}</div>`;
+    box += `<div class="shloka-devanagari">${s.devanagari.replace(/\n/g, '<br>')}</div>`;
+    box += `<div class="shloka-translit">${s.translit.replace(/\n/g, '<br>')}</div>`;
+    if (s.anvaya) box += `<div class="shloka-anvaya">${s.anvaya}</div>`;
+    box += `<div class="shloka-translation"><strong>Translation:</strong> ${s.translation}</div>`;
+    box += '</div>';
+    return box;
+  }
+
+  // Primary shloka
+  html += shlokaBox(lesson.shloka);
+
+  // Additional shlokas array
+  if (lesson.shlokas && lesson.shlokas.length > 0) {
+    html += `<div class="stem-section-title">Additional Verses from the Tradition</div>`;
+    lesson.shlokas.forEach(s => { html += shlokaBox(s); });
+  }
+
+  // Historical Origin
+  if (lesson.historicalOrigin) {
+    const ho = lesson.historicalOrigin;
+    html += `
+      <div class="stem-section-title">Historical Origin</div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Source Treatise</div>
+        <div class="meta-value"><em>${ho.treatise}</em></div>
+      </div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Author / Tradition</div>
+        <div class="meta-value">${ho.author}</div>
+      </div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Period</div>
+        <div class="meta-value">${ho.period}</div>
+      </div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Historical Context</div>
+        <div class="meta-value">${ho.context}</div>
+      </div>
+    `;
+  }
+
+  // Dharmic Principles
+  if (lesson.dharmicPrinciples) {
+    html += `
+      <div class="stem-section-title">Dharmic Principles</div>
+      <div class="dharmic-principles-box">
+        <div class="dp-title">Philosophical Foundation</div>
+        <div class="dp-text">${lesson.dharmicPrinciples}</div>
+      </div>
+    `;
+  }
+  return html;
+}
+
+function renderStemContent() {
+  let html = '';
+  html += `
+    <div class="scientific-insight">
+      <div class="scientific-title">${lesson.scientific.title}</div>
+      <div class="scientific-text">${lesson.scientific.text}</div>
+    </div>
+  `;
+  if (lesson.stemBreakdown) {
+    const sb = lesson.stemBreakdown;
+    html += `
+      <div class="stem-section-title">Modern Discipline</div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Field of Study</div>
+        <div class="meta-value"><em>${sb.discipline}</em></div>
+      </div>
+      <div class="stem-section-title">Core Equation</div>
+      <div class="stem-equation-card">
+        <div class="eq-label">Mathematical Formulation</div>
+        <div class="eq-formula">${sb.equation}</div>
+        <div class="eq-explanation">${sb.equationExplanation}</div>
+      </div>
+    `;
+    if (sb.parameters && sb.parameters.length > 0) {
+      html += `
+        <div class="stem-section-title">System Parameters</div>
+        <ul class="stem-param-list">
+          ${sb.parameters.map(p => '<li>' + p + '</li>').join('')}
+        </ul>
+      `;
+    }
+    if (sb.modernCorrelation) {
+      html += `
+        <div class="stem-section-title">Modern Research Correlation</div>
+        <div class="dharmic-principles-box">
+          <div class="dp-title">Contemporary Validation</div>
+          <div class="dp-text">${sb.modernCorrelation}</div>
+        </div>
+      `;
+    }
+  }
+  return html;
+}
+
+function switchLeftPaneTab(tabName) {
+  currentTab = tabName;
+  document.querySelectorAll('.pane-tab-btn').forEach(btn => btn.classList.remove('active'));
+  const activeBtn = document.getElementById('tab-' + tabName);
+  if (activeBtn) activeBtn.classList.add('active');
+  const contentArea = document.getElementById('tab-content-area');
+  if (contentArea) {
+    contentArea.innerHTML = tabName === 'śāstra' ? renderŚāstraContent() : renderStemContent();
+    contentArea.style.animation = 'none';
+    contentArea.offsetHeight;
+    contentArea.style.animation = 'fadeTabIn 0.35s ease-out';
+  }
+  bindCursorEvents();
+}
+
+
+// Global tracking for animation frames and intervals to prevent background leaks
+let activeAnimationFrame = null;
+let activeIntervals = [];
+
+function clearActiveAnimationsAndIntervals() {
+  if (activeAnimationFrame) {
+    cancelAnimationFrame(activeAnimationFrame);
+    activeAnimationFrame = null;
+  }
+  activeIntervals.forEach(intervalId => clearInterval(intervalId));
+  activeIntervals = [];
+}
+
+// Render right pane active widget
+function renderWidget() {
+  clearActiveAnimationsAndIntervals();
+  const container = document.getElementById('workspace-card-container');
+  
+  if (currentPillar === 'yuddham') {
+    if (currentCourse === 'vyūhas') {
+      renderChakravyūha(container);
+    } else if (currentCourse === 'yoga') {
+      renderPranayama(container);
+    } else if (currentCourse === 'upasana') {
+      renderUpasana(container);
+    } else if (currentCourse === 'maṇḍala') {
+      renderMaṇḍalaSiddhanta(container);
+    }
+  } else if (currentPillar === 'rājya') {
+    if (currentCourse === 'saptāṅga') {
+      renderSaptāṅga(container);
+    } else if (currentCourse === 'yoga') {
+      renderSamatvam(container);
+    } else if (currentCourse === 'upasana') {
+      renderYajna(container);
+    } else if (currentCourse === 'neeti') {
+      renderNeeti(container);
+    }
+  } else if (currentPillar === 'nagara') {
+    if (currentCourse === 'vastu') {
+      renderVastu(container);
+    } else if (currentCourse === 'yoga') {
+      renderCompassYoga(container);
+    } else if (currentCourse === 'upasana') {
+      renderBhutaShuddhi(container);
+    } else if (currentCourse === 'upanishads') {
+      renderDaharaAkasha(container);
+    } else if (currentCourse === 'sthapatya') {
+      renderAyadi(container);
+    }
+  } else {
+    // Fallback default
+    container.innerHTML = `
+      <div class="widget-title">Course Simulation</div>
+      <div style="text-align:center; padding: 2rem; color: var(--text-muted);">
+        <p>This module focuses on the contemplative lessons detailed in the left-pane shlokas. Engage with your study guidelines.</p>
+        <button class="action-btn" onclick="history.back()" style="margin-top:1.5rem;">Return to Courses</button>
+      </div>
+    `;
+  }
+  
+  // Rebind custom cursor
+  bindCursorEvents();
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   1. CHAKRAVYUHA SIMULATOR WIDGET
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderChakravyūha(container) {
+  container.innerHTML = `
+    <div class="widget-title">Chakravyūha Spiral Simulator</div>
+    <div id="canvas-container">
+      <canvas id="vyūha-canvas" width="400" height="400"></canvas>
+    </div>
+    <div class="controls-row">
+      <button class="action-btn" id="vyūha-spin-btn">Pause Rotation</button>
+      <button class="action-btn" id="vyūha-trace-btn">Auto-Trace Entry</button>
+      <button class="action-btn" id="vyūha-lock-btn">Deploy Defensive Lock</button>
+    </div>
+    <div id="vyūha-feedback" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; min-height: 38px;">
+      The 7 circular rings of the Chakravyūha spin in opposing directions to seal any breach points.
+    </div>
+  `;
+
+  const canvas = document.getElementById('vyūha-canvas');
+  const ctx = canvas.getContext('2d');
+  let isSpinning = true;
+  let isTracing = false;
+  let isLocked = false;
+  let rotationOffset = 0;
+  let traceProgress = 0;
+
+  document.getElementById('vyūha-spin-btn').addEventListener('click', (e) => {
+    isSpinning = !isSpinning;
+    e.target.innerText = isSpinning ? "Pause Rotation" : "Resume Rotation";
+  });
+
+  document.getElementById('vyūha-trace-btn').addEventListener('click', () => {
+    isTracing = true;
+    traceProgress = 0;
+    document.getElementById('vyūha-feedback').innerText = "Tracing entry path... Soldiers rotate inward, shifting the entry gap and trapping the warrior.";
+  });
+
+  document.getElementById('vyūha-lock-btn').addEventListener('click', () => {
+    isLocked = !isLocked;
+    document.getElementById('vyūha-lock-btn').classList.toggle('active', isLocked);
+    document.getElementById('vyūha-feedback').innerText = isLocked 
+      ? "Defensive lock deployed! Gateways align in defensive overlap, completely sealing the maze."
+      : "Standard defense active. Rings rotate in alternating directions.";
+  });
+
+  function drawVyūha() {
+    ctx.clearRect(0, 0, 400, 400);
+    const centerX = 200;
+    const centerY = 200;
+    const maxRadius = 180;
+    const ringSpacing = 22;
+
+    if (isSpinning) {
+      rotationOffset += 0.005;
+    }
+
+    // Draw concentric ring walls
+    for (let i = 1; i <= 7; i++) {
+      const radius = i * ringSpacing + 20;
+      ctx.beginPath();
+      
+      // Ring rotation direction alternates
+      const dir = i % 2 === 0 ? 1 : -1;
+      let angle = rotationOffset * dir * (1.2 - i * 0.1);
+      if (isLocked) angle = 0; // Lock aligns gateways in lock mode
+
+      // Each ring has an entry gap (opening of 40 degrees)
+      const gapSize = 0.6; // radians
+      const startAngle = angle;
+      const endAngle = angle + (2 * Math.PI) - gapSize;
+
+      ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+      ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--accent').trim() || '#2eb8a6';
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // Draw soldier dots on the walls
+      ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--gold-bright').trim() || '#4df5e2';
+      for (let s = 0; s < 360; s += 20) {
+        const rad = s * Math.PI / 180;
+        // Don't draw soldier in the opening gap
+        const currentRelAngle = (rad - startAngle) % (2 * Math.PI);
+        if (currentRelAngle > (2 * Math.PI - gapSize)) continue;
+
+        const sx = centerX + Math.cos(rad) * radius;
+        const sy = centerY + Math.sin(rad) * radius;
+        ctx.beginPath();
+        ctx.arc(sx, sy, 2, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+    }
+
+    // Center Hub (Lotus formation core)
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 15, 0, 2 * Math.PI);
+    ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--gold-bright').trim() || '#4df5e2';
+    ctx.fill();
+    ctx.strokeStyle = '#fff';
+    ctx.stroke();
+
+    // Trace path
+    if (isTracing) {
+      traceProgress += 0.005;
+      if (traceProgress > 1) traceProgress = 1;
+      
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY + maxRadius + 30);
+      
+      // Draw Archimedean spiral entry path
+      const totalSteps = 100 * traceProgress;
+      for (let s = 0; s <= totalSteps; s++) {
+        const factor = s / 100;
+        const theta = factor * 7 * Math.PI;
+        const currentR = maxRadius - factor * (maxRadius - 15);
+        const px = centerX + Math.sin(theta) * currentR;
+        const py = centerY + Math.cos(theta) * currentR + (30 * (1 - factor));
+        ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = '#ff4d4d';
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([4, 4]);
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      if (traceProgress === 1) {
+        isTracing = false;
+      }
+    }
+
+    activeAnimationFrame = requestAnimationFrame(drawVyūha);
+  }
+
+  drawVyūha();
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   2. SAPTANGA BALANCING WIDGET
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderSaptāṅga(container) {
+  container.innerHTML = `
+    <div class="widget-title">Saptāṅga Heptagonal Balance Dashboard</div>
+    <div class="saptāṅga-dashboard">
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">1. Swami (King/Leadership)</span>
+          <span class="saptāṅga-val" id="sap-val-swami">70</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-swami" min="10" max="100" value="70">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">2. Amatya (Ministers/Administration)</span>
+          <span class="saptāṅga-val" id="sap-val-amatya">70</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-amatya" min="10" max="100" value="70">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">3. Janapada (Citizenry/Territory)</span>
+          <span class="saptāṅga-val" id="sap-val-janapada">70</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-janapada" min="10" max="100" value="70">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">4. Durga (Fortification/Protection)</span>
+          <span class="saptāṅga-val" id="sap-val-durga">50</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-durga" min="10" max="100" value="50">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">5. Kosha (Treasury/Finance)</span>
+          <span class="saptāṅga-val" id="sap-val-kosha">60</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-kosha" min="10" max="100" value="60">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">6. Danda (Justice/Military Law)</span>
+          <span class="saptāṅga-val" id="sap-val-danda">50</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-danda" min="10" max="100" value="50">
+      </div>
+      <div class="saptāṅga-row">
+        <div class="saptāṅga-label-row">
+          <span class="saptāṅga-name">7. Mitra (Allies/Foreign treaties)</span>
+          <span class="saptāṅga-val" id="sap-val-mitra">60</span>
+        </div>
+        <input type="range" class="premium-slider" id="sap-slide-mitra" min="10" max="100" value="60">
+      </div>
+
+      <div class="saptāṅga-result">
+        <div class="stability-score-circle" id="sap-score-circle">
+          <span class="stability-num" id="sap-score-num">78%</span>
+          <span class="stability-lbl">Dharma Score</span>
+        </div>
+        <div class="stability-analysis" id="sap-analysis">
+          Kingdom state: Peaceful and stable. Maintain balance of resources and defense to secure borders.
+        </div>
+      </div>
+    </div>
+  `;
+
+  const sliders = [
+    'swami', 'amatya', 'janapada', 'durga', 'kosha', 'danda', 'mitra'
+  ];
+
+  sliders.forEach(key => {
+    document.getElementById(`sap-slide-${key}`).addEventListener('input', (e) => {
+      document.getElementById(`sap-val-${key}`).innerText = e.target.value;
+      recalculateSaptāṅga();
+    });
+  });
+
+  function recalculateSaptāṅga() {
+    const swami = parseInt(document.getElementById('sap-slide-swami').value);
+    const amatya = parseInt(document.getElementById('sap-slide-amatya').value);
+    const janapada = parseInt(document.getElementById('sap-slide-janapada').value);
+    const durga = parseInt(document.getElementById('sap-slide-durga').value);
+    const kosha = parseInt(document.getElementById('sap-slide-kosha').value);
+    const danda = parseInt(document.getElementById('sap-slide-danda').value);
+    const mitra = parseInt(document.getElementById('sap-slide-mitra').value);
+
+    // Dynamic Systems Calculations
+    // 1. Heavy taxes (High Kosha) hurts the citizens (Janapada)
+    let taxPenalty = 0;
+    if (kosha > 80 && janapada < 50) {
+      taxPenalty = (kosha - 80) * 0.8;
+    }
+
+    // 2. High Danda without Swami leadership leads to military coups / tyranny
+    let tyrannyPenalty = 0;
+    if (danda > 85 && swami < 60) {
+      tyrannyPenalty = (danda - swami) * 0.9;
+    }
+
+    // 3. Lack of treasury collapse
+    let bankruptcyPenalty = 0;
+    if (kosha < 30) {
+      bankruptcyPenalty = (30 - kosha) * 1.5;
+    }
+
+    // Calculate core average
+    const baseAvg = (swami + amatya + janapada + durga + kosha + danda + mitra) / 7;
+    const score = Math.max(0, Math.min(100, Math.round(baseAvg - taxPenalty - tyrannyPenalty - bankruptcyPenalty)));
+
+    // Update Circle UI
+    const circle = document.getElementById('sap-score-circle');
+    const numDisplay = document.getElementById('sap-score-num');
+    const analysis = document.getElementById('sap-analysis');
+
+    numDisplay.innerText = score + "%";
+    
+    circle.classList.remove('critical', 'golden');
+    if (score < 45) {
+      circle.classList.add('critical');
+      analysis.innerText = "State Crisis! Warning: Imbalance detected. Insufficient treasury or high taxation is creating rebellion risk and border vulnerability.";
+    } else if (score > 85) {
+      circle.classList.add('golden');
+      analysis.innerText = "Golden Age! Exceptional systemic resonance. The limbs support each other in perfect harmony, reflecting Rama Rājyam.";
+    } else {
+      analysis.innerText = "Kingdom state: Peaceful and stable. Maintain balance of resources and defense to secure borders.";
+    }
+  }
+  recalculateSaptāṅga();
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   3B. RAJYA UPASANA: YAJNA FIRE ALTAR & ECOLOGY
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderYajna(container) {
+  container.innerHTML = `
+    <div class="widget-title">Yajna Fire Altar & Ecology Simulator</div>
+    <div class="yajna-altar">
+      <div class="altar-kunda">
+        <div class="altar-flame" id="yj-flame"></div>
+      </div>
+      
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+        <div class="saptāṅga-label-row">
+          <span>Altar Temperature</span>
+          <span id="yj-val-temp">300°C</span>
+        </div>
+        <div class="resonance-meter">
+          <div class="resonance-fill" id="yj-fill-temp" style="width: 40%; background: #ff4d4d; box-shadow: 0 0 10px #ff4d4d;"></div>
+        </div>
+      </div>
+
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+        <div class="saptāṅga-label-row">
+          <span>Smoke Purity (Aerosol Seeding Quality)</span>
+          <span id="yj-val-purity">20%</span>
+        </div>
+        <div class="resonance-meter">
+          <div class="resonance-fill" id="yj-fill-purity" style="width: 20%; background: #4df5e2; box-shadow: 0 0 10px #4df5e2;"></div>
+        </div>
+      </div>
+
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px;">
+        <div class="saptāṅga-label-row">
+          <span>Atmospheric Rain Seeding Index</span>
+          <span id="yj-val-rain">10%</span>
+        </div>
+        <div class="resonance-meter">
+          <div class="resonance-fill" id="yj-fill-rain" style="width: 10%; background: #2eb8a6; box-shadow: 0 0 10px #2eb8a6;"></div>
+        </div>
+      </div>
+
+      <div class="yajna-elements" style="margin-top: 1rem;">
+        <button class="action-btn yj-feed-btn" data-type="ghee">Offer Ghee</button>
+        <button class="action-btn yj-feed-btn" data-type="wood">Offer Samidha (Wood)</button>
+        <button class="action-btn yj-feed-btn" data-type="grains">Offer Grains</button>
+        <button class="action-btn yj-feed-btn" data-type="herbs">Offer Herbs</button>
+      </div>
+
+      <div id="yajna-feedback" style="font-size:0.85rem; color:var(--text-muted); text-align:center; min-height: 40px; margin-top: 0.5rem;">
+        Offer ghee to raise temperature, wood for base charcoal combustion, grains for carbon, and herbs to purify smoke aerosols.
+      </div>
+      <button class="action-btn" id="yj-reset-btn" style="margin-top: 0.5rem; background: var(--bg-secondary);">Reset Altar</button>
+    </div>
+  `;
+
+  let temp = 300; // degrees C (target is 650-800)
+  let purity = 20; // % (target is 80+)
+  let rain = 10; // % (target is 80+)
+  
+  const flame = document.getElementById('yj-flame');
+  const txtTemp = document.getElementById('yj-val-temp');
+  const fillTemp = document.getElementById('yj-fill-temp');
+  const txtPurity = document.getElementById('yj-val-purity');
+  const fillPurity = document.getElementById('yj-fill-purity');
+  const txtRain = document.getElementById('yj-val-rain');
+  const fillRain = document.getElementById('yj-fill-rain');
+  const feedback = document.getElementById('yajna-feedback');
+
+  function updateAltarUI() {
+    txtTemp.innerText = Math.round(temp) + "°C";
+    const tempPct = Math.min(100, (temp / 1000) * 100);
+    fillTemp.style.width = tempPct + "%";
+    
+    // Flame size matches temperature
+    const scale = 0.5 + (temp / 1000) * 1.2;
+    flame.style.transform = `rotate(-135deg) scale(${scale})`;
+
+    txtPurity.innerText = Math.round(purity) + "%";
+    fillPurity.style.width = purity + "%";
+
+    // Rain depends on temperature being high and smoke purity being high (cloud-condensation nuclei)
+    if (temp > 600 && temp < 850 && purity > 70) {
+      rain = Math.min(100, rain + 4);
+    } else {
+      rain = Math.max(10, rain - 1.5);
+    }
+    txtRain.innerText = Math.round(rain) + "%";
+    fillRain.style.width = rain + "%";
+
+    if (rain > 85) {
+      feedback.innerText = "Excellent! The high temperature combustion and pure medicinal aerosols have formed cloud-condensation nuclei. Localized rainfall imminent!";
+      feedback.style.color = "#00ff88";
+    } else if (temp > 900) {
+      feedback.innerText = "Warning: Altar is too hot! Overheating burns the medicinal herbs completely into ash, reducing aerosol seeding quality.";
+      feedback.style.color = "#ff4d4d";
+    } else if (temp < 500) {
+      feedback.innerText = "The altar temperature is too low for complete sublimation of volatile herb fractions. Stoke the fire.";
+      feedback.style.color = "var(--text-muted)";
+    } else {
+      feedback.innerText = "Altar stoking in progress. Keep the temperature in the sweet spot (650°C - 850°C) with pure herb smoke.";
+      feedback.style.color = "var(--text-muted)";
+    }
+  }
+
+  document.querySelectorAll('.yj-feed-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = btn.getAttribute('data-type');
+      if (type === 'ghee') {
+        temp = Math.min(1000, temp + 120);
+        purity = Math.max(10, purity - 8);
+      } else if (type === 'wood') {
+        temp = Math.min(1000, temp + 60);
+        purity = Math.min(100, purity + 5);
+      } else if (type === 'grains') {
+        temp = Math.max(200, temp - 30);
+        purity = Math.min(100, purity + 12);
+      } else if (type === 'herbs') {
+        temp = Math.max(200, temp - 40);
+        purity = Math.min(100, purity + 20);
+      }
+      updateAltarUI();
+    });
+  });
+
+  document.getElementById('yj-reset-btn').addEventListener('click', () => {
+    temp = 300; purity = 20; rain = 10;
+    updateAltarUI();
+  });
+
+  // Slow decay of temperature and purity
+  const yjInterval = setInterval(() => {
+    temp = Math.max(200, temp - 8);
+    purity = Math.max(10, purity - 1.5);
+    updateAltarUI();
+  }, 1000);
+  activeIntervals.push(yjInterval);
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   3C. NAGARA YOGA: COMPASS FURNITURE ALIGNMENT
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderCompassYoga(container) {
+  container.innerHTML = `
+    <div class="widget-title">Compass Furniture Alignment Grid</div>
+    <div class="vastu-layout-area">
+      <div class="vastu-room-dock" id="yoga-dock">
+        <button class="room-chip selected" data-item="Bed">Bed (Sleep)</button>
+        <button class="room-chip" data-item="Desk">Study Desk</button>
+        <button class="room-chip" data-item="Mirror">Mirror</button>
+        <button class="room-chip" data-item="Shoes">Shoes</button>
+      </div>
+
+      <div class="vastu-grid-wrapper">
+        <div class="vastu-silhouette"></div>
+        <div class="vastu-grid" id="yoga-grid-cells">
+          <!-- 3x3 directional grid -->
+          <div class="vastu-cell" data-dir="NW"><span class="cell-dir">NW</span><div class="cell-placed-room" id="yg-NW">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="N"><span class="cell-dir">N</span><div class="cell-placed-room" id="yg-N">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="NE"><span class="cell-dir">NE</span><div class="cell-placed-room" id="yg-NE">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="W"><span class="cell-dir">W</span><div class="cell-placed-room" id="yg-W">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="Center"><span class="cell-dir">Center</span><div class="cell-placed-room" id="yg-Center">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="E"><span class="cell-dir">E</span><div class="cell-placed-room" id="yg-E">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="SW"><span class="cell-dir">SW</span><div class="cell-placed-room" id="yg-SW">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="S"><span class="cell-dir">S</span><div class="cell-placed-room" id="yg-S">-</div><div class="cell-status-dot"></div></div>
+          <div class="vastu-cell" data-dir="SE"><span class="cell-dir">SE</span><div class="cell-placed-room" id="yg-SE">-</div><div class="cell-status-dot"></div></div>
+        </div>
+      </div>
+
+      <div class="vastu-feedback-box" id="yoga-feedback" style="min-height:75px;">
+        Place items to calculate structural-spatial magnetic resonance. Match directions to Vastu principles!
+      </div>
+      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+        Compass Harmony Index: <strong id="yoga-harmony-val">0%</strong>
+      </div>
+    </div>
+  `;
+
+  let selectedItem = "Bed";
+  const placements = {
+    NW: null, N: null, NE: null,
+    W: null, Center: null, E: null,
+    SW: null, S: null, SE: null
+  };
+
+  const correctMapping = {
+    "Bed": ["SW", "S"], // Sleep with head South (facing North) or Southwest
+    "Desk": ["E", "NE"], // Study facing East
+    "Mirror": ["N", "E"], // Mirror placed on North or East walls
+    "Shoes": ["W", "NW"] // Heavy shoes placed in West or Northwest
+  };
+
+  document.querySelectorAll('#yoga-dock .room-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#yoga-dock .room-chip').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedItem = btn.getAttribute('data-item');
+    });
+  });
+
+  document.querySelectorAll('#yoga-grid-cells .vastu-cell').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const dir = cell.getAttribute('data-dir');
+      
+      if (dir === 'Center') {
+        document.getElementById('yoga-feedback').innerText = "The Center (Brahma Sthana) is sacred space. Placing furniture here blocks the energy flow of the room.";
+        return;
+      }
+
+      // Remove item from previous cell
+      for (const d in placements) {
+        if (placements[d] === selectedItem) {
+          placements[d] = null;
+          document.getElementById(`yg-${d}`).innerText = "-";
+          document.querySelector(`#yoga-grid-cells .vastu-cell[data-dir="${d}"]`).classList.remove('correct', 'clash');
+        }
+      }
+
+      placements[dir] = selectedItem;
+      document.getElementById(`yg-${dir}`).innerText = selectedItem;
+
+      // Color feedback
+      const correctDirs = correctMapping[selectedItem];
+      if (correctDirs.includes(dir)) {
+        cell.classList.add('correct');
+        cell.classList.remove('clash');
+      } else {
+        cell.classList.add('clash');
+        cell.classList.remove('correct');
+      }
+
+      evaluateYogaCompass();
+    });
+  });
+
+  function evaluateYogaCompass() {
+    let score = 0;
+    let feedbackText = "";
+
+    const bedDir = Object.keys(placements).find(k => placements[k] === "Bed");
+    const deskDir = Object.keys(placements).find(k => placements[k] === "Desk");
+    const mirrorDir = Object.keys(placements).find(k => placements[k] === "Mirror");
+    const shoesDir = Object.keys(placements).find(k => placements[k] === "Shoes");
+
+    if (bedDir) {
+      if (correctMapping.Bed.includes(bedDir)) {
+        score += 25;
+      } else if (bedDir === "N") {
+        feedbackText += "Bed in North: Sleeping with head to North aligns body magnetic fields against Earth's flow, causing sleep fragmentation. ";
+      } else {
+        feedbackText += "Bed in " + bedDir + " is sub-optimal. Sleep aligned South or Southwest for deep relaxation. ";
+      }
+    }
+
+    if (deskDir) {
+      if (correctMapping.Desk.includes(deskDir)) {
+        score += 25;
+      } else if (deskDir === "S") {
+        feedbackText += "Desk in South: Studying facing South leads to sluggishness and cognitive fatigue. ";
+      } else {
+        feedbackText += "Desk in " + deskDir + ". Orient desk East to capture morning sunlight and stimulate focus. ";
+      }
+    }
+
+    if (mirrorDir) {
+      if (correctMapping.Mirror.includes(mirrorDir)) {
+        score += 25;
+      } else if (mirrorDir === "S") {
+        feedbackText += "Mirror in South: Reflecting southern directions accumulates stressful subtle energy. ";
+      } else {
+        feedbackText += "Mirror in " + mirrorDir + ". Place mirrors on North/East walls to reflect morning vibrations. ";
+      }
+    }
+
+    if (shoesDir) {
+      if (correctMapping.Shoes.includes(shoesDir)) {
+        score += 25;
+      } else if (shoesDir === "NE" || shoesDir === "E") {
+        feedbackText += "Shoes in " + shoesDir + ": Dirty items in pure entrance sectors clutter mental clarity. ";
+      } else {
+        feedbackText += "Shoes in " + shoesDir + ". Store shoes in West/Northwest quadrants. ";
+      }
+    }
+
+    document.getElementById('yoga-harmony-val').innerText = score + "%";
+    if (score === 100) {
+      document.getElementById('yoga-feedback').innerText = "Perfect Compass Alignment! The body's biological field is fully synchronized with geomagnetic paths and solar rhythms. Highly beneficial zone for meditation and rest.";
+    } else {
+      document.getElementById('yoga-feedback').innerText = feedbackText || "Arrange the furniture to see the alignment evaluation.";
+    }
+  }
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   3D. NAGARA UPASANA: BHUTA SHUDDHI ELEMENT BALANCER
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderBhutaShuddhi(container) {
+  container.innerHTML = `
+    <div class="widget-title">Bhuta Shuddhi Element Balancer</div>
+    <div class="vastu-layout-area" style="gap:1rem;">
+      <div class="vastu-room-dock" id="shuddhi-dock">
+        <button class="room-chip selected" data-elem="Air" style="border-color:#53c2b1;">Air Filter</button>
+        <button class="room-chip" data-elem="Fire" style="border-color:#ff4d4d;">Fire Filter</button>
+        <button class="room-chip" data-elem="Earth" style="border-color:#c4892a;">Earth Filter</button>
+        <button class="room-chip" data-elem="Water" style="border-color:#2eb8a6;">Water Filter</button>
+      </div>
+
+      <div class="vastu-grid-wrapper" style="max-width:320px;">
+        <div class="vastu-grid" id="shuddhi-grid-cells" style="grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;">
+          <!-- 4 main rooms representing sectors -->
+          <div class="vastu-cell" data-room="Living" style="border: 1px solid var(--border-glass); padding: 8px;">
+            <div class="cell-dir">Living (NW)</div>
+            <div style="font-size:0.75rem; margin-top:5px; color:#53c2b1;">Air: <span id="sh-Living-Air">30</span>%</div>
+            <div style="font-size:0.75rem; color:#c4892a;">Earth: <span id="sh-Living-Earth">70</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Living" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+          </div>
+          <div class="vastu-cell" data-room="Kitchen" style="border: 1px solid var(--border-glass); padding: 8px;">
+            <div class="cell-dir">Kitchen (SE)</div>
+            <div style="font-size:0.75rem; margin-top:5px; color:#ff4d4d;">Fire: <span id="sh-Kitchen-Fire">20</span>%</div>
+            <div style="font-size:0.75rem; color:#2eb8a6;">Water: <span id="sh-Kitchen-Water">80</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Kitchen" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+          </div>
+          <div class="vastu-cell" data-room="Bedroom" style="border: 1px solid var(--border-glass); padding: 8px;">
+            <div class="cell-dir">Bedroom (SW)</div>
+            <div style="font-size:0.75rem; margin-top:5px; color:#c4892a;">Earth: <span id="sh-Bedroom-Earth">20</span>%</div>
+            <div style="font-size:0.75rem; color:#53c2b1;">Air: <span id="sh-Bedroom-Air">80</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Bedroom" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+          </div>
+          <div class="vastu-cell" data-room="Bathroom" style="border: 1px solid var(--border-glass); padding: 8px;">
+            <div class="cell-dir">Bathroom (NE)</div>
+            <div style="font-size:0.75rem; margin-top:5px; color:#2eb8a6;">Water: <span id="sh-Bathroom-Water">40</span>%</div>
+            <div style="font-size:0.75rem; color:#ff4d4d;">Fire: <span id="sh-Bathroom-Fire">60</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Bathroom" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vastu-feedback-box" id="shuddhi-feedback" style="min-height:55px; font-size:0.8rem;">
+        Sectors are elementally clashing. Select an elemental filter and click a room cell to stoke its matching element and reduce the conflicting one. Reach targets (75%+)!
+      </div>
+      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+        Overall Spatial Purity: <strong id="shuddhi-purity-val">20%</strong>
+      </div>
+    </div>
+  `;
+
+  let selectedElem = "Air";
+  
+  // Starting values
+  const elements = {
+    Living: { Air: 30, Earth: 70 }, // Target: Air 80, Earth 20
+    Kitchen: { Fire: 20, Water: 80 }, // Target: Fire 80, Water 20
+    Bedroom: { Earth: 20, Air: 80 }, // Target: Earth 80, Air 20
+    Bathroom: { Water: 40, Fire: 60 } // Target: Water 80, Fire 20
+  };
+
+  document.querySelectorAll('#shuddhi-dock .room-chip').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('#shuddhi-dock .room-chip').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedElem = btn.getAttribute('data-elem');
+    });
+  });
+
+  document.querySelectorAll('#shuddhi-grid-cells .vastu-cell').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const room = cell.getAttribute('data-room');
+      applyFilter(room, selectedElem);
+    });
+  });
+
+  function applyFilter(room, elem) {
+    const rData = elements[room];
+    
+    if (room === 'Living') {
+      if (elem === 'Air') {
+        rData.Air = Math.min(100, rData.Air + 15);
+        rData.Earth = Math.max(0, rData.Earth - 15);
+      } else if (elem === 'Earth') {
+        rData.Earth = Math.min(100, rData.Earth + 15);
+        rData.Air = Math.max(0, rData.Air - 15);
+      }
+    } else if (room === 'Kitchen') {
+      if (elem === 'Fire') {
+        rData.Fire = Math.min(100, rData.Fire + 15);
+        rData.Water = Math.max(0, rData.Water - 15);
+      } else if (elem === 'Water') {
+        rData.Water = Math.min(100, rData.Water + 15);
+        rData.Fire = Math.max(0, rData.Fire - 15);
+      }
+    } else if (room === 'Bedroom') {
+      if (elem === 'Earth') {
+        rData.Earth = Math.min(100, rData.Earth + 15);
+        rData.Air = Math.max(0, rData.Air - 15);
+      } else if (elem === 'Air') {
+        rData.Air = Math.min(100, rData.Air + 15);
+        rData.Earth = Math.max(0, rData.Earth - 15);
+      }
+    } else if (room === 'Bathroom') {
+      if (elem === 'Water') {
+        rData.Water = Math.min(100, rData.Water + 15);
+        rData.Fire = Math.max(0, rData.Fire - 15);
+      } else if (elem === 'Fire') {
+        rData.Fire = Math.min(100, rData.Fire + 15);
+        rData.Water = Math.max(0, rData.Water - 15);
+      }
+    }
+
+    updateShuddhiUI(room);
+  }
+
+  function updateShuddhiUI(updatedRoom) {
+    // Re-render elements for the rooms
+    for (const r in elements) {
+      for (const el in elements[r]) {
+        document.getElementById(`sh-${r}-${el}`).innerText = elements[r][el];
+      }
+    }
+
+    // Evaluate room states
+    let totalScore = 0;
+    
+    // Living: NW Air target is 75
+    const livingOk = elements.Living.Air >= 75;
+    document.getElementById('sh-status-Living').innerText = livingOk ? "Harmonized" : "Imbalanced";
+    document.getElementById('sh-status-Living').style.color = livingOk ? "#00ff88" : "#ff4d4d";
+    if (livingOk) totalScore += 25;
+
+    // Kitchen: SE Fire target is 75
+    const kitchenOk = elements.Kitchen.Fire >= 75;
+    document.getElementById('sh-status-Kitchen').innerText = kitchenOk ? "Harmonized" : "Imbalanced";
+    document.getElementById('sh-status-Kitchen').style.color = kitchenOk ? "#00ff88" : "#ff4d4d";
+    if (kitchenOk) totalScore += 25;
+
+    // Bedroom: SW Earth target is 75
+    const bedroomOk = elements.Bedroom.Earth >= 75;
+    document.getElementById('sh-status-Bedroom').innerText = bedroomOk ? "Harmonized" : "Imbalanced";
+    document.getElementById('sh-status-Bedroom').style.color = bedroomOk ? "#00ff88" : "#ff4d4d";
+    if (bedroomOk) totalScore += 25;
+
+    // Bathroom: NE Water target is 75
+    const bathroomOk = elements.Bathroom.Water >= 75;
+    document.getElementById('sh-status-Bathroom').innerText = bathroomOk ? "Harmonized" : "Imbalanced";
+    document.getElementById('sh-status-Bathroom').style.color = bathroomOk ? "#00ff88" : "#ff4d4d";
+    if (bathroomOk) totalScore += 25;
+
+    // Cell highlight updates
+    document.querySelector('#shuddhi-grid-cells [data-room="Living"]').className = "vastu-cell " + (livingOk ? "correct" : "clash");
+    document.querySelector('#shuddhi-grid-cells [data-room="Kitchen"]').className = "vastu-cell " + (kitchenOk ? "correct" : "clash");
+    document.querySelector('#shuddhi-grid-cells [data-room="Bedroom"]').className = "vastu-cell " + (bedroomOk ? "correct" : "clash");
+    document.querySelector('#shuddhi-grid-cells [data-room="Bathroom"]').className = "vastu-cell " + (bathroomOk ? "correct" : "clash");
+
+    document.getElementById('shuddhi-purity-val').innerText = totalScore + "%";
+    
+    if (totalScore === 100) {
+      document.getElementById('shuddhi-feedback').innerText = "Congratulations! Bhuta Shuddhi achieved. All house sectors contain their optimal dominant elemental profiles, maximizing health, stability, and peace of mind.";
+      document.getElementById('shuddhi-feedback').style.color = "#00ff88";
+    } else {
+      document.getElementById('shuddhi-feedback').innerText = "Cleansing sectors... Place Air in NW, Fire in SE, Earth in SW, Water in NE. Balance all 4 zones.";
+      document.getElementById('shuddhi-feedback').style.color = "var(--text-muted)";
+    }
+  }
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   3. VASTU PURUSHA MANDALA PLANNER WIDGET
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderVastu(container) {
+  container.innerHTML = `
+    <div class="widget-title">Vastu Maṇḍala Room Planner</div>
+    <div class="vastu-layout-area">
+      <div class="vastu-room-dock" id="vastu-dock">
+        <button class="room-chip selected" data-room="Kitchen">Kitchen (SE)</button>
+        <button class="room-chip" data-room="Well">Well/Water (NE)</button>
+        <button class="room-chip" data-room="Master Bed">Master Bed (SW)</button>
+        <button class="room-chip" data-room="Treasury">Treasury (N)</button>
+        <button class="room-chip" data-room="Study">Study (E)</button>
+      </div>
+
+      <div class="vastu-grid-wrapper">
+        <div class="vastu-silhouette"></div>
+        <div class="vastu-grid" id="vastu-grid-cells">
+          <!-- 9 cells for direction-placement (3x3 grid layout) -->
+          <div class="vastu-cell" data-dir="NW" data-element="Vayu (Air)">
+            <span class="cell-dir">NW</span><span class="cell-element">Air</span>
+            <div class="cell-placed-room" id="cell-NW">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="N" data-element="Kubera (Wealth)">
+            <span class="cell-dir">N</span><span class="cell-element">Wealth</span>
+            <div class="cell-placed-room" id="cell-N">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="NE" data-element="Ishanya (Water)">
+            <span class="cell-dir">NE</span><span class="cell-element">Water</span>
+            <div class="cell-placed-room" id="cell-NE">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="W" data-element="Varuna (Space)">
+            <span class="cell-dir">W</span><span class="cell-element">Space</span>
+            <div class="cell-placed-room" id="cell-W">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="Center" data-element="Brahma Sthana">
+            <span class="cell-dir">Center</span><span class="cell-element">Brahma</span>
+            <div class="cell-placed-room" id="cell-Center">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="E" data-element="Aditya (Sun)">
+            <span class="cell-dir">E</span><span class="cell-element">Sun</span>
+            <div class="cell-placed-room" id="cell-E">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="SW" data-element="Nairutya (Earth)">
+            <span class="cell-dir">SW</span><span class="cell-element">Earth</span>
+            <div class="cell-placed-room" id="cell-SW">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="S" data-element="Yama (Mortals)">
+            <span class="cell-dir">S</span><span class="cell-element">Mortals</span>
+            <div class="cell-placed-room" id="cell-S">-</div><div class="cell-status-dot"></div>
+          </div>
+          <div class="vastu-cell" data-dir="SE" data-element="Agni (Fire)">
+            <span class="cell-dir">SE</span><span class="cell-element">Fire</span>
+            <div class="cell-placed-room" id="cell-SE">-</div><div class="cell-status-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vastu-feedback-box" id="vastu-feedback">
+        Select a room chip above, then click a grid cell to place it. Match elements for maximum thermodynamic harmony!
+      </div>
+      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+        Harmony Index: <strong id="vastu-harmony-val">0%</strong>
+      </div>
+    </div>
+  `;
+
+  let selectedRoom = "Kitchen";
+  const placements = {
+    NW: null, N: null, NE: null,
+    W: null, Center: null, E: null,
+    SW: null, S: null, SE: null
+  };
+
+  const correctMapping = {
+    "Kitchen": "SE",
+    "Well": "NE",
+    "Master Bed": "SW",
+    "Treasury": "N",
+    "Study": "E"
+  };
+
+  // Select room chip
+  document.querySelectorAll('.room-chip').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.room-chip').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      selectedRoom = btn.getAttribute('data-room');
+    });
+  });
+
+  // Grid Cell Clicks
+  document.querySelectorAll('.vastu-cell').forEach(cell => {
+    cell.addEventListener('click', () => {
+      const dir = cell.getAttribute('data-dir');
+      
+      // Validation rules
+      if (dir === 'Center') {
+        document.getElementById('vastu-feedback').innerText = "Warning: The center (Brahma Sthana) represents the ether/space core. In Vastu, this must remain open and unbuilt to allow atmospheric venting and electromagnetic currents to circulate freely.";
+        return;
+      }
+
+      // Remove room from previous cell if exists
+      for (const d in placements) {
+        if (placements[d] === selectedRoom) {
+          placements[d] = null;
+          document.getElementById(`cell-${d}`).innerText = "-";
+          const cellEl = document.querySelector(`.vastu-cell[data-dir="${d}"]`);
+          cellEl.classList.remove('correct', 'clash');
+        }
+      }
+
+      // Place in new cell
+      placements[dir] = selectedRoom;
+      document.getElementById(`cell-${dir}`).innerText = selectedRoom;
+      
+      // Update cell coloring based on correct placement
+      const targetDir = correctMapping[selectedRoom];
+      if (dir === targetDir) {
+        cell.classList.add('correct');
+        cell.classList.remove('clash');
+      } else {
+        cell.classList.add('clash');
+        cell.classList.remove('correct');
+      }
+
+      evaluateVastuMaṇḍala();
+    });
+  });
+
+  function evaluateVastuMaṇḍala() {
+    let score = 0;
+    let feedback = "";
+    
+    // Evaluate placements
+    const kitchenDir = getKeyByValue(placements, "Kitchen");
+    const wellDir = getKeyByValue(placements, "Well");
+    const bedDir = getKeyByValue(placements, "Master Bed");
+    const treasuryDir = getKeyByValue(placements, "Treasury");
+    const studyDir = getKeyByValue(placements, "Study");
+
+    // Kitchen: SE (Agni/Fire)
+    if (kitchenDir === "SE") {
+      score += 20;
+    } else if (kitchenDir === "NE") {
+      feedback += "Clash: Kitchen in Northeast mixes Fire with Water (Ishanya), causing energetic conflict. ";
+    } else if (kitchenDir) {
+      feedback += "Kitchen placed in " + kitchenDir + ". Not ideal. Agni (SE) optimizes infrared sanitization. ";
+    }
+
+    // Well: NE (Water)
+    if (wellDir === "NE") {
+      score += 20;
+    } else if (wellDir === "SE") {
+      feedback += "Clash: Well in Southeast places water in the fire sector. ";
+    } else if (wellDir) {
+      feedback += "Water source placed in " + wellDir + ". Northeastern placing harnesses optimal morning UV purification. ";
+    }
+
+    // Master Bed: SW (Earth/Nairutya)
+    if (bedDir === "SW") {
+      score += 20;
+    } else if (bedDir) {
+      feedback += "Master Bedroom in " + bedDir + ". Southwest (SW) anchor provides thermal stability during sleeping hours. ";
+    }
+
+    // Treasury: N (Kubera/Wealth)
+    if (treasuryDir === "N") {
+      score += 20;
+    } else if (treasuryDir) {
+      feedback += "Treasury placed in " + treasuryDir + ". Northern sectors represent Kubera, representing growth of wealth. ";
+    }
+
+    // Study: E (Aditya/Sun)
+    if (studyDir === "E") {
+      score += 20;
+    } else if (studyDir) {
+      feedback += "Study placed in " + studyDir + ". Eastern rays stimulate cognitive focus during study hours. ";
+    }
+
+    document.getElementById('vastu-harmony-val').innerText = score + "%";
+    
+    if (score === 100) {
+      document.getElementById('vastu-feedback').innerText = "Perfect Alignment achieved! The thermodynamic layout balances solar radiation, wind currents, and directional elemental flow perfectly. A highly resonant space!";
+    } else {
+      document.getElementById('vastu-feedback').innerText = feedback || "Place more rooms to calculate layout stability.";
+    }
+  }
+
+  function getKeyByValue(object, value) {
+    return Object.keys(object).find(key => object[key] === value);
+  }
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   4. PRANAYAMA BREATHING TRAINER
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderPranayama(container) {
+  container.innerHTML = `
+    <div class="widget-title">Pranayama Box Breathing Trainer</div>
+    <div class="pranayama-workspace">
+      <div class="breath-circle-container">
+        <div class="breath-circle-glow" id="breath-glow"></div>
+        <div class="breath-state-label" id="breath-state">HOLD</div>
+      </div>
+      <div class="breath-instructions" id="breath-inst">
+        Get ready... click Start to begin Box Breathing cycle.
+      </div>
+      <div class="breath-timing-setup">
+        <div class="timing-input-group">
+          <label>Inhale (s)</label>
+          <input type="number" id="br-inhale" value="4" min="2" max="10">
+        </div>
+        <div class="timing-input-group">
+          <label>Hold (s)</label>
+          <input type="number" id="br-hold1" value="4" min="2" max="10">
+        </div>
+        <div class="timing-input-group">
+          <label>Exhale (s)</label>
+          <input type="number" id="br-exhale" value="4" min="2" max="10">
+        </div>
+        <div class="timing-input-group">
+          <label>Hold Out (s)</label>
+          <input type="number" id="br-hold2" value="4" min="2" max="10">
+        </div>
+      </div>
+      <button class="action-btn" id="breath-trigger">Start Trainer</button>
+    </div>
+  `;
+
+  let breathInterval = null;
+  let currentStage = 0; // 0: Inhale, 1: Hold, 2: Exhale, 3: Hold Out
+  let stageTimer = 0;
+  let isBreathing = false;
+
+  const glow = document.getElementById('breath-glow');
+  const label = document.getElementById('breath-state');
+  const inst = document.getElementById('breath-inst');
+  const trigger = document.getElementById('breath-trigger');
+
+  trigger.addEventListener('click', () => {
+    if (isBreathing) {
+      clearInterval(breathInterval);
+      activeIntervals = activeIntervals.filter(id => id !== breathInterval);
+      trigger.innerText = "Start Trainer";
+      inst.innerText = "Trainer paused.";
+      label.innerText = "READY";
+      glow.style.transform = "scale(1)";
+      isBreathing = false;
+    } else {
+      isBreathing = true;
+      trigger.innerText = "Stop Trainer";
+      startBreathingCycle();
+    }
+  });
+
+  function startBreathingCycle() {
+    const inhaleTime = parseInt(document.getElementById('br-inhale').value);
+    const hold1Time = parseInt(document.getElementById('br-hold1').value);
+    const exhaleTime = parseInt(document.getElementById('br-exhale').value);
+    const hold2Time = parseInt(document.getElementById('br-hold2').value);
+
+    currentStage = 0;
+    stageTimer = inhaleTime;
+    inst.innerText = `Inhale deeply... Fill your lungs.`;
+    label.innerText = "INHALE";
+    glow.style.transform = "scale(2.2)";
+    glow.style.transition = `transform ${inhaleTime}s linear`;
+
+    breathInterval = setInterval(() => {
+      stageTimer--;
+      if (stageTimer <= 0) {
+        currentStage = (currentStage + 1) % 4;
+        
+        if (currentStage === 0) {
+          stageTimer = inhaleTime;
+          label.innerText = "INHALE";
+          inst.innerText = "Inhale slowly and gather focus.";
+          glow.style.transition = `transform ${inhaleTime}s linear`;
+          glow.style.transform = "scale(2.2)";
+        } else if (currentStage === 1) {
+          stageTimer = hold1Time;
+          label.innerText = "HOLD";
+          inst.innerText = "Retain the breath. Suspend mental waves.";
+          glow.style.transition = "none";
+          glow.style.transform = "scale(2.2)";
+        } else if (currentStage === 2) {
+          stageTimer = exhaleTime;
+          label.innerText = "EXHALE";
+          inst.innerText = "Exhale slowly. Release all tension.";
+          glow.style.transition = `transform ${exhaleTime}s linear`;
+          glow.style.transform = "scale(0.8)";
+        } else if (currentStage === 3) {
+          stageTimer = hold2Time;
+          label.innerText = "HOLD";
+          inst.innerText = "Suspend breath outside. Experience inner space.";
+          glow.style.transition = "none";
+          glow.style.transform = "scale(0.8)";
+        }
+      }
+    }, 1000);
+    activeIntervals.push(breathInterval);
+  }
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   5. VEERA MANTRA SOUND RESONANCE WIDGET
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderUpasana(container) {
+  container.innerHTML = `
+    <div class="widget-title">Veera Mantra Resonance Visualizer</div>
+    <div class="yantra-visualizer">
+      <div class="yantra-container">
+        <svg class="yantra-svg" id="y-svg" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="0.8">
+          <circle cx="50" cy="50" r="45" stroke-dasharray="1 2"/>
+          <polygon points="50,10 90,75 10,75" />
+          <polygon points="50,90 90,25 10,25" />
+          <circle cx="50" cy="50" r="10" />
+        </svg>
+      </div>
+
+      <div class="resonance-meter">
+        <div class="resonance-fill" id="res-fill"></div>
+      </div>
+
+      <div class="chant-btn-grid">
+        <button class="action-btn chant-seed" data-note="220" data-seed="OM">ॐ OM</button>
+        <button class="action-btn chant-seed" data-note="293" data-seed="DUM">दुं DUM</button>
+        <button class="action-btn chant-seed" data-note="330" data-seed="KREEM">क्रीं KREEM</button>
+        <button class="action-btn chant-seed" data-note="392" data-seed="HUM">हूं HUM</button>
+      </div>
+      <div style="font-size:0.85rem; color: var(--text-muted); text-align:center;">
+        Click seeds to activate synthesized acoustic resonance of the mantra.
+      </div>
+    </div>
+  `;
+
+  // Web Audio Context for temple bell synthesis
+  let audioCtx = null;
+  let resonance = 0;
+  const fill = document.getElementById('res-fill');
+  const svg = document.getElementById('y-svg');
+
+  document.querySelectorAll('.chant-seed').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pitch = parseFloat(btn.getAttribute('data-note'));
+      triggerAudio(pitch);
+      
+      // Visual feedback - expand resonance meter
+      resonance = Math.min(100, resonance + 25);
+      fill.style.width = resonance + "%";
+      
+      // Pulse Yantra
+      svg.style.transform = "scale(1.15) rotate(15deg)";
+      setTimeout(() => {
+        svg.style.transform = "scale(1) rotate(0deg)";
+      }, 200);
+    });
+  });
+
+  // Decay resonance slowly
+  const decayInterval = setInterval(() => {
+    resonance = Math.max(0, resonance - 2);
+    fill.style.width = resonance + "%";
+  }, 150);
+  activeIntervals.push(decayInterval);
+
+  function triggerAudio(frequency) {
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    }
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
+
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+
+    // Temple Bell Waveform (FM synthesis or Sine mix)
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(frequency, audioCtx.currentTime);
+    
+    // Add harmonic
+    const overtone = audioCtx.createOscillator();
+    const overtoneGain = audioCtx.createGain();
+    overtone.connect(overtoneGain);
+    overtoneGain.connect(audioCtx.destination);
+    overtone.type = 'triangle';
+    overtone.frequency.setValueAtTime(frequency * 2, audioCtx.currentTime);
+
+    // Envelope
+    gainNode.gain.setValueAtTime(0.5, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 1.8);
+    
+    overtoneGain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+    overtoneGain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.8);
+
+    osc.start();
+    overtone.start();
+
+    osc.stop(audioCtx.currentTime + 1.8);
+    overtone.stop(audioCtx.currentTime + 0.8);
+  }
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   6. CHANAKYA GEOPOLITICAL SPHERE
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderMaṇḍalaSiddhanta(container) {
+  container.innerHTML = `
+    <div class="widget-title">Circle of States (Maṇḍala Siddhanta)</div>
+    <div class="maṇḍala-diplomacy">
+      <div class="maṇḍala-sphere-visualizer" id="mand-sphere">
+        <!-- Center King -->
+        <div class="sphere-node vijigishu" style="top: 50%; left: 50%;" title="Vijigishu (Self)"></div>
+        <!-- Ring 1 nodes -->
+        <div class="sphere-node ari" style="top: 20%; left: 50%;" title="Ari (Enemy)"></div>
+        <div class="sphere-node ari" style="top: 80%; left: 50%;" title="Ari (Enemy)"></div>
+        <!-- Ring 2 nodes -->
+        <div class="sphere-node mitra" style="top: 50%; left: 15%;" title="Mitra (Ally)"></div>
+        <div class="sphere-node mitra" style="top: 50%; left: 85%;" title="Mitra (Ally)"></div>
+        <!-- Ring 3 nodes -->
+        <div class="sphere-node neutral" style="top: 15%; left: 20%;" title="Udasina (Neutral)"></div>
+        <div class="sphere-node neutral" style="top: 85%; left: 80%;" title="Madhyama (Mediator)"></div>
+      </div>
+      
+      <div class="diplomatic-actions-panel">
+        <button class="action-btn" id="d-treaty">Forge Treaty</button>
+        <button class="action-btn" id="d-spy">Send Spy</button>
+        <button class="action-btn" id="d-divide">Divide Opposition</button>
+        <button class="action-btn" id="d-reset">Reset Balance</button>
+      </div>
+
+      <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;" id="maṇḍala-action-log">
+        According to Chanakya, adjacent states are natural enemies; states surrounding your enemy are natural allies.
+      </div>
+    </div>
+  `;
+
+  document.getElementById('d-treaty').addEventListener('click', () => {
+    document.querySelectorAll('.sphere-node.neutral').forEach(n => {
+      n.className = "sphere-node mitra";
+      n.style.background = "#4df5e2";
+      n.style.boxShadow = "0 0 10px #4df5e2";
+    });
+    document.getElementById('maṇḍala-action-log').innerText = "Treaty Forged! Neutral states shifted into Allies (Mitra) to build structural leverage.";
+  });
+
+  document.getElementById('d-spy').addEventListener('click', () => {
+    document.getElementById('maṇḍala-action-log').innerText = "Spies deployed inside Ari (Enemy) territories. Defensive fortifications mapped.";
+  });
+
+  document.getElementById('d-divide').addEventListener('click', () => {
+    document.querySelectorAll('.sphere-node.ari').forEach(n => {
+      n.style.background = "#b52a2a";
+      n.style.boxShadow = "0 0 6px #5c1414";
+    });
+    document.getElementById('maṇḍala-action-log').innerText = "Bheda Applied! Sowed division between opposing armies. Battle intensity drops.";
+  });
+
+  document.getElementById('d-reset').addEventListener('click', () => {
+    renderWidget();
+  });
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   7. NEETI DILEMMA TREE
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderNeeti(container) {
+  const scenarios = [
+    {
+      q: "A severe drought strikes the southern borders. The citizens demand tax release, but the border fortification needs funding against external raiders.",
+      opts: [
+        { text: "Tax merchants heavily to fund border protection and relieve citizens.", j: +10, s: +20, t: -15 },
+        { text: "Release taxes for citizens. Suspend border funding temporarily.", j: +25, s: -20, t: -10 },
+        { text: "Keep taxes normal. Borrow resources from external allies.", j: -5, s: +10, t: +15 }
+      ]
+    },
+    {
+      q: "A high minister (Amatya) is suspected of communicating secret routes to the neighboring kingdom. Evidence is circumstantial.",
+      opts: [
+        { text: "Banish him immediately. Security cannot be compromised.", j: -15, s: +30, t: +5 },
+        { text: "Deploy counter-espionage. feed him false intelligence.", j: +15, s: +20, t: -5 },
+        { text: "Wait for concrete evidence. Do not take hasty action.", j: +25, s: -15, t: +0 }
+      ]
+    }
+  ];
+
+  let currentIdx = 0;
+  let justice = 50;
+  let security = 50;
+  let treasury = 50;
+
+  function loadDilemma() {
+    if (currentIdx >= scenarios.length) {
+      container.innerHTML = `
+        <div class="widget-title">Dilemma Assessment Complete</div>
+        <div style="text-align:center; padding:1rem; color:var(--text-muted);">
+          <p>Your leadership parameters have settled. Evaluate your final balance index below.</p>
+          <div class="neeti-stats" style="margin-top: 1.5rem; font-size:1rem;">
+            <div>Justice: <span class="neeti-stat-val">${justice}%</span></div>
+            <div>Security: <span class="neeti-stat-val">${security}%</span></div>
+            <div>Treasury: <span class="neeti-stat-val">${treasury}%</span></div>
+          </div>
+          <button class="action-btn" onclick="renderWidget()" style="margin-top:1.5rem;">Restart Simulation</button>
+        </div>
+      `;
+      return;
+    }
+
+    const item = scenarios[currentIdx];
+    container.innerHTML = `
+      <div class="widget-title">Neeti Administrative Dilemma</div>
+      <div class="neeti-card-flow">
+        <div class="neeti-question">${item.q}</div>
+        <div class="neeti-options">
+          ${item.opts.map((opt, oIdx) => `
+            <button class="neeti-opt-btn" data-o="${oIdx}">${opt.text}</button>
+          `).join('')}
+        </div>
+        <div class="neeti-stats">
+          <div>Justice: <span class="neeti-stat-val">${justice}%</span></div>
+          <div>Security: <span class="neeti-stat-val">${security}%</span></div>
+          <div>Treasury: <span class="neeti-stat-val">${treasury}%</span></div>
+        </div>
+      </div>
+    `;
+
+    document.querySelectorAll('.neeti-opt-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const oIdx = parseInt(btn.getAttribute('data-o'));
+        const choice = item.opts[oIdx];
+        
+        justice = Math.min(100, Math.max(0, justice + choice.j));
+        security = Math.min(100, Math.max(0, security + choice.s));
+        treasury = Math.min(100, Math.max(0, treasury + choice.t));
+        
+        currentIdx++;
+        loadDilemma();
+      });
+    });
+  }
+
+  loadDilemma();
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   8. EQUANIMITY (SAMATVAM) CONCENTRATOR
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderSamatvam(container) {
+  container.innerHTML = `
+    <div class="widget-title">Samatvam Focus Stabilizer</div>
+    <div class="samatvam-container">
+      <div class="samatvam-trackpad" id="trackpad">
+        <div class="trackpad-target" id="tr-target" style="top: 50%; left: 50%;"></div>
+        <div class="trackpad-pointer" id="tr-pointer" style="top: 50%; left: 50%;"></div>
+      </div>
+      <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;" id="samatvam-feedback">
+        Keep the white dot centered in the drifting ring. Steady your hand.
+      </div>
+      <div style="font-family:'Outfit', sans-serif; font-size:0.9rem; color:var(--gold-bright);">
+        Focus Integrity: <span id="samatvam-score">0%</span>
+      </div>
+    </div>
+  `;
+
+  const trackpad = document.getElementById('trackpad');
+  const target = document.getElementById('tr-target');
+  const pointer = document.getElementById('tr-pointer');
+  const scoreDisplay = document.getElementById('samatvam-score');
+
+  let targetX = 110, targetY = 110;
+  let mouseX = 110, mouseY = 110;
+  let angle = 0;
+  let score = 0;
+
+  // Drift the target circle programmatically
+  const driftInterval = setInterval(() => {
+    angle += 0.05;
+    targetX = 110 + Math.sin(angle) * 70 + Math.cos(angle * 1.5) * 20;
+    targetY = 110 + Math.cos(angle) * 70 + Math.sin(angle * 1.2) * 15;
+    
+    target.style.left = targetX + "px";
+    target.style.top = targetY + "px";
+
+    // Distance validation
+    const dx = mouseX - targetX;
+    const dy = mouseY - targetY;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < 20) {
+      score = Math.min(100, score + 2);
+    } else {
+      score = Math.max(0, score - 3);
+    }
+    scoreDisplay.innerText = score + "%";
+  }, 30);
+  activeIntervals.push(driftInterval);
+
+  trackpad.addEventListener('mousemove', (e) => {
+    const rect = trackpad.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+    
+    pointer.style.left = mouseX + "px";
+    pointer.style.top = mouseY + "px";
+  });
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   9. DAHARA AKASHA OVERLAY
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderDaharaAkasha(container) {
+  container.innerHTML = `
+    <div class="widget-title">Dahara Akasha Structure Mapping</div>
+    <div class="dahara-overlay">
+      <svg class="dahara-body-svg" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="0.8">
+        <!-- Body path representation -->
+        <path d="M50,15 L50,85 M35,45 Q50,30 65,45 M30,85 L70,85" stroke-dasharray="1 1" />
+        <!-- Chakra Nodes -->
+        <circle cx="50" cy="20" r="4" class="c-node" data-ch="Sahasrara" fill="none" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="50" cy="32" r="3" class="c-node" data-ch="Ajna" fill="none" stroke="#ff4d4d"/>
+        <circle cx="50" cy="45" r="3" class="c-node" data-ch="Anahata" fill="none" stroke="#4df5e2"/>
+        <circle cx="50" cy="65" r="3" class="c-node" data-ch="Manipura" fill="none" stroke="#ffc837"/>
+        <circle cx="50" cy="80" r="3" class="c-node" data-ch="Muladhara" fill="none" stroke="#b52a2a"/>
+      </svg>
+    </div>
+    <div class="dahara-info-box" id="d-info">
+      Hover over the chakra points on the meditation figure to reveal their corresponding space in sacred temple layouts.
+    </div>
+  `;
+
+  const mapping = {
+    Sahasrara: "Sahasrara (Crown Node): Aligns with the Garbhagriha (Sanctum Sanctorum) where the primary deity is anchored, maximizing acoustic resonance.",
+    Ajna: "Ajna (Command Center): Corresponds to the Ardha Mandapa (antechamber), the transition point from external light to silent internal focus.",
+    Anahata: "Anahata (Heart Center): Maps to the Maha Mandapa (grand gathering hall) where chanting and sacred dance occur.",
+    Manipura: "Manipura (Solar Plexus): Maps to the Flagstaff (Dhwaja Stambha), stabilizing the structural alignment of the entry axis.",
+    Muladhara: "Muladhara (Root Center): Aligns with the Gopuram (gateway structure), anchoring the building to the physical earth."
+  };
+
+  document.querySelectorAll('.c-node').forEach(node => {
+    node.addEventListener('mouseenter', () => {
+      const ch = node.getAttribute('data-ch');
+      node.style.fill = getComputedStyle(document.body).getPropertyValue('--accent').trim();
+      document.getElementById('d-info').innerText = mapping[ch];
+    });
+    node.addEventListener('mouseleave', () => {
+      node.style.fill = "none";
+    });
+  });
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   10. AYADI CALCULATOR WIDGET
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+function renderAyadi(container) {
+  container.innerHTML = `
+    <div class="widget-title">Ayadi Resonant Calculator</div>
+    <div class="ayadi-panel">
+      <div class="ayadi-inputs">
+        <div class="timing-input-group">
+          <label>Width (Hasta)</label>
+          <input type="number" id="ay-width" value="12" min="2" max="100">
+        </div>
+        <div class="timing-input-group">
+          <label>Length (Hasta)</label>
+          <input type="number" id="ay-length" value="16" min="2" max="100">
+        </div>
+      </div>
+      
+      <div class="ayadi-results">
+        <div class="ayadi-result-card">
+          <span class="ayadi-result-lbl">Aya (Income)</span>
+          <span class="ayadi-result-val" id="ay-res-aya">4</span>
+        </div>
+        <div class="ayadi-result-card">
+          <span class="ayadi-result-lbl">Vyaya (Expense)</span>
+          <span class="ayadi-result-val" id="ay-res-vyaya">6</span>
+        </div>
+        <div class="ayadi-result-card">
+          <span class="ayadi-result-lbl">Yoni (Energy)</span>
+          <span class="ayadi-result-val" id="ay-res-yoni">Dhvaja</span>
+        </div>
+        <div class="ayadi-result-card">
+          <span class="ayadi-result-lbl">Harmony Rating</span>
+          <span class="ayadi-result-val" id="ay-res-rating">Neutral</span>
+        </div>
+      </div>
+
+      <div class="ayadi-wireframe">
+        <canvas class="ayadi-canvas-wf" id="ay-canvas" width="300" height="120"></canvas>
+      </div>
+    </div>
+  `;
+
+  const inpWidth = document.getElementById('ay-width');
+  const inpLength = document.getElementById('ay-length');
+
+  inpWidth.addEventListener('input', runAyadi);
+  inpLength.addEventListener('input', runAyadi);
+
+  const canvas = document.getElementById('ay-canvas');
+  const ctx = canvas.getContext('2d');
+
+  function runAyadi() {
+    const w = parseFloat(inpWidth.value) || 0;
+    const l = parseFloat(inpLength.value) || 0;
+
+    const perimeter = 2 * (w + l);
+
+    // Ayadi Formulas
+    const aya = Math.round((perimeter * 8) % 12);
+    const vyaya = Math.round((perimeter * 9) % 10);
+    const yoniVal = Math.round((perimeter * 3) % 8);
+
+    const yoniLabels = ["Kaka", "Dhvaja", "Dhumra", "Simha", "Vrishabha", "Khara", "Gaja", "Vrishabha"];
+    const activeYoni = yoniLabels[yoniVal] || "Dhvaja";
+
+    document.getElementById('ay-res-aya').innerText = aya;
+    document.getElementById('ay-res-vyaya').innerText = vyaya;
+    document.getElementById('ay-res-yoni').innerText = activeYoni;
+
+    const ratingEl = document.getElementById('ay-res-rating');
+    if (aya > vyaya) {
+      ratingEl.innerText = "Resonant";
+      ratingEl.style.color = "#00ff88";
+    } else {
+      ratingEl.innerText = "Conflict";
+      ratingEl.style.color = "#ff4d4d";
+    }
+
+    // Draw blueprint bounding wireframe
+    ctx.clearRect(0, 0, 300, 120);
+    ctx.strokeStyle = aya > vyaya ? '#2eb8a6' : '#ff4d4d';
+    ctx.lineWidth = 1.5;
+    
+    // Scale layout to fit wireframe canvas
+    const scale = Math.min(200 / w, 80 / l);
+    const dw = w * scale;
+    const dl = l * scale;
+    
+    ctx.strokeRect((300 - dw)/2, (120 - dl)/2, dw, dl);
+    
+    // Draw crosshair axes representing energy flow
+    ctx.beginPath();
+    ctx.setLineDash([2, 4]);
+    ctx.moveTo(150, 0); ctx.lineTo(150, 120);
+    ctx.moveTo(0, 60); ctx.lineTo(300, 60);
+    ctx.strokeStyle = 'rgba(46,184,166,0.3)';
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  runAyadi();
+}
+
+/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   INITIALIZATION AND WIDGET ACTIVATION
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+document.addEventListener('DOMContentLoaded', () => {
+  renderLeftPane();
+  renderWidget();
+
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-mystical';
+  setTheme(null, initialTheme);
+});
+
+// Custom Cursor coordinates tracking
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.2;
+  ringY += (mouseY - ringY) * 0.2;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+
+if (cursor && cursorRing) {
+  document.body.classList.add('custom-cursor-active');
+  animateRing();
+}
+
+function bindCursorEvents() {
+  document.querySelectorAll('a, button, select, input, textarea, .tab, .course-card, .theme-btn, .interactive-cell, .slider-thumb, .room-chip, .action-btn, .vastu-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+</script>
+</body>
+</html>

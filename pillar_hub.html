@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Era of Siddhas — The Three Pillars</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root, body.theme-fierce {
+    --bg:         #0a000000;
+    --bg-deep:    #0a0000;
+    --bg-1:       #1a0505;
+    --bg-2:       #240a0a;
+    --bg-3:       #330f0f;
+    --gold:       #b52a2a;
+    --gold-bright:#ff4d4d;
+    --gold-dim:   #5c1414;
+    --parchment:  #f4f5f6;
+    --parch-mid:  #b0b5b9;
+    --parch-dim:  #7a8288;
+    --terracotta: #8b1a1a;
+    --terra-dim:  #4a0e0e;
+    --forest:     #1a3d0a;
+    --crimson:    #ff0000;
+    --glow:       rgba(181,42,42,0.15);
+  }
+  body.theme-earthy {
+    --bg:         #07040200;
+    --bg-deep:    #070402;
+    --bg-1:       #0f0a05;
+    --bg-2:       #17100a;
+    --bg-3:       #201710;
+    --gold:       #c4892a;
+    --gold-bright:#f0c040;
+    --gold-dim:   #7a5415;
+    --parchment:  #e8d5a3;
+    --parch-mid:  #b89a60;
+    --parch-dim:  #7a6440;
+    --glow:       rgba(196,137,42,0.15);
+  }
+  body.theme-mystical {
+    --bg:         #01090800;
+    --bg-deep:    #010908;
+    --bg-1:       #021816;
+    --bg-2:       #042b27;
+    --bg-3:       #06423c;
+    --gold:       #2eb8a6;
+    --gold-bright:#4df5e2;
+    --gold-dim:   #176e62;
+    --parchment:  #e0fcf8;
+    --parch-mid:  #9cf0e2;
+    --parch-dim:  #53c2b1;
+    --glow:       rgba(46,184,166,0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--parchment);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+  }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .pillar-card,
+  body.custom-cursor-active .theme-btn {
+    cursor: none !important;
+  }
+
+  /* CURSOR */
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* HEADER */
+  header {
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gold-dim);
+    background: var(--bg-1);
+    position: relative;
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  .nav-btn {
+    text-decoration: none;
+    color: var(--parch-mid);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+  }
+  .nav-btn:hover {
+    color: var(--gold-bright);
+  }
+  .theme-btn {
+    background: var(--bg-2);
+    border: 1px solid var(--gold-dim);
+    color: var(--parch-mid);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.75rem;
+    cursor: inherit;
+    transition: all 0.3s;
+    border-radius: 4px;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    color: var(--parchment);
+    border-color: var(--gold-bright);
+    background: var(--gold-dim);
+  }
+
+  /* MAIN HUB LAYOUT */
+  .hub-container {
+    padding: 4rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  .hub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  .hub-subtitle {
+    font-size: 1.2rem;
+    color: var(--parch-mid);
+    text-align: center;
+    max-width: 800px;
+    margin-bottom: 4rem;
+    line-height: 1.6;
+  }
+
+  /* FLOWING CARDS */
+  .pillar-cards {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+  }
+  .pillar-card {
+    flex: 1;
+    min-width: 320px;
+    background: var(--bg-1);
+    border: 1px solid var(--gold-dim);
+    border-radius: 12px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.4s, border-color 0.4s;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+  }
+  .pillar-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 20px var(--glow);
+  }
+  .pillar-card::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(circle, var(--glow) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pillar-card:hover::before {
+    opacity: 1;
+  }
+  
+  .pillar-number {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    color: var(--bg-3);
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    z-index: 1;
+    font-weight: 700;
+    opacity: 0.5;
+  }
+  .pillar-content {
+    position: relative;
+    z-index: 2;
+    flex-grow: 1;
+  }
+  .pillar-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.5rem;
+  }
+  .pillar-sanskrit {
+    font-size: 1.2rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-family: 'Inter', sans-serif;
+  }
+  .pillar-desc {
+    font-size: 1rem;
+    color: var(--parch-mid);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+
+  /* INTERDISCIPLINARY BENEFITS */
+  .benefits-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
+  }
+  .benefit-item {
+    background: var(--bg-2);
+    padding: 1rem;
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+  }
+  .benefit-type {
+    display: block;
+    font-weight: 600;
+    color: var(--parchment);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.3rem;
+  }
+  .benefit-desc {
+    font-size: 0.9rem;
+    color: var(--parch-dim);
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body class="theme-fierce">
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<header>
+  <div class="logo">Era of Siddhas</div>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn">Guru's Eye</a>
+    <a href="index.html" class="nav-btn">Return to Entrance</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
+  </div>
+</header>
+
+<div class="hub-container">
+  <h1 class="hub-title">The Three Pillars of Siddha Vidya</h1>
+  <p class="hub-subtitle">
+    Select your path. Every pillar is deeply supported by the foundational sciences of Yoga, Upasana (Ritual/Mantra), and Upanishads (Philosophy). 
+  </p>
+
+  <div class="pillar-cards">
+    <!-- YUDDHAM CARD -->
+    <a href="course_hub.html?pillar=yuddham" class="pillar-card">
+      <div class="pillar-number">I</div>
+      <div class="pillar-content">
+        <h2 class="pillar-title">Yuddham</h2>
+        <div class="pillar-sanskrit">युद्धम् · The Martial Path</div>
+        <p class="pillar-desc">
+          The science of conflict, Neeti, and protection of Dharma. Master the internal and external battlefield.
+        </p>
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <span class="benefit-type">Yoga</span>
+            <span class="benefit-desc">Grants physical resilience, nervous system control, and unshakeable focus in battle.</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upasana</span>
+            <span class="benefit-desc">Invokes martial deities, building internal fire (Tejas) and unyielding resolve.</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upanishads</span>
+            <span class="benefit-desc">Instills the philosophy of detached action and fearlessness in the face of mortality.</span>
+          </li>
+        </ul>
+      </div>
+    </a>
+
+    <!-- RAJYA PALANAM CARD -->
+    <a href="course_hub.html?pillar=rājya" class="pillar-card">
+      <div class="pillar-number">II</div>
+      <div class="pillar-content">
+        <h2 class="pillar-title">Rājya Palanam</h2>
+        <div class="pillar-sanskrit">राज्य पालनम् · Governance</div>
+        <p class="pillar-desc">
+          The profound constituency and way of ruling to lead the world toward the ultimate goal of Rama Rājyam.
+        </p>
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <span class="benefit-type">Yoga</span>
+            <span class="benefit-desc">Ensures mental clarity and emotional stability when making empire-level decisions.</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upasana</span>
+            <span class="benefit-desc">Aligns the leader's intellect (Buddhi) with divine will and cosmic order (Rta).</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upanishads</span>
+            <span class="benefit-desc">Provides the ethical framework that power must serve the ultimate truth.</span>
+          </li>
+        </ul>
+      </div>
+    </a>
+
+    <!-- NAGARA NIRMANA CARD -->
+    <a href="course_hub.html?pillar=nagara" class="pillar-card">
+      <div class="pillar-number">III</div>
+      <div class="pillar-content">
+        <h2 class="pillar-title">Nagara Nirmana</h2>
+        <div class="pillar-sanskrit">नगर निर्माण · City Building</div>
+        <p class="pillar-desc">
+          Designing spaces where the divine is reality. Actions dedicated to Bhagavan and Loka Sangraha.
+        </p>
+        <ul class="benefits-list">
+          <li class="benefit-item">
+            <span class="benefit-type">Yoga</span>
+            <span class="benefit-desc">Cultivates spatial awareness and harmony between the body and the physical environment.</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upasana</span>
+            <span class="benefit-desc">Sanctifies the land (Vastu) and aligns structures with celestial and energetic grids.</span>
+          </li>
+          <li class="benefit-item">
+            <span class="benefit-type">Upanishads</span>
+            <span class="benefit-desc">Reveals how physical architecture reflects the architecture of the soul and the cosmos.</span>
+          </li>
+        </ul>
+      </div>
+    </a>
+  </div>
+</div>
+
+<script>
+  // Custom Cursor Logic
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.2;
+    ringY += (mouseY - ringY) * 0.2;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+
+  if (cursor && cursorRing) {
+    document.body.classList.add('custom-cursor-active');
+    animateRing();
+  }
+
+  // Hover States for Cursor
+  document.querySelectorAll('a, button, .pillar-card, .theme-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Theme Management with Persistence
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnElement) {
+      btnElement.classList.add('active');
+    } else {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+  }
+
+  // Load persisted theme on start
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
+  setTheme(null, initialTheme);
+</script>
+</body>
+</html>

@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Admin Dashboard — Era of Siddhas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Devanagari:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --earth: #0f0700;
+    --surface: #180e00;
+    --surface2: #221400;
+    --gold: #c8922a;
+    --gold-pale: #f5dfa0;
+    --gold-dim: rgba(200,146,42,0.15);
+    --ember: #c44a1a;
+    --ash: #8a7a6a;
+    --cream: #f2e8d5;
+    --success: #4a9e6a;
+    --warn: #c8922a;
+    --danger: #c44a1a;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--earth);
+    color: var(--cream);
+    font-family: 'EB Garamond', Georgia, serif;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+
+  /* TOP HEADER */
+  header {
+    grid-column: 1 / -1;
+    background: var(--surface);
+    border-bottom: 1px solid var(--gold-dim);
+    padding: 1rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  .admin-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(200,146,42,0.3);
+    color: var(--gold);
+  }
+  .header-time {
+    font-size: 0.8rem;
+    color: var(--ash);
+    font-style: italic;
+  }
+  .btn-broadcast {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+    background: var(--ember);
+    color: var(--cream);
+    border: none;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-broadcast:hover { opacity: 0.85; }
+
+  /* SIDEBAR */
+  nav {
+    background: var(--surface);
+    border-right: 1px solid var(--gold-dim);
+    padding: 1.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .nav-section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: rgba(138,122,106,0.4);
+    padding: 1rem 1.25rem 0.5rem;
+  }
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.65rem 1.25rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+  }
+  .nav-item:hover { background: var(--gold-dim); }
+  .nav-item.active { background: rgba(200,146,42,0.1); border-left-color: var(--gold); }
+  .nav-item-icon { font-size: 0.9rem; min-width: 1rem; text-align: center; }
+  .nav-item-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    color: var(--ash);
+    text-transform: uppercase;
+  }
+  .nav-item.active .nav-item-label { color: var(--gold-pale); }
+  .nav-badge {
+    margin-left: auto;
+    background: var(--ember);
+    color: var(--cream);
+    font-size: 0.6rem;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-family: 'Cinzel', serif;
+  }
+
+  /* MAIN */
+  main {
+    padding: 2rem;
+    overflow-y: auto;
+  }
+
+  /* PAGE TITLE */
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-pale);
+    margin-bottom: 0.25rem;
+  }
+  .page-sub {
+    font-size: 0.85rem;
+    color: var(--ash);
+    font-style: italic;
+    margin-bottom: 2rem;
+  }
+
+  /* METRIC CARDS */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--gold-dim);
+    margin-bottom: 2rem;
+  }
+  .metric-card {
+    background: var(--surface2);
+    padding: 1.25rem 1.5rem;
+    transition: background 0.2s;
+  }
+  .metric-card:hover { background: rgba(200,146,42,0.06); }
+  .metric-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ash);
+    margin-bottom: 0.5rem;
+  }
+  .metric-value {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    color: var(--gold-pale);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .metric-delta {
+    font-size: 0.75rem;
+    color: var(--success);
+    font-style: italic;
+  }
+  .metric-delta.down { color: var(--danger); }
+
+  /* TWO-COL LAYOUT */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  @media (max-width: 900px) {
+    .two-col { grid-template-columns: 1fr; }
+    body { grid-template-columns: 1fr; }
+    nav { display: none; }
+  }
+
+  /* PANEL */
+  .panel {
+    background: var(--surface2);
+    border: 1px solid var(--gold-dim);
+    padding: 1.5rem;
+  }
+  .panel-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .panel-action {
+    font-size: 0.6rem;
+    color: var(--ash);
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .panel-action:hover { color: var(--gold); }
+
+  /* SEEKER LIST */
+  .seeker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(200,146,42,0.06);
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+  .seeker-item:last-child { border-bottom: none; }
+  .seeker-item:hover { background: rgba(200,146,42,0.04); margin: 0 -0.5rem; padding-left: 0.5rem; padding-right: 0.5rem; }
+  .seeker-avatar {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(200,146,42,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    font-size: 0.8rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    background: rgba(200,146,42,0.06);
+  }
+  .seeker-info { flex: 1; min-width: 0; }
+  .seeker-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--cream);
+    margin-bottom: 2px;
+  }
+  .seeker-meta {
+    font-size: 0.75rem;
+    color: var(--ash);
+    font-style: italic;
+  }
+  .seeker-level {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid;
+  }
+  .level-mumukshu { color: #e8c57a; border-color: rgba(232,197,122,0.3); }
+  .level-shishya { color: #7aade8; border-color: rgba(122,173,232,0.3); }
+  .level-sadhaka { color: #7ae8a0; border-color: rgba(122,232,160,0.3); }
+  .level-siddha { color: #e87a7a; border-color: rgba(232,122,122,0.3); }
+
+  /* ACTIVITY FEED */
+  .activity-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(200,146,42,0.06);
+    align-items: flex-start;
+  }
+  .activity-item:last-child { border-bottom: none; }
+  .activity-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+  .dot-green { background: var(--success); }
+  .dot-gold { background: var(--gold); }
+  .dot-ember { background: var(--ember); }
+  .dot-ash { background: var(--ash); }
+  .activity-text {
+    font-size: 0.85rem;
+    color: var(--cream);
+    line-height: 1.5;
+  }
+  .activity-time {
+    font-size: 0.75rem;
+    color: var(--ash);
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* ALERTS */
+  .alert-item {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    border-left: 2px solid;
+    margin-bottom: 8px;
+    background: rgba(0,0,0,0.2);
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .alert-item:hover { opacity: 0.8; }
+  .alert-ember { border-color: var(--ember); }
+  .alert-gold { border-color: var(--gold); }
+  .alert-success { border-color: var(--success); }
+  .alert-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.25rem;
+  }
+  .alert-ember .alert-title { color: var(--ember); }
+  .alert-gold .alert-title { color: var(--gold); }
+  .alert-success .alert-title { color: var(--success); }
+  .alert-body {
+    font-size: 0.85rem;
+    color: var(--ash);
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .alert-time {
+    font-size: 0.7rem;
+    color: rgba(138,122,106,0.5);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* PROGRESS BARS */
+  .progress-row {
+    margin-bottom: 1rem;
+  }
+  .progress-row-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+  .progress-row-label {
+    font-size: 0.8rem;
+    color: var(--cream);
+  }
+  .progress-row-val {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold);
+  }
+  .prog-bar {
+    height: 2px;
+    background: rgba(200,146,42,0.1);
+    border-radius: 1px;
+  }
+  .prog-fill {
+    height: 100%;
+    border-radius: 1px;
+    background: var(--gold);
+    transition: width 1s ease;
+  }
+  .prog-fill.ember { background: var(--ember); }
+  .prog-fill.success { background: var(--success); }
+
+  /* BROADCAST MODAL */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--surface2);
+    border: 1px solid rgba(200,146,42,0.3);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+  }
+  .modal-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .modal-input {
+    width: 100%;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(200,146,42,0.2);
+    color: var(--cream);
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    outline: none;
+  }
+  .modal-input:focus { border-color: rgba(200,146,42,0.5); }
+  .modal-textarea {
+    width: 100%;
+    min-height: 100px;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(200,146,42,0.2);
+    color: var(--cream);
+    font-family: 'EB Garamond', serif;
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    resize: vertical;
+    outline: none;
+    margin-bottom: 1rem;
+    line-height: 1.7;
+  }
+  .modal-buttons { display: flex; gap: 0.75rem; justify-content: flex-end; }
+  .btn-sm {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid rgba(200,146,42,0.3);
+    background: transparent;
+    color: var(--ash);
+  }
+  .btn-sm:hover { border-color: var(--gold); color: var(--gold-pale); }
+  .btn-sm.primary { background: var(--gold); color: var(--earth); border-color: var(--gold); }
+  .btn-sm.primary:hover { background: #f0c060; }
+
+  /* CHART AREA */
+  .chart-area {
+    position: relative;
+    height: 140px;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding-bottom: 24px;
+  }
+  .chart-bar {
+    flex: 1;
+    background: rgba(200,146,42,0.15);
+    border-top: 1px solid rgba(200,146,42,0.4);
+    transition: all 0.3s;
+    position: relative;
+    cursor: pointer;
+    min-width: 0;
+  }
+  .chart-bar:hover { background: rgba(200,146,42,0.3); }
+  .chart-bar-label {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.6rem;
+    color: var(--ash);
+    white-space: nowrap;
+    font-family: 'Cinzel', serif;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <a href="index.html" class="header-logo">Era of Siddhas</a>
+  <div class="header-right">
+    <span class="header-time" id="liveTime"></span>
+    <span class="admin-badge">Admin</span>
+    <button class="btn-broadcast" onclick="document.getElementById('broadcastModal').classList.add('open')">
+      ⚡ Broadcast Leela
+    </button>
+  </div>
+</header>
+
+<!-- SIDEBAR NAV -->
+<nav>
+  <div class="nav-section-label">Overview</div>
+  <a href="#" class="nav-item active">
+    <span class="nav-item-icon">◈</span>
+    <span class="nav-item-label">Dashboard</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">◉</span>
+    <span class="nav-item-label">Seekers</span>
+  </a>
+
+  <div class="nav-section-label">Sangha</div>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">✦</span>
+    <span class="nav-item-label">Activity</span>
+    <span class="nav-badge">3</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">⚑</span>
+    <span class="nav-item-label">Alerts</span>
+    <span class="nav-badge">2</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">⬡</span>
+    <span class="nav-item-label">Journals</span>
+  </a>
+
+  <div class="nav-section-label">Content</div>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">◎</span>
+    <span class="nav-item-label">Curriculum</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">◇</span>
+    <span class="nav-item-label">Marathons</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">⊕</span>
+    <span class="nav-item-label">Leelas</span>
+  </a>
+
+  <div class="nav-section-label">System</div>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">⊛</span>
+    <span class="nav-item-label">AI Digest</span>
+  </a>
+  <a href="#" class="nav-item">
+    <span class="nav-item-icon">◦</span>
+    <span class="nav-item-label">Settings</span>
+  </a>
+
+  <div style="flex:1;"></div>
+  <div class="nav-section-label">Navigation</div>
+  <a href="index.html" class="nav-item">
+    <span class="nav-item-icon">⌂</span>
+    <span class="nav-item-label">Home</span>
+  </a>
+  <a href="pillar_hub.html" class="nav-item">
+    <span class="nav-item-icon">◆</span>
+    <span class="nav-item-label">Pillars</span>
+  </a>
+</nav>
+
+<!-- MAIN CONTENT -->
+<main>
+  <div class="page-title">Daily Digest</div>
+  <p class="page-sub" id="dateDisplay">Loading date...</p>
+
+  <!-- METRICS -->
+  <div class="metrics-grid">
+    <div class="metric-card">
+      <div class="metric-label">Active Seekers</div>
+      <div class="metric-value">247</div>
+      <div class="metric-delta">↑ 12 this week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Journal Entries</div>
+      <div class="metric-value">83</div>
+      <div class="metric-delta">↑ 23 today</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Marathons Done</div>
+      <div class="metric-value">31</div>
+      <div class="metric-delta">↑ 5 this week</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Guru AI Sessions</div>
+      <div class="metric-value">194</div>
+      <div class="metric-delta">↑ 44 today</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Guru's Mirror Sent</div>
+      <div class="metric-value">4</div>
+      <div class="metric-delta down">Ego incidents</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-label">Siddha Candidates</div>
+      <div class="metric-value">3</div>
+      <div class="metric-delta">Pending review</div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- SEEKER LIST -->
+    <div class="panel">
+      <div class="panel-title">Active Seekers <span class="panel-action">View all →</span></div>
+      <div class="seeker-item">
+        <div class="seeker-avatar">अ</div>
+        <div class="seeker-info">
+          <div class="seeker-name">Arjun Mehta</div>
+          <div class="seeker-meta">Katha Upanishad — Verse 3 · 2h ago</div>
+        </div>
+        <span class="seeker-level level-sadhaka">Sadhaka</span>
+      </div>
+      <div class="seeker-item">
+        <div class="seeker-avatar">प्र</div>
+        <div class="seeker-info">
+          <div class="seeker-name">Priya Sharma</div>
+          <div class="seeker-meta">Isha Upanishad — Journal · 4h ago</div>
+        </div>
+        <span class="seeker-level level-shishya">Shishya</span>
+      </div>
+      <div class="seeker-item">
+        <div class="seeker-avatar">कृ</div>
+        <div class="seeker-info">
+          <div class="seeker-name">Krsna Das</div>
+          <div class="seeker-meta">Marathon I — Completed ✓ · 6h ago</div>
+        </div>
+        <span class="seeker-level level-siddha">Siddha</span>
+      </div>
+      <div class="seeker-item">
+        <div class="seeker-avatar">र</div>
+        <div class="seeker-info">
+          <div class="seeker-name">Ravi Iyer</div>
+          <div class="seeker-meta">Assessment complete · 8h ago</div>
+        </div>
+        <span class="seeker-level level-mumukshu">Mumukshu</span>
+      </div>
+      <div class="seeker-item">
+        <div class="seeker-avatar">स</div>
+        <div class="seeker-info">
+          <div class="seeker-name">Saraswati Devi</div>
+          <div class="seeker-meta">Brahma Sutras — Deep dive · 12h ago</div>
+        </div>
+        <span class="seeker-level level-sadhaka">Sadhaka</span>
+      </div>
+    </div>
+
+    <!-- ALERTS -->
+    <div class="panel">
+      <div class="panel-title">Sangha Alerts <span class="panel-action" onclick="clearAlerts()">Clear all</span></div>
+      <div id="alertsContainer">
+        <div class="alert-item alert-ember" onclick="this.style.opacity='0.3'">
+          <div>
+            <div class="alert-title">Guru's Mirror Triggered</div>
+            <div class="alert-body">Seeker "R.V." displayed ego-defensive behavior in Sangha thread on Karma. Mirror sent privately — Gita 3:27 dispatched.</div>
+          </div>
+          <span class="alert-time">2h ago</span>
+        </div>
+        <div class="alert-item alert-gold" onclick="this.style.opacity='0.3'">
+          <div>
+            <div class="alert-title">Siddha Candidate Ready</div>
+            <div class="alert-body">Krsna Das has completed all 6 Upanishad modules + 3 Marathons. Awaiting admin review for Rudraksha dispatch.</div>
+          </div>
+          <span class="alert-time">5h ago</span>
+        </div>
+        <div class="alert-item alert-success" onclick="this.style.opacity='0.3'">
+          <div>
+            <div class="alert-title">Marathon Milestone</div>
+            <div class="alert-body">31 seekers have now completed Marathon I. Community celebration post drafted — pending your approval to publish.</div>
+          </div>
+          <span class="alert-time">1d ago</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <!-- CURRICULUM PROGRESS -->
+    <div class="panel">
+      <div class="panel-title">Curriculum Progress</div>
+      <div class="progress-row">
+        <div class="progress-row-header">
+          <span class="progress-row-label">Isha Upanishad</span>
+          <span class="progress-row-val">74%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" style="width:74%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-row-header">
+          <span class="progress-row-label">Kena Upanishad</span>
+          <span class="progress-row-val">41%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill" style="width:41%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-row-header">
+          <span class="progress-row-label">Bhagavad Gita</span>
+          <span class="progress-row-val">28%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill ember" style="width:28%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-row-header">
+          <span class="progress-row-label">Yoga Sutras</span>
+          <span class="progress-row-val">15%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill ember" style="width:15%"></div></div>
+      </div>
+      <div class="progress-row">
+        <div class="progress-row-header">
+          <span class="progress-row-label">Marathon I</span>
+          <span class="progress-row-val">89%</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill success" style="width:89%"></div></div>
+      </div>
+    </div>
+
+    <!-- WEEKLY ACTIVITY CHART -->
+    <div class="panel">
+      <div class="panel-title">Weekly Activity</div>
+      <div class="chart-area" id="chart">
+        <!-- bars generated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ACTIVITY FEED -->
+  <div class="panel" style="margin-bottom:1rem;">
+    <div class="panel-title">Live Sangha Feed <span class="panel-action">Expand</span></div>
+    <div class="activity-item">
+      <div class="activity-dot dot-green"></div>
+      <div>
+        <div class="activity-text">Priya Sharma completed the Shanti Patha journal reflection — "I realize I've been seeking what I already am."</div>
+        <div class="activity-time">4 minutes ago</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-dot dot-gold"></div>
+      <div>
+        <div class="activity-text">Arjun Mehta unlocked Verse 3 of the Katha Upanishad after passing comprehension check.</div>
+        <div class="activity-time">17 minutes ago</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-dot dot-ember"></div>
+      <div>
+        <div class="activity-text">Guru AI sent counter-question to 3 seekers simultaneously on the nature of Ahamkara.</div>
+        <div class="activity-time">32 minutes ago</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-dot dot-green"></div>
+      <div>
+        <div class="activity-text">Krsna Das completed Marathon I — score 94/100. Sangha notification queued for admin approval.</div>
+        <div class="activity-time">6 hours ago</div>
+      </div>
+    </div>
+    <div class="activity-item">
+      <div class="activity-dot dot-ash"></div>
+      <div>
+        <div class="activity-text">2 seekers inactive for 7+ days. Gentle nudge dispatched: "The river does not wait, but it always returns."</div>
+        <div class="activity-time">Yesterday</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI DIGEST -->
+  <div class="panel">
+    <div class="panel-title">AI Guru Daily Digest <span class="panel-action" onclick="generateDigest()">Regenerate ↗</span></div>
+    <div id="digestContent" style="font-size:0.95rem; color:var(--cream); line-height:1.9; font-style:italic;">
+      Loading today's digest...
+    </div>
+  </div>
+</main>
+
+<!-- BROADCAST MODAL -->
+<div class="modal-overlay" id="broadcastModal">
+  <div class="modal">
+    <div class="modal-title">⚡ Broadcast Shiva Leela</div>
+    <input class="modal-input" placeholder="Event title (e.g. Shiva Leela — Hyderabad Gathering)" id="leela-title"/>
+    <input class="modal-input" placeholder="Location or link" id="leela-loc"/>
+    <textarea class="modal-textarea" placeholder="Message to all active Seekers..." id="leela-msg"></textarea>
+    <div style="margin-bottom:1rem;">
+      <label style="font-family:'Cinzel',serif; font-size:0.6rem; letter-spacing:0.2em; color:var(--ash); text-transform:uppercase; display:block; margin-bottom:0.5rem;">Send to</label>
+      <select style="width:100%; background:rgba(0,0,0,0.4); border:1px solid rgba(200,146,42,0.2); color:var(--cream); font-family:'EB Garamond',serif; font-size:0.9rem; padding:0.5rem 0.75rem; outline:none;">
+        <option>All active seekers (247)</option>
+        <option>Sadhaka & above (89)</option>
+        <option>Siddha candidates only (3)</option>
+        <option>Specific region...</option>
+      </select>
+    </div>
+    <div class="modal-buttons">
+      <button class="btn-sm" onclick="document.getElementById('broadcastModal').classList.remove('open')">Cancel</button>
+      <button class="btn-sm primary" onclick="sendBroadcast()">Broadcast ⚡</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Live time & date
+  function updateTime() {
+    const now = new Date();
+    document.getElementById('liveTime').textContent = now.toLocaleTimeString('en-IN', {
+      hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+  }
+  setInterval(updateTime, 1000);
+  updateTime();
+
+  // Set date dynamically
+  const now = new Date();
+  const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('dateDisplay').textContent =
+    `${dayNames[now.getDay()]}, ${now.getDate()} ${monthNames[now.getMonth()]} ${now.getFullYear()} — reviewed by Vibhas & council`;
+
+  // Chart bars
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const vals = [45, 62, 38, 71, 83, 55, 91];
+  const max = Math.max(...vals);
+  const chart = document.getElementById('chart');
+  days.forEach((d, i) => {
+    const bar = document.createElement('div');
+    bar.className = 'chart-bar';
+    bar.style.height = `${(vals[i]/max)*100}%`;
+    if (i === 6) bar.style.background = 'rgba(200,146,42,0.4)';
+    bar.innerHTML = `<span class="chart-bar-label">${d}</span>`;
+    bar.title = `${vals[i]} sessions`;
+    chart.appendChild(bar);
+  });
+
+  // AI Digest — uses locally generated wisdom (no external API needed)
+  function generateDigest() {
+    const digests = [
+      'The Sangha breathes well today. 247 souls walk the path — each at their own pace, none lost. Four mirrors were dispatched with compassion, not judgment; the ego resists most fiercely just before it yields. Krsna Das stands at the threshold of Siddha — await his final reflection before sending the Rudraksha. Two wandering seekers have been called back gently. The river does not hurry, but it never stops.',
+      'A quiet day on the surface, but the undercurrents run deep. 83 journal entries — more than any day this month. The seekers are writing not for us but for themselves, which is exactly as it should be. The four ego-mirrors were necessary medicine; Gita 3:27 lands differently when it arrives privately, without audience. Watch Saraswati Devi closely — her Brahma Sutra notes show a mind approaching the edge of Nirvikalpa understanding.',
+      'The Sangha grows not in numbers alone but in depth. 247 active seekers, but the quality of inquiry has shifted — fewer surface questions, more silence before response. This is the mark of real absorption. The Siddha candidate deserves unhurried review; let the Rudraksha find him when the moment is ripe, not when the metric says so. Two absent seekers were nudged — one returned within the hour. The other will come when the pain of not-knowing exceeds the comfort of forgetting.',
+      'Dawn review: the river flows. 194 Guru AI sessions — the seekers are learning to ask better questions, which means they are learning to sit with not-knowing longer. Four mirrors dispatched: ego is the last fortress, and it fights hardest at the gate of surrender. Marathon completion rate holds at 89% — the 11% who pause are not failures but seekers whose rhythm demands a different pace. Krsna Das awaits. The Sangha awaits. We wait together.'
+    ];
+    const idx = Math.floor(Math.random() * digests.length);
+    document.getElementById('digestContent').textContent = digests[idx];
+  }
+
+  function clearAlerts() {
+    document.getElementById('alertsContainer').innerHTML =
+      '<div style="text-align:center; padding:2rem; color:var(--ash); font-style:italic;">All alerts cleared. The Sangha is at peace.</div>';
+  }
+
+  function sendBroadcast() {
+    const title = document.getElementById('leela-title').value || 'Untitled Leela';
+    alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    document.getElementById('broadcastModal').classList.remove('open');
+    // Clear inputs
+    document.getElementById('leela-title').value = '';
+    document.getElementById('leela-loc').value = '';
+    document.getElementById('leela-msg').value = '';
+  }
+
+  // Load digest on open
+  generateDigest();
+</script>
+</body>
+</html>

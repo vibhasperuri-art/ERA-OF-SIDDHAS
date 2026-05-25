@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inner Sanctum — Era of Siddhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Noto+Serif+Devanagari:wght@400;500;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root, body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #b0b5b9;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.75);
+    --border-glass: rgba(196, 137, 42, 0.25);
+    --text-primary: #e8d5a3;
+    --text-muted: #b89a60;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(2, 24, 22, 0.7);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --text-primary: #e0fcf8;
+    --text-muted: #9cf0e2;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --glow: rgba(46, 184, 166, 0.15);
+  }
+
+  /* ── ANCIENT RASA GRAPHICS (THEME WATERMARKS) ── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80vmin;
+    opacity: 0.15;
+    transition: background-image 1.5s ease-in-out;
+    mix-blend-mode: screen;
+  }
+  body.theme-fierce::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%23ff4d4d" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%23ff4d4d" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23b52a2a" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+  }
+  body.theme-earthy::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 10 Q65 40 50 50 Q35 40 50 10 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M50 90 Q65 60 50 50 Q35 60 50 90 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M10 50 Q40 65 50 50 Q40 35 10 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M90 50 Q60 65 50 50 Q60 35 90 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%23f0c040" stroke-width="0.3" opacity="0.5" stroke-dasharray="2 2"/%3E%3C/svg%3E');
+  }
+  body.theme-mystical::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
+  }
+
+  /* ── UNIQUE ERA OF SIDDHAS SIGNATURE ── */
+  .noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active textarea,
+  body.custom-cursor-active .tab,
+  body.custom-cursor-active .anvaya-cell {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    margin: 0; padding: 0;
+    transition: all 0.5s ease;
+    overflow-x: hidden;
+  }
+
+  /* Glass Nav */
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+  .theme-btn {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* Main Container */
+  .sanctum-wrapper {
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+  }
+
+  /* Floating Tabs */
+  .pillar-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .pillar-tabs::-webkit-scrollbar { display: none; }
+  .tab {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+  }
+  .tab.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 4px 15px var(--accent-glow);
+  }
+
+  /* Glass Card */
+  .glass-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    animation: viewFadeIn 0.6s ease;
+  }
+  @keyframes viewFadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .shloka-sanskrit {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(1.8rem, 3vw, 2.5rem);
+    color: var(--accent);
+    line-height: 1.8;
+    text-align: center;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 20px var(--accent-glow);
+  }
+  .shloka-english {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.3rem;
+    font-style: italic;
+    color: var(--text-muted);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+  }
+
+  /* Modern Anvaya Grid */
+  .anvaya-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.2em;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+  }
+  .anvaya-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  .anvaya-cell {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 1.2rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .anvaya-cell:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .anvaya-cell strong {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.4rem;
+    color: var(--accent);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .anvaya-cell span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* Guru AI Input */
+  .guru-ai-box {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-glass);
+  }
+  textarea {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    border-radius: 16px;
+    padding: 1.5rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    min-height: 120px;
+    resize: vertical;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+  }
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+  }
+  .submit-btn {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .submit-btn:hover {
+    transform: scale(1.05);
+  }
+</style>
+</head>
+<body class="theme-fierce">
+
+<div class="noise-overlay"></div>
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<nav class="glass-nav">
+  <a href="index.html" class="nav-brand">← Era of Siddhas</a>
+  <div style="display:flex; gap: 8px;">
+    <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+    <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+    <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+  </div>
+</nav>
+
+<div class="sanctum-wrapper">
+  <div class="pillar-tabs">
+    <button class="tab active" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
+    <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
+    <button class="tab" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
+  </div>
+  <div class="glass-card" id="content-card">
+    <div class="shloka-sanskrit" id="shloka-sanskrit-box">
+      कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br>
+      मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥
+    </div>
+    <div class="shloka-english" id="shloka-english-box">
+      "Your authority lies only in the action itself, never in its fruits. Do not let the fruits of action be your motive, nor let yourself become attached to inaction."
+    </div>
+    
+    <div class="anvaya-title">Layered Transmission (Anvaya)</div>
+    <div class="anvaya-grid" id="anvaya-grid-box">
+      <div class="anvaya-cell"><strong>कर्मणि</strong><span>karmaṇi — in prescribed duty (action)</span></div>
+      <div class="anvaya-cell"><strong>एव</strong><span>eva — only / certainly</span></div>
+      <div class="anvaya-cell"><strong>अधिकारः</strong><span>adhikāraḥ — right / authority</span></div>
+      <div class="anvaya-cell"><strong>ते</strong><span>te — your</span></div>
+      <div class="anvaya-cell"><strong>मा</strong><span>mā — never</span></div>
+      <div class="anvaya-cell"><strong>फलेषु</strong><span>phaleṣu — in the fruits / results</span></div>
+      <div class="anvaya-cell"><strong>कदाचन</strong><span>kadācana — at any time</span></div>
+    </div>
+
+    <div class="guru-ai-box">
+      <div class="anvaya-title" style="color: var(--accent)">The Guru's Mirror</div>
+      <p id="reflection-prompt" style="color: var(--text-muted); margin-bottom: 1rem;">When you apply this to Yuddham, how do you fight fiercely for justice while maintaining zero attachment to the outcome?</p>
+      <textarea id="reflection-textarea" placeholder="Reflect upon this. The Gurukulam is listening..."></textarea>
+      <button class="submit-btn" onclick="submitReflection()">Submit Reflection</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+function setTheme(btnElement, themeName) {
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical');
+  document.body.classList.add(themeName);
+  localStorage.setItem('era_of_siddhas_theme', themeName);
+  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+
+const sanctumData = {
+  yuddham: {
+    shloka: `कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥`,
+    english: `"Your authority lies only in the action itself, never in its fruits. Do not let the fruits of action be your motive, nor let yourself become attached to inaction."`,
+    anvaya: [
+      { sanskrit: "कर्मणि", translit: "karmaṇi — in prescribed duty (action)" },
+      { sanskrit: "एव", translit: "eva — only / certainly" },
+      { sanskrit: "अधिकारः", translit: "adhikāraḥ — right / authority" },
+      { sanskrit: "ते", translit: "te — your" },
+      { sanskrit: "मा", translit: "mā — never" },
+      { sanskrit: "फलेषु", translit: "phaleṣu — in the fruits / results" },
+      { sanskrit: "कदाचन", translit: "kadācene — at any time" }
+    ],
+    reflection: "When you apply this to Yuddham, how do you fight fiercely for justice while maintaining zero attachment to the outcome?"
+  },
+  rājya: {
+    shloka: `यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।<br>अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ॥`,
+    english: `"Whenever and wherever there is a decline in Dharma (righteousness) and a predominant rise of Adharma (unrighteousness), at that time I descend myself."`,
+    anvaya: [
+      { sanskrit: "यदा यदा", translit: "yadā yadā — whenever" },
+      { sanskrit: "हि", translit: "hi — certainly" },
+      { sanskrit: "धर्मस्य", translit: "dharmasya — of righteousness" },
+      { sanskrit: "ग्लानिः", translit: "glāniḥ — decline" },
+      { sanskrit: "भवति", translit: "bhavati — happens" },
+      { sanskrit: "भारत", translit: "bhārata — O descendent of Bharata" },
+      { sanskrit: "अभ्युत्थानम्", translit: "abhyutthānam — rise / prevalence" },
+      { sanskrit: "अधर्मस्य", translit: "adharmasya — of unrighteousness" },
+      { sanskrit: "तदा", translit: "tadā — then / at that time" },
+      { sanskrit: "आत्मानम्", translit: "ātmānam — myself" },
+      { sanskrit: "सृजामि", translit: "sṛjāmi — manifest / create" },
+      { sanskrit: "अहम्", translit: "aham — I" }
+    ],
+    reflection: "How does a leader identify the subtle decline of Dharma in themselves and their administration before it manifests as external decay?"
+  },
+  nagara: {
+    shloka: `अनेकवर्णमुकुटैः युक्तः सर्वैश्च धातुभिः ।<br>वास्तुपुरुषोऽयं भूताधिपः सदा पातु गृहाणि नः ॥`,
+    english: `"Adorned with crowns of many colors, endowed with all metallic elements, may this Vastu Purusha, the lord of material energies, forever protect our residences."`,
+    anvaya: [
+      { sanskrit: "अनेकवर्ण", translit: "anekavarṇa — of many colors / spectra" },
+      { sanskrit: "मुकुटैः", translit: "mukuṭaiḥ — with crowns / pinnacles" },
+      { sanskrit: "युक्तः", translit: "yuktaḥ — endowed / aligned" },
+      { sanskrit: "सर्वैः", translit: "sarvaiḥ — with all" },
+      { sanskrit: "धातुभिः", translit: "dhātubhiḥ — with elements / metals / minerals" },
+      { sanskrit: "वास्तुपुरुषः", translit: "vāstupuruṣaḥ — the cosmic spatial being" },
+      { sanskrit: "अयं", translit: "ayaṁ — this" },
+      { sanskrit: "भूताधिपः", translit: "bhūtādhipaḥ — lord of elements" },
+      { sanskrit: "सदा", translit: "sadā — always" },
+      { sanskrit: "पातु", translit: "pātu — protect" },
+      { sanskrit: "गृहाणि", translit: "gṛhāṇi — houses / structures" },
+      { sanskrit: "नः", translit: "naḥ — our" }
+    ],
+    reflection: "In placing elements (fire, water, air, earth) in a home, how do you reflect the macrocosmic order within your microcosmic living quarters?"
+  }
+};
+
+let activePillar = 'yuddham';
+
+function switchPillar(btnElement, pillar) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  if (btnElement) btnElement.classList.add('active');
+  
+  activePillar = pillar;
+  const data = sanctumData[pillar];
+  if (!data) return;
+
+  document.getElementById('shloka-sanskrit-box').innerHTML = data.shloka;
+  document.getElementById('shloka-english-box').innerHTML = data.english;
+  document.getElementById('reflection-prompt').innerHTML = data.reflection;
+  document.getElementById('reflection-textarea').value = "";
+
+  const grid = document.getElementById('anvaya-grid-box');
+  grid.innerHTML = data.anvaya.map(item => `
+    <div class="anvaya-cell"><strong>${item.sanskrit}</strong><span>${item.translit}</span></div>
+  `).join('');
+
+  // Rebind custom cursor hovers for newly generated cells
+  document.querySelectorAll('.anvaya-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+function submitReflection() {
+  const text = document.getElementById('reflection-textarea').value.trim();
+  if (!text) {
+    alert("Please enter a reflection before submitting to the Gurukulam.");
+    return;
+  }
+  localStorage.setItem('era_of_siddhas_reflection_' + activePillar, text);
+  alert("Your reflection has been submitted successfully to the Guru's Mirror.");
+  document.getElementById('reflection-textarea').value = "";
+}
+
+// Load persisted theme on start
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
+setTheme(null, initialTheme);
+
+// Custom Cursor Logic
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.2;
+  ringY += (mouseY - ringY) * 0.2;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+
+if (cursor && cursorRing) {
+  document.body.classList.add('custom-cursor-active');
+  animateRing();
+}
+
+document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+</script>
+</body>
+</html>
