@@ -342,6 +342,7 @@
     transform: scale(1.05);
   }
 </style>
+<script src="js/api.js"></script>
 </head>
 <body class="theme-fierce">
 
@@ -350,12 +351,25 @@
 <div class="custom-cursor-ring" id="cursor-ring"></div>
 
 <nav class="glass-nav">
-  <a href="index.html" class="nav-brand">← Era of Siddhas</a>
-  <div style="display:flex; gap: 8px;">
-    <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
-    <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
-    <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
-    <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="sangha.html" class="nav-btn" style="text-decoration:none;">The Sangha</a>
+    <a href="course_hub.html" class="nav-btn" style="text-decoration:none;">Course Hub</a>
+    <a href="admin.html" class="nav-btn" style="text-decoration:none;">Guru's Eye</a>
+    <a href="pillar_hub.html" class="nav-btn" style="text-decoration:none;">Return to Pillars</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
   </div>
 </nav>
 
@@ -527,13 +541,17 @@ const samkshepaRamayanaShlokas = [
   }
 ];
 
-function submitReflection() {
+async function submitReflection() {
   const text = document.getElementById('reflection-textarea').value.trim();
   if (!text) {
     alert("Please enter a reflection before submitting to the Gurukulam.");
     return;
   }
   localStorage.setItem('era_of_siddhas_reflection_' + activePillar, text);
+  
+  if (window.EOS_API) {
+    await window.EOS_API.saveReflection(activePillar, "sanctum", text, "shared");
+  }
   
   // Add to completed
   let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
