@@ -1049,7 +1049,7 @@
     position: sticky;
     top: 0;
     z-index: 5;
-    background: rgba(2, 10, 8, 0.95);
+    background: var(--bg-glass);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     padding-top: 0.2rem;
@@ -1074,7 +1074,7 @@
     background: var(--accent-glow);
   }
   .pane-tab-btn.active {
-    color: var(--gold-bright);
+    color: var(--accent);
     border-bottom-color: var(--accent);
     text-shadow: 0 0 8px var(--accent-glow);
   }
@@ -1085,8 +1085,8 @@
     left: 20%;
     width: 60%;
     height: 2px;
-    background: var(--gold-bright);
-    box-shadow: 0 0 10px var(--gold-bright), 0 0 20px var(--accent);
+    background: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
     border-radius: 2px;
   }
   .tab-content-area {
@@ -1364,6 +1364,60 @@
     opacity: 0.07;
     transform: scale(1) rotate(0deg);
   }
+
+  .lock-notice-box {
+    background: var(--accent-glow, rgba(200, 146, 42, 0.03));
+    border: 1.5px dashed var(--gold-bright, #c8922a);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    animation: pulseGlow 3s infinite alternate;
+  }
+  .lock-notice-box .notice-icon {
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  .lock-notice-box .notice-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.25rem;
+    color: var(--gold-bright, #c8922a);
+    font-weight: bold;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+  }
+  .lock-notice-box .notice-text {
+    font-size: 1.0rem;
+    line-height: 1.6;
+    color: var(--text-primary, #ffffff);
+    margin: 0 auto;
+    max-width: 90%;
+  }
+  @keyframes pulseGlow {
+    0% { box-shadow: 0 4px 15px rgba(200, 146, 42, 0.08); }
+    100% { box-shadow: 0 4px 25px rgba(200, 146, 42, 0.22); }
+  }
+
+  /* Light mode tab overrides to prevent visibility and contrast issues */
+  body.theme-light .pane-tabs {
+    background: #f7f2e8 !important; /* Solid parchment background to prevent overlapping content from shining through */
+    border-bottom: 1px solid rgba(139, 69, 19, 0.25) !important;
+  }
+  body.theme-light .pane-tab-btn {
+    color: #6b4e31 !important; /* Clearly readable medium-dark brown for unselected tabs */
+  }
+  body.theme-light .pane-tab-btn:hover {
+    color: #1a1208 !important;
+    background: rgba(111, 48, 7, 0.08) !important;
+  }
+  body.theme-light .pane-tab-btn.active {
+    color: #6f3007 !important; /* Deep accent brown for active tab */
+    border-bottom-color: #6f3007 !important;
+    font-weight: 600 !important;
+    text-shadow: none !important;
+  }
 </style>
 <script>
   window.MathJax = {
@@ -1380,6 +1434,7 @@
   };
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script src="js/api.js"></script>
 </head>
 <body class="theme-light">
 <div class="theme-graphics-bg">
@@ -1550,6 +1605,7 @@
     Siddha Vidya
   </a>
   <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="course_hub.html" id="back-to-hub-btn" class="nav-btn">Return to Courses</a>
     <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
     <a href="admin.html" class="nav-btn" style="color:var(--accent); border:1px solid var(--border-glass);">⊛ Admin</a>
@@ -2372,7 +2428,15 @@ function getInstructionsForGrade() {
   return lesson.instructions;
 }
 
-function isGradeUnlocked(grade) {
+function isAdmin() {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get('role') === 'admin' || localStorage.getItem('eos_role') === 'admin';
+}
+
+function isGradeAuthorized(grade) {
+  if (isAdmin()) {
+    return true;
+  }
   const gradesOrder = ['primary', 'secondary', 'ug', 'phd'];
   const userGrade = localStorage.getItem('eos_user_grade') || 'primary';
   const userGradeIdx = gradesOrder.indexOf(userGrade);
@@ -2394,6 +2458,11 @@ function isGradeUnlocked(grade) {
   return false;
 }
 
+function isGradeUnlocked(grade) {
+  // All grades are unlocked for preview and selectable by default
+  return true;
+}
+
 function getPreviousGrade(grade) {
   const gradesOrder = ['primary', 'secondary', 'ug', 'phd'];
   const idx = gradesOrder.indexOf(grade);
@@ -2401,17 +2470,28 @@ function getPreviousGrade(grade) {
 }
 
 function changeGradeLevel(grade) {
-  if (!isGradeUnlocked(grade)) {
-    const gradesLabels = { primary: 'Grades 1-5', secondary: 'Grades 6-12', ug: 'UG / PG', phd: 'Higher Knowledge (PhD)' };
-    const prevGrade = getPreviousGrade(grade);
-    const prevLabel = gradesLabels[prevGrade] || '';
-    alert(`🔒 Academic Level Locked!\n\nYou must first complete this course at the "${prevLabel}" foundation level to unlock the higher level content.`);
-    return;
-  }
   currentGrade = grade;
   localStorage.setItem('era_of_siddhas_grade', grade);
   renderLeftPane();
   renderWidget();
+}
+
+function getLockNoticeHtml() {
+  const gradesOrder = ['primary', 'secondary', 'ug', 'phd'];
+  const gradesLabels = { primary: 'Grades 1-5', secondary: 'Grades 6-12', ug: 'UG / PG', phd: 'Higher Knowledge (PhD)' };
+  const idx = gradesOrder.indexOf(currentGrade);
+  const prevGrade = idx > 0 ? gradesOrder[idx - 1] : 'primary';
+  const prevLabel = gradesLabels[prevGrade] || '';
+  
+  return `
+    <div class="lock-notice-box">
+      <div class="notice-icon">🔱</div>
+      <div class="notice-title">Ascend to Higher Wisdom</div>
+      <p class="notice-text">
+        Sustaining higher wisdom requires establishing the foundation first. Complete the tasks of your present grade level (<strong>${prevLabel}</strong>) to fully unlock this advanced knowledge, dynamic solvers, and the Sādhana simulation!
+      </p>
+    </div>
+  `;
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -2457,10 +2537,10 @@ function renderLeftPane() {
     <div class="grade-selector">
       <div class="grade-select-title">Course Academic Level</div>
       <div class="grade-pills">
-        <button class="grade-pill-btn ${currentGrade === 'primary' ? 'active' : ''} ${!isGradeUnlocked('primary') ? 'locked' : ''}" onclick="changeGradeLevel('primary')">Grades 1-5</button>
-        <button class="grade-pill-btn ${currentGrade === 'secondary' ? 'active' : ''} ${!isGradeUnlocked('secondary') ? 'locked' : ''}" onclick="changeGradeLevel('secondary')">${isGradeUnlocked('secondary') ? '' : '🔒 '}Grades 6-12</button>
-        <button class="grade-pill-btn ${currentGrade === 'ug' ? 'active' : ''} ${!isGradeUnlocked('ug') ? 'locked' : ''}" onclick="changeGradeLevel('ug')">${isGradeUnlocked('ug') ? '' : '🔒 '}UG / PG</button>
-        <button class="grade-pill-btn ${currentGrade === 'phd' ? 'active' : ''} ${!isGradeUnlocked('phd') ? 'locked' : ''}" onclick="changeGradeLevel('phd')">${isGradeUnlocked('phd') ? '' : '🔒 '}Higher Knowledge (PhD)</button>
+        <button class="grade-pill-btn ${currentGrade === 'primary' ? 'active' : ''}" onclick="changeGradeLevel('primary')">Grades 1-5</button>
+        <button class="grade-pill-btn ${currentGrade === 'secondary' ? 'active' : ''}" onclick="changeGradeLevel('secondary')">Grades 6-12</button>
+        <button class="grade-pill-btn ${currentGrade === 'ug' ? 'active' : ''}" onclick="changeGradeLevel('ug')">UG / PG</button>
+        <button class="grade-pill-btn ${currentGrade === 'phd' ? 'active' : ''}" onclick="changeGradeLevel('phd')">Higher Knowledge (PhD)</button>
       </div>
     </div>
 
@@ -2521,6 +2601,18 @@ function renderŚāstraContent() {
     box += `<div class="shloka-translation"><strong>Translation:</strong> ${s.translation}</div>`;
     box += '</div>';
     return box;
+  }
+
+  // Check if current grade level is authorized
+  if (!isGradeAuthorized(currentGrade)) {
+    html += shlokaBox({
+      ref: lesson.shloka.ref,
+      devanagari: lesson.shloka.devanagari,
+      translit: currentGrade === 'primary' ? "" : lesson.shloka.translit,
+      translation: lesson.shloka.translation
+    });
+    html += getLockNoticeHtml();
+    return html;
   }
 
   if (currentGrade === 'primary') {
@@ -2622,6 +2714,9 @@ function renderŚāstraContent() {
 }
 
 function renderStemContent() {
+  if (!isGradeAuthorized(currentGrade)) {
+    return getLockNoticeHtml();
+  }
   let html = '';
 
   if (currentGrade === 'primary') {
@@ -2789,6 +2884,9 @@ function renderStemContent() {
 }
 
 function renderSimulationTabContent() {
+  if (!isGradeAuthorized(currentGrade)) {
+    return getLockNoticeHtml();
+  }
   return `
     <div class="workspace-card" id="workspace-card-container" style="width: 100%; max-width: 900px; margin: 0 auto; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; background: var(--bg-secondary); border: 1px solid var(--border-glass); border-radius: 8px; padding: 2rem;">
       <!-- Active course simulation will inject here -->
@@ -2840,6 +2938,12 @@ function clearActiveAnimationsAndIntervals() {
 function renderWidget() {
   clearActiveAnimationsAndIntervals();
   const container = document.getElementById('workspace-card-container');
+  if (!container) return;
+
+  if (!isGradeAuthorized(currentGrade)) {
+    container.innerHTML = getLockNoticeHtml();
+    return;
+  }
   
   if (currentPillar === 'yuddham') {
     if (currentCourse === 'vyūhas') {
@@ -4508,7 +4612,7 @@ function unlockLessonCompletion() {
   }
 }
 
-function completeCourseLesson() {
+async function completeCourseLesson() {
   let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
   if (!completed[currentPillar]) {
     completed[currentPillar] = [];
@@ -4530,6 +4634,10 @@ function completeCourseLesson() {
     completedGrades[currentPillar][currentCourse].push(currentGrade);
   }
   localStorage.setItem('era_of_siddhas_completed_grades', JSON.stringify(completedGrades));
+
+  if (window.EOS_API) {
+    await window.EOS_API.completeCourseLesson(currentPillar, currentCourse, currentGrade);
+  }
 
   showCompletionModal();
 }
