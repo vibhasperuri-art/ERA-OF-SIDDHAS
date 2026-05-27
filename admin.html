@@ -490,6 +490,7 @@
     font-family: 'Cinzel', serif;
   }
 </style>
+<script src="js/api.js"></script>
 </head>
 <body>
 
@@ -1018,18 +1019,30 @@
       '<div style="text-align:center; padding:2rem; color:var(--ash); font-style:italic;">All alerts resolved. System in stable resonance.</div>';
   }
 
-  function sendBroadcast() {
+  async function sendBroadcast() {
     const title = document.getElementById('leela-title').value || 'Untitled Leela';
-    alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    const msg = document.getElementById('leela-msg').value || '';
+    if (window.EOS_API) {
+      await window.EOS_API.adminCreateAlert(title, msg, "alert-gold");
+      alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    } else {
+      alert(`Simulation Mode: Shiva Leela "${title}" broadcast sent. ✦`);
+    }
     document.getElementById('broadcastModal').classList.remove('open');
     document.getElementById('leela-title').value = '';
     document.getElementById('leela-loc').value = '';
     document.getElementById('leela-msg').value = '';
   }
 
-  function sendBroadcastFromTab() {
+  async function sendBroadcastFromTab() {
     const title = document.getElementById('leela-title-tab').value || 'Untitled Leela';
-    alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    const msg = document.getElementById('leela-msg-tab').value || '';
+    if (window.EOS_API) {
+      await window.EOS_API.adminCreateAlert(title, msg, "alert-gold");
+      alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    } else {
+      alert(`Simulation Mode: Shiva Leela "${title}" broadcast sent. ✦`);
+    }
     document.getElementById('leela-title-tab').value = '';
     document.getElementById('leela-loc-tab').value = '';
     document.getElementById('leela-msg-tab').value = '';
