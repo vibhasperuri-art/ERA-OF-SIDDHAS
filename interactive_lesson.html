@@ -2415,11 +2415,11 @@ function changeGradeLevel(grade) {
 }
 
 const urlParams = new URLSearchParams(window.location.search);
-const currentPillar = urlParams.get('pillar') || 'yuddham';
+const currentPillar = urlParams.get('pillar') || 'nagara';
 const currentCourse = urlParams.get('course') || 'vyūhas';
 
 // Load Active Lesson with robust fallbacks
-const pillarObj = lessons[currentPillar] || lessons.yuddham;
+const pillarObj = lessons[currentPillar] || lessons.nagara;
 let defaultCourse = 'vyūhas';
 if (currentPillar === 'rājya') defaultCourse = 'saptāṅga';
 if (currentPillar === 'nagara') defaultCourse = 'vastu';

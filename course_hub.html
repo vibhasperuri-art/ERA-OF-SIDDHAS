@@ -944,8 +944,8 @@ const pillarData = {
 
 // Get the pillar from the URL query parameter (defaults to yuddham)
 const urlParams = new URLSearchParams(window.location.search);
-const currentPillar = urlParams.get('pillar') || 'yuddham';
-const activeData = pillarData[currentPillar] || pillarData.yuddham;
+const currentPillar = urlParams.get('pillar') || 'nagara';
+const activeData = pillarData[currentPillar] || pillarData.nagara;
 
 // Render dynamic content
 function renderPage() {

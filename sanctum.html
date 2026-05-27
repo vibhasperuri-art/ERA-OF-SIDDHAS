@@ -361,9 +361,9 @@
 
 <div class="sanctum-wrapper">
   <div class="pillar-tabs">
-    <button class="tab active" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
+    <button class="tab active" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
     <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
-    <button class="tab" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
+    <button class="tab" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
   </div>
   <div class="glass-card" id="content-card">
     <div class="shloka-sanskrit" id="shloka-sanskrit-box">
@@ -467,7 +467,7 @@ const sanctumData = {
   }
 };
 
-let activePillar = 'yuddham';
+let activePillar = 'nagara';
 
 function switchPillar(btnElement, pillar) {
   document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
@@ -642,7 +642,7 @@ setTheme(null, initialTheme);
 
 // Parse url param for starting pillar
 const urlParams = new URLSearchParams(window.location.search);
-const initialPillar = urlParams.get('pillar') || 'yuddham';
+const initialPillar = urlParams.get('pillar') || 'nagara';
 const initialTabBtn = document.querySelector(`.tab[onclick*="${initialPillar}"]`);
 if (initialTabBtn) {
   switchPillar(initialTabBtn, initialPillar);
