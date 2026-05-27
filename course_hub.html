@@ -23,6 +23,23 @@
     --parch-dim: #53c2b1;
     --glow: rgba(46, 184, 166, 0.15);
   }
+  body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #5c3d1a;
+    --accent: #8b4513;
+    --accent-glow: rgba(139, 69, 19, 0.12);
+    --gold: #b8730a;
+    --gold-bright: #c8922a;
+    --gold-dim: #7a4d0a;
+    --parchment: #f7f2e8;
+    --parch-mid: #d4b896;
+    --parch-dim: #a07850;
+    --glow: rgba(200, 146, 42, 0.15);
+  }
   body.theme-earthy {
     --bg-primary: #070402;
     --bg-secondary: #0f0a05;
@@ -96,6 +113,11 @@
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
   }
+  body.theme-light::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%238b4513" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+    mix-blend-mode: multiply !important;
+    opacity: 0.12 !important;
+  }
   body.theme-fierce::before {
     background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%23ff4d4d" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%23ff4d4d" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23b52a2a" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
   }
@@ -123,7 +145,7 @@
     background: var(--gold-bright);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 1000002;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, background 0.3s;
     box-shadow: 0 0 15px 3px var(--gold-bright);
@@ -135,7 +157,7 @@
     border: 1.5px solid var(--gold);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 1000001;
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
     box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
@@ -586,6 +608,7 @@
     <a href="admin.html" class="nav-btn" style="text-decoration:none;">Guru's Eye</a>
     <a href="pillar_hub.html" class="nav-btn" style="text-decoration:none;">Return to Pillars</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
@@ -1081,7 +1104,7 @@ function bindCursorEvents() {
 
 // Theme Management with Persistence
 function setTheme(btnElement, themeName) {
-  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical');
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
   document.body.classList.add(themeName);
   localStorage.setItem('era_of_siddhas_theme', themeName);
   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
@@ -1099,7 +1122,7 @@ function setTheme(btnElement, themeName) {
 // Initialization on Load
 document.addEventListener('DOMContentLoaded', () => {
   renderPage();
-  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   setTheme(null, initialTheme);
 });
 
@@ -1312,16 +1335,34 @@ const readerContentData = {
     title: "The Legend of Parashurama Kshetram (Kerala)",
     content: `
       <p>
-        The coastal land of Kerala is traditionally known as <strong>Bhargava Kshetram</strong> or <strong>Parashurama Kshetram</strong>. According to the traditional history found in texts like the <em>Kerala Kalpam</em>, Sage Parashurama—an avatāra of Lord Narayana, a Chiranjeevi (immortal), and a great Siddha holding immense Jñāna, Kriyā, and Icchā shaktis—retrieved this land from the sea by throwing his divine battle-axe (Parashu) from Gokarna to Kanyakumari, causing the ocean deities to recede.
+        The coastal land of Kerala is traditionally known as <strong>Bhargava Kshetram</strong> or <strong>Parashurama Kshetram</strong>. According to the traditional history found in texts like the <em>Kerala Kalpam</em>, Sage Parashurama—an avatāra of Lord Narayana, a Chiranjeevi (immortal), and a great warrior-sage holding immense Jñāna, Kriyā, and Icchā shaktis—performed intense penance after his battles. Seeking to create a peaceful sanctuary for seekers, he was offered land by Varuna (Lord of Oceans) and Bhumi Devi (Earth Mother) as far as he could throw his battle-axe. He hurled his divine battle-axe (Parashu) from Gokarna; the waters receded up to Kanyakumari, reclaiming the beautiful coastal territory.
       </p>
       <p>
-        To consecrate and protect this newly reclaimed land from environmental and spiritual instability, Parashurama established a massive grid of temples across the landscape. He installed <strong>108 Śivalayas</strong> (temples dedicated to Lord Shiva) and <strong>108 Devi temples</strong> (dedicated to Mother Parvati/Durga) along the coastal and mountainous lines, aligning the geography of Kerala into a resonant spiritual mandala.
+        <strong>Why did Parashurama build the temples?</strong> The reclaimed land, having just risen from the depths of the ocean, was extremely unstable, clayey, and prone to severe earthquakes and saline oceanic winds. In addition, subterranean forces and serpents troubled the early settlers. To geophysically and spiritually stabilize this trembling coastline, Parashurama designed a massive regional mandala grid of sacred structures. He consecrated and installed <strong>108 Śivalayas</strong> (temples dedicated to Lord Shiva) and <strong>108 Bhagavati/Devi temples</strong> along the coastal, midland, and highland corridors. These temples acted as energetic "grounding rods" or spikes, stabilizing the tectonic energies of the earth, filtering the saline soil, and aligning the geography into a resonant spiritual fortress.
       </p>
       <p>
-        Among these, the most famous is the **Sabarimala Shasta Temple**. The <em>Kerala Kalpam</em> explains that Sabarimala was established as a core sanctuary to house Lord Ayyappa (Shasta). Parashurama constructed this temple to map the **Shat-Chakra Sthala**—the six yogic energy centers along the human spine. The Shasta temples in Kerala represent the progressive stages of spiritual evolution: Kulathupuzha represents the Muladhara (child stage), Aryankavu represents the Swadhishthana (youth/celibate stage), Achankovil represents the Manipura (householder stage), and Sabarimala represents the Anahata and higher yogic chakras, where Lord Ayyappa sits in deep meditation in Yoga Posture (Chin-Mudra), inviting seekers to ascend the 18 sacred steps representing the purification of the sheaths (Koshas) and senses.
+        <strong>The Shiva Trinity</strong>: The core of this system comprises three major Shiva temples representing the human body's bio-energetic centers:
+      </p>
+      <ul>
+        <li><strong>Vaikom Mahadeva Temple</strong>: Represents the lower energetic base (physical health, stability, and base grounding).</li>
+        <li><strong>Ettumanoor Mahadeva Temple</strong>: Represents the active vital force (force of action, prana, and determination).</li>
+        <li><strong>Kaduthuruthy Thaliyil Mahadeva Temple</strong>: Represents the intellectual center (wisdom, clarity, and higher intellect).</li>
+      </ul>
+      <p>
+        Legend states that standing in all three of these temples between sunrise and noon completes a powerful loop of physical, pranic, and mental purification. Other key Śivalayas include **Vadakkunnathan Temple in Thrissur** (where the central jyotirlinga is continuously cooled under centuries of ghee offerings that symbolise infinite tranquil energy) and **Thiruvalla Temple**. Among the 108 Devi temples, **Chengannur Bhagavathy Temple** represents the creative power of mother nature, and **Chottanikkara Bhagavathy Temple** acts as a sanctuary for healing mental agitation and emotional imbalances.
       </p>
       <p>
-        At Mahendragiri, the great warrior-sage Parashurama met <strong>Agastya Maharishi</strong>. This meeting represents the convergence of northern and southern spiritual lineages. Agastya initiated Parashurama into the deep secrets of Śrī Vidyā Upāsanā (the worship of Lalita Tripura Sundari). Driven by this wisdom, Parashurama reformed the worship processes of the ten Mahavidyas and structured the temple rituals through Agamic templates. He compiled the **Paraśurāma Kalpasūtra**, which remains the ultimate authority for temple worship, puja mandalas, and rituals throughout Kerala.
+        <strong>The Shat-Chakra Sthala & Sabarimala</strong>: To map the path of spiritual ascension, Parashurama established five Shasta (Ayyappa) temples representing the progressive stages of yogic chakra awakening along the spine:
+      </p>
+      <ol>
+        <li><strong>Kulathupuzha Shasta Temple (representing Muladhara)</strong>: Here Shasta is worshipped as a child (Bala Ayyappa), signifying the foundation of life and innocence.</li>
+        <li><strong>Aryankavu Shasta Temple (representing Swadhishthana)</strong>: Worshipped as a celibate student (Brahmachari), signifying self-discipline and vital conservation.</li>
+        <li><strong>Achankovil Shasta Temple (representing Manipura)</strong>: Worshipped as a householder alongside his consorts Poorna and Pushkala, representing community leadership and active engagement.</li>
+        <li><strong>Erumeli Shasta Temple (representing Anahata)</strong>: Worshipped as a protector, representing heart-centered courage and overcoming fear.</li>
+        <li><strong>Sabarimala Shasta Temple (representing Ajna & Sahasrara)</strong>: The peak of the ascent. Here, Lord Ayyappa sits in deep meditation in Yoga Posture (Chin-Mudra). Seekers climb the 18 sacred steps—representing the mastery of the 5 senses, 5 motor organs, 5 pranas, and 3 gunas—to realize the ultimate Agamic truth: <em>Tat Tvam Asi</em> (Thou Art That), realizing the individual soul's identity with Brahman.</li>
+      </ol>
+      <p>
+        At Mahendragiri, Parashurama met <strong>Agastya Maharishi</strong>, which represents the union of northern and southern spiritual streams. Agastya initiated him into the supreme mysteries of Śrī Vidyā Upāsanā. In accordance with this wisdom, Parashurama compiled the **Paraśurāma Kalpasūtra**, which remains the ultimate authority for temple worship, mandala construction, and Agamic rituals throughout Kerala.
       </p>
     `
   },

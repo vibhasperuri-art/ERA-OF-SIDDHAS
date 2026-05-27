@@ -111,6 +111,11 @@
   body.theme-mystical::before {
     background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
   }
+  body.theme-light::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%238b4513" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+    mix-blend-mode: multiply !important;
+    opacity: 0.12 !important;
+  }
 
   /* Custom Cursor override */
   body.custom-cursor-active,
@@ -133,7 +138,7 @@
     background: var(--gold-bright);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 1000002;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, background 0.3s;
     box-shadow: 0 0 15px 3px var(--gold-bright);
@@ -145,7 +150,7 @@
     border: 1.5px solid var(--gold);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 1000001;
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
     box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
@@ -253,28 +258,16 @@
     flex-wrap: wrap;
   }
   .left-pane {
-    flex: 0 0 55%;
-    max-width: 55%;
+    flex: 0 0 100%;
+    max-width: 100%;
     background: var(--bg-primary);
-    border-right: 1px solid var(--border-glass);
     padding: 2.5rem 3rem;
     overflow-y: auto;
     max-height: calc(100vh - 60px);
     box-sizing: border-box;
   }
   .right-pane {
-    flex: 1;
-    min-width: 300px;
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    overflow-y: auto;
-    max-height: calc(100vh - 60px);
-    box-sizing: border-box;
-    position: relative;
-    background: var(--bg-secondary);
+    display: none;
   }
 
   /* TEXT STYLE */
@@ -1290,6 +1283,17 @@
   body.theme-light .grade-pill-btn.active {
     color: #fff;
   }
+  .grade-pill-btn.locked {
+    opacity: 0.55;
+    background: rgba(0, 0, 0, 0.15) !important;
+    color: var(--text-muted) !important;
+    border: 1px dashed rgba(200, 146, 42, 0.2);
+    cursor: not-allowed !important;
+  }
+  .grade-pill-btn.locked:hover {
+    border-color: #ff4d4d !important;
+    box-shadow: 0 0 10px rgba(255, 77, 77, 0.15) !important;
+  }
 
   /* ── CHILD FRIENDLY STORY BOX ── */
   .story-box {
@@ -1361,6 +1365,21 @@
     transform: scale(1) rotate(0deg);
   }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']]
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    svg: {
+      fontCache: 'global'
+    }
+  };
+</script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body class="theme-light">
 <div class="theme-graphics-bg">
@@ -1607,7 +1626,7 @@ const lessons = {
     },
     upasana: {
       category: "Yuddham — Deity Resonance",
-      title: "Yuddha Upasana: Mantra & Yantra Resonance",
+      title: "Yuddha Upasana: Vocal & Geometric Resonance",
       shloka: {
         ref: "Devi Mahatmya 11.2 — Chandi Path",
         devanagari: "ॐ जयन्ती मङ्गला काली भद्रकाली कपालिनी ।\nदुर्गा क्षमा शिवा धात्री स्वाहा स्वधा नमोऽस्तु ते ॥",
@@ -1625,11 +1644,11 @@ const lessons = {
       ],
       scientific: {
         title: "Vibrational Acoustics & Neuro-Resonance",
-        text: "Low-frequency vocal resonance (like OM and seed mantras) produces mechanical vibrations that stimulate the vagal receptors in the larynx. Repeating rhythmic sounds promotes coherence in neural oscillations, reducing amygdala hyperactivity and building high stress-immunity."
+        text: "Low-frequency vocal resonance (like deep chest and nasal chanting) produces mechanical vibrations that stimulate the vagal receptors in the larynx. Repeating rhythmic sounds promotes coherence in neural oscillations, reducing amygdala hyperactivity and building high stress-immunity."
       },
       instructions: [
         "Click the bells or press the key selectors below to ring virtual temple bells.",
-        "Press the mantra seeds in sequence to build a coherent focus wave.",
+        "Press the vocal resonance buttons in sequence to build a coherent focus wave.",
         "Watch the yantra geometric vibrations expand as your alignment increases."
       ],
       historicalOrigin: {
@@ -1638,7 +1657,7 @@ const lessons = {
         period: "circa 1500 BCE – 500 BCE",
         context: "The <em>Mandukya Upanishad</em> dedicates its 12 verses entirely to the syllable OM, mapping its phonemic components (A-U-M) to waking, dreaming, and deep sleep states of consciousness. The <em>Rig Veda</em> (1.164.39) declares: <em>'In the imperishable highest space, all the devas have taken their seat.'</em> Mantra science was later codified in the <em>Tantrasara</em> by Abhinavagupta (circa 1000 CE)."
       },
-      dharmicPrinciples: "Upasana (concentrated worship) harnesses <em>Shabda Brahman</em> — the concept that primordial sound is the substrate of creation. Each Bija (seed) mantra corresponds to a specific energy center and deity archetype. The warrior performs Upasana not for external boons but to cultivate <em>Abhaya</em> (fearlessness) and <em>Sthairya</em> (unwavering steadiness) in the face of mortal danger.",
+      dharmicPrinciples: "Upasana (concentrated focus) harnesses <em>Shabda Brahman</em> — the concept that primordial sound and vibration are the substrate of physical creation. Each specific vocal frequency resonance corresponds to a bio-energetic node and cognitive archetype in the human system. The warrior performs Upasana not for external boons but to cultivate <em>Abhaya</em> (fearlessness) and <em>Sthairya</em> (unwavering steadiness) in the face of mortal danger.",
       stemBreakdown: {
         discipline: "Wave Acoustics & Neuroscience",
         equation: "f<sub>n</sub> = n × v / (2L)",
@@ -2046,7 +2065,7 @@ const lessons = {
         period: "circa 3000 BCE (Indus Valley cities) — 600 CE (codification period)",
         context: "Mohenjo-daro and Harappa already showed grid planning with a 'citadel' (presumably sacred) at the centre surrounded by the lower city. The <em>Manasara</em> (96 chapters, the most comprehensive Shilpaśāstra) and <em>Mayamata</em> (36 chapters) codify the complete science of city planning. The <em>Arthaśāstra</em>'s Book II, Chapter 4 gives the most detailed secular treatment — street widths, market placement, drainage, fortification, and the mandatory placement of the Brahmasthana (divine centre). Cities like Madurai follow this template exactly: Meenakshi temple at the centre, four Gopuram-marked boundaries at the cardinal directions, four prakaras (concentric walls), and the city spreading outward. Vijayanagara (now Hampi) showed the same pattern with Virupaksha temple as the cosmic axis."
       },
-      dharmicPrinciples: "The Indian city is not organized around commerce, the military, or the monarch — it is organized around the Divine. This is not superstition but a profound statement of ontology: <em>Brahman is the only ultimate reality</em>. The city's physical form makes this metaphysical truth visible and liveable. The temple at the centre is the representation of the Self — the eternal, unchanging consciousness — and the city radiating outward represents the successive sheaths (Pancha Kosha) of manifestation. A city built this way is not merely infrastructure; it is a <em>guru in stone</em>, constantly reminding its inhabitants of the true order of existence. The modern city, by contrast, places commerce, transport hubs, or entertainment at its centre — and produces a civilization centred on consumption, not consciousness.",
+      dharmicPrinciples: "The Indian city is not organized around commerce, the military, or the monarch — it is organized around the Divine. This is not superstition but a profound statement of ontology: <em>Brahman is the only ultimate reality</em>. The city's physical form makes this metaphysical truth visible and liveable. The temple at the centre is the representation of the Self — the eternal, unchanging consciousness — and the city radiating outward represents the successive sheaths (Pancha Kosha) of manifestation. A city built this way is not merely infrastructure; it is a <em>guru in stone</em>, constantly reminding its inhabitants of the true order of existence. This concentric urban network is also described in detail in the *Ahirbudhnya Saṃhitā* of the Pāñcarātra, which models the capital city after the multi-spoke geometry of the Sudarśana-Yantra. The roads act as energy-carrying spokes radiating from the central sanctum (the Nābhi or hub). By arranging the town districts in concentric zones (matching the Vyūhas), the flow of dynamic will (Kriyā-Śakti) is distributed evenly, neutralizing the threat of political and social decay (Matsya Nyāya) and keeping the citizens' daily activities in a state of harmonious balance. The modern city, by contrast, places commerce, transport hubs, or entertainment at its centre — and produces a civilization centred on consumption, not consciousness.",
       stemBreakdown: {
         discipline: "Sacred Geometry, Urban Planning & Cognitive Architecture",
         equation: "R_n = R_0 × φⁿ where φ = (1+√5)/2 (Golden Ratio)",
@@ -2231,7 +2250,7 @@ const lessons = {
         period: "circa 500 BCE — 1000 CE (codification period)",
         context: "The <em>Manasara</em> and <em>Mayamata</em> codify architectural ratios. In the western coast, the <em>Kerala Kalpam</em> attributes the entire spatial planning of <strong>Parashurama Kshetram (Kerala)</strong> to Sage Parashurama — introduced as a great Chiranjeevi, rishi, and avatāra of Lord Narayana. Utilizing his axe, he retrieved Kerala from the sea and consecrated a massive geographical grid: building <strong>108 Śivalayas</strong> (Shiva temples) and <strong>108 Devi</strong> (Parvati) temples to anchor the coastal energy lines. He constructed the **Sabarimala Shasta temple** as a physical mapping of the **Shat-Chakra Sthala** (spinal energy centers: Kulathupuzha as Muladhara, Aryankavu as Swadhishthana, Achankovil as Manipura, and Sabarimala as the higher yogic chakras, where the 18 steps represent the purification of the sheaths)."
       },
-      dharmicPrinciples: "The Sthāpati is not an engineer — he is a Yogi in matter, vibrating at the level of Jñāna, Kriyā, and Icchā shaktis. At Mahendragiri, the great Siddha **Parashurama met Agastya Maharishi**, who initiated him into the supreme secrets of Śrī Vidyā Upāsanā (Lalita Tripura Sundari). Integrating his intense martial focus (Tejas) with this divine wisdom, Parashurama reformed and structured the Agamic worship process of the ten Mahavidyas, compiling the **Paraśurāma Kalpasūtra**. This text remains the ultimate authority for temple rituals and deity worship in Kerala, illustrating that physical space and structural design are but sheaths to house the internal vibrational resonance of the cosmos.",
+      dharmicPrinciples: "The Sthāpati is not an engineer — he is a Yogi in matter, vibrating at the level of Jñāna, Kriyā, and Icchā shaktis. At Mahendragiri, the great Siddha **Parashurama met Agastya Maharishi**, who initiated him into the supreme secrets of Śrī Vidyā Upāsanā (Lalita Tripura Sundari). Integrating his intense martial focus (Tejas) with this divine wisdom, Parashurama reformed and structured the Agamic worship process of the ten Mahavidyas, compiling the **Paraśurāma Kalpasūtra**. According to the Pāñcarātra Saṃhitās, specifically the *Ahirbudhnya Saṃhitā*, temple architecture is not merely structural layout, but the physical materialization of the Lord's supreme dynamic will (Kriyā-Śakti). The layout of the temple complex and its concentric rings mirrors the cosmic Vyūha expansions (Vāsudeva, Saṃkarṣaṇa, Pradyumna, Aniruddha). Shrines are positioned at these modular geometric nodes to act as step-down transformers, allowing the high-frequency cosmic vibrations to safely radiate throughout the residential and commercial quarters of the town, ensuring stability (Dharma) and protection (Raksha) for all inhabitants.",
       stemBreakdown: {
         discipline: "Architectural Acoustics, Number Theory & Harmonic Analysis",
         equation: "Āya = (P × 8) mod 12; Vyaya = (P × 9) mod 10; Yoni = (P × 3) mod 8",
@@ -2252,7 +2271,7 @@ const lessons = {
 
 
 // Dynamic Grade Level Logic
-let currentGrade = localStorage.getItem('era_of_siddhas_grade') || 'ug';
+let currentGrade = localStorage.getItem('era_of_siddhas_grade') || localStorage.getItem('eos_user_grade') || 'primary';
 
 const stories = {
   yuddham: {
@@ -2331,7 +2350,7 @@ function getGradeLabel(grade) {
   if (grade === 'primary') return 'Primary (Grades 1-5)';
   if (grade === 'secondary') return 'High School (Grades 6-12)';
   if (grade === 'ug') return 'University (UG/PG)';
-  if (grade === 'phd') return 'PhD / Research';
+  if (grade === 'phd') return 'Higher Knowledge (PhD)';
   return 'UG/PG';
 }
 
@@ -2353,10 +2372,46 @@ function getInstructionsForGrade() {
   return lesson.instructions;
 }
 
+function isGradeUnlocked(grade) {
+  const gradesOrder = ['primary', 'secondary', 'ug', 'phd'];
+  const userGrade = localStorage.getItem('eos_user_grade') || 'primary';
+  const userGradeIdx = gradesOrder.indexOf(userGrade);
+  const targetGradeIdx = gradesOrder.indexOf(grade);
+
+  if (targetGradeIdx <= userGradeIdx) {
+    return true;
+  }
+
+  if (targetGradeIdx > 0) {
+    const prevGrade = gradesOrder[targetGradeIdx - 1];
+    const completedGrades = JSON.parse(localStorage.getItem('era_of_siddhas_completed_grades') || '{}');
+    const courseGrades = completedGrades[currentPillar]?.[currentCourse] || [];
+    if (courseGrades.includes(prevGrade)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function getPreviousGrade(grade) {
+  const gradesOrder = ['primary', 'secondary', 'ug', 'phd'];
+  const idx = gradesOrder.indexOf(grade);
+  return idx > 0 ? gradesOrder[idx - 1] : null;
+}
+
 function changeGradeLevel(grade) {
+  if (!isGradeUnlocked(grade)) {
+    const gradesLabels = { primary: 'Grades 1-5', secondary: 'Grades 6-12', ug: 'UG / PG', phd: 'Higher Knowledge (PhD)' };
+    const prevGrade = getPreviousGrade(grade);
+    const prevLabel = gradesLabels[prevGrade] || '';
+    alert(`🔒 Academic Level Locked!\n\nYou must first complete this course at the "${prevLabel}" foundation level to unlock the higher level content.`);
+    return;
+  }
   currentGrade = grade;
   localStorage.setItem('era_of_siddhas_grade', grade);
   renderLeftPane();
+  renderWidget();
 }
 
 const urlParams = new URLSearchParams(window.location.search);
@@ -2396,14 +2451,16 @@ let currentTab = 'śāstra';
 
 function renderLeftPane() {
   const leftPane = document.getElementById('left-text-pane');
+  const completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
+  const isCompleted = completed[currentPillar] && completed[currentPillar].includes(currentCourse);
   leftPane.innerHTML = `
     <div class="grade-selector">
       <div class="grade-select-title">Course Academic Level</div>
       <div class="grade-pills">
-        <button class="grade-pill-btn ${currentGrade === 'primary' ? 'active' : ''}" onclick="changeGradeLevel('primary')">Grades 1-5</button>
-        <button class="grade-pill-btn ${currentGrade === 'secondary' ? 'active' : ''}" onclick="changeGradeLevel('secondary')">Grades 6-12</button>
-        <button class="grade-pill-btn ${currentGrade === 'ug' ? 'active' : ''}" onclick="changeGradeLevel('ug')">UG / PG</button>
-        <button class="grade-pill-btn ${currentGrade === 'phd' ? 'active' : ''}" onclick="changeGradeLevel('phd')">PhD / Research</button>
+        <button class="grade-pill-btn ${currentGrade === 'primary' ? 'active' : ''} ${!isGradeUnlocked('primary') ? 'locked' : ''}" onclick="changeGradeLevel('primary')">Grades 1-5</button>
+        <button class="grade-pill-btn ${currentGrade === 'secondary' ? 'active' : ''} ${!isGradeUnlocked('secondary') ? 'locked' : ''}" onclick="changeGradeLevel('secondary')">${isGradeUnlocked('secondary') ? '' : '🔒 '}Grades 6-12</button>
+        <button class="grade-pill-btn ${currentGrade === 'ug' ? 'active' : ''} ${!isGradeUnlocked('ug') ? 'locked' : ''}" onclick="changeGradeLevel('ug')">${isGradeUnlocked('ug') ? '' : '🔒 '}UG / PG</button>
+        <button class="grade-pill-btn ${currentGrade === 'phd' ? 'active' : ''} ${!isGradeUnlocked('phd') ? 'locked' : ''}" onclick="changeGradeLevel('phd')">${isGradeUnlocked('phd') ? '' : '🔒 '}Higher Knowledge (PhD)</button>
       </div>
     </div>
 
@@ -2416,10 +2473,11 @@ function renderLeftPane() {
     <div class="pane-tabs">
       <button class="pane-tab-btn ${currentTab === 'śāstra' ? 'active' : ''}" id="tab-śāstra" onclick="switchLeftPaneTab('śāstra')">Śāstra Jñāna</button>
       <button class="pane-tab-btn ${currentTab === 'stem' ? 'active' : ''}" id="tab-stem" onclick="switchLeftPaneTab('stem')">STEM Science</button>
+      <button class="pane-tab-btn ${currentTab === 'simulation' ? 'active' : ''}" id="tab-simulation" onclick="switchLeftPaneTab('simulation')">Sādhana Simulation</button>
     </div>
 
     <div class="tab-content-area" id="tab-content-area">
-      ${currentTab === 'śāstra' ? renderŚāstraContent() : renderStemContent()}
+      ${currentTab === 'śāstra' ? renderŚāstraContent() : (currentTab === 'stem' ? renderStemContent() : renderSimulationTabContent())}
     </div>
 
     <div class="instructions-box" style="margin-top: 1.5rem; border-top: 1px solid var(--border-glass); padding-top: 1rem;">
@@ -2429,13 +2487,16 @@ function renderLeftPane() {
       </ol>
     </div>
     
-    <div class="completion-box" style="margin-top: 2rem; text-align: center;">
+    <div class="completion-box" id="lesson-completion-box" style="display: ${isCompleted ? 'block' : 'none'}; margin-top: 2rem; text-align: center;">
       <button class="action-btn" onclick="completeCourseLesson()" style="width: 100%; padding: 0.95rem; font-family: 'Cinzel', serif; font-size: 0.9rem; background: rgba(46, 184, 166, 0.1); border: 1.5px solid var(--accent); border-radius: 4px; box-shadow: 0 0 15px rgba(46, 184, 166, 0.15);">
         Complete Course & Claim Blessing
       </button>
     </div>
   `;
   bindCursorEvents();
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([leftPane]).catch(err => console.log(err));
+  }
 }
 
 function renderŚāstraContent() {
@@ -2572,78 +2633,148 @@ function renderStemContent() {
         <div class="scientific-text">${sciStory || lesson.scientific.text}</div>
       </div>
     `;
-  } 
-  else if (currentGrade === 'secondary') {
-    // Secondary Level: intermediate explanation, simplified parameters, no heavy math card
+    return html;
+  }
+
+  // 1. Foundation: Scientific Insight (Shown to Secondary, UG, PhD)
+  html += `
+    <div class="scientific-insight">
+      <div class="scientific-title">${lesson.scientific.title}</div>
+      <div class="scientific-text">${lesson.scientific.text}</div>
+    </div>
+  `;
+
+  const sb = lesson.stemBreakdown;
+  if (sb) {
+    // 2. Discipline Name
+    const disciplineLabel = currentGrade === 'secondary' ? "Modern Science Field" : "Modern Academic Field";
     html += `
-      <div class="scientific-insight">
-        <div class="scientific-title">${lesson.scientific.title}</div>
-        <div class="scientific-text">${lesson.scientific.text}</div>
+      <div class="stem-section-title">${disciplineLabel}</div>
+      <div class="śāstra-metadata-box">
+        <div class="meta-label">Discipline</div>
+        <div class="meta-value"><em>${sb.discipline}</em></div>
       </div>
     `;
-    if (lesson.stemBreakdown) {
-      const sb = lesson.stemBreakdown;
+
+    // 3. Additive Section for UG/PhD: Advanced Academic Synthesis
+    if (currentGrade === 'ug' || currentGrade === 'phd') {
       html += `
-        <div class="stem-section-title">Modern Science Field</div>
-        <div class="śāstra-metadata-box">
-          <div class="meta-label">What is this called?</div>
-          <div class="meta-value"><em>${sb.discipline}</em></div>
+        <div class="stem-section-title">Advanced Academic Synthesis</div>
+        <div style="font-size:0.92rem; line-height:1.6; color:var(--text-primary); margin-bottom:1.5rem; background:rgba(0,0,0,0.02); border:1px solid var(--border-glass); padding:1.2rem; border-radius:8px;">
+          <p style="margin-bottom:0.8rem;">
+            This module explores the advanced mathematical, physical, and systems-engineering substrates of the ancient text. By translating the traditional constraints into state-space systems and partial differential formulations, we observe how ancient builders and strategists optimized complex multi-variable processes.
+          </p>
+          <p>
+            Specifically, the correlations below connect the bio-acoustic resonances, modular geometric sieves, and self-similar network dynamics to modern physics, control systems, and computational ecology.
+          </p>
         </div>
       `;
-      if (sb.parameters && sb.parameters.length > 0) {
-        html += `
-          <div class="stem-section-title">What are we measuring?</div>
-          <ul class="stem-param-list">
-            ${sb.parameters.slice(0, 3).map(p => '<li>' + p + '</li>').join('')}
-          </ul>
-        `;
-      }
-    }
-  } 
-  else {
-    // College or PhD Level: render complete mathematical formulations and correlations
-    html += `
-      <div class="scientific-insight">
-        <div class="scientific-title">${lesson.scientific.title}</div>
-        <div class="scientific-text">${lesson.scientific.text}</div>
-      </div>
-    `;
-    if (lesson.stemBreakdown) {
-      const sb = lesson.stemBreakdown;
-      html += `
-        <div class="stem-section-title">Modern Academic Field</div>
-        <div class="śāstra-metadata-box">
-          <div class="meta-label">Discipline</div>
-          <div class="meta-value"><em>${sb.discipline}</em></div>
-        </div>
-        <div class="stem-section-title">Core System Equation</div>
-        <div class="stem-equation-card">
-          <div class="eq-label">Mathematical Formulation</div>
-          <div class="eq-formula">${sb.equation}</div>
-          <div class="eq-explanation">${sb.equationExplanation}</div>
-        </div>
-      `;
-      if (sb.parameters && sb.parameters.length > 0) {
-        html += `
-          <div class="stem-section-title">System Parameters</div>
-          <ul class="stem-param-list">
-            ${sb.parameters.map(p => '<li>' + p + '</li>').join('')}
-          </ul>
-        `;
-      }
-      if (sb.modernCorrelation) {
-        html += `
-          <div class="stem-section-title">Contemporary Scientific Validation</div>
-          <div class="dharmic-principles-box">
-            <div class="dp-title">Modern Research Notes</div>
-            <div class="dp-text">${sb.modernCorrelation}</div>
-          </div>
-        `;
-      }
     }
 
+    // 4. Core System Equation
+    let eqFormula = '';
+    let eqExplanation = '';
+    
+    if (currentGrade === 'secondary') {
+      // Simplified equations for high schoolers
+      const simplifiedEquations = {
+        yoga: {
+          yuddham: { eq: "Vagus Nerve Stimulation = Exhale Time &divide; (Inhale + Hold Times)", exp: "This shows how exhalations directly boost your parasympathetic nervous system." },
+          rājya: { eq: "Mental Focus = Prefrontal Activity &divide; (Emotional Stress + 0.1 &times; Noise&sup2;)", exp: "Your focus level increases when you strengthen your prefrontal cortex or reduce stress." },
+          nagara: { eq: "Fractal Detail (D) = log(Number of Pieces) &divide; log(1 / Scale Factor)", exp: "Measures the repeating pattern depth of temple shapes to calculate design harmony." }
+        },
+        upasana: {
+          yuddham: { eq: "Sound Frequency = (Harmonic &times; Speed of Sound) &divide; (2 &times; Throat Length)", exp: "Calculates the pitch of sound standing waves that vibrate in your throat." },
+          rājya: { eq: "Rain Seeding Rate = 0.2 &times; Temp - 0.001 &times; Aerosols&sup2;", exp: "Models how smoke combustion temperature balances with fuel to seed clouds." },
+          nagara: { eq: "Sunlight Access Angle = arctan(Building Height &divide; Street Width)", exp: "Calculates the sun's height angle needed to reach the street level." }
+        },
+        maṇḍala: {
+          yuddham: { eq: "Alliance Strength = (Trade Flow &divide; Distance) - (0.5 &times; Hostility)", exp: "Measures relationship strength based on trade, proximity, and past wars." }
+        },
+        vyūhas: {
+          yuddham: { eq: "Spiral Radius = Center Offset + (Spacing &times; Angle &theta;)", exp: "Calculates the distance from the center for points along the defensive spiral." }
+        },
+        saptāṅga: {
+          rājya: { eq: "State Stability = Average Limb Value - 0.1 &times; Resource Variance", exp: "Shows how imbalance between different branches of a state hurts overall stability." }
+        },
+        neeti: {
+          rājya: { eq: "Total Policy Value = Weight1 &times; Justice + Weight2 &times; Security + Weight3 &times; Treasury", exp: "Weighs different state interests to find the best policy decision." }
+        },
+        vastu: {
+          nagara: { eq: "Ring Radius = Core Radius &times; 1.618^(Ring Number)", exp: "Calculates how successive city rings expand in Golden Ratio proportions." }
+        },
+        upanishads: {
+          nagara: { eq: "Room Echo Pitch = 171.5 &times; sqrt((Mode_p/Length)&sup2; + (Mode_q/Width)&sup2;)", exp: "Calculates natural echo frequencies inside a rectangular room." }
+        },
+        sthapatya: {
+          nagara: { eq: "Income (Aya) = (Perimeter &times; 8) mod 12; Expense (Vyaya) = (Perimeter &times; 9) mod 10", exp: "Auspicious dimensions are verified when Income (Aya) is greater than Expense (Vyaya)." }
+        }
+      };
+      
+      const entry = simplifiedEquations[currentCourse]?.[currentPillar] || { eq: sb.equation, exp: sb.equationExplanation };
+      eqFormula = entry.eq;
+      eqExplanation = entry.exp;
+    } else {
+      // Advanced equations for college / PhD
+      eqFormula = sb.equation;
+      eqExplanation = sb.equationExplanation;
+    }
+
+    html += `
+      <div class="stem-section-title">Core System Equation</div>
+      <div class="stem-equation-card">
+        <div class="eq-label">Mathematical Formulation (${currentGrade === 'secondary' ? 'Simplified' : 'Advanced'})</div>
+        <div class="eq-formula" style="font-size:1.15rem; color:var(--gold-bright); text-align:center; padding:0.5rem; background:rgba(0,0,0,0.15); border-radius:4px; margin-bottom:0.6rem;">${eqFormula}</div>
+        <div class="eq-explanation">${eqExplanation}</div>
+      </div>
+    `;
+
+    // 5. Interactive Equation Solver
+    html += `
+      <div class="stem-section-title">Interactive Equation Solver</div>
+      <div class="stem-equation-card" style="background: rgba(200, 146, 42, 0.04); border-left-color: var(--gold-bright);">
+        <div class="eq-label">Input Parameters</div>
+        ${renderSolverInputs()}
+        <button class="action-btn" onclick="calculateSolveEquation()" style="margin-top: 12px; width: 100%; font-size: 0.8rem; padding: 6px 12px;">Solve Step-by-Step</button>
+        <div id="solver-results-box" style="margin-top: 15px; display: none; border-top: 1px dashed var(--border-glass); padding-top: 10px;">
+          <div class="eq-label" style="color: var(--gold-bright);">Step-by-Step Solution</div>
+          <div id="solver-explanation" style="font-size: 0.85rem; line-height: 1.5; color: var(--text-primary); text-align: left;"></div>
+        </div>
+      </div>
+    `;
+
+    // 6. System Parameters (Show first 3 for Secondary, all for UG/PhD)
+    const paramsToShow = currentGrade === 'secondary' ? sb.parameters.slice(0, 3) : sb.parameters;
+    if (paramsToShow && paramsToShow.length > 0) {
+      html += `
+        <div class="stem-section-title">System Parameters</div>
+        <ul class="stem-param-list">
+          ${paramsToShow.map(p => '<li>' + p + '</li>').join('')}
+        </ul>
+      `;
+    }
+
+    // 7. Contemporary Scientific Validation (Show only to UG/PhD)
+    if ((currentGrade === 'ug' || currentGrade === 'phd') && sb.modernCorrelation) {
+      html += `
+        <div class="stem-section-title">Contemporary Scientific Validation</div>
+        <div class="dharmic-principles-box">
+          <div class="dp-title">Modern Research Notes</div>
+          <div class="dp-text">${sb.modernCorrelation}</div>
+        </div>
+      `;
+    }
+
+    // 8. PhD Specific Sections
     if (currentGrade === 'phd') {
       html += `
+        <div class="stem-section-title">Doctoral Research Synthesis</div>
+        <div class="shloka-box" style="border-left-color: var(--gold); background: rgba(255, 255, 255, 0.02); margin-bottom: 1.5rem;">
+          <p style="font-size:0.88rem; line-height:1.6; font-style:italic;">
+            <strong>Cross-Disciplinary Analytical Proof:</strong> In this doctoral sequence, the structural and thermodynamic states of the system are evaluated through the lens of open-system entropy. By checking the boundary limits of the system under external stress, we verify that the Ayadi modular congruences and Saptanga control loops represent self-stabilizing trajectories. This demonstrates that traditional Indian physical and state systems function as robust, resilient topologies congruent with the laws of modern evolutionary thermodynamics.
+          </p>
+        </div>
+
         <div class="stem-section-title">Scholarly Computational Notes</div>
         <div class="stem-equation-card" style="border-left-color: var(--gold-bright); background: rgba(255, 255, 255, 0.01);">
           <p style="font-size:0.85rem; line-height:1.5; color: var(--text-muted);">
@@ -2653,22 +2784,42 @@ function renderStemContent() {
       `;
     }
   }
+
   return html;
 }
 
+function renderSimulationTabContent() {
+  return `
+    <div class="workspace-card" id="workspace-card-container" style="width: 100%; max-width: 900px; margin: 0 auto; min-height: 400px; display: flex; flex-direction: column; justify-content: flex-start; align-items: center; background: var(--bg-secondary); border: 1px solid var(--border-glass); border-radius: 8px; padding: 2rem;">
+      <!-- Active course simulation will inject here -->
+    </div>
+  `;
+}
+
 function switchLeftPaneTab(tabName) {
+  clearActiveAnimationsAndIntervals();
   currentTab = tabName;
   document.querySelectorAll('.pane-tab-btn').forEach(btn => btn.classList.remove('active'));
   const activeBtn = document.getElementById('tab-' + tabName);
   if (activeBtn) activeBtn.classList.add('active');
   const contentArea = document.getElementById('tab-content-area');
   if (contentArea) {
-    contentArea.innerHTML = tabName === 'śāstra' ? renderŚāstraContent() : renderStemContent();
+    if (tabName === 'śāstra') {
+      contentArea.innerHTML = renderŚāstraContent();
+    } else if (tabName === 'stem') {
+      contentArea.innerHTML = renderStemContent();
+    } else if (tabName === 'simulation') {
+      contentArea.innerHTML = renderSimulationTabContent();
+      renderWidget();
+    }
     contentArea.style.animation = 'none';
     contentArea.offsetHeight;
     contentArea.style.animation = 'fadeTabIn 0.35s ease-out';
   }
   bindCursorEvents();
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([contentArea]).catch(err => console.log(err));
+  }
 }
 
 
@@ -2864,6 +3015,7 @@ function renderChakravyūha(container) {
 
       if (traceProgress === 1) {
         isTracing = false;
+        unlockLessonCompletion();
       }
     }
 
@@ -2999,6 +3151,7 @@ function renderSaptāṅga(container) {
     } else if (score > 85) {
       circle.classList.add('golden');
       analysis.innerText = "Golden Age! Exceptional systemic resonance. The limbs support each other in perfect harmony, reflecting Rama Rājyam.";
+      unlockLessonCompletion();
     } else {
       analysis.innerText = "Kingdom state: Peaceful and stable. Maintain balance of resources and defense to secure borders.";
     }
@@ -3098,6 +3251,7 @@ function renderYajna(container) {
     if (rain > 85) {
       feedback.innerText = "Excellent! The high temperature combustion and pure medicinal aerosols have formed cloud-condensation nuclei. Localized rainfall imminent!";
       feedback.style.color = "#00ff88";
+      unlockLessonCompletion();
     } else if (temp > 900) {
       feedback.innerText = "Warning: Altar is too hot! Overheating burns the medicinal herbs completely into ash, reducing aerosol seeding quality.";
       feedback.style.color = "#ff4d4d";
@@ -3292,6 +3446,7 @@ function renderCompassYoga(container) {
     document.getElementById('yoga-harmony-val').innerText = score + "%";
     if (score === 100) {
       document.getElementById('yoga-feedback').innerText = "Perfect Compass Alignment! The body's biological field is fully synchronized with geomagnetic paths and solar rhythms. Highly beneficial zone for meditation and rest.";
+      unlockLessonCompletion();
     } else {
       document.getElementById('yoga-feedback').innerText = feedbackText || "Arrange the furniture to see the alignment evaluation.";
     }
@@ -3462,6 +3617,7 @@ function renderBhutaShuddhi(container) {
     if (totalScore === 100) {
       document.getElementById('shuddhi-feedback').innerText = "Congratulations! Bhuta Shuddhi achieved. All house sectors contain their optimal dominant elemental profiles, maximizing health, stability, and peace of mind.";
       document.getElementById('shuddhi-feedback').style.color = "#00ff88";
+      unlockLessonCompletion();
     } else {
       document.getElementById('shuddhi-feedback').innerText = "Cleansing sectors... Place Air in NW, Fire in SE, Earth in SW, Water in NE. Balance all 4 zones.";
       document.getElementById('shuddhi-feedback').style.color = "var(--text-muted)";
@@ -3653,6 +3809,7 @@ function renderVastu(container) {
     
     if (score === 100) {
       document.getElementById('vastu-feedback').innerText = "Perfect Alignment achieved! The thermodynamic layout balances solar radiation, wind currents, and directional elemental flow perfectly. A highly resonant space!";
+      unlockLessonCompletion();
     } else {
       document.getElementById('vastu-feedback').innerText = feedback || "Place more rooms to calculate layout stability.";
     }
@@ -3749,6 +3906,7 @@ function renderPranayama(container) {
           inst.innerText = "Inhale slowly and gather focus.";
           glow.style.transition = `transform ${inhaleTime}s linear`;
           glow.style.transform = "scale(2.2)";
+          unlockLessonCompletion();
         } else if (currentStage === 1) {
           stageTimer = hold1Time;
           label.innerText = "HOLD";
@@ -3779,7 +3937,7 @@ function renderPranayama(container) {
    â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function renderUpasana(container) {
   container.innerHTML = `
-    <div class="widget-title">Veera Mantra Resonance Visualizer</div>
+    <div class="widget-title">Veera Acoustic Resonance Visualizer</div>
     <div class="yantra-visualizer">
       <div class="yantra-container">
         <svg class="yantra-svg" id="y-svg" viewBox="0 0 100 100" fill="none" stroke="var(--accent)" stroke-width="0.8">
@@ -3795,13 +3953,13 @@ function renderUpasana(container) {
       </div>
 
       <div class="chant-btn-grid">
-        <button class="action-btn chant-seed" data-note="220" data-seed="OM">ॐ OM</button>
-        <button class="action-btn chant-seed" data-note="293" data-seed="DUM">दुं DUM</button>
-        <button class="action-btn chant-seed" data-note="330" data-seed="KREEM">क्रीं KREEM</button>
-        <button class="action-btn chant-seed" data-note="392" data-seed="HUM">हूं HUM</button>
+        <button class="action-btn chant-seed" data-note="220" data-seed="Chest">Chest Resonance (220 Hz)</button>
+        <button class="action-btn chant-seed" data-note="293" data-seed="Tracheal">Tracheal Resonance (293 Hz)</button>
+        <button class="action-btn chant-seed" data-note="330" data-seed="Laryngeal">Laryngeal Resonance (330 Hz)</button>
+        <button class="action-btn chant-seed" data-note="392" data-seed="Sinus">Sinus Cavity Resonance (392 Hz)</button>
       </div>
       <div style="font-size:0.85rem; color: var(--text-muted); text-align:center;">
-        Click seeds to activate synthesized acoustic resonance of the mantra.
+        Click to stimulate vocal resonance parameters and check frequency alignment stability.
       </div>
     </div>
   `;
@@ -3820,6 +3978,10 @@ function renderUpasana(container) {
       // Visual feedback - expand resonance meter
       resonance = Math.min(100, resonance + 25);
       fill.style.width = resonance + "%";
+      
+      if (resonance === 100) {
+        unlockLessonCompletion();
+      }
       
       // Pulse Yantra
       svg.style.transform = "scale(1.15) rotate(15deg)";
@@ -3911,25 +4073,41 @@ function renderMaṇḍalaSiddhanta(container) {
     </div>
   `;
 
+  let treatyClicked = false;
+  let divideClicked = false;
+  let spyClicked = false;
+
+  function checkMandalaCompletion() {
+    if (treatyClicked && divideClicked && spyClicked) {
+      unlockLessonCompletion();
+    }
+  }
+
   document.getElementById('d-treaty').addEventListener('click', () => {
+    treatyClicked = true;
     document.querySelectorAll('.sphere-node.neutral').forEach(n => {
       n.className = "sphere-node mitra";
       n.style.background = "#4df5e2";
       n.style.boxShadow = "0 0 10px #4df5e2";
     });
     document.getElementById('maṇḍala-action-log').innerText = "Treaty Forged! Neutral states shifted into Allies (Mitra) to build structural leverage.";
+    checkMandalaCompletion();
   });
 
   document.getElementById('d-spy').addEventListener('click', () => {
+    spyClicked = true;
     document.getElementById('maṇḍala-action-log').innerText = "Spies deployed inside Ari (Enemy) territories. Defensive fortifications mapped.";
+    checkMandalaCompletion();
   });
 
   document.getElementById('d-divide').addEventListener('click', () => {
+    divideClicked = true;
     document.querySelectorAll('.sphere-node.ari').forEach(n => {
       n.style.background = "#b52a2a";
       n.style.boxShadow = "0 0 6px #5c1414";
     });
     document.getElementById('maṇḍala-action-log').innerText = "Bheda Applied! Sowed division between opposing armies. Battle intensity drops.";
+    checkMandalaCompletion();
   });
 
   document.getElementById('d-reset').addEventListener('click', () => {
@@ -3967,6 +4145,7 @@ function renderNeeti(container) {
 
   function loadDilemma() {
     if (currentIdx >= scenarios.length) {
+      unlockLessonCompletion();
       container.innerHTML = `
         <div class="widget-title">Dilemma Assessment Complete</div>
         <div style="text-align:center; padding:1rem; color:var(--text-muted);">
@@ -4064,6 +4243,9 @@ function renderSamatvam(container) {
 
     if (dist < 20) {
       score = Math.min(100, score + 2);
+      if (score === 100) {
+        unlockLessonCompletion();
+      }
     } else {
       score = Math.max(0, score - 3);
     }
@@ -4112,11 +4294,18 @@ function renderDaharaAkasha(container) {
     Muladhara: "Muladhara (Root Center): Aligns with the Gopuram (gateway structure), anchoring the building to the physical earth."
   };
 
+  const hoveredChakras = new Set();
+
   document.querySelectorAll('.c-node').forEach(node => {
     node.addEventListener('mouseenter', () => {
       const ch = node.getAttribute('data-ch');
       node.style.fill = getComputedStyle(document.body).getPropertyValue('--accent').trim();
       document.getElementById('d-info').innerText = mapping[ch];
+      
+      hoveredChakras.add(ch);
+      if (hoveredChakras.size === 5) {
+        unlockLessonCompletion();
+      }
     });
     node.addEventListener('mouseleave', () => {
       node.style.fill = "none";
@@ -4198,6 +4387,7 @@ function renderAyadi(container) {
     if (aya > vyaya) {
       ratingEl.innerText = "Resonant";
       ratingEl.style.color = "#00ff88";
+      unlockLessonCompletion();
     } else {
       ratingEl.innerText = "Conflict";
       ratingEl.style.color = "#ff4d4d";
@@ -4240,7 +4430,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sanctumNavBtn.href = `sanctum.html?pillar=${currentPillar}`;
   }
 
-  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-mystical';
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   setTheme(null, initialTheme);
 });
 
@@ -4310,6 +4500,14 @@ const samkshepaRamayanaShlokas = [
   }
 ];
 
+function unlockLessonCompletion() {
+  const box = document.getElementById('lesson-completion-box');
+  if (box) {
+    box.style.display = 'block';
+    box.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
 function completeCourseLesson() {
   let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
   if (!completed[currentPillar]) {
@@ -4319,6 +4517,20 @@ function completeCourseLesson() {
     completed[currentPillar].push(currentCourse);
   }
   localStorage.setItem('era_of_siddhas_completed', JSON.stringify(completed));
+
+  // Save grade level completion to unlock the next level
+  let completedGrades = JSON.parse(localStorage.getItem('era_of_siddhas_completed_grades') || '{}');
+  if (!completedGrades[currentPillar]) {
+    completedGrades[currentPillar] = {};
+  }
+  if (!completedGrades[currentPillar][currentCourse]) {
+    completedGrades[currentPillar][currentCourse] = [];
+  }
+  if (!completedGrades[currentPillar][currentCourse].includes(currentGrade)) {
+    completedGrades[currentPillar][currentCourse].push(currentGrade);
+  }
+  localStorage.setItem('era_of_siddhas_completed_grades', JSON.stringify(completedGrades));
+
   showCompletionModal();
 }
 
@@ -4346,52 +4558,604 @@ function showCompletionModal() {
     modal.style.alignItems = 'center';
     modal.style.justifyContent = 'center';
     modal.style.backdropFilter = 'blur(15px)';
+    modal.style.cursor = 'none'; // Hide default browser cursor
     document.body.appendChild(modal);
   }
   
   modal.innerHTML = `
-    <div style="background: var(--bg-glass); border: 2px solid var(--gold); border-radius: 24px; padding: 3rem; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 0 50px rgba(196,137,42,0.3); position: relative;">
+    <div style="background: var(--bg-glass); border: 2px solid var(--gold); border-radius: 24px; padding: 3rem; width: 90%; max-width: 600px; text-align: center; box-shadow: 0 0 50px rgba(196,137,42,0.3); position: relative; cursor: none;">
       
       <!-- Rotating Golden Badge -->
-      <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;">
-        <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow);"></div>
-        <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse;"></div>
-        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3;">
+      <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center; cursor: none;">
+        <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow); cursor: none;"></div>
+        <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse; cursor: none;"></div>
+        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3; cursor: none;">
           ŚĀSTRA<br>ADHITI
         </div>
       </div>
       
-      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em; cursor: none;">
         Course Completed!
       </div>
-      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">
+      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; cursor: none;">
         Initiate of ${currentPillar.toUpperCase()}
       </div>
       
       <!-- Saṃkṣepa Rāmāyaṇam Blessing -->
-      <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left;">
-        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase;">
+      <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left; cursor: none;">
+        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase; cursor: none;">
           Saṃkṣepa Rāmāyaṇam Blessing (${selectedShloka.ref})
         </div>
-        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem;">
+        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem; cursor: none;">
           ${selectedShloka.devanagari}
         </div>
-        <div style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem;">
+        <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem; cursor: none;">
           ${selectedShloka.translit}
         </div>
-        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center;">
+        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center; cursor: none;">
           <strong>Translation:</strong> "${selectedShloka.translation}"
         </p>
       </div>
       
-      <button class="action-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow);">
+      <button class="action-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow); cursor: none;">
         Return to Course Hub
       </button>
       
     </div>
   `;
   modal.style.display = 'flex';
+
+  // Guarantee custom cursor elements render on top of the modal by appending them to the end of body
+  const cursorElement = document.getElementById('cursor');
+  const cursorRingElement = document.getElementById('cursor-ring');
+  if (cursorElement && cursorRingElement) {
+    document.body.appendChild(cursorElement);
+    document.body.appendChild(cursorRingElement);
+  }
+
   bindCursorEvents();
+}
+
+function renderSolverInputs() {
+  if (currentCourse === 'yoga' && currentPillar === 'yuddham') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">t_exhale (s)</label>
+          <input type="number" id="eq-in-1" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">t_inhale (s)</label>
+          <input type="number" id="eq-in-2" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">t_hold_in (s)</label>
+          <input type="number" id="eq-in-3" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">t_hold_out (s)</label>
+          <input type="number" id="eq-in-4" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'upasana' && currentPillar === 'yuddham') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Order of Harmonic (n)</label>
+          <input type="number" id="eq-in-1" value="1" min="1" max="10" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Throat Cavity L (m)</label>
+          <input type="number" id="eq-in-2" value="0.17" step="0.01" min="0.05" max="0.5" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'maṇḍala' && currentPillar === 'yuddham') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Trade Connectivity (k)</label>
+          <input type="number" id="eq-in-1" value="80" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Geographic Distance (d)</label>
+          <input type="number" id="eq-in-2" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Hostility Index (H)</label>
+          <input type="number" id="eq-in-3" value="50" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'vyūhas' && currentPillar === 'yuddham') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Base Offset (a)</label>
+          <input type="number" id="eq-in-1" value="20" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Spacing Rate (b)</label>
+          <input type="number" id="eq-in-2" value="22" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Angle Theta (rad)</label>
+          <input type="number" id="eq-in-3" value="3.14" step="0.1" min="0" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'saptāṅga' && currentPillar === 'rājya') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Mean Limb Value (mu)</label>
+          <input type="number" id="eq-in-1" value="80" min="10" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Limb Variance (Var)</label>
+          <input type="number" id="eq-in-2" value="10" min="0" max="500" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'yoga' && currentPillar === 'rājya') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Prefrontal Cortex Activation (S_PFC)</label>
+          <input type="number" id="eq-in-1" value="90" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Amygdala Reactivity (S_amygdala)</label>
+          <input type="number" id="eq-in-2" value="30" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">External Noise (sigma_ext)</label>
+          <input type="number" id="eq-in-3" value="5" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'upasana' && currentPillar === 'rājya') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Altar Temp T (°C)</label>
+          <input type="number" id="eq-in-1" value="750" min="100" max="1200" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Aerosol Conc N (ppm)</label>
+          <input type="number" id="eq-in-2" value="50" min="0" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'neeti' && currentPillar === 'rājya') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Justice Weight (w1)</label>
+          <input type="number" id="eq-in-1" value="0.4" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Security Weight (w2)</label>
+          <input type="number" id="eq-in-2" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Treasury Weight (w3)</label>
+          <input type="number" id="eq-in-3" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'vastu' && currentPillar === 'nagara') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Core Radius R_0 (Hasta)</label>
+          <input type="number" id="eq-in-1" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Ring Number (n)</label>
+          <input type="number" id="eq-in-2" value="3" min="1" max="8" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'yoga' && currentPillar === 'nagara') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Scaling Factor (r)</label>
+          <input type="number" id="eq-in-1" value="0.5" step="0.1" min="0.1" max="0.9" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Number of Pieces (N)</label>
+          <input type="number" id="eq-in-2" value="3" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'upasana' && currentPillar === 'nagara') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Building Height H (m)</label>
+          <input type="number" id="eq-in-1" value="9" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Street Width W (m)</label>
+          <input type="number" id="eq-in-2" value="12" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'upanishads' && currentPillar === 'nagara') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Room Length L (m)</label>
+          <input type="number" id="eq-in-1" value="6" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Room Width W (m)</label>
+          <input type="number" id="eq-in-2" value="4" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Mode Indices (p, q)</label>
+          <input type="text" id="eq-in-3" value="1, 1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  if (currentCourse === 'sthapatya' && currentPillar === 'nagara') {
+    return `
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+        <div>
+          <label style="font-size:0.7rem; color:var(--text-muted);">Perimeter P (Hasta)</label>
+          <input type="number" id="eq-in-1" value="56" min="8" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+        </div>
+      </div>
+    `;
+  }
+  return '';
+}
+
+function calculateSolveEquation() {
+  const box = document.getElementById('solver-results-box');
+  const explanation = document.getElementById('solver-explanation');
+  if (!box || !explanation) return;
+  
+  const in1 = parseFloat(document.getElementById('eq-in-1')?.value) || 0;
+  const in2 = parseFloat(document.getElementById('eq-in-2')?.value) || 0;
+  const in3 = parseFloat(document.getElementById('eq-in-3')?.value) || 0;
+  const in4 = parseFloat(document.getElementById('eq-in-4')?.value) || 0;
+  
+  let sol = '';
+  
+  // Yuddha Yoga Box Breathing
+  if (currentCourse === 'yoga' && currentPillar === 'yuddham') {
+    const t_exhale = in1;
+    const t_inhale = in2;
+    const t_hold_in = in3;
+    const t_hold_out = in4;
+    const denom = t_inhale + t_hold_in + t_hold_out;
+    const ratio = denom > 0 ? (t_exhale / denom).toFixed(3) : 0;
+    const pct = Math.round(ratio * 100);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Identify variables: Exhale time = ${t_exhale}s, rest of cycle = Inhale (${t_inhale}s) + Hold (${t_hold_in}s) + Hold Out (${t_hold_out}s) = ${denom}s.<br>
+        <strong>Step 2:</strong> Divide Exhale by rest of cycle: ${t_exhale} ÷ ${denom} = <strong>${ratio}</strong>.<br>
+        <strong>Step 3:</strong> Vagal activation rating: <strong>${pct}%</strong>. Longer exhales stimulate your vagus nerve to calm your body down!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Calculate non-exhalatory duration sum: $t_{inhale} + t_{hold-in} + t_{hold-out} = ${t_inhale} + ${t_hold_in} + ${t_hold_out} = ${denom}$ seconds.<br>
+        2. Calculate ratio: $\\Phi = \\frac{t_{exhale}}{T_{non-exhale}} = \\frac{${t_exhale}}{${denom}} = <strong>${ratio}</strong>$.<br>
+        3. <strong>Vagal Coherence factor:</strong> Parasympathetic feedback frequency increases proportional to $\\Phi$ (${pct}% vagus activation). Long exhalations trigger baroreflex adjustments, lowering Heart Rate and boosting cognitive focus under stress.
+      `;
+    }
+  }
+  // Yuddha Upasana sound resonance
+  else if (currentCourse === 'upasana' && currentPillar === 'yuddham') {
+    const n = in1;
+    const L = in2;
+    const v = 343;
+    const f = (n * v) / (2 * L);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Identify constants: Speed of sound ($v$) = 343 m/s.<br>
+        <strong>Step 2:</strong> Numerator: Harmonic (${n}) × Speed = ${n} × 343 = ${n * v}.<br>
+        <strong>Step 3:</strong> Denominator: 2 × Cavity Length (${L}m) = ${(2 * L).toFixed(2)}m.<br>
+        <strong>Step 4:</strong> Frequency: ${n * v} ÷ ${(2 * L).toFixed(2)} = <strong>${Math.round(f)} Hz</strong>. This pitch creates a physical echo inside your throat!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Formula: $f_n = \\frac{n \\cdot v}{2L}$ where $v = 343\\text{ m/s}$ and $L = ${L}\\text{ m}$.<br>
+        2. Substitute values: $f_{${n}} = \\frac{${n} \\times 343}{2 \\times ${L}} = \\frac{${n * v}}{${(2 * L).toFixed(3)}}$.<br>
+        3. Result: $f_{${n}} = \\mathbf{${f.toFixed(2)}\\text{ Hz}}$ (cycles per second).<br>
+        At this resonant frequency, the sound waves superimpose constructively inside the oral-nasal cavity, generating acoustic standing waves that vibrate the cranial floor and stimulate laryngeal vagus receptors.
+      `;
+    }
+  }
+  // Mandala states circle
+  else if (currentCourse === 'maṇḍala' && currentPillar === 'yuddham') {
+    const k = in1;
+    const d = in2;
+    const H = in3;
+    const val = (k / d) - 0.5 * H;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Divide Trade Connectivity (${k}) by Distance (${d}): ${k} ÷ ${d} = ${k/d}.<br>
+        <strong>Step 2:</strong> Multiply Hostility (${H}) by weight 0.5: 0.5 × ${H} = ${0.5*H}.<br>
+        <strong>Step 3:</strong> Alliance Strength: ${k/d} - ${0.5*H} = <strong>${val.toFixed(2)}</strong>.<br>
+        *Note: If strength is positive, states are allies. If negative, they are in conflict!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Formula: $A_{ij} = \\frac{k_{trade}}{d_{ij}} - \\alpha \\cdot H_{ij}$ using conflict memory index $\\alpha = 0.5$.<br>
+        2. Substitute values: $A_{ij} = \\frac{${k}}{${d}} - 0.5 \\times ${H}$.<br>
+        3. Calculate terms: $A_{ij} = ${k/d} - ${0.5*H} = <strong>${val.toFixed(3)}</strong>$.<br>
+        <strong>Geopolitical assessment:</strong> A value of $A_{ij} = ${val.toFixed(3)}$ indicates ${val > 0 ? "stable alliance integration (Mitra)" : "adversarial containment stress (Ari)"}. Geopolitical friction is minimized when trade pathways dominate territorial proximity.
+      `;
+    }
+  }
+  // Chakravyuha Archimedean spiral
+  else if (currentCourse === 'vyūhas' && currentPillar === 'yuddham') {
+    const a = in1;
+    const b = in2;
+    const theta = in3;
+    const r = a + b * theta;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Multiply Spacing (${b}) by Angle theta in radians (${theta}): ${b} × ${theta} = ${(b * theta).toFixed(2)}.<br>
+        <strong>Step 2:</strong> Add Base Center offset (${a}): ${a} + ${(b * theta).toFixed(2)} = <strong>${r.toFixed(2)} Hasta</strong>.<br>
+        This gives the physical distance from the center for the gateway of the spiral at that angle.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Archimedean spiral: $r(\\theta) = a + b\\theta$ where $a = ${a}$ and $b = ${b}$.<br>
+        2. Substitute $\\theta = ${theta}$ rad:<br>
+           $r(${theta}) = ${a} + ${b} \\times ${theta} = ${a} + ${(b * theta).toFixed(3)} = <strong>${r.toFixed(3)} \\text{ Hasta}</strong>$.<br>
+        In Cartesian coordinates, this matches point: $x = r\\cos(${theta}) = ${(r*Math.cos(theta)).toFixed(2)}$, $y = r\\sin(${theta}) = ${(r*Math.sin(theta)).toFixed(2)}$.
+      `;
+    }
+  }
+  // Saptanga Heptagonal average
+  else if (currentCourse === 'saptāṅga' && currentPillar === 'rājya') {
+    const mu = in1;
+    const v = in2;
+    const s = mu - 0.1 * v;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Multiply Variance (${v}) by factor 0.1: 0.1 × ${v} = ${0.1*v}.<br>
+        <strong>Step 2:</strong> Subtract from Mean Value (${mu}): ${mu} - ${0.1*v} = <strong>${s.toFixed(1)}%</strong> stability.<br>
+        Large differences between limbs reduce state stability rapidly, even if the overall scores are high!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Formulate stability: $S_{state} = \\mu_{limbs} - \\beta \\cdot \\text{Var}(x)$ where $\\beta = 0.1$.<br>
+        2. Substitute values: $S = ${mu} - 0.1 \\times ${v}$.<br>
+        3. Result: $S = <strong>${s.toFixed(2)}\\%</strong>$.<br>
+        This models Kautilya's Saptanga: a state with high resource variance (e.g. powerful military but bankrupt treasury) experiences localized strain, penalizing the baseline stability index by ${0.1*v} units.
+      `;
+    }
+  }
+  // Samatvam concentration
+  else if (currentCourse === 'yoga' && currentPillar === 'rājya') {
+    const pfc = in1;
+    const amy = in2;
+    const noise = in3;
+    const C = pfc / (amy + 0.1 * noise * noise);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Square noise: ${noise} × ${noise} = ${noise*noise}.<br>
+        <strong>Step 2:</strong> Multiply by weight 0.1: 0.1 × ${noise*noise} = ${(0.1*noise*noise).toFixed(1)}.<br>
+        <strong>Step 3:</strong> Add Amygdala activity (${amy}): ${amy} + ${(0.1*noise*noise).toFixed(1)} = ${(amy + 0.1*noise*noise).toFixed(1)}.<br>
+        <strong>Step 4:</strong> Divide PFC focus (${pfc}): ${pfc} ÷ ${(amy + 0.1*noise*noise).toFixed(1)} = <strong>${C.toFixed(3)}</strong> focus rating.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Formulation: $C_{focus} = \\frac{S_{PFC}}{S_{amygdala} + \\beta \\cdot \\sigma_{ext}^2}$ where $\\beta = 0.1$.<br>
+        2. Substitute inputs: $C = \\frac{${pfc}}{${amy} + 0.1 \\times ${noise}^2} = \\frac{${pfc}}{${amy} + 0.1 \\times ${noise*noise}} = \\frac{${pfc}}{${(amy + 0.1*noise*noise).toFixed(3)}}$.<br>
+        3. Focus Coefficient ($C$): <strong>${C.toFixed(4)}</strong>.<br>
+        Higher values represent a brain that keeps cognitive focus locked despite external stress and emotional drift.
+      `;
+    }
+  }
+  // Yajna Ecology rain
+  else if (currentCourse === 'upasana' && currentPillar === 'rājya') {
+    const T = in1;
+    const N = in2;
+    const rate = 0.2 * T - 0.001 * N * N;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Multiply Temp (${T}) by 0.2: 0.2 × ${T} = ${0.2*T}.<br>
+        <strong>Step 2:</strong> Square aerosols concentration: ${N} × ${N} = ${N*N}. Multiply by 0.001 = ${(0.001*N*N).toFixed(2)}.<br>
+        <strong>Step 3:</strong> Net rain-seeding rate: ${0.2*T} - ${(0.001*N*N).toFixed(2)} = <strong>${rate.toFixed(2)} particles/s</strong>.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Seeding rate differential: $\\frac{dN}{dt} = \\beta \\cdot T_{combustion} - \\alpha \\cdot N^2$ with $\\beta = 0.2$ and $\\alpha = 0.001$.<br>
+        2. Substitute: $\\frac{dN}{dt} = 0.2 \\times ${T} - 0.001 \\times ${N}^2 = ${0.2*T} - ${(0.001*N*N).toFixed(3)}$.<br>
+        3. Solution: $\\frac{dN}{dt} = <strong>${rate.toFixed(3)}\\text{ ppm/s}</strong>$.<br>
+        Optimal cloud droplet formation requires a stable balance: overheating vaporizes herbal oils into simple carbon ash, reducing net seeding aerosols (represented by the quadratic loss term).
+      `;
+    }
+  }
+  // Neeti administrative policy utility
+  else if (currentCourse === 'neeti' && currentPillar === 'rājya') {
+    const w1 = in1;
+    const w2 = in2;
+    const w3 = in3;
+    const sum_w = w1 + w2 + w3;
+    const u = w1 * 80 + w2 * 70 + w3 * 60;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Check weights sum: ${w1} + ${w2} + ${w3} = ${sum_w.toFixed(2)}.<br>
+        <strong>Step 2:</strong> Multiply weights by values (Justice=80, Security=70, Treasury=60):<br>
+        (${w1} × 80) + (${w2} × 70) + (${w3} × 60) = ${w1*80} + ${w2*70} + ${w3*60}.<br>
+        <strong>Step 3:</strong> Sum: <strong>${u.toFixed(1)}</strong> utility points.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        Using the Multi-Criteria Utility formulation $U(a) = \\sum_{i} w_i v_i(a)$ where $v = [80, 70, 60]^T$:<br>
+        1. Dot product calculation: $U(a) = ${w1} \\times 80 + ${w2} \\times 70 + ${w3} \\times 60$.<br>
+        2. Solve: $U(a) = ${w1*80} + ${w2*70} + ${w3*60} = <strong>${u.toFixed(2)}</strong>$.<br>
+        If the normalized weights sum to $${sum_w.toFixed(3)}$, the policy action is rated as ${u > 70 ? "optimal" : "sub-optimal"}.
+      `;
+    }
+  }
+  // Vastu Purusha Mandala expansion
+  else if (currentCourse === 'vastu' && currentPillar === 'nagara') {
+    const R0 = in1;
+    const n = in2;
+    const phi = 1.618;
+    const Rn = R0 * Math.pow(phi, n);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Take Golden Ratio (1.618) to the power of ring (${n}): 1.618^${n} = ${(Math.pow(phi, n)).toFixed(3)}.<br>
+        <strong>Step 2:</strong> Multiply by core radius (${R0} Hasta): ${R0} × ${(Math.pow(phi, n)).toFixed(3)} = <strong>${Rn.toFixed(2)} Hasta</strong>.<br>
+        This is the radius of the outer city boundary for that zone ring.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Golden ratio expansion model: $R_n = R_0 \\cdot \\phi^n$ where $\\phi = 1.618$ and $R_0 = ${R0}$.<br>
+        2. Calculate expansion scale factor: $\\phi^{${n}} = 1.618^{${n}} = ${(Math.pow(phi, n)).toFixed(4)}$.<br>
+        3. Boundary Radius ($R_{${n}}$): $${R0} \\times ${(Math.pow(phi, n)).toFixed(4)} = \\mathbf{${Rn.toFixed(3)}\\text{ Hasta}}$.<br>
+        This logarithmic spacing distributes building stress and wind currents in fractal proportions, mirroring plant phyllotaxis structures.
+      `;
+    }
+  }
+  // Compass layout fractal dimension
+  else if (currentCourse === 'yoga' && currentPillar === 'nagara') {
+    const r = in1;
+    const N = in2;
+    const D = Math.log(N) / Math.log(1 / r);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Find inverse scale factor: 1 ÷ ${r} = ${1/r}.<br>
+        <strong>Step 2:</strong> Calculate logs: log(${N}) = ${(Math.log(N)).toFixed(3)}, log(${1/r}) = ${(Math.log(1/r)).toFixed(3)}.<br>
+        <strong>Step 3:</strong> Divide: ${(Math.log(N)).toFixed(3)} ÷ ${(Math.log(1/r)).toFixed(3)} = <strong>${D.toFixed(3)}</strong>.<br>
+        A fractal dimension around 1.4 is naturally pleasing to the human eye!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Fractal dimension formula: $D_f = \\frac{\\log(N)}{\\log(1/r)}$ with scale factor $r = ${r}$, pieces $N = ${N}$.<br>
+        2. Substitute values: $D_f = \\frac{\\log(${N})}{\\log(${1/r})} = \\frac{${(Math.log(N)).toFixed(4)}}{${(Math.log(1/r)).toFixed(4)}}$.<br>
+        3. Solution: $D_f = <strong>${D.toFixed(4)}</strong>$.<br>
+        A dimension of $D_f = ${D.toFixed(3)}$ sits in the optimal human awe-induction range (1.3 - 1.5), which is mathematically replicated in the temple shikharas.
+      `;
+    }
+  }
+  // Bhuta Shuddhi solar access
+  else if (currentCourse === 'upasana' && currentPillar === 'nagara') {
+    const H = in1;
+    const W = in2;
+    const angle = Math.atan(H / W) * (180 / Math.PI);
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Divide building height (${H}) by street width (${W}): ${H} ÷ ${W} = ${(H/W).toFixed(3)}.<br>
+        <strong>Step 2:</strong> Take the arctan of this value: arctan(${(H/W).toFixed(3)}) = <strong>${angle.toFixed(1)} degrees</strong>.<br>
+        This is the minimum height angle the sun must be to reach the street floor!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Solar access street aspect angle: $\\theta = \\arctan\\left(\\frac{H}{W}\\right)$ for height $H = ${H}$, width $W = ${W}$.<br>
+        2. Evaluate ratio: $\\frac{H}{W} = ${(H/W).toFixed(4)}$.<br>
+        3. Angle: $\\theta = \\arctan(${(H/W).toFixed(4)}) = ${(Math.atan(H/W)).toFixed(4)}\\text{ rad} = <strong>${angle.toFixed(2)}^\\circ</strong>$.<br>
+        If street height exceeds width heavily, winter solar penetration is blocked. This matches the passive microclimate rules defined in the Shilpashastras.
+      `;
+    }
+  }
+  // Upanishad Dahara Akasha room modes
+  else if (currentCourse === 'upanishads' && currentPillar === 'nagara') {
+    const L = in1;
+    const W = in2;
+    const idxText = document.getElementById('eq-in-3')?.value || '1, 1';
+    const parts = idxText.split(',').map(Number);
+    const p = parts[0] || 1;
+    const q = parts[1] || 1;
+    
+    const val = Math.sqrt(Math.pow(p/L, 2) + Math.pow(q/W, 2));
+    const f = (343 / 2) * val;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Calculate lengths modal ratios: (${p}/${L})^2 = ${(Math.pow(p/L, 2)).toFixed(5)}.<br>
+        <strong>Step 2:</strong> Calculate widths modal ratios: (${q}/${W})^2 = ${(Math.pow(q/W, 2)).toFixed(5)}.<br>
+        <strong>Step 3:</strong> Sum ratios: ${(Math.pow(p/L, 2) + Math.pow(q/W, 2)).toFixed(5)}.<br>
+        <strong>Step 4:</strong> Take square root: ${val.toFixed(4)}.<br>
+        <strong>Step 5:</strong> Multiply by sound speed constant (171.5): 171.5 × ${val.toFixed(4)} = <strong>${Math.round(f)} Hz</strong>.
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        Using the 2D room mode wave equation $f_{pq} = \\frac{c}{2} \\sqrt{\\left(\\frac{p}{L}\\right)^2 + \\left(\\frac{q}{W}\\right)^2}$ with $c = 343\\text{ m/s}$:<br>
+        1. Substitute mode indices $(p,q) = (${p},${q})$, dimensions $L = ${L}\\text{ m}, W = ${W}\\text{ m}$.<br>
+        2. Calculate modal vectors: $\\sqrt{\\left(\\frac{${p}}{${L}}\\right)^2 + \\left(\\frac{${q}}{${W}}\\right)^2} = \\sqrt{${(Math.pow(p/L,2)).toFixed(5)} + ${(Math.pow(q/W,2)).toFixed(5)}} = ${val.toFixed(4)}$.<br>
+        3. Frequency: $f_{${p}${q}} = 171.5 \\times ${val.toFixed(4)} = \\mathbf{${f.toFixed(2)}\\text{ Hz}}$.<br>
+        This frequency represents a natural acoustic node in the room, where pressure waves form peaks or valleys.
+      `;
+    }
+  }
+  // Sthapatya Ayadi math
+  else if (currentCourse === 'sthapatya' && currentPillar === 'nagara') {
+    const P = in1;
+    const aya = (P * 8) % 12;
+    const vyaya = (P * 9) % 10;
+    const yoni = (P * 3) % 8;
+    
+    if (currentGrade === 'secondary') {
+      sol = `
+        <strong>Step 1:</strong> Calculate Income (Aya): (${P} × 8) mod 12 = ${P * 8} mod 12 = <strong>${aya}</strong>.<br>
+        <strong>Step 2:</strong> Calculate Expense (Vyaya): (${P} × 9) mod 10 = ${P * 9} mod 10 = <strong>${vyaya}</strong>.<br>
+        <strong>Step 3:</strong> Calculate Energy (Yoni): (${P} × 3) mod 8 = ${P * 3} mod 8 = <strong>${yoni}</strong>.<br>
+        *Rule: A building is auspicious if Income (${aya}) is greater than Expense (${vyaya})!
+      `;
+    } else {
+      sol = `
+        <strong>Mathematical Resolution:</strong><br>
+        1. Aya congruence: $Aya = (P \\cdot 8) \\pmod{12} = (${P} \\times 8) \\pmod{12} = ${P * 8} \\pmod{12} = <strong>${aya}</strong>$.<br>
+        2. Vyaya congruence: $Vyaya = (P \\cdot 9) \\pmod{10} = (${P} \\times 9) \\pmod{10} = ${P * 9} \\pmod{10} = <strong>${vyaya}</strong>$.<br>
+        3. Yoni congruence: $Yoni = (P \\cdot 3) \\pmod{8} = (${P} \\times 3) \\pmod{8} = ${P * 3} \\pmod{8} = <strong>${yoni}</strong>$.<br>
+        <strong>Acoustic resonance validation:</strong> Since $Aya (${aya}) ${aya > vyaya ? ">" : "\\le"} Vyaya (${vyaya})$, this perimeter is rated as ${aya > vyaya ? "Resonant" : "Inharmonious"}. Modular sieves align room geometry to avoid modal packing clusters.
+      `;
+    }
+  }
+  
+  box.style.display = 'block';
+  explanation.innerHTML = sol;
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    window.MathJax.typesetPromise([explanation]).catch((err) => console.log(err));
+  }
 }
 
 function closeCompletionModal() {

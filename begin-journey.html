@@ -8,13 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
   :root {
-    --earth: #1a0e00;
+    --earth: #0a0502;
     --gold: #c8922a;
     --gold-bright: #f0c060;
     --gold-pale: #f5dfa0;
     --ember: #c44a1a;
     --ash: #8a7a6a;
     --cream: #f2e8d5;
+    --border-glass: rgba(200, 146, 42, 0.15);
+    --bg-glass: rgba(20, 10, 5, 0.7);
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
@@ -49,13 +51,13 @@
   }
   .step-dots {
     display: flex;
-    gap: 6px;
+    gap: 12px;
     align-items: center;
     flex: 1;
     justify-content: center;
   }
   .step-dot {
-    width: 8px; height: 8px;
+    width: 10px; height: 10px;
     border-radius: 50%;
     background: rgba(200,146,42,0.15);
     border: 1px solid rgba(200,146,42,0.2);
@@ -75,7 +77,7 @@
   .screen {
     display: none;
     min-height: 100vh;
-    padding: 8rem 2rem 4rem;
+    padding: 7rem 2rem 3rem;
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -83,39 +85,33 @@
   }
   .screen.active { display: flex; }
 
-  /* SCREEN 0 — COSMIC INTRO */
+  /* COSMIC INTRO */
   .cosmic-title {
     font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(2rem, 6vw, 4.5rem);
+    font-size: clamp(1.8rem, 5vw, 4rem);
     font-weight: 900;
     color: var(--gold-pale);
     line-height: 1.1;
     margin-bottom: 1.5rem;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.3s forwards;
     text-shadow: 0 0 60px rgba(200,146,42,0.3);
   }
   .cosmic-devanagari {
     font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.3rem, 3.5vw, 2.2rem);
     color: var(--gold);
-    margin-bottom: 2rem;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.6s forwards;
+    margin-bottom: 1.5rem;
     text-shadow: 0 0 40px rgba(200,146,42,0.4);
   }
   .cosmic-body {
-    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
     font-style: italic;
     color: var(--ash);
-    max-width: 600px;
-    line-height: 1.9;
-    margin-bottom: 3rem;
-    opacity: 0;
-    animation: fadeUp 1.2s ease 0.9s forwards;
+    max-width: 650px;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
   }
 
-  /* MANDALA bg for screen 0 */
+  /* MANDALA bg */
   .maṇḍala-bg {
     position: fixed;
     inset: 0;
@@ -124,15 +120,22 @@
     justify-content: center;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.04;
+    opacity: 0.035;
   }
   .maṇḍala-bg svg { width: 90vmin; height: 90vmin; animation: spin 120s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* QUESTION SCREENS */
   .question-wrap {
-    max-width: 680px;
+    max-width: 620px;
     width: 100%;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 2.5rem;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    text-align: left;
+    backdrop-filter: blur(15px);
   }
   .q-label {
     font-family: 'Cinzel', serif;
@@ -140,151 +143,162 @@
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
   }
   .q-text {
     font-family: 'Cinzel', serif;
-    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    font-size: clamp(1.2rem, 2.5vw, 1.6rem);
     font-weight: 600;
     color: var(--gold-pale);
-    line-height: 1.5;
-    margin-bottom: 0.75rem;
-  }
-  .q-sub {
-    font-size: 1rem;
-    font-style: italic;
-    color: var(--ash);
-    line-height: 1.8;
-    margin-bottom: 2.5rem;
-  }
-  .q-options {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    text-align: left;
-  }
-  .q-option {
-    padding: 1.1rem 1.5rem;
-    border: 1px solid rgba(200,146,42,0.18);
-    background: rgba(20,10,0,0.5);
-    cursor: pointer;
-    transition: all 0.25s;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-  }
-  .q-option:hover { border-color: rgba(200,146,42,0.5); background: rgba(200,146,42,0.06); }
-  .q-option.selected { border-color: var(--gold); background: rgba(200,146,42,0.12); }
-  .q-option-letter {
-    font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
-    color: var(--gold);
-    letter-spacing: 0.1em;
-    min-width: 1.2rem;
-    margin-top: 3px;
-  }
-  .q-option-text {
-    font-size: 1rem;
-    color: var(--cream);
-    line-height: 1.6;
-  }
-  .q-option-sub {
-    font-size: 0.85rem;
-    color: var(--ash);
-    font-style: italic;
-    margin-top: 0.25rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
   }
 
-  /* OPEN QUESTION */
-  .q-textarea {
+  .form-group {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .form-group label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-bright);
+    font-weight: 500;
+  }
+
+  /* INPUTS */
+  .q-input, .q-select, .q-textarea {
     width: 100%;
-    min-height: 140px;
-    background: rgba(0,0,0,0.3);
-    border: 1px solid rgba(200,146,42,0.2);
+    background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(200,146,42,0.25);
     color: var(--cream);
     font-family: 'EB Garamond', serif;
     font-size: 1.05rem;
-    padding: 1.25rem;
-    resize: vertical;
+    padding: 10px 14px;
+    border-radius: 4px;
     outline: none;
-    line-height: 1.8;
-    text-align: left;
-    margin-bottom: 1.5rem;
-    cursor: text;
+    transition: all 0.3s;
   }
-  .q-textarea:focus { border-color: rgba(200,146,42,0.5); }
-  .q-textarea::placeholder { color: rgba(138,122,106,0.4); font-style: italic; }
+  .q-input:focus, .q-select:focus, .q-textarea:focus {
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px rgba(200,146,42,0.15);
+  }
+  .q-select option {
+    background: #110905;
+    color: var(--cream);
+  }
+  .q-textarea {
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.5;
+  }
 
   /* RESULT SCREEN */
   .result-badge {
     font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 4rem;
-    color: var(--gold);
-    text-shadow: 0 0 40px rgba(200,146,42,0.5);
-    margin-bottom: 1rem;
+    font-size: 3.5rem;
+    color: var(--gold-bright);
+    text-shadow: 0 0 40px rgba(200,146,42,0.6);
+    margin-bottom: 0.8rem;
     animation: pulse 3s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { text-shadow: 0 0 30px rgba(200,146,42,0.4); }
-    50% { text-shadow: 0 0 60px rgba(200,146,42,0.8); }
+    0%, 100% { text-shadow: 0 0 25px rgba(200,146,42,0.4); }
+    50% { text-shadow: 0 0 50px rgba(200,146,42,0.7); }
   }
   .result-level {
     font-family: 'Cinzel Decorative', serif;
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-size: clamp(1.4rem, 3.5vw, 2.2rem);
     color: var(--gold-pale);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem;
   }
   .result-sublevel {
     font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
     color: var(--gold);
     text-transform: uppercase;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
   }
   .result-desc {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     font-style: italic;
     color: var(--ash);
-    max-width: 560px;
-    line-height: 1.9;
-    margin-bottom: 3rem;
+    max-width: 580px;
+    line-height: 1.7;
+    margin: 0 auto 2rem;
   }
   .result-path {
-    background: rgba(20,10,0,0.6);
-    border: 1px solid rgba(200,146,42,0.2);
-    padding: 2rem;
-    max-width: 560px;
+    background: rgba(15,8,4,0.6);
+    border: 1px solid rgba(200,146,42,0.25);
+    padding: 1.5rem;
+    border-radius: 8px;
     width: 100%;
     text-align: left;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem;
   }
   .result-path-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
-    letter-spacing: 0.3em;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.8rem;
+    border-bottom: 1px dashed rgba(200,146,42,0.2);
+    padding-bottom: 6px;
   }
   .result-path-item {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    padding: 0.6rem 0;
-    border-bottom: 1px solid rgba(200,146,42,0.07);
+    gap: 12px;
+    padding: 0.5rem 0;
     font-size: 0.95rem;
     color: var(--cream);
   }
-  .result-path-item:last-child { border-bottom: none; }
   .result-path-check { color: var(--gold); font-size: 0.8rem; }
 
-  /* DIVIDER */
+  /* DINACHARYA INSIGHTS CARD */
+  .insights-card {
+    background: rgba(196, 74, 26, 0.05);
+    border: 1.5px solid rgba(196, 74, 26, 0.25);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+    box-shadow: inset 0 0 15px rgba(196, 74, 26, 0.05);
+  }
+  .insights-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    color: var(--gold-bright);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+  }
+  .insights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--cream);
+  }
+  .insights-list div {
+    border-left: 2.5px solid var(--gold);
+    padding-left: 10px;
+  }
+
   .gold-divider {
     width: 80px;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: 2rem auto;
+    margin: 1.5rem auto;
   }
 
   /* BUTTONS */
@@ -293,7 +307,7 @@
     font-size: 0.85rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 1rem 2.8rem;
+    padding: 0.9rem 2.5rem;
     background: var(--gold);
     color: var(--earth);
     border: none;
@@ -309,7 +323,7 @@
     font-size: 0.8rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    padding: 0.9rem 2rem;
+    padding: 0.85rem 1.8rem;
     background: transparent;
     color: var(--ash);
     border: 1px solid rgba(200,146,42,0.25);
@@ -325,17 +339,39 @@
     gap: 1rem;
     justify-content: center;
     flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+
+  /* Validation Error Text */
+  .err-msg {
+    color: #ff4d4d;
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-top: 5px;
+    display: none;
   }
 
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(16px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .fade-in { opacity: 0; animation: fadeUp 0.6s ease forwards; }
+  .fade-in { animation: fadeUp 0.5s ease forwards; }
 
   @media (max-width: 600px) {
     .top-bar { padding: 1rem; }
-    .screen { padding: 6rem 1.25rem 3rem; }
+    .screen { padding: 6.5rem 1rem 2rem; }
+    .question-wrap { padding: 1.5rem; }
+  }
+  body.theme-light {
+    --earth: #f7f2e8;
+    --gold: #b8730a;
+    --gold-bright: #c8922a;
+    --gold-pale: #1a1208;
+    --ember: #8b4513;
+    --ash: #5c3d1a;
+    --cream: #1a1208;
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --bg-glass: rgba(237, 229, 208, 0.85);
   }
 </style>
 </head>
@@ -350,7 +386,6 @@
     <div class="step-dot" id="dot2"></div>
     <div class="step-dot" id="dot3"></div>
     <div class="step-dot" id="dot4"></div>
-    <div class="step-dot" id="dot5"></div>
   </div>
   <span class="step-label" id="stepLabel">Awakening</span>
 </div>
@@ -364,8 +399,6 @@
     <circle cx="100" cy="100" r="35" fill="none" stroke="#c8922a" stroke-width="0.5"/>
     <polygon points="100,5 195,155 5,155" fill="none" stroke="#c8922a" stroke-width="0.3"/>
     <polygon points="100,195 5,45 195,45" fill="none" stroke="#c8922a" stroke-width="0.3"/>
-    <polygon points="100,15 185,148 15,148" fill="none" stroke="#c8922a" stroke-width="0.2"/>
-    <polygon points="100,185 15,52 185,52" fill="none" stroke="#c8922a" stroke-width="0.2"/>
   </svg>
 </div>
 
@@ -373,155 +406,165 @@
 <div class="screen active" id="screen0" style="position:relative; z-index:1;">
   <div class="cosmic-devanagari">॥ अथातो ब्रह्मजिज्ञासा ॥</div>
   <h1 class="cosmic-title">Now, the inquiry into Brahman begins.</h1>
-  <p class="cosmic-body">Before the Gurukula can know you, it must meet you. These questions are not a test of knowledge — they are a mirror. Answer from the gut, not the head. There are no wrong answers. Only honest ones.</p>
+  <p class="cosmic-body">Before entering the Gurukula, you must establish your starting ground. This questionnaire maps your interests, academic grade, daily routines, and worldview to customize your curriculum path.</p>
   <div class="gold-divider"></div>
   <div class="btn-row">
-    <button class="btn-primary" onclick="goTo(1)">I am ready to begin</button>
+    <button class="btn-primary" onclick="goTo(1)">Begin Onboarding</button>
   </div>
 </div>
 
-<!-- SCREEN 1: WHERE ARE YOU -->
+<!-- SCREEN 1: SEEKER DETAILS -->
 <div class="screen" id="screen1">
   <div class="question-wrap fade-in">
-    <div class="q-label">Question 1 of 4 — Your Starting Ground</div>
-    <div class="q-text">Where do you find yourself right now on the path of Dharma?</div>
-    <div class="q-sub">Not where you wish you were — where you actually are.</div>
-    <div class="q-options" id="q1options">
-      <div class="q-option" onclick="selectOption('q1','A',this)">
-        <span class="q-option-letter">A</span>
-        <div>
-          <div class="q-option-text">Complete beginner — I know Dharma exists but I haven't seriously studied it</div>
-          <div class="q-option-sub">The seed has not yet touched soil</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q1','B',this)">
-        <span class="q-option-letter">B</span>
-        <div>
-          <div class="q-option-text">I've read some texts, attended discourses, have a basic foundation</div>
-          <div class="q-option-sub">The seed has sprouted but the roots are shallow</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q1','C',this)">
-        <span class="q-option-letter">C</span>
-        <div>
-          <div class="q-option-text">I've studied seriously — I know the Darshanas, have a Sadhana practice</div>
-          <div class="q-option-sub">The roots run deep but the branches seek more sky</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q1','D',this)">
-        <span class="q-option-letter">D</span>
-        <div>
-          <div class="q-option-text">Advanced — I've lived in or studied from a Gurukula or traditional lineage</div>
-          <div class="q-option-sub">The tree bears fruit. It now seeks to give shade.</div>
-        </div>
-      </div>
+    <div class="q-label">Step 1 of 3 — Seeker Identity</div>
+    <div class="q-text">Establish your persona inside the Gurukula.</div>
+    
+    <div class="form-group">
+      <label for="name-in">Your Full Name</label>
+      <input type="text" id="name-in" class="q-input" placeholder="e.g. Abhimanyu">
+      <div class="err-msg" id="err-name">Please enter your name.</div>
+    </div>
+    
+    <div class="form-group">
+      <label for="age-in">Your Age</label>
+      <input type="number" id="age-in" class="q-input" placeholder="e.g. 18" min="5" max="120">
+      <div class="err-msg" id="err-age">Please enter a valid age between 5 and 120.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="interest-in">Core Area of Interest</label>
+      <select id="interest-in" class="q-select">
+        <option value="" disabled selected>Select an interest...</option>
+        <option value="Yuddham">Yuddha Upasana (Martial Science & Deterrence)</option>
+        <option value="Rajya">Rājya Pālanam (Governance, Ecology & Economics)</option>
+        <option value="Nagara">Nagara Nirmana (Sacred Cities & Fractal Urbanism)</option>
+        <option value="Yoga">Breathing Sciences & Cosmic Wave Resonance</option>
+      </select>
+      <div class="err-msg" id="err-interest">Please select your primary interest.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="discovery-in">How did you hear about Era of Siddhas?</label>
+      <input type="text" id="discovery-in" class="q-input" placeholder="e.g. Recommendation from my Guru, research papers, social media">
+      <div class="err-msg" id="err-discovery">Please fill out this field.</div>
+    </div>
+
+    <div class="btn-row" style="margin-top:1.5rem; justify-content: flex-end;">
+      <button class="btn-primary" onclick="validateStep1()">Next Step</button>
     </div>
   </div>
 </div>
 
-<!-- SCREEN 2: WHAT BURNS -->
+<!-- SCREEN 2: ACADEMIC LEVEL & IDEOLOGY -->
 <div class="screen" id="screen2">
   <div class="question-wrap fade-in">
-    <div class="q-label">Question 2 of 4 — The Fire Within</div>
-    <div class="q-text">What is the deepest question that brought you here?</div>
-    <div class="q-sub">The Upanishads say: only the burning question finds the burning answer.</div>
-    <div class="q-options" id="q2options">
-      <div class="q-option" onclick="selectOption('q2','A',this)">
-        <span class="q-option-letter">A</span>
-        <div>
-          <div class="q-option-text">Who am I? What is the nature of consciousness and the Self?</div>
-          <div class="q-option-sub">The path of Jñāna — Tat Tvam Asi</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q2','B',this)">
-        <span class="q-option-letter">B</span>
-        <div>
-          <div class="q-option-text">How should I live? What is Dharma in the modern world?</div>
-          <div class="q-option-sub">The path of Karma — righteous action</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q2','C',this)">
-        <span class="q-option-letter">C</span>
-        <div>
-          <div class="q-option-text">Is God real? What is the nature of the Divine — Ishvara, Brahman, Shakti?</div>
-          <div class="q-option-sub">The path of Bhakti and Agama</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q2','D',this)">
-        <span class="q-option-letter">D</span>
-        <div>
-          <div class="q-option-text">How does ancient wisdom connect to modern science and reality?</div>
-          <div class="q-option-sub">The bridge between Ganita and Darshana</div>
-        </div>
-      </div>
+    <div class="q-label">Step 2 of 3 — Academic Level & Worldview</div>
+    <div class="q-text">Establish your study depth parameters.</div>
+
+    <div class="form-group">
+      <label for="grade-in">Academic Level / Current Grade</label>
+      <select id="grade-in" class="q-select">
+        <option value="" disabled selected>Select your current grade level...</option>
+        <option value="primary">Primary Scholar (Grades 1-5 / Foundation)</option>
+        <option value="secondary">Secondary Scholar (Grades 6-12 / Intermediate)</option>
+        <option value="ug">Undergraduate / Postgraduate (UG / PG)</option>
+        <option value="phd">Higher Knowledge (PhD)</option>
+      </select>
+      <div class="err-msg" id="err-grade">Please select your academic level. This determines your starting unlocked grade!</div>
+      <p style="font-size:0.75rem; color:var(--ash); font-style:italic; margin-top:3px;">
+        *Note: Choosing a level unlocks that grade and all grades below it. Higher levels must be unlocked by completing lower levels.
+      </p>
+    </div>
+
+    <div class="form-group">
+      <label for="ideology-in">Your Ideology & Worldview</label>
+      <textarea id="ideology-in" class="q-textarea" placeholder="Describe your perspective on combining ancient Vedic/Shastric knowledge systems with contemporary STEM scientific structures."></textarea>
+      <div class="err-msg" id="err-ideology">Please write a brief explanation of your view.</div>
+    </div>
+
+    <div class="btn-row" style="margin-top:1.5rem; justify-content: space-between;">
+      <button class="btn-secondary" onclick="goTo(1)">Back</button>
+      <button class="btn-primary" onclick="validateStep2()">Next Step</button>
     </div>
   </div>
 </div>
 
-<!-- SCREEN 3: COMMITMENT -->
+<!-- SCREEN 3: DINACHARYA (DAILY ROUTINE) -->
 <div class="screen" id="screen3">
   <div class="question-wrap fade-in">
-    <div class="q-label">Question 3 of 4 — The Vow</div>
-    <div class="q-text">The Gurukula is not a course you consume. It is a discipline you enter. What can you honestly commit to?</div>
-    <div class="q-sub">The Guru values honesty above ambition.</div>
-    <div class="q-options" id="q3options">
-      <div class="q-option" onclick="selectOption('q3','A',this)">
-        <span class="q-option-letter">A</span>
-        <div>
-          <div class="q-option-text">15–20 minutes of focused study daily, reflection journal weekly</div>
-          <div class="q-option-sub">Steady. The tortoise pace.</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q3','B',this)">
-        <span class="q-option-letter">B</span>
-        <div>
-          <div class="q-option-text">1 hour daily, deep dives on weekends, full marathon challenges</div>
-          <div class="q-option-sub">Serious intent. The warrior's pace.</div>
-        </div>
-      </div>
-      <div class="q-option" onclick="selectOption('q3','C',this)">
-        <span class="q-option-letter">C</span>
-        <div>
-          <div class="q-option-text">Flexible — intense bursts when inspiration strikes, rest when life calls</div>
-          <div class="q-option-sub">The seeker trusts the tide.</div>
-        </div>
-      </div>
+    <div class="q-label">Step 3 of 3 — Daily Routine & Dinacharya</div>
+    <div class="q-text">Input your schedule to receive Dinacharya optimization guidelines.</div>
+
+    <div class="form-group">
+      <label for="sched-wake-in">When do you wake up in the morning?</label>
+      <select id="sched-wake-in" class="q-select">
+        <option value="" disabled selected>Select waking hour...</option>
+        <option value="Brahma Muhurta">Before 5:30 AM (Brahma Muhurta)</option>
+        <option value="Sunrise window">5:30 AM - 6:30 AM (Sunrise window)</option>
+        <option value="Late morning">6:30 AM - 7:30 AM (Late morning)</option>
+        <option value="Post-sunrise">After 7:30 AM (Post-sunrise activity)</option>
+      </select>
+      <div class="err-msg" id="err-wake">Please select a waking window.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="sched-study-in">Preferred Daily Study Hours</label>
+      <select id="sched-study-in" class="q-select">
+        <option value="" disabled selected>Select study window...</option>
+        <option value="Morning Peak">Morning Peak (6:00 AM - 10:00 AM)</option>
+        <option value="Afternoon Peak">Afternoon Peak (2:00 PM - 5:00 PM)</option>
+        <option value="Late Night">Late Night (9:00 PM - 12:00 AM)</option>
+      </select>
+      <div class="err-msg" id="err-study">Please select your preferred study window.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="sched-sleep-in">When do you go to sleep at night?</label>
+      <select id="sched-sleep-in" class="q-select">
+        <option value="" disabled selected>Select sleeping hour...</option>
+        <option value="Optimal cellular recovery">Before 10:00 PM (Optimal cellular recovery)</option>
+        <option value="Circadian limit">10:00 PM - 11:00 PM (Circadian limit)</option>
+        <option value="High Pitta activation">After 11:00 PM (Late night / High Pitta activation)</option>
+      </select>
+      <div class="err-msg" id="err-sleep">Please select a bedtime.</div>
+    </div>
+
+    <div class="btn-row" style="margin-top:1.5rem; justify-content: space-between;">
+      <button class="btn-secondary" onclick="goTo(2)">Back</button>
+      <button class="btn-primary" onclick="validateStep3()">Generate Path & Insights</button>
     </div>
   </div>
 </div>
 
-<!-- SCREEN 4: OPEN REFLECTION -->
+<!-- SCREEN 4: RESULTS & DINACHARYA INSIGHTS -->
 <div class="screen" id="screen4">
-  <div class="question-wrap fade-in">
-    <div class="q-label">Question 4 of 4 — The Guru Listens</div>
-    <div class="q-text">In your own words: what do you bring to the Gurukula, and what do you hope to leave with?</div>
-    <div class="q-sub">No right answer. The Guru reads your sincerity, not your eloquence.</div>
-    <textarea class="q-textarea" id="openAnswer" placeholder="Speak freely. This is between you and the path..."></textarea>
-    <div class="btn-row">
-      <button class="btn-primary" onclick="finishAssessment()">Complete Assessment ↗</button>
-    </div>
-  </div>
-</div>
-
-<!-- SCREEN 5: RESULT -->
-<div class="screen" id="screen5">
-  <div id="resultContent" class="fade-in">
+  <div id="resultContent" class="fade-in" style="width: 100%; max-width: 620px;">
     <div class="result-badge" id="resultBadge">शि</div>
     <div class="result-level" id="resultLevel">Shishya</div>
     <div class="result-sublevel" id="resultSublevel">The Earnest Seeker</div>
     <div class="gold-divider"></div>
-    <p class="result-desc" id="resultDesc">Loading your path...</p>
+    
+    <p class="result-desc" id="resultDesc">Customizing your curriculum...</p>
+    
     <div class="result-path" id="resultPath"></div>
+
+    <div class="insights-card">
+      <div class="insights-title">
+        <span>🧘</span> Dinacharya Daily Schedule Insights
+      </div>
+      <div class="insights-list" id="insightsList">
+        <!-- Dynamically filled with Vedic-Scientific Schedule analysis -->
+      </div>
+    </div>
+
     <div class="btn-row">
-      <a href="pillar_hub.html" class="btn-primary" id="enterGurukulaBtn">Enter the Gurukula →</a>
-      <a href="index.html" class="btn-secondary">Return Home</a>
+      <button onclick="enterGurukula()" class="btn-primary" id="enterGurukulaBtn">Enter the Gurukula →</button>
     </div>
   </div>
 </div>
 
 <script>
-  const answers = { q1: null, q2: null, q3: null };
-  const stepLabels = ['Awakening', 'Your Ground', 'The Fire', 'The Vow', 'Reflection', 'Your Path'];
+  const stepLabels = ['Awakening', 'Seeker Identity', 'Academic & Worldview', 'Daily Schedule', 'Seeker Path'];
 
   function goTo(n) {
     document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -535,77 +578,194 @@
     window.scrollTo(0, 0);
   }
 
-  function selectOption(q, val, el) {
-    document.querySelectorAll(`#${q}options .q-option`).forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    answers[q] = val;
-    setTimeout(() => {
-      const next = { q1: 2, q2: 3, q3: 4 };
-      goTo(next[q]);
-    }, 400);
+  function validateStep1() {
+    let valid = true;
+    const name = document.getElementById('name-in').value.trim();
+    const age = parseInt(document.getElementById('age-in').value);
+    const interest = document.getElementById('interest-in').value;
+    const discovery = document.getElementById('discovery-in').value.trim();
+
+    // Reset errors
+    document.querySelectorAll('.err-msg').forEach(el => el.style.display = 'none');
+
+    if (!name) {
+      document.getElementById('err-name').style.display = 'block';
+      valid = false;
+    }
+    if (!age || age < 5 || age > 120) {
+      document.getElementById('err-age').style.display = 'block';
+      valid = false;
+    }
+    if (!interest) {
+      document.getElementById('err-interest').style.display = 'block';
+      valid = false;
+    }
+    if (!discovery) {
+      document.getElementById('err-discovery').style.display = 'block';
+      valid = false;
+    }
+
+    if (valid) goTo(2);
   }
 
-  function finishAssessment() {
-    const openText = document.getElementById('openAnswer').value.trim();
-    goTo(5);
+  function validateStep2() {
+    let valid = true;
+    const grade = document.getElementById('grade-in').value;
+    const ideology = document.getElementById('ideology-in').value.trim();
 
-    const levels = {
-      A: { badge: 'मु', level: 'Mumukshu', sub: 'The Burning Seeker', key: 'mumukshu',
-           path: ['Isha Upanishad — foundation texts', 'Story-first micro learning', 'Daily 15-min sessions', 'Weekly reflection journal', 'Guru AI in guided mode'] },
-      B: { badge: 'शि', level: 'Shishya', sub: 'The Earnest Student', key: 'shishya',
-           path: ['Isha + Kena Upanishad track', 'Full Anvaya word analysis', 'Science-Dharma bridge modules', 'Marathon challenges unlocked', 'Guru AI in Socratic mode'] },
-      C: { badge: 'साध', level: 'Sadhaka', sub: 'The Disciplined Practitioner', key: 'sadhaka',
-           path: ['Advanced Darshana texts', 'Brahma Sutras & Yoga Sutras', 'Deep Ganita modules', 'Full marathon track', 'Mentor candidacy open'] },
-      D: { badge: 'सि', level: 'Siddha', sub: 'The Illumined One', key: 'siddha',
-           path: ['All texts unlocked', 'Peer teaching mode enabled', 'Sangha mentor track', 'Real-world Shiva Leela invitations', 'Direct admin channel'] }
+    document.querySelectorAll('.err-msg').forEach(el => el.style.display = 'none');
+
+    if (!grade) {
+      document.getElementById('err-grade').style.display = 'block';
+      valid = false;
+    }
+    if (!ideology) {
+      document.getElementById('err-ideology').style.display = 'block';
+      valid = false;
+    }
+
+    if (valid) goTo(3);
+  }
+
+  function validateStep3() {
+    let valid = true;
+    const wake = document.getElementById('sched-wake-in').value;
+    const study = document.getElementById('sched-study-in').value;
+    const sleep = document.getElementById('sched-sleep-in').value;
+
+    document.querySelectorAll('.err-msg').forEach(el => el.style.display = 'none');
+
+    if (!wake) {
+      document.getElementById('err-wake').style.display = 'block';
+      valid = false;
+    }
+    if (!study) {
+      document.getElementById('err-study').style.display = 'block';
+      valid = false;
+    }
+    if (!sleep) {
+      document.getElementById('err-sleep').style.display = 'block';
+      valid = false;
+    }
+
+    if (valid) {
+      calculatePathAndInsights();
+      goTo(4);
+    }
+  }
+
+  function calculatePathAndInsights() {
+    const name = document.getElementById('name-in').value.trim();
+    const age = parseInt(document.getElementById('age-in').value);
+    const interest = document.getElementById('interest-in').value;
+    const discovery = document.getElementById('discovery-in').value.trim();
+    const grade = document.getElementById('grade-in').value;
+    const ideology = document.getElementById('ideology-in').value.trim();
+    const wake = document.getElementById('sched-wake-in').value;
+    const study = document.getElementById('sched-study-in').value;
+    const sleep = document.getElementById('sched-sleep-in').value;
+
+    // Temporary storage for validation on results screen
+    window.tempOnboardingData = {
+      name, age, interest, discovery, grade, ideology, wake, study, sleep
     };
 
-    const dominantLevel = answers.q1 || 'A';
-    const data = levels[dominantLevel];
+    // Determine seek level details
+    const levels = {
+      primary: { badge: 'मु', level: 'Mumukshu', sub: 'The Foundation Seeker',
+                 path: ['Simple Shastra Analogies & Visual Stories', 'Basic breathing cycle exercises', 'No complex equations (story-based science)', 'Checkmark indicators unlocked'] },
+      secondary: { badge: 'शि', level: 'Shishya', sub: 'The Earnest Student',
+                 path: ['Concentric Shloka Reference Maps', 'Intermediate step-by-step math solver', 'Autonomic neuroscience & basic wave acoustics', 'Saptanga & Geopolitical dashboard simulations'] },
+      ug: { badge: 'साध', level: 'Sadhaka', sub: 'The Disciplined Practitioner',
+                 path: ['Advanced Darshana & Sanskrit Word-by-word Anvaya', 'Complete Systemic Equations Solver', 'Fractal Dimension & Pascal-Vastu architectural math', 'Diplomatic scenario dilemmas'] },
+      phd: { badge: 'सि', level: 'Siddha', sub: 'Higher Knowledge (PhD)',
+                 path: ['Full Devanagari, Transliteration, Anvaya & Translation', 'Scholarly computational notes (Lyapunov stability & Congruence sieves)', 'Fractal analysis of town layout blueprints', 'Ayadi structural acoustics modes solver'] }
+    };
 
-    // Persist to localStorage for the rest of the application
-    localStorage.setItem('eos_level', data.level);
-    localStorage.setItem('eos_level_key', data.key);
-    localStorage.setItem('eos_sub', data.sub);
-    localStorage.setItem('eos_q2', answers.q2 || '');
-    localStorage.setItem('eos_q3', answers.q3 || '');
-    localStorage.setItem('eos_reflection', openText);
-    localStorage.setItem('eos_assessment_date', new Date().toISOString());
+    const data = levels[grade] || levels.primary;
 
     document.getElementById('resultBadge').textContent = data.badge;
     document.getElementById('resultLevel').textContent = data.level;
     document.getElementById('resultSublevel').textContent = data.sub;
+
+    document.getElementById('resultDesc').innerHTML = `
+      Greetings, <strong>${name}</strong> (Age ${age}). Based on your primary interest in <strong>${interest}</strong> and academic level, you have been categorized as a <strong>${data.level}</strong>. Below is your optimized curriculum path.
+    `;
 
     const pathHTML = data.path.map(p => `
       <div class="result-path-item">
         <span class="result-path-check">✦</span>
         <span>${p}</span>
       </div>`).join('');
+    
     document.getElementById('resultPath').innerHTML = `
-      <div class="result-path-label">Your Curriculum Path</div>
-      ${pathHTML}`;
+      <div class="result-path-label">Your Unlocked Curriculum Path</div>
+      ${pathHTML}
+    `;
 
-    // Use locally generated personalized message (no external API needed)
-    document.getElementById('resultDesc').textContent = getPersonalizedMessage(data.level, answers.q2, openText);
+    // Process Dinacharya Schedule insights
+    let insights = [];
+
+    // 1. Wake Time Analysis
+    if (wake.includes("Brahma Muhurta")) {
+      insights.push(`🌅 <strong>Wake Time (Excellent):</strong> Waking before 5:30 AM capitalizes on the high atmospheric concentration of nascent oxygen (Prana Vayu) and high geomagnetic stability. This stimulates the pineal gland and optimizes morning neural cognitive load.`);
+    } else if (wake.includes("Sunrise window")) {
+      insights.push(`🌅 <strong>Wake Time (Sub-optimal):</strong> Waking during sunrise (5:30 - 6:30 AM) is decent, but misses the peak concentration of silent morning atmospheric field. Try shifting 30 minutes earlier into the Brahma Muhurta zone.`);
+    } else {
+      insights.push(`🌅 <strong>Wake Time (Alert!):</strong> Waking after 6:30 AM aligns your waking state with high cortisol delay, reducing active daytime attention levels. According to Ayurveda, waking up after Kapha-dosha starts (6:00 AM onwards) generates physical lethargy (Tamas).`);
+    }
+
+    // 2. Sleep Time Analysis
+    if (sleep.includes("Optimal cellular recovery")) {
+      insights.push(`🌙 <strong>Sleep Time (Perfect):</strong> Sleeping before 10:00 PM aligns with the natural circadian reduction in solar heat, allowing your body to enter deep non-REM recovery when metabolic heat shifts to hepatic detoxification (Pitta phase).`);
+    } else if (sleep.includes("Circadian limit")) {
+      insights.push(`🌙 <strong>Sleep Time (Acceptable):</strong> Sleeping between 10:00 - 11:00 PM is close to the circadian limit. Ensure you shut off screen blue-light by 9:30 PM to avoid delaying melatonin secretion.`);
+    } else {
+      insights.push(`🌙 <strong>Sleep Time (Alert!):</strong> Retaining activity past 11:00 PM spikes sympathetic fight-or-flight parameters (Pitta disturbance). This decreases sleep depth, disrupts blood glucose cycles, and fragments neural detoxification. Shift bedtime to 10:30 PM.`);
+    }
+
+    // 3. Study hours Analysis
+    if (study.includes("Morning Peak")) {
+      insights.push(`📚 <strong>Study Window (Optimal):</strong> Studying in the morning (6:00 - 10:00 AM) matches the natural state of mental clarity (Sattva) and peak cognitive absorption. Perfect for reviewing core philosophical and scientific principles.`);
+    } else if (study.includes("Afternoon Peak")) {
+      insights.push(`📚 <strong>Study Window (Moderate):</strong> Afternoon studying is suitable for active work (simulations, layout planning) but is sub-optimal for dense text memory retention compared to the morning.`);
+    } else {
+      insights.push(`📚 <strong>Study Window (Alert!):</strong> Late night study under artificial light increases visual stress and interferes with sleep preparation. Move high-cognition study sessions to morning hours for 2x faster memory encoding.`);
+    }
+
+    document.getElementById('insightsList').innerHTML = insights.map(ins => `<div>${ins}</div>`).join('');
   }
 
-  function getPersonalizedMessage(level, q2, reflection) {
-    const paths = {
-      A: 'Jñāna — the inquiry into Self',
-      B: 'Karma — the way of righteous action',
-      C: 'Bhakti — the path of devotion and divine connection',
-      D: 'Vijñāna — the bridge between ancient wisdom and modern understanding'
-    };
-    const pathNote = paths[q2] || '';
+  function enterGurukula() {
+    const data = window.tempOnboardingData;
+    if (!data) return;
 
-    const msgs = {
-      'Mumukshu': `The flame is lit. Not by us — it was always burning within you. The Gurukula simply gives it oxygen.${pathNote ? ' Your heart leans toward ' + pathNote + ' — the Śāstras will meet you there.' : ''} Begin slowly. Begin honestly. The texts will do the rest.`,
-      'Shishya': `You arrive not as an empty vessel but as one already stirred by the winds of Dharma.${pathNote ? ' The pull toward ' + pathNote + ' runs deep in you — we will honour that current.' : ''} Walk with patience. The deeper truths reward the unhurried mind.`,
-      'Sadhaka': `You have already walked far — far enough to know that what remains is not more knowledge but the dissolution of the boundary between knower and known.${pathNote ? ' Your path of ' + pathNote + ' has prepared the ground.' : ''} The Gurukula will be your final mirror, not your teacher.`,
-      'Siddha': `The river has found its course. What remains is to become the ocean.${pathNote ? ' Through ' + pathNote + ', you have tasted what cannot be taught.' : ''} Welcome, elder. The Sangha awaits not your learning but your presence.`
-    };
-    return msgs[level] || msgs['Mumukshu'];
+    // Persist details to localStorage
+    localStorage.setItem('eos_user_name', data.name);
+    localStorage.setItem('eos_user_age', data.age);
+    localStorage.setItem('eos_user_grade', data.grade); // Unlocks grades up to this level
+    localStorage.setItem('eos_user_interests', data.interest);
+    localStorage.setItem('eos_user_discovery', data.discovery);
+    localStorage.setItem('eos_user_ideology', data.ideology);
+    
+    // Set daily schedule metadata
+    localStorage.setItem('eos_user_schedule_wake', data.wake);
+    localStorage.setItem('eos_user_schedule_study', data.study);
+    localStorage.setItem('eos_user_schedule_sleep', data.sleep);
+    
+    // Auto-onboard active grade
+    localStorage.setItem('era_of_siddhas_grade', data.grade);
+    
+    // Save onboarding completion timestamp
+    localStorage.setItem('eos_onboarded_time', new Date().toISOString());
+
+    // Redirect to Course Hub
+    window.location.href = 'course_hub.html';
   }
+
+  // Load persisted theme on start
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+  document.body.classList.add(initialTheme);
 </script>
 </body>
 </html>

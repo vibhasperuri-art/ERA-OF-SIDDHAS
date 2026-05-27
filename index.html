@@ -54,6 +54,24 @@
     --parch-dim:  #53c2b1;
     --glow:       rgba(46,184,166,0.15);
   }
+  body.theme-light {
+    --bg:         #f7f2e800;
+    --bg-deep:    #f7f2e8;
+    --bg-1:       #ede5d0;
+    --bg-2:       #e5dac0;
+    --bg-3:       #dbceb0;
+    --gold:       #b8730a;
+    --gold-bright:#8b4513;
+    --gold-dim:   rgba(139,69,19,0.15);
+    --parchment:  #1a1208;
+    --parch-mid:  #5c3d1a;
+    --parch-dim:  #7a5a3a;
+    --terracotta: #c44a1a;
+    --terra-dim:  #f5dfa0;
+    --forest:     #2e7d32;
+    --crimson:    #d32f2f;
+    --glow:       rgba(139, 69, 19, 0.08);
+  }
 
   .theme-switcher {
     position: fixed;
@@ -108,6 +126,10 @@
   }
   body.theme-mystical::before {
     background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
+  body.theme-light::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%238b4513" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+    mix-blend-mode: multiply !important;
+    opacity: 0.12 !important;
   }
 
   /* ── UNIQUE ERA OF SIDDHAS SIGNATURE ── */
@@ -136,7 +158,7 @@
     background: var(--gold-bright);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 10000;
+    z-index: 1000002;
     transform: translate(-50%, -50%);
     transition: width 0.3s, height 0.3s, background 0.3s;
     box-shadow: 0 0 15px 3px var(--gold-bright);
@@ -148,7 +170,7 @@
     border: 1.5px solid var(--gold);
     border-radius: 50%;
     pointer-events: none;
-    z-index: 9999;
+    z-index: 1000001;
     transform: translate(-50%, -50%);
     transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
     box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
@@ -935,7 +957,8 @@
 
 <!-- ═══════════════════════════════ THEMES ══════════════════════════════ -->
 <div class="theme-switcher">
-  <button class="theme-btn active" onclick="setTheme(this, 'theme-fierce')">Fierce & Martial</button>
+  <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+  <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce & Martial</button>
   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy & Ancient</button>
   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical & Ethereal</button>
 </div>
@@ -1437,7 +1460,7 @@ document.querySelectorAll('.reveal-block, #sangha .section-inner').forEach(el =>
 });
 
 function setTheme(btnElement, themeName) {
-  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical');
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
   document.body.classList.add(themeName);
   localStorage.setItem('era_of_siddhas_theme', themeName);
   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
@@ -1453,7 +1476,7 @@ function setTheme(btnElement, themeName) {
 }
 
 // Load persisted theme on start
-const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-fierce';
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
 setTheme(null, initialTheme);
 
 // Custom Cursor Logic

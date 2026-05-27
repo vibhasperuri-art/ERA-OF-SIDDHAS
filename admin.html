@@ -21,6 +21,20 @@
     --warn: #c8922a;
     --danger: #c44a1a;
   }
+  body.theme-light {
+    --earth: #f7f2e8;
+    --surface: #ede5d0;
+    --surface2: #e5dac0;
+    --gold: #b8730a;
+    --gold-pale: #1a1208;
+    --gold-dim: rgba(184,115,10,0.15);
+    --ember: #8b4513;
+    --ash: #5c3d1a;
+    --cream: #1a1208;
+    --success: #2e7d32;
+    --warn: #f57c00;
+    --danger: #d32f2f;
+  }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     background: var(--earth);
@@ -483,6 +497,12 @@
 <header>
   <a href="index.html" class="header-logo">Era of Siddhas</a>
   <div class="header-right">
+    <div style="display:flex; gap: 6px; margin-right: 15px;">
+      <button class="btn-sm" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="btn-sm" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="btn-sm" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="btn-sm" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
     <span class="header-time" id="liveTime"></span>
     <span class="admin-badge">Admin</span>
     <button class="btn-broadcast" onclick="document.getElementById('broadcastModal').classList.add('open')">
@@ -494,51 +514,51 @@
 <!-- SIDEBAR NAV -->
 <nav>
   <div class="nav-section-label">Overview</div>
-  <a href="#" class="nav-item active">
+  <a href="#" class="nav-item active" data-tab="dashboard">
     <span class="nav-item-icon">◈</span>
     <span class="nav-item-label">Dashboard</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="seekers">
     <span class="nav-item-icon">◉</span>
     <span class="nav-item-label">Seekers</span>
   </a>
 
   <div class="nav-section-label">Sangha</div>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="activity">
     <span class="nav-item-icon">✦</span>
     <span class="nav-item-label">Activity</span>
     <span class="nav-badge">3</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="alerts">
     <span class="nav-item-icon">⚑</span>
     <span class="nav-item-label">Alerts</span>
     <span class="nav-badge">2</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="journals">
     <span class="nav-item-icon">⬡</span>
     <span class="nav-item-label">Journals</span>
   </a>
 
   <div class="nav-section-label">Content</div>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="curriculum">
     <span class="nav-item-icon">◎</span>
     <span class="nav-item-label">Curriculum</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="marathons">
     <span class="nav-item-icon">◇</span>
     <span class="nav-item-label">Marathons</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="leelas">
     <span class="nav-item-icon">⊕</span>
     <span class="nav-item-label">Leelas</span>
   </a>
 
   <div class="nav-section-label">System</div>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="digest">
     <span class="nav-item-icon">⊛</span>
     <span class="nav-item-label">AI Digest</span>
   </a>
-  <a href="#" class="nav-item">
+  <a href="#" class="nav-item" data-tab="settings">
     <span class="nav-item-icon">◦</span>
     <span class="nav-item-label">Settings</span>
   </a>
@@ -557,213 +577,367 @@
 
 <!-- MAIN CONTENT -->
 <main>
-  <div class="page-title">Daily Digest</div>
-  <p class="page-sub" id="dateDisplay">Loading date...</p>
+  <!-- TAB: DASHBOARD -->
+  <div id="tab-dashboard" class="admin-tab-content active">
+    <div class="page-title">Daily Digest</div>
+    <p class="page-sub" id="dateDisplay">Loading date...</p>
 
-  <!-- METRICS -->
-  <div class="metrics-grid">
-    <div class="metric-card">
-      <div class="metric-label">Active Seekers</div>
-      <div class="metric-value">247</div>
-      <div class="metric-delta">↑ 12 this week</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Journal Entries</div>
-      <div class="metric-value">83</div>
-      <div class="metric-delta">↑ 23 today</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Marathons Done</div>
-      <div class="metric-value">31</div>
-      <div class="metric-delta">↑ 5 this week</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Guru AI Sessions</div>
-      <div class="metric-value">194</div>
-      <div class="metric-delta">↑ 44 today</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Guru's Mirror Sent</div>
-      <div class="metric-value">4</div>
-      <div class="metric-delta down">Ego incidents</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-label">Siddha Candidates</div>
-      <div class="metric-value">3</div>
-      <div class="metric-delta">Pending review</div>
-    </div>
-  </div>
-
-  <div class="two-col">
-    <!-- SEEKER LIST -->
-    <div class="panel">
-      <div class="panel-title">Active Seekers <span class="panel-action">View all →</span></div>
-      <div class="seeker-item">
-        <div class="seeker-avatar">अ</div>
-        <div class="seeker-info">
-          <div class="seeker-name">Arjun Mehta</div>
-          <div class="seeker-meta">Katha Upanishad — Verse 3 · 2h ago</div>
-        </div>
-        <span class="seeker-level level-sadhaka">Sadhaka</span>
+    <!-- METRICS -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-label">Active Seekers</div>
+        <div class="metric-value">247</div>
+        <div class="metric-delta">↑ 12 this week</div>
       </div>
-      <div class="seeker-item">
-        <div class="seeker-avatar">प्र</div>
-        <div class="seeker-info">
-          <div class="seeker-name">Priya Sharma</div>
-          <div class="seeker-meta">Isha Upanishad — Journal · 4h ago</div>
-        </div>
-        <span class="seeker-level level-shishya">Shishya</span>
+      <div class="metric-card">
+        <div class="metric-label">Journal Entries</div>
+        <div class="metric-value">83</div>
+        <div class="metric-delta">↑ 23 today</div>
       </div>
-      <div class="seeker-item">
-        <div class="seeker-avatar">कृ</div>
-        <div class="seeker-info">
-          <div class="seeker-name">Krsna Das</div>
-          <div class="seeker-meta">Marathon I — Completed ✓ · 6h ago</div>
-        </div>
-        <span class="seeker-level level-siddha">Siddha</span>
+      <div class="metric-card">
+        <div class="metric-label">Marathons Done</div>
+        <div class="metric-value">31</div>
+        <div class="metric-delta">↑ 5 this week</div>
       </div>
-      <div class="seeker-item">
-        <div class="seeker-avatar">र</div>
-        <div class="seeker-info">
-          <div class="seeker-name">Ravi Iyer</div>
-          <div class="seeker-meta">Assessment complete · 8h ago</div>
-        </div>
-        <span class="seeker-level level-mumukshu">Mumukshu</span>
+      <div class="metric-card">
+        <div class="metric-label">Guru AI Sessions</div>
+        <div class="metric-value">194</div>
+        <div class="metric-delta">↑ 44 today</div>
       </div>
-      <div class="seeker-item">
-        <div class="seeker-avatar">स</div>
-        <div class="seeker-info">
-          <div class="seeker-name">Saraswati Devi</div>
-          <div class="seeker-meta">Brahma Sutras — Deep dive · 12h ago</div>
-        </div>
-        <span class="seeker-level level-sadhaka">Sadhaka</span>
+      <div class="metric-card">
+        <div class="metric-label">Guru's Mirror Sent</div>
+        <div class="metric-value">4</div>
+        <div class="metric-delta down">Ego incidents</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Siddha Candidates</div>
+        <div class="metric-value">3</div>
+        <div class="metric-delta">Pending review</div>
       </div>
     </div>
 
-    <!-- ALERTS -->
-    <div class="panel">
-      <div class="panel-title">Sangha Alerts <span class="panel-action" onclick="clearAlerts()">Clear all</span></div>
-      <div id="alertsContainer">
-        <div class="alert-item alert-ember" onclick="this.style.opacity='0.3'">
-          <div>
-            <div class="alert-title">Guru's Mirror Triggered</div>
-            <div class="alert-body">Seeker "R.V." displayed ego-defensive behavior in Sangha thread on Karma. Mirror sent privately — Gita 3:27 dispatched.</div>
+    <div class="two-col">
+      <!-- SEEKER LIST -->
+      <div class="panel">
+        <div class="panel-title">Active Seekers <span class="panel-action" style="cursor:pointer;" onclick="document.querySelector('[data-tab=seekers]').click()">View all →</span></div>
+        <div class="seeker-item">
+          <div class="seeker-avatar">अ</div>
+          <div class="seeker-info">
+            <div class="seeker-name">Arjun Mehta</div>
+            <div class="seeker-meta">Katha Upanishad — Verse 3 · 2h ago</div>
           </div>
-          <span class="alert-time">2h ago</span>
+          <span class="seeker-level level-sadhaka">Sadhaka</span>
         </div>
-        <div class="alert-item alert-gold" onclick="this.style.opacity='0.3'">
-          <div>
-            <div class="alert-title">Siddha Candidate Ready</div>
-            <div class="alert-body">Krsna Das has completed all 6 Upanishad modules + 3 Marathons. Awaiting admin review for Rudraksha dispatch.</div>
+        <div class="seeker-item">
+          <div class="seeker-avatar">प्र</div>
+          <div class="seeker-info">
+            <div class="seeker-name">Priya Sharma</div>
+            <div class="seeker-meta">Isha Upanishad — Journal · 4h ago</div>
           </div>
-          <span class="alert-time">5h ago</span>
+          <span class="seeker-level level-shishya">Shishya</span>
         </div>
-        <div class="alert-item alert-success" onclick="this.style.opacity='0.3'">
-          <div>
-            <div class="alert-title">Marathon Milestone</div>
-            <div class="alert-body">31 seekers have now completed Marathon I. Community celebration post drafted — pending your approval to publish.</div>
+        <div class="seeker-item">
+          <div class="seeker-avatar">कृ</div>
+          <div class="seeker-info">
+            <div class="seeker-name">Krsna Das</div>
+            <div class="seeker-meta">Marathon I — Completed ✓ · 6h ago</div>
           </div>
-          <span class="alert-time">1d ago</span>
+          <span class="seeker-level level-siddha">Siddha</span>
+        </div>
+        <div class="seeker-item">
+          <div class="seeker-avatar">र</div>
+          <div class="seeker-info">
+            <div class="seeker-name">Ravi Iyer</div>
+            <div class="seeker-meta">Assessment complete · 8h ago</div>
+          </div>
+          <span class="seeker-level level-mumukshu">Mumukshu</span>
+        </div>
+        <div class="seeker-item">
+          <div class="seeker-avatar">स</div>
+          <div class="seeker-info">
+            <div class="seeker-name">Saraswati Devi</div>
+            <div class="seeker-meta">Brahma Sutras — Deep dive · 12h ago</div>
+          </div>
+          <span class="seeker-level level-sadhaka">Sadhaka</span>
+        </div>
+      </div>
+
+      <!-- ALERTS -->
+      <div class="panel">
+        <div class="panel-title">Sangha Alerts <span class="panel-action" onclick="clearAlerts()">Clear all</span></div>
+        <div id="alertsContainer">
+          <div class="alert-item alert-ember" onclick="this.style.opacity='0.3'">
+            <div>
+              <div class="alert-title">Guru's Mirror Triggered</div>
+              <div class="alert-body">Seeker "R.V." displayed ego-defensive behavior in Sangha thread on Karma. Mirror sent privately — Gita 3:27 dispatched.</div>
+            </div>
+            <span class="alert-time">2h ago</span>
+          </div>
+          <div class="alert-item alert-gold" onclick="this.style.opacity='0.3'">
+            <div>
+              <div class="alert-title">Siddha Candidate Ready</div>
+              <div class="alert-body">Krsna Das has completed all 6 Upanishad modules + 3 Marathons. Awaiting admin review for Rudraksha dispatch.</div>
+            </div>
+            <span class="alert-time">5h ago</span>
+          </div>
+          <div class="alert-item alert-success" onclick="this.style.opacity='0.3'">
+            <div>
+              <div class="alert-title">Marathon Milestone</div>
+              <div class="alert-body">31 seekers have now completed Marathon I. Community celebration post drafted — pending your approval to publish.</div>
+            </div>
+            <span class="alert-time">1d ago</span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div class="two-col">
-    <!-- CURRICULUM PROGRESS -->
+    <div class="two-col">
+      <!-- CURRICULUM PROGRESS -->
+      <div class="panel">
+        <div class="panel-title">Curriculum Progress</div>
+        <div class="progress-row">
+          <div class="progress-row-header">
+            <span class="progress-row-label">Isha Upanishad</span>
+            <span class="progress-row-val">74%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:74%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-row-header">
+            <span class="progress-row-label">Kena Upanishad</span>
+            <span class="progress-row-val">41%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill" style="width:41%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-row-header">
+            <span class="progress-row-label">Bhagavad Gita</span>
+            <span class="progress-row-val">28%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill ember" style="width:28%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-row-header">
+            <span class="progress-row-label">Yoga Sutras</span>
+            <span class="progress-row-val">15%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill ember" style="width:15%"></div></div>
+        </div>
+        <div class="progress-row">
+          <div class="progress-row-header">
+            <span class="progress-row-label">Marathon I</span>
+            <span class="progress-row-val">89%</span>
+          </div>
+          <div class="prog-bar"><div class="prog-fill success" style="width:89%"></div></div>
+        </div>
+      </div>
+
+      <!-- WEEKLY ACTIVITY CHART -->
+      <div class="panel">
+        <div class="panel-title">Weekly Activity</div>
+        <div class="chart-area" id="chart">
+          <!-- bars generated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE SANGHA FEED -->
+    <div class="panel" style="margin-bottom:1rem;">
+      <div class="panel-title">Live Sangha Feed <span class="panel-action" style="cursor:pointer;" onclick="document.querySelector('[data-tab=activity]').click()">Expand</span></div>
+      <div class="activity-item">
+        <div class="activity-dot dot-green"></div>
+        <div>
+          <div class="activity-text">Priya Sharma completed the Shanti Patha journal reflection — "I realize I've been seeking what I already am."</div>
+          <div class="activity-time">4 minutes ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot dot-gold"></div>
+        <div>
+          <div class="activity-text">Arjun Mehta unlocked Verse 3 of the Katha Upanishad after passing comprehension check.</div>
+          <div class="activity-time">17 minutes ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot dot-ember"></div>
+        <div>
+          <div class="activity-text">Guru AI sent counter-question to 3 seekers simultaneously on the nature of Ahamkara.</div>
+          <div class="activity-time">32 minutes ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot dot-green"></div>
+        <div>
+          <div class="activity-text">Krsna Das completed Marathon I — score 94/100. Sangha notification queued for admin approval.</div>
+          <div class="activity-time">6 hours ago</div>
+        </div>
+      </div>
+      <div class="activity-item">
+        <div class="activity-dot dot-ash"></div>
+        <div>
+          <div class="activity-text">2 seekers inactive for 7+ days. Gentle nudge dispatched: "The river does not wait, but it always returns."</div>
+          <div class="activity-time">Yesterday</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI DIGEST -->
     <div class="panel">
-      <div class="panel-title">Curriculum Progress</div>
-      <div class="progress-row">
-        <div class="progress-row-header">
-          <span class="progress-row-label">Isha Upanishad</span>
-          <span class="progress-row-val">74%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill" style="width:74%"></div></div>
-      </div>
-      <div class="progress-row">
-        <div class="progress-row-header">
-          <span class="progress-row-label">Kena Upanishad</span>
-          <span class="progress-row-val">41%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill" style="width:41%"></div></div>
-      </div>
-      <div class="progress-row">
-        <div class="progress-row-header">
-          <span class="progress-row-label">Bhagavad Gita</span>
-          <span class="progress-row-val">28%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill ember" style="width:28%"></div></div>
-      </div>
-      <div class="progress-row">
-        <div class="progress-row-header">
-          <span class="progress-row-label">Yoga Sutras</span>
-          <span class="progress-row-val">15%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill ember" style="width:15%"></div></div>
-      </div>
-      <div class="progress-row">
-        <div class="progress-row-header">
-          <span class="progress-row-label">Marathon I</span>
-          <span class="progress-row-val">89%</span>
-        </div>
-        <div class="prog-bar"><div class="prog-fill success" style="width:89%"></div></div>
+      <div class="panel-title">AI Guru Daily Digest <span class="panel-action" onclick="generateDigest()">Regenerate ↗</span></div>
+      <div id="digestContent" style="font-size:0.95rem; color:var(--cream); line-height:1.9; font-style:italic;">
+        Loading today's digest...
       </div>
     </div>
+  </div>
 
-    <!-- WEEKLY ACTIVITY CHART -->
+  <!-- TAB: SEEKERS -->
+  <div id="tab-seekers" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Seeker Registry</div>
+    <p class="page-sub">Monitor student progression, academic level limits, and weekly reflection logs.</p>
+    
+    <div class="panel" style="margin-bottom: 1.5rem;">
+      <div style="display:flex; justify-content:space-between; align-items:center; gap: 1rem; flex-wrap:wrap; margin-bottom:1.25rem;">
+        <input type="text" placeholder="Search seekers by name or current course..." style="flex:1; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1rem; outline:none;" id="seekerSearch" oninput="filterSeekers()"/>
+        <div style="display:flex; gap: 8px;">
+          <button class="btn-sm active" id="filter-all" onclick="filterSeekersByLevel('all')">All</button>
+          <button class="btn-sm" id="filter-mumukshu" onclick="filterSeekersByLevel('mumukshu')">Mumukshu</button>
+          <button class="btn-sm" id="filter-shishya" onclick="filterSeekersByLevel('shishya')">Shishya</button>
+          <button class="btn-sm" id="filter-sadhaka" onclick="filterSeekersByLevel('sadhaka')">Sadhaka</button>
+          <button class="btn-sm" id="filter-siddha" onclick="filterSeekersByLevel('siddha')">Siddha</button>
+        </div>
+      </div>
+      
+      <table style="width:100%; border-collapse:collapse; text-align:left; font-size:0.95rem;">
+        <thead>
+          <tr style="border-bottom: 1px solid var(--gold-dim); color: var(--gold); font-family:'Cinzel',serif; font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase;">
+            <th style="padding:0.75rem 0.5rem;">Seeker Name</th>
+            <th style="padding:0.75rem 0.5rem;">Level Class</th>
+            <th style="padding:0.75rem 0.5rem;">Active Course</th>
+            <th style="padding:0.75rem 0.5rem;">Last Interaction</th>
+            <th style="padding:0.75rem 0.5rem; text-align:right;">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="seekersTableBody">
+          <!-- Populated dynamically by JS -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB: ACTIVITY -->
+  <div id="tab-activity" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Sangha Live Stream</div>
+    <p class="page-sub">Real-time action logs from seekers across the Gurukulam nodes.</p>
+    
     <div class="panel">
-      <div class="panel-title">Weekly Activity</div>
-      <div class="chart-area" id="chart">
-        <!-- bars generated by JS -->
+      <div class="panel-title">Interactive Log Stream</div>
+      <div id="expandedActivityLog">
+        <!-- Logs populated dynamically -->
       </div>
     </div>
   </div>
 
-  <!-- ACTIVITY FEED -->
-  <div class="panel" style="margin-bottom:1rem;">
-    <div class="panel-title">Live Sangha Feed <span class="panel-action">Expand</span></div>
-    <div class="activity-item">
-      <div class="activity-dot dot-green"></div>
-      <div>
-        <div class="activity-text">Priya Sharma completed the Shanti Patha journal reflection — "I realize I've been seeking what I already am."</div>
-        <div class="activity-time">4 minutes ago</div>
-      </div>
+  <!-- TAB: ALERTS -->
+  <div id="tab-alerts" class="admin-tab-content" style="display:none;">
+    <div class="page-title">System & Ego Alerts</div>
+    <p class="page-sub">Resolve cognitive defenses, manage candidate evaluations, and dispatch mirrors.</p>
+    
+    <div class="panel" id="expandedAlertsPanel">
+      <!-- Alerts populated dynamically -->
     </div>
-    <div class="activity-item">
-      <div class="activity-dot dot-gold"></div>
-      <div>
-        <div class="activity-text">Arjun Mehta unlocked Verse 3 of the Katha Upanishad after passing comprehension check.</div>
-        <div class="activity-time">17 minutes ago</div>
-      </div>
+  </div>
+
+  <!-- TAB: JOURNALS -->
+  <div id="tab-journals" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Seeker Journal Desk</div>
+    <p class="page-sub">Review personal reflections, weekly marathon insights, and coordinate AI Guru counsel.</p>
+    
+    <div id="journalsContainer">
+      <!-- Journals populated dynamically -->
     </div>
-    <div class="activity-item">
-      <div class="activity-dot dot-ember"></div>
-      <div>
-        <div class="activity-text">Guru AI sent counter-question to 3 seekers simultaneously on the nature of Ahamkara.</div>
-        <div class="activity-time">32 minutes ago</div>
-      </div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-dot dot-green"></div>
-      <div>
-        <div class="activity-text">Krsna Das completed Marathon I — score 94/100. Sangha notification queued for admin approval.</div>
-        <div class="activity-time">6 hours ago</div>
-      </div>
-    </div>
-    <div class="activity-item">
-      <div class="activity-dot dot-ash"></div>
-      <div>
-        <div class="activity-text">2 seekers inactive for 7+ days. Gentle nudge dispatched: "The river does not wait, but it always returns."</div>
-        <div class="activity-time">Yesterday</div>
+  </div>
+
+  <!-- TAB: CURRICULUM -->
+  <div id="tab-curriculum" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Curriculum Structure</div>
+    <p class="page-sub">Inspect enrollment distributions, average assessment scores, and dynamic lesson unlocks.</p>
+    
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="panel-title">Enrollment Statistics</div>
+      <div style="display:flex; flex-direction:column; gap:1.2rem;" id="curriculumProgressRows">
+        <!-- Progress rows populated dynamically -->
       </div>
     </div>
   </div>
 
-  <!-- AI DIGEST -->
-  <div class="panel">
-    <div class="panel-title">AI Guru Daily Digest <span class="panel-action" onclick="generateDigest()">Regenerate ↗</span></div>
-    <div id="digestContent" style="font-size:0.95rem; color:var(--cream); line-height:1.9; font-style:italic;">
-      Loading today's digest...
+  <!-- TAB: MARATHONS -->
+  <div id="tab-marathons" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Weekly Marathons</div>
+    <p class="page-sub">Candidate logs for marathon assessments and certificate tracking.</p>
+    
+    <div class="panel">
+      <div class="panel-title">Recent Submissions</div>
+      <div style="display:flex; flex-direction:column; gap:1rem;" id="marathonsContainer">
+        <!-- Marathons populated dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: LEELAS -->
+  <div id="tab-leelas" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Shiva Leelas & Broadcasts</div>
+    <p class="page-sub">Initiate community gatherings, broadcast exclusive events, and dispatch invitations.</p>
+    
+    <div class="panel" style="margin-bottom:1.5rem;">
+      <div class="panel-title">Active Broadcast Form</div>
+      <div style="display:flex; flex-direction:column; gap:1rem; max-width:600px;">
+        <input class="modal-input" placeholder="Event title (e.g. Shiva Leela — Hyderabad Gathering)" id="leela-title-tab" style="margin-bottom:0.5rem;"/>
+        <input class="modal-input" placeholder="Location or link" id="leela-loc-tab" style="margin-bottom:0.5rem;"/>
+        <textarea class="modal-textarea" placeholder="Message to all active Seekers..." id="leela-msg-tab" style="margin-bottom:0.5rem;"></textarea>
+        <button class="btn-broadcast" onclick="sendBroadcastFromTab()" style="align-self:flex-start; font-size:0.75rem; padding:0.7rem 1.5rem;">Broadcast ⚡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: DIGEST -->
+  <div id="tab-digest" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Daily AI Digest Logs</div>
+    <p class="page-sub">Review daily spiritual reflections compiled by the AI Guru console.</p>
+    
+    <div class="panel">
+      <div class="panel-title">Current Day Insights</div>
+      <div id="digestContentExpanded" style="font-size:1.05rem; line-height:1.9; font-style:italic;">
+        Loading logs...
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: SETTINGS -->
+  <div id="tab-settings" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Console Settings</div>
+    <p class="page-sub">Configure AI Guru personality profiles, notification triggers, and Agamic parameters.</p>
+    
+    <div class="panel">
+      <div class="panel-title">AI Guru Alignment Parameters</div>
+      <div style="display:flex; flex-direction:column; gap:1.25rem; max-width:500px;">
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.7rem; color:var(--gold);">Guru Rigor Index</label>
+          <select style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.5rem; outline:none; font-family:inherit;">
+            <option>Fierce & Socratic (Default)</option>
+            <option>Compassionate & Guiding</option>
+            <option>Silent Observer (Rishi Mode)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.7rem; color:var(--gold);">Ego Detection Threshold</label>
+          <select style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.5rem; outline:none; font-family:inherit;">
+            <option>Strict (Immediate Gita dispatch)</option>
+            <option>Moderate (Flag for review)</option>
+            <option>Relaxed (Only log incidents)</option>
+          </select>
+        </div>
+        <button class="btn-broadcast" onclick="alert('Settings saved. Console updated.')" style="align-self:flex-start; padding:0.5rem 1.2rem; font-size:0.65rem;">Save Configuration</button>
+      </div>
     </div>
   </div>
 </main>
@@ -824,35 +998,259 @@
     chart.appendChild(bar);
   });
 
-  // AI Digest — uses locally generated wisdom (no external API needed)
+  // AI Digest
+  const digests = [
+    'The Sangha breathes well today. 247 souls walk the path — each at their own pace, none lost. Four mirrors were dispatched with compassion, not judgment; the ego resists most fiercely just before it yields. Krsna Das stands at the threshold of Siddha — await his final reflection before sending the Rudraksha. Two wandering seekers have been called back gently. The river does not hurry, but it never stops.',
+    'A quiet day on the surface, but the undercurrents run deep. 83 journal entries — more than any day this month. The seekers are writing not for us but for themselves, which is exactly as it should be. The four ego-mirrors were necessary medicine; Gita 3:27 lands differently when it arrives privately, without audience. Watch Saraswati Devi closely — her Brahma Sutra notes show a mind approaching the edge of Nirvikalpa understanding.',
+    'The Sangha grows not in numbers alone but in depth. 247 active seekers, but the quality of inquiry has shifted — fewer surface questions, more silence before response. This is the mark of real absorption. The Siddha candidate deserves unhurried review; let the Rudraksha find him when the moment is ripe, not when the metric says so. Two absent seekers were nudged — one returned within the hour. The other will come when the pain of not-knowing exceeds the comfort of forgetting.',
+    'Dawn review: the river flows. 194 Guru AI sessions — the seekers are learning to ask better questions, which means they are learning to sit with not-knowing longer. Four mirrors dispatched: ego is the last fortress, and it fights hardest at the gate of surrender. Marathon completion rate holds at 89% — the 11% who pause are not failures but seekers whose rhythm demands a different pace. Krsna Das awaits. The Sangha awaits. We wait together.'
+  ];
   function generateDigest() {
-    const digests = [
-      'The Sangha breathes well today. 247 souls walk the path — each at their own pace, none lost. Four mirrors were dispatched with compassion, not judgment; the ego resists most fiercely just before it yields. Krsna Das stands at the threshold of Siddha — await his final reflection before sending the Rudraksha. Two wandering seekers have been called back gently. The river does not hurry, but it never stops.',
-      'A quiet day on the surface, but the undercurrents run deep. 83 journal entries — more than any day this month. The seekers are writing not for us but for themselves, which is exactly as it should be. The four ego-mirrors were necessary medicine; Gita 3:27 lands differently when it arrives privately, without audience. Watch Saraswati Devi closely — her Brahma Sutra notes show a mind approaching the edge of Nirvikalpa understanding.',
-      'The Sangha grows not in numbers alone but in depth. 247 active seekers, but the quality of inquiry has shifted — fewer surface questions, more silence before response. This is the mark of real absorption. The Siddha candidate deserves unhurried review; let the Rudraksha find him when the moment is ripe, not when the metric says so. Two absent seekers were nudged — one returned within the hour. The other will come when the pain of not-knowing exceeds the comfort of forgetting.',
-      'Dawn review: the river flows. 194 Guru AI sessions — the seekers are learning to ask better questions, which means they are learning to sit with not-knowing longer. Four mirrors dispatched: ego is the last fortress, and it fights hardest at the gate of surrender. Marathon completion rate holds at 89% — the 11% who pause are not failures but seekers whose rhythm demands a different pace. Krsna Das awaits. The Sangha awaits. We wait together.'
-    ];
     const idx = Math.floor(Math.random() * digests.length);
     document.getElementById('digestContent').textContent = digests[idx];
+    document.getElementById('digestContentExpanded').textContent = digests[idx];
   }
 
   function clearAlerts() {
     document.getElementById('alertsContainer').innerHTML =
       '<div style="text-align:center; padding:2rem; color:var(--ash); font-style:italic;">All alerts cleared. The Sangha is at peace.</div>';
+    document.getElementById('expandedAlertsPanel').innerHTML =
+      '<div style="text-align:center; padding:2rem; color:var(--ash); font-style:italic;">All alerts resolved. System in stable resonance.</div>';
   }
 
   function sendBroadcast() {
     const title = document.getElementById('leela-title').value || 'Untitled Leela';
     alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
     document.getElementById('broadcastModal').classList.remove('open');
-    // Clear inputs
     document.getElementById('leela-title').value = '';
     document.getElementById('leela-loc').value = '';
     document.getElementById('leela-msg').value = '';
   }
 
+  function sendBroadcastFromTab() {
+    const title = document.getElementById('leela-title-tab').value || 'Untitled Leela';
+    alert(`Shiva Leela "${title}" broadcast sent to the Sangha. ✦`);
+    document.getElementById('leela-title-tab').value = '';
+    document.getElementById('leela-loc-tab').value = '';
+    document.getElementById('leela-msg-tab').value = '';
+  }
+
   // Load digest on open
   generateDigest();
+
+  // Tab switching logic
+  document.querySelectorAll('nav .nav-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const tabId = item.getAttribute('data-tab');
+      if (!tabId) return; // Allow normal links (Home, Pillars)
+      e.preventDefault();
+      
+      document.querySelectorAll('nav .nav-item').forEach(n => n.classList.remove('active'));
+      item.classList.add('active');
+      
+      document.querySelectorAll('.admin-tab-content').forEach(content => {
+        content.style.display = 'none';
+        content.classList.remove('active');
+      });
+      
+      const target = document.getElementById('tab-' + tabId);
+      if (target) {
+        target.style.display = 'block';
+        target.classList.add('active');
+      }
+    });
+  });
+
+  // Seekers Database and Filter/Render logic
+  const seekers = [
+    { name: "Arjun Mehta", level: "Sadhaka", levelClass: "level-sadhaka", course: "Katha Upanishad — Verse 3", active: "2h ago", avatar: "अ" },
+    { name: "Priya Sharma", level: "Shishya", levelClass: "level-shishya", course: "Isha Upanishad — Journal", active: "4h ago", avatar: "प्र" },
+    { name: "Krsna Das", level: "Siddha", levelClass: "level-siddha", course: "Marathon I — Complete", active: "6h ago", avatar: "कृ" },
+    { name: "Ravi Iyer", level: "Mumukshu", levelClass: "level-mumukshu", course: "Assessment Complete", active: "8h ago", avatar: "र" },
+    { name: "Saraswati Devi", level: "Sadhaka", levelClass: "level-sadhaka", course: "Brahma Sutras — Deep dive", active: "12h ago", avatar: "स" },
+    { name: "Ananya Sen", level: "Shishya", levelClass: "level-shishya", course: "Saptanga — Shloka 1", active: "1d ago", avatar: "अ" },
+    { name: "Vikram Malhotra", level: "Mumukshu", levelClass: "level-mumukshu", course: "Onboarding completed", active: "2d ago", avatar: "वि" },
+    { name: "Meera Nair", level: "Siddha", levelClass: "level-siddha", course: "Paraśurāma Kalpasūtra Research", active: "3d ago", avatar: "मी" }
+  ];
+
+  let currentLevelFilter = 'all';
+
+  function renderSeekersTable() {
+    const tbody = document.getElementById('seekersTableBody');
+    if (!tbody) return;
+    const query = document.getElementById('seekerSearch').value.toLowerCase();
+    
+    tbody.innerHTML = '';
+    
+    seekers.forEach(s => {
+      const matchQuery = s.name.toLowerCase().includes(query) || s.course.toLowerCase().includes(query);
+      const matchFilter = currentLevelFilter === 'all' || s.level.toLowerCase() === currentLevelFilter;
+      
+      if (matchQuery && matchFilter) {
+        const tr = document.createElement('tr');
+        tr.style.borderBottom = '1px solid rgba(200,146,42,0.06)';
+        tr.innerHTML = `
+          <td style="padding:1rem 0.5rem; display:flex; align-items:center; gap:0.5rem;">
+            <div class="seeker-avatar">${s.avatar}</div>
+            <span class="seeker-name">${s.name}</span>
+          </td>
+          <td style="padding:1rem 0.5rem;">
+            <span class="seeker-level ${s.levelClass}">${s.level}</span>
+          </td>
+          <td style="padding:1rem 0.5rem; color:var(--cream);">${s.course}</td>
+          <td style="padding:1rem 0.5rem; color:var(--ash); font-style:italic;">${s.active}</td>
+          <td style="padding:1rem 0.5rem; text-align:right;">
+            <button class="btn-sm" onclick="alert('Dispatching mirror reflection to ${s.name}')" style="font-size:0.6rem; padding:0.2rem 0.5rem; margin-right:4px;">Mirror</button>
+            <button class="btn-sm" onclick="alert('Nudging ${s.name} regarding Dinacharya alignment')" style="font-size:0.6rem; padding:0.2rem 0.5rem;">Nudge</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      }
+    });
+  }
+
+  function filterSeekers() {
+    renderSeekersTable();
+  }
+
+  function filterSeekersByLevel(level) {
+    currentLevelFilter = level;
+    document.querySelectorAll('[id^="filter-"]').forEach(btn => btn.classList.remove('active'));
+    document.getElementById('filter-' + level).classList.add('active');
+    renderSeekersTable();
+  }
+
+  renderSeekersTable();
+
+  // Populate expanded Activity Log
+  const activities = [
+    { text: "Priya Sharma completed the Shanti Patha journal reflection — 'I realize I\\'ve been seeking what I already am.'", time: "4 minutes ago", type: "dot-green" },
+    { text: "Arjun Mehta unlocked Verse 3 of the Katha Upanishad after passing comprehension check.", time: "17 minutes ago", type: "dot-gold" },
+    { text: "Guru AI sent counter-question to 3 seekers simultaneously on the nature of Ahamkara.", time: "32 minutes ago", type: "dot-ember" },
+    { text: "Krsna Das completed Marathon I — score 94/100. Sangha notification queued for admin approval.", time: "6 hours ago", type: "dot-green" },
+    { text: "2 seekers inactive for 7+ days. Gentle nudge dispatched: 'The river does not wait, but it always returns.'", time: "Yesterday", type: "dot-ash" },
+    { text: "Saraswati Devi submitted a deep research reflection on Dahara Vidya and structural acoustics.", time: "2 days ago", type: "dot-green" },
+    { text: "System Audit completed: 100% link check successful. MathJax solvers compiling on all layout paths.", time: "3 days ago", type: "dot-ash" }
+  ];
+  const activityContainer = document.getElementById('expandedActivityLog');
+  if (activityContainer) {
+    activityContainer.innerHTML = activities.map(act => `
+      <div class="activity-item">
+        <div class="activity-dot ${act.type}"></div>
+        <div>
+          <div class="activity-text">${act.text}</div>
+          <div class="activity-time">${act.time}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Populate Alerts
+  const alerts = [
+    { title: "Guru's Mirror Triggered", body: "Seeker 'R.V.' displayed ego-defensive behavior in Sangha thread on Karma. Mirror sent privately — Gita 3:27 dispatched.", time: "2h ago", type: "alert-ember" },
+    { title: "Siddha Candidate Ready", body: "Krsna Das has completed all 6 Upanishad modules + 3 Marathons. Awaiting admin review for Rudraksha dispatch.", time: "5h ago", type: "alert-gold" },
+    { title: "Marathon Milestone", body: "31 seekers have now completed Marathon I. Community celebration post drafted — pending your approval to publish.", time: "1d ago", type: "alert-success" }
+  ];
+  const alertsContainerExpanded = document.getElementById('expandedAlertsPanel');
+  if (alertsContainerExpanded) {
+    alertsContainerExpanded.innerHTML = alerts.map(al => `
+      <div class="alert-item ${al.type}" onclick="alert('Detail view opened for alert: ${al.title}')">
+        <div>
+          <div class="alert-title">${al.title}</div>
+          <div class="alert-body">${al.body}</div>
+        </div>
+        <span class="alert-time">${al.time}</span>
+      </div>
+    `).join('');
+  }
+
+  // Populate Journals
+  const journals = [
+    { name: "Priya Sharma", prompt: "Prompt: The sheath of food (Annamaya) vs the sheath of spirit", text: "Studying the temple concentric walls helped me realize how my body is just the outermost boundary. The heart contains the Dahara Akasha. My daily eating habits (Dinacharya) must respect this temple of the spirit.", date: "4 hours ago", course: "Isha Upanishad — Verse 1" },
+    { name: "Saraswati Devi", prompt: "Prompt: Space of the heart in meditation", text: "When meditating on the Dahara Akasha, the external noise recedes. I feel the bio-resonance in my chest cavity. The modular geometry of the Vastu Purusha Mandala is literally mirrored inside my rib cage. Space is not empty; it is full of potential.", date: "12 hours ago", course: "Brahma Sutras — Deep Dive" },
+    { name: "Arjun Mehta", prompt: "Prompt: On the duty of action without attachment", text: "I realized that the warrior's duty is not about anger, but about maintaining cosmic balance. The weapon (Astra) is only an extension of Kriya-Shakti. If my mind is unstable, the weapon itself fails to resonate.", date: "Yesterday", course: "Bhagavad Gita — Verse 3" }
+  ];
+  const journalsDiv = document.getElementById('journalsContainer');
+  if (journalsDiv) {
+    journalsDiv.innerHTML = journals.map(jn => `
+      <div class="panel" style="margin-bottom:1rem;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:0.75rem; border-bottom:1px solid rgba(200,146,42,0.06); padding-bottom:0.5rem;">
+          <span style="font-family:'Cinzel',serif; font-size:0.8rem; color:var(--gold);">${jn.name} — <span style="color:var(--cream);">${jn.course}</span></span>
+          <span style="font-size:0.75rem; color:var(--ash); font-style:italic;">${jn.date}</span>
+        </div>
+        <div style="font-style:italic; font-size:0.85rem; color:var(--ash); margin-bottom:0.5rem;">${jn.prompt}</div>
+        <p style="font-size:1rem; line-height:1.7; color:var(--cream); margin-bottom:1rem;">"${jn.text}"</p>
+        <div style="display:flex; gap:8px;">
+          <button class="btn-sm" onclick="alert('Reflection approved for Sangha share.')">Share with Sangha</button>
+          <button class="btn-sm" onclick="alert('Dispatched Socratic Guru response.')">Respond as Guru</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Populate Curriculum
+  const progressData = [
+    { name: "Isha Upanishad", val: "74%", class: "" },
+    { name: "Kena Upanishad", val: "41%", class: "" },
+    { name: "Bhagavad Gita", val: "28%", class: "ember" },
+    { name: "Yoga Sutras", val: "15%", class: "ember" },
+    { name: "Marathon I", val: "89%", class: "success" }
+  ];
+  const curriculumRows = document.getElementById('curriculumProgressRows');
+  if (curriculumRows) {
+    curriculumRows.innerHTML = progressData.map(pd => `
+      <div class="progress-row" style="margin-bottom:0;">
+        <div class="progress-row-header">
+          <span class="progress-row-label">${pd.name}</span>
+          <span class="progress-row-val">${pd.val}</span>
+        </div>
+        <div class="prog-bar"><div class="prog-fill ${pd.class}" style="width:${pd.val}"></div></div>
+      </div>
+    `).join('');
+  }
+
+  // Populate Marathons
+  const marathons = [
+    { name: "Krsna Das", score: "94/100", active: "6h ago", course: "Marathon I — Concentric Cities & Strategic Formations" },
+    { name: "Arjun Mehta", score: "88/100", active: "1d ago", course: "Marathon I — Concentric Cities & Strategic Formations" },
+    { name: "Saraswati Devi", score: "91/100", active: "2d ago", course: "Marathon I — Concentric Cities & Strategic Formations" }
+  ];
+  const marathonsDiv = document.getElementById('marathonsContainer');
+  if (marathonsDiv) {
+    marathonsDiv.innerHTML = marathons.map(m => `
+      <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid rgba(200,146,42,0.06); padding:0.6rem 0;">
+        <div>
+          <span style="font-family:'Cinzel',serif; font-size:0.8rem; color:var(--cream);">${m.name}</span>
+          <div style="font-size:0.75rem; color:var(--ash);">${m.course}</div>
+        </div>
+        <div style="text-align:right;">
+          <span style="font-family:'Cinzel',serif; font-size:0.95rem; color:var(--gold); font-weight:600;">${m.score}</span>
+          <div style="font-size:0.7rem; color:var(--ash); font-style:italic;">${m.active}</div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Theme Management
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnElement) {
+      btnElement.classList.add('active');
+    } else {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+  }
+
+  // Load theme on start
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+  setTheme(null, initialTheme);
 </script>
 </body>
 </html>
