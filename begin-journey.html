@@ -11,9 +11,9 @@
     --earth: #0a0502;
     --gold: #c8922a;
     --gold-bright: #f0c060;
-    --gold-pale: #f5dfa0;
+    --gold-pale: #fff1d4;
     --ember: #c44a1a;
-    --ash: #8a7a6a;
+    --ash: #c7b8aa;
     --cream: #f2e8d5;
     --border-glass: rgba(200, 146, 42, 0.15);
     --bg-glass: rgba(20, 10, 5, 0.7);
@@ -43,7 +43,7 @@
   }
   .top-logo {
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     letter-spacing: 0.25em;
     color: var(--gold);
     white-space: nowrap;
@@ -67,7 +67,7 @@
   .step-dot.done { background: rgba(200,146,42,0.4); border-color: rgba(200,146,42,0.4); }
   .step-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.6rem;
+    font-size:0.88rem;
     letter-spacing: 0.2em;
     color: var(--ash);
     white-space: nowrap;
@@ -139,7 +139,7 @@
   }
   .q-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.65rem;
+    font-size:0.9rem;
     letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--gold);
@@ -163,7 +163,7 @@
   }
   .form-group label {
     font-family: 'Cinzel', serif;
-    font-size: 0.75rem;
+    font-size:0.95rem;
     letter-spacing: 0.1em;
     color: var(--gold-bright);
     font-weight: 500;
@@ -176,7 +176,7 @@
     border: 1px solid rgba(200,146,42,0.25);
     color: var(--cream);
     font-family: 'EB Garamond', serif;
-    font-size: 1.05rem;
+    font-size:1.05rem;
     padding: 10px 14px;
     border-radius: 4px;
     outline: none;
@@ -199,7 +199,7 @@
   /* RESULT SCREEN */
   .result-badge {
     font-family: 'Noto Sans Devanagari', sans-serif;
-    font-size: 3.5rem;
+    font-size:3.5rem;
     color: var(--gold-bright);
     text-shadow: 0 0 40px rgba(200,146,42,0.6);
     margin-bottom: 0.8rem;
@@ -217,14 +217,14 @@
   }
   .result-sublevel {
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     letter-spacing: 0.25em;
     color: var(--gold);
     text-transform: uppercase;
     margin-bottom: 1.5rem;
   }
   .result-desc {
-    font-size: 1.05rem;
+    font-size:1.05rem;
     font-style: italic;
     color: var(--ash);
     max-width: 580px;
@@ -242,7 +242,7 @@
   }
   .result-path-label {
     font-family: 'Cinzel', serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--gold-bright);
@@ -255,10 +255,10 @@
     align-items: center;
     gap: 12px;
     padding: 0.5rem 0;
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--cream);
   }
-  .result-path-check { color: var(--gold); font-size: 0.8rem; }
+  .result-path-check { color: var(--gold); font-size:1.0rem; }
 
   /* DINACHARYA INSIGHTS CARD */
   .insights-card {
@@ -272,7 +272,7 @@
   }
   .insights-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     letter-spacing: 0.15em;
     color: var(--gold-bright);
     margin-bottom: 0.8rem;
@@ -285,7 +285,7 @@
     display: flex;
     flex-direction: column;
     gap: 12px;
-    font-size: 0.9rem;
+    font-size:1.05rem;
     line-height: 1.6;
     color: var(--cream);
   }
@@ -304,7 +304,7 @@
   /* BUTTONS */
   .btn-primary {
     font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 0.9rem 2.5rem;
@@ -320,7 +320,7 @@
   .btn-primary:hover { background: var(--gold-bright); transform: translateY(-2px); }
   .btn-secondary {
     font-family: 'Cinzel', serif;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding: 0.85rem 1.8rem;
@@ -345,7 +345,7 @@
   /* Validation Error Text */
   .err-msg {
     color: #ff4d4d;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     font-style: italic;
     margin-top: 5px;
     display: none;
@@ -364,12 +364,12 @@
   }
   body.theme-light {
     --earth: #f7f2e8;
-    --gold: #b8730a;
+    --gold: #7d4e07;
     --gold-bright: #c8922a;
     --gold-pale: #1a1208;
-    --ember: #8b4513;
-    --ash: #5c3d1a;
-    --cream: #1a1208;
+    --ember: #63310d;
+    --ash: #311e0a;
+    --cream: #0c0804;
     --border-glass: rgba(139, 69, 19, 0.18);
     --bg-glass: rgba(237, 229, 208, 0.85);
   }
@@ -471,7 +471,7 @@
         <option value="phd">Higher Knowledge (PhD)</option>
       </select>
       <div class="err-msg" id="err-grade">Please select your academic level. This determines your starting unlocked grade!</div>
-      <p style="font-size:0.75rem; color:var(--ash); font-style:italic; margin-top:3px;">
+      <p style="font-size:0.95rem; color:var(--ash); font-style:italic; margin-top:3px;">
         *Note: Choosing a level unlocks that grade and all grades below it. Higher levels must be unlocked by completing lower levels.
       </p>
     </div>

@@ -13,17 +13,17 @@
     --bg-glass: rgba(247, 242, 232, 0.92);
     --border-glass: rgba(139, 69, 19, 0.18);
     --text-primary: #1a1208;
-    --text-muted: #5c3d1a;
-    --accent: #8b4513;
-    --accent-glow: rgba(139, 69, 19, 0.12);
-    --gold: #b8730a;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
     --gold-bright: #c8922a;
     --gold-dim: #7a4d0a;
     --parchment: #f7f2e8;
     --parch-mid: #d4b896;
     --parch-dim: #a07850;
     --glow: rgba(200, 146, 42, 0.15);
-    --shloka-bg: rgba(139, 69, 19, 0.06);
+    --shloka-bg: rgba(111, 48, 7, 0.06);
     --shloka-border: rgba(139, 69, 19, 0.25);
     --panel-bg: rgba(237, 229, 208, 0.8);
   }
@@ -33,7 +33,7 @@
     --bg-glass: rgba(2, 24, 22, 0.7);
     --border-glass: rgba(46, 184, 166, 0.35);
     --text-primary: #e0fcf8;
-    --text-muted: #9cf0e2;
+    --text-muted: #cbf9f0;
     --accent: #2eb8a6;
     --accent-glow: rgba(46, 184, 166, 0.2);
     --gold: #2eb8a6;
@@ -53,7 +53,7 @@
     --bg-glass: rgba(15, 10, 5, 0.85);
     --border-glass: rgba(196, 137, 42, 0.2);
     --text-primary: #e8d5a3;
-    --text-muted: #b89a60;
+    --text-muted: #ebd9b5;
     --accent: #c4892a;
     --accent-glow: rgba(196, 137, 42, 0.15);
     --gold: #c4892a;
@@ -70,7 +70,7 @@
     --bg-glass: rgba(26, 5, 5, 0.7);
     --border-glass: rgba(181, 42, 42, 0.3);
     --text-primary: #f4f5f6;
-    --text-muted: #b0b5b9;
+    --text-muted: #e4e7ea;
     --accent: #b52a2a;
     --accent-glow: rgba(255, 77, 77, 0.2);
     --gold: #b52a2a;
@@ -211,7 +211,7 @@
   .nav-brand {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size:1.1rem;
     color: var(--gold);
     text-decoration: none;
     display: flex;
@@ -222,7 +222,7 @@
     text-decoration: none;
     color: var(--text-muted);
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     padding: 6px 14px;
     border-radius: 20px;
     border: 1px solid transparent;
@@ -240,7 +240,7 @@
     color: var(--text-muted);
     padding: 5px 10px;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     border-radius: 20px;
     transition: all 0.3s;
   }
@@ -273,7 +273,7 @@
   /* TEXT STYLE */
   .lesson-cat {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     color: var(--accent);
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -282,7 +282,7 @@
   }
   .lesson-title {
     font-family: 'Cinzel', serif;
-    font-size: 2.2rem;
+    font-size:2.2rem;
     color: var(--text-primary);
     margin: 0 0 1.5rem;
     line-height: 1.2;
@@ -300,7 +300,7 @@
   }
   .shloka-ref {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.65rem;
+    font-size:0.9rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold-bright);
@@ -310,11 +310,11 @@
     align-items: center;
     gap: 6px;
   }
-  .shloka-ref::before { content: '॥'; font-size: 0.85rem; }
-  .shloka-ref::after  { content: '॥'; font-size: 0.85rem; }
+  .shloka-ref::before { content: '॥'; font-size:1.02rem; }
+  .shloka-ref::after  { content: '॥'; font-size:1.02rem; }
   .shloka-devanagari {
     font-family: 'Noto Serif Devanagari', serif;
-    font-size: 1.2rem;
+    font-size:1.2rem;
     color: var(--gold-dim);
     margin-bottom: 0.5rem;
     line-height: 1.8;
@@ -322,7 +322,7 @@
   }
   .shloka-translit {
     font-family: 'EB Garamond', serif;
-    font-size: 1rem;
+    font-size:1.1rem;
     color: var(--text-muted);
     font-style: italic;
     margin-bottom: 0.5rem;
@@ -330,7 +330,7 @@
   }
   .shloka-anvaya {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.82rem;
+    font-size:1.02rem;
     color: var(--accent);
     margin: 0.4rem 0 0.6rem;
     line-height: 1.6;
@@ -341,7 +341,7 @@
   .shloka-anvaya strong { color: var(--gold-bright); }
   .shloka-translation {
     font-family: 'EB Garamond', serif;
-    font-size: 1rem;
+    font-size:1.1rem;
     color: var(--text-primary);
     line-height: 1.6;
     font-style: italic;
@@ -355,12 +355,12 @@
   }
   .scientific-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
+    font-size:1.05rem;
     color: var(--gold-bright);
     margin-bottom: 0.4rem;
   }
   .scientific-text {
-    font-size: 0.9rem;
+    font-size:1.05rem;
     color: var(--text-muted);
     line-height: 1.5;
   }
@@ -370,7 +370,7 @@
   .instructions-title {
     font-family: 'Outfit', sans-serif;
     font-weight: 600;
-    font-size: 1rem;
+    font-size:1.1rem;
     margin-bottom: 0.5rem;
     color: var(--text-primary);
   }
@@ -379,7 +379,7 @@
     margin: 0;
   }
   .instructions-list li {
-    font-size: 0.9rem;
+    font-size:1.05rem;
     color: var(--text-muted);
     margin-bottom: 0.5rem;
     line-height: 1.5;
@@ -403,7 +403,7 @@
   }
   .widget-title {
     font-family: 'Cinzel', serif;
-    font-size: 1.3rem;
+    font-size:1.3rem;
     color: var(--gold-bright);
     margin-bottom: 1.2rem;
     text-align: center;
@@ -441,7 +441,7 @@
     padding: 8px 18px;
     border-radius: 20px;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     font-weight: 500;
     transition: all 0.3s;
   }
@@ -470,7 +470,7 @@
     display: flex;
     justify-content: space-between;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
   }
   .saptāṅga-name {
     color: var(--text-primary);
@@ -529,19 +529,19 @@
     box-shadow: 0 0 25px rgba(255,200,55,0.4);
   }
   .stability-num {
-    font-size: 1.8rem;
+    font-size:1.8rem;
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     color: var(--text-primary);
   }
   .stability-lbl {
-    font-size: 0.65rem;
+    font-size:0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--text-muted);
   }
   .stability-analysis {
-    font-size: 0.85rem;
+    font-size:1.02rem;
     color: var(--text-muted);
     margin-top: 0.8rem;
     line-height: 1.4;
@@ -568,7 +568,7 @@
     color: var(--text-muted);
     padding: 6px 12px;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     font-family: 'Outfit', sans-serif;
     transition: all 0.3s;
   }
@@ -619,19 +619,19 @@
     transition: all 0.3s;
   }
   .cell-dir {
-    font-size: 0.65rem;
+    font-size:0.9rem;
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: 0.5px;
   }
   .cell-element {
-    font-size: 0.55rem;
+    font-size:0.88rem;
     color: var(--accent);
     opacity: 0.7;
     text-align: right;
   }
   .cell-placed-room {
-    font-size: 0.75rem;
+    font-size:0.95rem;
     font-weight: 600;
     color: var(--gold-bright);
     text-align: center;
@@ -666,7 +666,7 @@
     background: var(--bg-secondary);
     border: 1px solid var(--border-glass);
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     color: var(--text-muted);
     line-height: 1.4;
   }
@@ -701,13 +701,13 @@
   .breath-state-label {
     position: absolute;
     font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
+    font-size:1.4rem;
     color: var(--text-primary);
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
   }
   .breath-instructions {
     text-align: center;
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--text-muted);
     min-height: 40px;
   }
@@ -723,7 +723,7 @@
     gap: 4px;
   }
   .timing-input-group label {
-    font-size: 0.75rem;
+    font-size:0.95rem;
     color: var(--text-muted);
     text-transform: uppercase;
   }
@@ -908,7 +908,7 @@
     justify-content: center;
   }
   .altar-metric {
-    font-size: 0.8rem;
+    font-size:1.0rem;
     color: var(--text-muted);
     text-align: center;
   }
@@ -921,7 +921,7 @@
     width: 100%;
   }
   .neeti-question {
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--text-primary);
     line-height: 1.5;
     background: var(--bg-secondary);
@@ -941,7 +941,7 @@
     color: var(--text-muted);
     padding: 10px 14px;
     border-radius: 6px;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     transition: all 0.3s;
     line-height: 1.4;
   }
@@ -955,7 +955,7 @@
     justify-content: space-around;
     border-top: 1px solid var(--border-glass);
     padding-top: 0.8rem;
-    font-size: 0.8rem;
+    font-size:1.0rem;
   }
   .neeti-stat-val {
     color: var(--gold-bright);
@@ -983,7 +983,7 @@
     background: var(--bg-secondary);
     padding: 8px 12px;
     border-radius: 6px;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     color: var(--text-muted);
     line-height: 1.4;
   }
@@ -1015,12 +1015,12 @@
     gap: 2px;
   }
   .ayadi-result-lbl {
-    font-size: 0.7rem;
+    font-size:0.9rem;
     color: var(--text-muted);
     text-transform: uppercase;
   }
   .ayadi-result-val {
-    font-size: 1.1rem;
+    font-size:1.1rem;
     font-weight: 600;
     color: var(--gold-bright);
   }
@@ -1061,7 +1061,7 @@
     border-bottom: 2px solid transparent;
     color: var(--text-muted);
     font-family: 'Outfit', sans-serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     font-weight: 500;
     padding: 10px 8px;
     letter-spacing: 0.5px;
@@ -1108,7 +1108,7 @@
   }
   .śāstra-metadata-box .meta-label {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--accent);
@@ -1117,7 +1117,7 @@
   }
   .śāstra-metadata-box .meta-value {
     font-family: 'EB Garamond', serif;
-    font-size: 1rem;
+    font-size:1.1rem;
     color: var(--text-primary);
     line-height: 1.5;
   }
@@ -1134,14 +1134,14 @@
   }
   .dharmic-principles-box .dp-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.85rem;
+    font-size:1.02rem;
     color: var(--gold-bright);
     margin-bottom: 0.5rem;
     letter-spacing: 0.5px;
   }
   .dharmic-principles-box .dp-text {
     font-family: 'EB Garamond', serif;
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--text-muted);
     line-height: 1.6;
   }
@@ -1161,7 +1161,7 @@
     position: absolute;
     top: -10px;
     right: 8px;
-    font-size: 4rem;
+    font-size:4.0rem;
     color: var(--accent);
     opacity: 0.04;
     font-family: serif;
@@ -1169,7 +1169,7 @@
   }
   .stem-equation-card .eq-label {
     font-family: 'Outfit', sans-serif;
-    font-size: 0.7rem;
+    font-size:0.9rem;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: var(--accent);
@@ -1178,7 +1178,7 @@
   }
   .stem-equation-card .eq-formula {
     font-family: 'EB Garamond', serif;
-    font-size: 1.15rem;
+    font-size:1.15rem;
     color: var(--gold-bright);
     padding: 0.6rem 0.8rem;
     background: rgba(0,0,0,0.4);
@@ -1190,14 +1190,14 @@
     overflow-x: auto;
   }
   .stem-equation-card .eq-explanation {
-    font-size: 0.88rem;
+    font-size:1.05rem;
     color: var(--text-muted);
     line-height: 1.5;
     margin-top: 0.5rem;
   }
   .stem-section-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--gold-bright);
     margin: 1.5rem 0 0.5rem;
     padding-bottom: 0.3rem;
@@ -1209,7 +1209,7 @@
     margin: 0.5rem 0;
   }
   .stem-param-list li {
-    font-size: 0.85rem;
+    font-size:1.02rem;
     color: var(--text-muted);
     margin-bottom: 0.3rem;
     line-height: 1.4;
@@ -1238,7 +1238,7 @@
     border-bottom: 1px solid var(--border-glass);
   }
   .grade-select-title {
-    font-size: 0.75rem;
+    font-size:0.95rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--text-muted);
@@ -1263,7 +1263,7 @@
     border: none;
     color: var(--text-muted);
     padding: 6px 4px;
-    font-size: 0.75rem;
+    font-size:0.95rem;
     font-family: 'Outfit', sans-serif;
     font-weight: 500;
     cursor: none !important;
@@ -1305,13 +1305,13 @@
   }
   .story-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--accent);
     font-weight: 700;
     margin-bottom: 0.4rem;
   }
   .story-text {
-    font-size: 0.9rem;
+    font-size:1.05rem;
     line-height: 1.5;
     color: var(--text-primary);
   }
@@ -2465,8 +2465,8 @@ function renderLeftPane() {
     </div>
 
     <div class="lesson-cat">${lesson.category}</div>
-    <h1 class="lesson-title" style="font-size: 1.6rem; margin-bottom: 0.8rem;">${lesson.title}</h1>
-    <div style="font-size: 0.75rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-glass); display: inline-block; padding: 3px 8px; border-radius: 40px; margin-bottom: 1.2rem; font-family: 'Outfit'; font-weight: 500;">
+    <h1 class="lesson-title" style="font-size:1.6rem; margin-bottom: 0.8rem;">${lesson.title}</h1>
+    <div style="font-size:0.95rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-glass); display: inline-block; padding: 3px 8px; border-radius: 40px; margin-bottom: 1.2rem; font-family: 'Outfit'; font-weight: 500;">
       Level: ${getGradeLabel(currentGrade)}
     </div>
 
@@ -2488,7 +2488,7 @@ function renderLeftPane() {
     </div>
     
     <div class="completion-box" id="lesson-completion-box" style="display: ${isCompleted ? 'block' : 'none'}; margin-top: 2rem; text-align: center;">
-      <button class="action-btn" onclick="completeCourseLesson()" style="width: 100%; padding: 0.95rem; font-family: 'Cinzel', serif; font-size: 0.9rem; background: rgba(46, 184, 166, 0.1); border: 1.5px solid var(--accent); border-radius: 4px; box-shadow: 0 0 15px rgba(46, 184, 166, 0.15);">
+      <button class="action-btn" onclick="completeCourseLesson()" style="width: 100%; padding: 0.95rem; font-family: 'Cinzel', serif; font-size:1.05rem; background: rgba(46, 184, 166, 0.1); border: 1.5px solid var(--accent); border-radius: 4px; box-shadow: 0 0 15px rgba(46, 184, 166, 0.15);">
         Complete Course & Claim Blessing
       </button>
     </div>
@@ -2550,9 +2550,9 @@ function renderŚāstraContent() {
       const ho = lesson.historicalOrigin;
       html += `
         <div class="stem-section-title">Treatise Reference</div>
-        <div style="font-size:0.9rem; line-height:1.4; color:var(--text-primary); margin-bottom:1rem;">
+        <div style="font-size:1.05rem; line-height:1.4; color:var(--text-primary); margin-bottom:1rem;">
           From the <strong><em>${ho.treatise}</em></strong>, written by <strong>${ho.author}</strong> (${ho.period}).
-          <br><span style="color:var(--text-muted); font-size:0.85rem;">${ho.context}</span>
+          <br><span style="color:var(--text-muted); font-size:1.02rem;">${ho.context}</span>
         </div>
       `;
     }
@@ -2611,7 +2611,7 @@ function renderŚāstraContent() {
       html += `
         <div class="stem-section-title">Śāstraic Doctoral Commentary</div>
         <div class="shloka-box" style="border-left-color: var(--accent); background: rgba(255, 255, 255, 0.02);">
-          <p style="font-size:0.88rem; line-height:1.5; font-style:italic;">
+          <p style="font-size:1.05rem; line-height:1.5; font-style:italic;">
             "This verse represents the hermeneutic core of the chapter. Epistemologically, the Śāstras treat physical action not as an end in itself, but as a secondary projection of underlying cosmic order (Ṛta). In this doctoral sequence, we examine the structural isomorphism between internal psychological focus (Samatvam) and external stability parameters across geopolitical networks."
           </p>
         </div>
@@ -2735,10 +2735,10 @@ function renderStemContent() {
       <div class="stem-equation-card" style="background: rgba(200, 146, 42, 0.04); border-left-color: var(--gold-bright);">
         <div class="eq-label">Input Parameters</div>
         ${renderSolverInputs()}
-        <button class="action-btn" onclick="calculateSolveEquation()" style="margin-top: 12px; width: 100%; font-size: 0.8rem; padding: 6px 12px;">Solve Step-by-Step</button>
+        <button class="action-btn" onclick="calculateSolveEquation()" style="margin-top: 12px; width: 100%; font-size:1.0rem; padding: 6px 12px;">Solve Step-by-Step</button>
         <div id="solver-results-box" style="margin-top: 15px; display: none; border-top: 1px dashed var(--border-glass); padding-top: 10px;">
           <div class="eq-label" style="color: var(--gold-bright);">Step-by-Step Solution</div>
-          <div id="solver-explanation" style="font-size: 0.85rem; line-height: 1.5; color: var(--text-primary); text-align: left;"></div>
+          <div id="solver-explanation" style="font-size:1.02rem; line-height: 1.5; color: var(--text-primary); text-align: left;"></div>
         </div>
       </div>
     `;
@@ -2770,14 +2770,14 @@ function renderStemContent() {
       html += `
         <div class="stem-section-title">Doctoral Research Synthesis</div>
         <div class="shloka-box" style="border-left-color: var(--gold); background: rgba(255, 255, 255, 0.02); margin-bottom: 1.5rem;">
-          <p style="font-size:0.88rem; line-height:1.6; font-style:italic;">
+          <p style="font-size:1.05rem; line-height:1.6; font-style:italic;">
             <strong>Cross-Disciplinary Analytical Proof:</strong> In this doctoral sequence, the structural and thermodynamic states of the system are evaluated through the lens of open-system entropy. By checking the boundary limits of the system under external stress, we verify that the Ayadi modular congruences and Saptanga control loops represent self-stabilizing trajectories. This demonstrates that traditional Indian physical and state systems function as robust, resilient topologies congruent with the laws of modern evolutionary thermodynamics.
           </p>
         </div>
 
         <div class="stem-section-title">Scholarly Computational Notes</div>
         <div class="stem-equation-card" style="border-left-color: var(--gold-bright); background: rgba(255, 255, 255, 0.01);">
-          <p style="font-size:0.85rem; line-height:1.5; color: var(--text-muted);">
+          <p style="font-size:1.02rem; line-height:1.5; color: var(--text-muted);">
             <strong>Statistical Validation Model:</strong> The mathematical formulation behaves as a bounded Lyapunov function where asymptotic stability is guaranteed. This proves Kautilya's and the Shilpashastras' models hold identical topological constraints to modern network convergence and thermodynamic equilibrium criteria.
           </p>
         </div>
@@ -2902,7 +2902,7 @@ function renderChakravyūha(container) {
       <button class="action-btn" id="vyūha-trace-btn">Auto-Trace Entry</button>
       <button class="action-btn" id="vyūha-lock-btn">Deploy Defensive Lock</button>
     </div>
-    <div id="vyūha-feedback" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted); text-align: center; min-height: 38px;">
+    <div id="vyūha-feedback" style="margin-top: 1rem; font-size:1.02rem; color: var(--text-muted); text-align: center; min-height: 38px;">
       The 7 circular rings of the Chakravyūha spin in opposing directions to seal any breach points.
     </div>
   `;
@@ -3207,7 +3207,7 @@ function renderYajna(container) {
         <button class="action-btn yj-feed-btn" data-type="herbs">Offer Herbs</button>
       </div>
 
-      <div id="yajna-feedback" style="font-size:0.85rem; color:var(--text-muted); text-align:center; min-height: 40px; margin-top: 0.5rem;">
+      <div id="yajna-feedback" style="font-size:1.02rem; color:var(--text-muted); text-align:center; min-height: 40px; margin-top: 0.5rem;">
         Offer ghee to raise temperature, wood for base charcoal combustion, grains for carbon, and herbs to purify smoke aerosols.
       </div>
       <button class="action-btn" id="yj-reset-btn" style="margin-top: 0.5rem; background: var(--bg-secondary);">Reset Altar</button>
@@ -3331,7 +3331,7 @@ function renderCompassYoga(container) {
       <div class="vastu-feedback-box" id="yoga-feedback" style="min-height:75px;">
         Place items to calculate structural-spatial magnetic resonance. Match directions to Vastu principles!
       </div>
-      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+      <div style="font-family:'Outfit', sans-serif; font-size:1.05rem; color: var(--gold-bright);">
         Compass Harmony Index: <strong id="yoga-harmony-val">0%</strong>
       </div>
     </div>
@@ -3472,35 +3472,35 @@ function renderBhutaShuddhi(container) {
           <!-- 4 main rooms representing sectors -->
           <div class="vastu-cell" data-room="Living" style="border: 1px solid var(--border-glass); padding: 8px;">
             <div class="cell-dir">Living (NW)</div>
-            <div style="font-size:0.75rem; margin-top:5px; color:#53c2b1;">Air: <span id="sh-Living-Air">30</span>%</div>
-            <div style="font-size:0.75rem; color:#c4892a;">Earth: <span id="sh-Living-Earth">70</span>%</div>
-            <div class="cell-placed-room" id="sh-status-Living" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+            <div style="font-size:0.95rem; margin-top:5px; color:#53c2b1;">Air: <span id="sh-Living-Air">30</span>%</div>
+            <div style="font-size:0.95rem; color:#c4892a;">Earth: <span id="sh-Living-Earth">70</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Living" style="font-size:0.9rem; color:#ff4d4d;">Imbalanced</div>
           </div>
           <div class="vastu-cell" data-room="Kitchen" style="border: 1px solid var(--border-glass); padding: 8px;">
             <div class="cell-dir">Kitchen (SE)</div>
-            <div style="font-size:0.75rem; margin-top:5px; color:#ff4d4d;">Fire: <span id="sh-Kitchen-Fire">20</span>%</div>
-            <div style="font-size:0.75rem; color:#2eb8a6;">Water: <span id="sh-Kitchen-Water">80</span>%</div>
-            <div class="cell-placed-room" id="sh-status-Kitchen" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+            <div style="font-size:0.95rem; margin-top:5px; color:#ff4d4d;">Fire: <span id="sh-Kitchen-Fire">20</span>%</div>
+            <div style="font-size:0.95rem; color:#2eb8a6;">Water: <span id="sh-Kitchen-Water">80</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Kitchen" style="font-size:0.9rem; color:#ff4d4d;">Imbalanced</div>
           </div>
           <div class="vastu-cell" data-room="Bedroom" style="border: 1px solid var(--border-glass); padding: 8px;">
             <div class="cell-dir">Bedroom (SW)</div>
-            <div style="font-size:0.75rem; margin-top:5px; color:#c4892a;">Earth: <span id="sh-Bedroom-Earth">20</span>%</div>
-            <div style="font-size:0.75rem; color:#53c2b1;">Air: <span id="sh-Bedroom-Air">80</span>%</div>
-            <div class="cell-placed-room" id="sh-status-Bedroom" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+            <div style="font-size:0.95rem; margin-top:5px; color:#c4892a;">Earth: <span id="sh-Bedroom-Earth">20</span>%</div>
+            <div style="font-size:0.95rem; color:#53c2b1;">Air: <span id="sh-Bedroom-Air">80</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Bedroom" style="font-size:0.9rem; color:#ff4d4d;">Imbalanced</div>
           </div>
           <div class="vastu-cell" data-room="Bathroom" style="border: 1px solid var(--border-glass); padding: 8px;">
             <div class="cell-dir">Bathroom (NE)</div>
-            <div style="font-size:0.75rem; margin-top:5px; color:#2eb8a6;">Water: <span id="sh-Bathroom-Water">40</span>%</div>
-            <div style="font-size:0.75rem; color:#ff4d4d;">Fire: <span id="sh-Bathroom-Fire">60</span>%</div>
-            <div class="cell-placed-room" id="sh-status-Bathroom" style="font-size:0.7rem; color:#ff4d4d;">Imbalanced</div>
+            <div style="font-size:0.95rem; margin-top:5px; color:#2eb8a6;">Water: <span id="sh-Bathroom-Water">40</span>%</div>
+            <div style="font-size:0.95rem; color:#ff4d4d;">Fire: <span id="sh-Bathroom-Fire">60</span>%</div>
+            <div class="cell-placed-room" id="sh-status-Bathroom" style="font-size:0.9rem; color:#ff4d4d;">Imbalanced</div>
           </div>
         </div>
       </div>
 
-      <div class="vastu-feedback-box" id="shuddhi-feedback" style="min-height:55px; font-size:0.8rem;">
+      <div class="vastu-feedback-box" id="shuddhi-feedback" style="min-height:55px; font-size:1.0rem;">
         Sectors are elementally clashing. Select an elemental filter and click a room cell to stoke its matching element and reduce the conflicting one. Reach targets (75%+)!
       </div>
-      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+      <div style="font-family:'Outfit', sans-serif; font-size:1.05rem; color: var(--gold-bright);">
         Overall Spatial Purity: <strong id="shuddhi-purity-val">20%</strong>
       </div>
     </div>
@@ -3686,7 +3686,7 @@ function renderVastu(container) {
       <div class="vastu-feedback-box" id="vastu-feedback">
         Select a room chip above, then click a grid cell to place it. Match elements for maximum thermodynamic harmony!
       </div>
-      <div style="font-family:'Outfit', sans-serif; font-size: 0.9rem; color: var(--gold-bright);">
+      <div style="font-family:'Outfit', sans-serif; font-size:1.05rem; color: var(--gold-bright);">
         Harmony Index: <strong id="vastu-harmony-val">0%</strong>
       </div>
     </div>
@@ -3958,7 +3958,7 @@ function renderUpasana(container) {
         <button class="action-btn chant-seed" data-note="330" data-seed="Laryngeal">Laryngeal Resonance (330 Hz)</button>
         <button class="action-btn chant-seed" data-note="392" data-seed="Sinus">Sinus Cavity Resonance (392 Hz)</button>
       </div>
-      <div style="font-size:0.85rem; color: var(--text-muted); text-align:center;">
+      <div style="font-size:1.02rem; color: var(--text-muted); text-align:center;">
         Click to stimulate vocal resonance parameters and check frequency alignment stability.
       </div>
     </div>
@@ -4067,7 +4067,7 @@ function renderMaṇḍalaSiddhanta(container) {
         <button class="action-btn" id="d-reset">Reset Balance</button>
       </div>
 
-      <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;" id="maṇḍala-action-log">
+      <div style="font-size:1.02rem; color:var(--text-muted); text-align:center;" id="maṇḍala-action-log">
         According to Chanakya, adjacent states are natural enemies; states surrounding your enemy are natural allies.
       </div>
     </div>
@@ -4150,7 +4150,7 @@ function renderNeeti(container) {
         <div class="widget-title">Dilemma Assessment Complete</div>
         <div style="text-align:center; padding:1rem; color:var(--text-muted);">
           <p>Your leadership parameters have settled. Evaluate your final balance index below.</p>
-          <div class="neeti-stats" style="margin-top: 1.5rem; font-size:1rem;">
+          <div class="neeti-stats" style="margin-top: 1.5rem; font-size:1.1rem;">
             <div>Justice: <span class="neeti-stat-val">${justice}%</span></div>
             <div>Security: <span class="neeti-stat-val">${security}%</span></div>
             <div>Treasury: <span class="neeti-stat-val">${treasury}%</span></div>
@@ -4208,10 +4208,10 @@ function renderSamatvam(container) {
         <div class="trackpad-target" id="tr-target" style="top: 50%; left: 50%;"></div>
         <div class="trackpad-pointer" id="tr-pointer" style="top: 50%; left: 50%;"></div>
       </div>
-      <div style="font-size:0.85rem; color:var(--text-muted); text-align:center;" id="samatvam-feedback">
+      <div style="font-size:1.02rem; color:var(--text-muted); text-align:center;" id="samatvam-feedback">
         Keep the white dot centered in the drifting ring. Steady your hand.
       </div>
-      <div style="font-family:'Outfit', sans-serif; font-size:0.9rem; color:var(--gold-bright);">
+      <div style="font-family:'Outfit', sans-serif; font-size:1.05rem; color:var(--gold-bright);">
         Focus Integrity: <span id="samatvam-score">0%</span>
       </div>
     </div>
@@ -4569,35 +4569,35 @@ function showCompletionModal() {
       <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center; cursor: none;">
         <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow); cursor: none;"></div>
         <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse; cursor: none;"></div>
-        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3; cursor: none;">
+        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size:1.05rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3; cursor: none;">
           ŚĀSTRA<br>ADHITI
         </div>
       </div>
       
-      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em; cursor: none;">
+      <div style="font-family: 'Cinzel', serif; font-size:1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em; cursor: none;">
         Course Completed!
       </div>
-      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; cursor: none;">
+      <div style="font-family: 'Outfit', sans-serif; font-size:0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; cursor: none;">
         Initiate of ${currentPillar.toUpperCase()}
       </div>
       
       <!-- Saṃkṣepa Rāmāyaṇam Blessing -->
       <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left; cursor: none;">
-        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase; cursor: none;">
+        <div style="font-family: 'Cinzel', serif; font-size:1.05rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase; cursor: none;">
           Saṃkṣepa Rāmāyaṇam Blessing (${selectedShloka.ref})
         </div>
-        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem; cursor: none;">
+        <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem; cursor: none;">
           ${selectedShloka.devanagari}
         </div>
-        <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem; cursor: none;">
+        <div style="font-family: 'Outfit', sans-serif; font-size:0.95rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem; cursor: none;">
           ${selectedShloka.translit}
         </div>
-        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center; cursor: none;">
+        <p style="font-family: 'EB Garamond', Georgia, serif; font-size:1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center; cursor: none;">
           <strong>Translation:</strong> "${selectedShloka.translation}"
         </p>
       </div>
       
-      <button class="action-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow); cursor: none;">
+      <button class="action-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size:0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow); cursor: none;">
         Return to Course Hub
       </button>
       
@@ -4621,20 +4621,20 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">t_exhale (s)</label>
-          <input type="number" id="eq-in-1" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">t_exhale (s)</label>
+          <input type="number" id="eq-in-1" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">t_inhale (s)</label>
-          <input type="number" id="eq-in-2" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">t_inhale (s)</label>
+          <input type="number" id="eq-in-2" value="4" min="1" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">t_hold_in (s)</label>
-          <input type="number" id="eq-in-3" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">t_hold_in (s)</label>
+          <input type="number" id="eq-in-3" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">t_hold_out (s)</label>
-          <input type="number" id="eq-in-4" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">t_hold_out (s)</label>
+          <input type="number" id="eq-in-4" value="4" min="0" max="20" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4643,12 +4643,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Order of Harmonic (n)</label>
-          <input type="number" id="eq-in-1" value="1" min="1" max="10" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Order of Harmonic (n)</label>
+          <input type="number" id="eq-in-1" value="1" min="1" max="10" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Throat Cavity L (m)</label>
-          <input type="number" id="eq-in-2" value="0.17" step="0.01" min="0.05" max="0.5" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Throat Cavity L (m)</label>
+          <input type="number" id="eq-in-2" value="0.17" step="0.01" min="0.05" max="0.5" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4657,16 +4657,16 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Trade Connectivity (k)</label>
-          <input type="number" id="eq-in-1" value="80" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Trade Connectivity (k)</label>
+          <input type="number" id="eq-in-1" value="80" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Geographic Distance (d)</label>
-          <input type="number" id="eq-in-2" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Geographic Distance (d)</label>
+          <input type="number" id="eq-in-2" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Hostility Index (H)</label>
-          <input type="number" id="eq-in-3" value="50" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Hostility Index (H)</label>
+          <input type="number" id="eq-in-3" value="50" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4675,16 +4675,16 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Base Offset (a)</label>
-          <input type="number" id="eq-in-1" value="20" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Base Offset (a)</label>
+          <input type="number" id="eq-in-1" value="20" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Spacing Rate (b)</label>
-          <input type="number" id="eq-in-2" value="22" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Spacing Rate (b)</label>
+          <input type="number" id="eq-in-2" value="22" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Angle Theta (rad)</label>
-          <input type="number" id="eq-in-3" value="3.14" step="0.1" min="0" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Angle Theta (rad)</label>
+          <input type="number" id="eq-in-3" value="3.14" step="0.1" min="0" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4693,12 +4693,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Mean Limb Value (mu)</label>
-          <input type="number" id="eq-in-1" value="80" min="10" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Mean Limb Value (mu)</label>
+          <input type="number" id="eq-in-1" value="80" min="10" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Limb Variance (Var)</label>
-          <input type="number" id="eq-in-2" value="10" min="0" max="500" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Limb Variance (Var)</label>
+          <input type="number" id="eq-in-2" value="10" min="0" max="500" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4707,16 +4707,16 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Prefrontal Cortex Activation (S_PFC)</label>
-          <input type="number" id="eq-in-1" value="90" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Prefrontal Cortex Activation (S_PFC)</label>
+          <input type="number" id="eq-in-1" value="90" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Amygdala Reactivity (S_amygdala)</label>
-          <input type="number" id="eq-in-2" value="30" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Amygdala Reactivity (S_amygdala)</label>
+          <input type="number" id="eq-in-2" value="30" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">External Noise (sigma_ext)</label>
-          <input type="number" id="eq-in-3" value="5" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">External Noise (sigma_ext)</label>
+          <input type="number" id="eq-in-3" value="5" min="0" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4725,12 +4725,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Altar Temp T (°C)</label>
-          <input type="number" id="eq-in-1" value="750" min="100" max="1200" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Altar Temp T (°C)</label>
+          <input type="number" id="eq-in-1" value="750" min="100" max="1200" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Aerosol Conc N (ppm)</label>
-          <input type="number" id="eq-in-2" value="50" min="0" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Aerosol Conc N (ppm)</label>
+          <input type="number" id="eq-in-2" value="50" min="0" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4739,16 +4739,16 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Justice Weight (w1)</label>
-          <input type="number" id="eq-in-1" value="0.4" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Justice Weight (w1)</label>
+          <input type="number" id="eq-in-1" value="0.4" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Security Weight (w2)</label>
-          <input type="number" id="eq-in-2" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Security Weight (w2)</label>
+          <input type="number" id="eq-in-2" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Treasury Weight (w3)</label>
-          <input type="number" id="eq-in-3" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Treasury Weight (w3)</label>
+          <input type="number" id="eq-in-3" value="0.3" step="0.1" min="0" max="1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4757,12 +4757,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Core Radius R_0 (Hasta)</label>
-          <input type="number" id="eq-in-1" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Core Radius R_0 (Hasta)</label>
+          <input type="number" id="eq-in-1" value="10" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Ring Number (n)</label>
-          <input type="number" id="eq-in-2" value="3" min="1" max="8" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Ring Number (n)</label>
+          <input type="number" id="eq-in-2" value="3" min="1" max="8" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4771,12 +4771,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Scaling Factor (r)</label>
-          <input type="number" id="eq-in-1" value="0.5" step="0.1" min="0.1" max="0.9" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Scaling Factor (r)</label>
+          <input type="number" id="eq-in-1" value="0.5" step="0.1" min="0.1" max="0.9" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Number of Pieces (N)</label>
-          <input type="number" id="eq-in-2" value="3" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Number of Pieces (N)</label>
+          <input type="number" id="eq-in-2" value="3" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4785,12 +4785,12 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Building Height H (m)</label>
-          <input type="number" id="eq-in-1" value="9" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Building Height H (m)</label>
+          <input type="number" id="eq-in-1" value="9" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Street Width W (m)</label>
-          <input type="number" id="eq-in-2" value="12" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Street Width W (m)</label>
+          <input type="number" id="eq-in-2" value="12" min="1" max="100" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4799,16 +4799,16 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Room Length L (m)</label>
-          <input type="number" id="eq-in-1" value="6" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Room Length L (m)</label>
+          <input type="number" id="eq-in-1" value="6" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Room Width W (m)</label>
-          <input type="number" id="eq-in-2" value="4" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Room Width W (m)</label>
+          <input type="number" id="eq-in-2" value="4" min="1" max="50" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Mode Indices (p, q)</label>
-          <input type="text" id="eq-in-3" value="1, 1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Mode Indices (p, q)</label>
+          <input type="text" id="eq-in-3" value="1, 1" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;
@@ -4817,8 +4817,8 @@ function renderSolverInputs() {
     return `
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
         <div>
-          <label style="font-size:0.7rem; color:var(--text-muted);">Perimeter P (Hasta)</label>
-          <input type="number" id="eq-in-1" value="56" min="8" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:0.8rem;">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Perimeter P (Hasta)</label>
+          <input type="number" id="eq-in-1" value="56" min="8" max="1000" style="width:100%; background:rgba(0,0,0,0.1); border:1px solid var(--border-glass); color:var(--text-primary); padding:3px 6px; border-radius:4px; font-size:1.0rem;">
         </div>
       </div>
     `;

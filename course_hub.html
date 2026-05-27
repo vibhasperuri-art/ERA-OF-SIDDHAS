@@ -12,7 +12,7 @@
     --bg-glass: rgba(2, 24, 22, 0.7);
     --border-glass: rgba(46, 184, 166, 0.35);
     --text-primary: #e0fcf8;
-    --text-muted: #9cf0e2;
+    --text-muted: #cbf9f0;
     --accent: #2eb8a6;
     --accent-glow: rgba(46, 184, 166, 0.2);
     --gold: #2eb8a6;
@@ -29,10 +29,10 @@
     --bg-glass: rgba(247, 242, 232, 0.92);
     --border-glass: rgba(139, 69, 19, 0.18);
     --text-primary: #1a1208;
-    --text-muted: #5c3d1a;
-    --accent: #8b4513;
-    --accent-glow: rgba(139, 69, 19, 0.12);
-    --gold: #b8730a;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
     --gold-bright: #c8922a;
     --gold-dim: #7a4d0a;
     --parchment: #f7f2e8;
@@ -46,7 +46,7 @@
     --bg-glass: rgba(15, 10, 5, 0.85);
     --border-glass: rgba(196, 137, 42, 0.2);
     --text-primary: #e8d5a3;
-    --text-muted: #b89a60;
+    --text-muted: #ebd9b5;
     --accent: #c4892a;
     --accent-glow: rgba(196, 137, 42, 0.15);
     --gold: #c4892a;
@@ -63,7 +63,7 @@
     --bg-glass: rgba(26, 5, 5, 0.7);
     --border-glass: rgba(181, 42, 42, 0.3);
     --text-primary: #f4f5f6;
-    --text-muted: #b0b5b9;
+    --text-muted: #e4e7ea;
     --accent: #b52a2a;
     --accent-glow: rgba(255, 77, 77, 0.2);
     --gold: #b52a2a;
@@ -81,7 +81,7 @@
     color: var(--text-muted);
     padding: 6px 12px;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.75rem;
+    font-size:0.95rem;
     cursor: none !important;
     transition: all 0.3s;
     border-radius: 40px;
@@ -203,7 +203,7 @@
   .nav-brand {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size:1.2rem;
     color: var(--gold);
     text-decoration: none;
     display: flex;
@@ -219,13 +219,13 @@
   }
   .hero-title {
     font-family: 'Cinzel', serif;
-    font-size: 3rem;
+    font-size:3.0rem;
     color: var(--accent);
     margin-bottom: 1rem;
   }
   .hero-subtitle {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.2rem;
+    font-size:1.2rem;
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 2rem;
@@ -241,11 +241,11 @@
   .source-text-title {
     font-family: 'Cinzel', serif;
     color: var(--gold);
-    font-size: 1.5rem;
+    font-size:1.5rem;
     margin-bottom: 0.5rem;
   }
   .source-text-body {
-    font-size: 1rem;
+    font-size:1.1rem;
     color: var(--text-primary);
     line-height: 1.8;
   }
@@ -264,7 +264,7 @@
     border: none;
     color: var(--text-muted);
     font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
+    font-size:1.1rem;
     padding: 0.5rem 1rem;
     transition: color 0.3s, border-bottom 0.3s;
     border-bottom: 2px solid transparent;
@@ -296,12 +296,12 @@
   }
   .card-title {
     font-family: 'Cinzel', serif;
-    font-size: 1.4rem;
+    font-size:1.4rem;
     color: var(--gold);
     margin-bottom: 1rem;
   }
   .card-desc {
-    font-size: 0.95rem;
+    font-size:0.95rem;
     color: var(--text-muted);
     line-height: 1.6;
     margin-bottom: 1.5rem;
@@ -314,7 +314,7 @@
     padding: 0.6rem 1.2rem;
     border-radius: 20px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size:1.05rem;
     font-family: 'Outfit', sans-serif;
     transition: background 0.3s;
   }
@@ -403,7 +403,7 @@
   }
   .branch-graphic-label {
     font-family: 'Cinzel Decorative', serif;
-    font-size: 0.72rem;
+    font-size:0.95rem;
     color: var(--text-muted);
     margin-top: 1rem;
     letter-spacing: 0.15em;
@@ -411,7 +411,7 @@
   }
   .completed-badge {
     color: var(--accent);
-    font-size: 0.75rem;
+    font-size:0.95rem;
     font-family: 'Outfit';
     font-weight: 600;
     text-shadow: 0 0 10px var(--accent-glow);
@@ -1160,7 +1160,7 @@ const readerContentData = {
     category: "Yuddham Story — The Great Dilemma",
     title: "The Dilemma of Arjuna",
     content: `
-      <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
+      <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
         न जायते म्रियते वा कदाचि- <br> न्नायं भूत्वा भविता वा न भूयः । <br> अजो नित्यः शाश्वतोऽयं पुराणो <br> न हन्यते हन्यमाने शरीरे ॥
       </div>
       <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
@@ -1208,7 +1208,7 @@ const readerContentData = {
     category: "Yuddham Nano Course",
     title: "Astra vs Śāstra",
     content: `
-      <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
+      <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
         शस्त्रेण रक्षिते राष्ट्रे शास्त्रचिन्ता प्रवर्तते ॥
       </div>
       <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
@@ -1279,7 +1279,7 @@ const readerContentData = {
     category: "Rājya Story — Rama Rājyam",
     title: "Rama Rājyam: The Golden Age of Ayodhya",
     content: `
-      <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
+      <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
         रामो रामो राम इति प्रजानामभवन् कथाः ।<br>
         रामभूतं जगदभूद्रामे राज्यं प्रशासति ॥
       </div>
@@ -1438,12 +1438,12 @@ const readerContentData = {
 <!-- Immersive Reader Modal -->
 <div id="reader-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);">
   <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 28px; padding: 3rem; width: 90%; max-width: 800px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
-    <button onclick="closeReaderModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary); border-radius: 50%; width: 40px; height: 40px; font-size: 1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center;" class="action-btn">×</button>
+    <button onclick="closeReaderModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary); border-radius: 50%; width: 40px; height: 40px; font-size:1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center;" class="action-btn">×</button>
     <div id="reader-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem;">
-      <div id="reader-category" style="font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">CATEGORY</div>
-      <h2 id="reader-title" style="font-family: 'Cinzel', serif; color: var(--text-primary); margin: 0; font-size: 2rem;">Topic Title</h2>
+      <div id="reader-category" style="font-family: 'Outfit', sans-serif; font-size:1.0rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">CATEGORY</div>
+      <h2 id="reader-title" style="font-family: 'Cinzel', serif; color: var(--text-primary); margin: 0; font-size:2.0rem;">Topic Title</h2>
     </div>
-    <div id="reader-content" style="max-height: 450px; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; font-family: 'EB Garamond', Georgia, serif; font-size: 1.15rem; line-height: 1.8; color: var(--text-primary); padding-right: 0.8rem;">
+    <div id="reader-content" style="max-height: 450px; overflow-y: auto; display: flex; flex-direction: column; gap: 1.5rem; font-family: 'EB Garamond', Georgia, serif; font-size:1.15rem; line-height: 1.8; color: var(--text-primary); padding-right: 0.8rem;">
       <!-- Content will be injected here -->
     </div>
   </div>

@@ -12,7 +12,7 @@
     --bg-glass: rgba(26, 5, 5, 0.7);
     --border-glass: rgba(181, 42, 42, 0.3);
     --text-primary: #f4f5f6;
-    --text-muted: #b0b5b9;
+    --text-muted: #e4e7ea;
     --accent: #b52a2a;
     --accent-glow: rgba(255, 77, 77, 0.2);
     --gold: #b52a2a;
@@ -25,7 +25,7 @@
     --bg-glass: rgba(15, 10, 5, 0.75);
     --border-glass: rgba(196, 137, 42, 0.25);
     --text-primary: #e8d5a3;
-    --text-muted: #b89a60;
+    --text-muted: #ebd9b5;
     --accent: #c4892a;
     --accent-glow: rgba(196, 137, 42, 0.15);
     --gold: #c4892a;
@@ -38,7 +38,7 @@
     --bg-glass: rgba(2, 24, 22, 0.7);
     --border-glass: rgba(46, 184, 166, 0.35);
     --text-primary: #e0fcf8;
-    --text-muted: #9cf0e2;
+    --text-muted: #cbf9f0;
     --accent: #2eb8a6;
     --accent-glow: rgba(46, 184, 166, 0.2);
     --gold: #2eb8a6;
@@ -51,10 +51,10 @@
     --bg-glass: rgba(247, 242, 232, 0.92);
     --border-glass: rgba(139, 69, 19, 0.18);
     --text-primary: #1a1208;
-    --text-muted: #5c3d1a;
-    --accent: #8b4513;
-    --accent-glow: rgba(139, 69, 19, 0.12);
-    --gold: #b8730a;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
     --gold-bright: #c8922a;
     --glow: rgba(200, 146, 42, 0.15);
   }
@@ -174,7 +174,7 @@
   }
   .nav-brand {
     font-family: 'Cinzel Decorative', serif;
-    font-size: 1.2rem;
+    font-size:1.2rem;
     color: var(--text-primary);
     text-decoration: none;
   }
@@ -186,7 +186,7 @@
     border-radius: 20px;
     cursor: pointer;
     font-family: 'Outfit', sans-serif;
-    font-size: 0.8rem;
+    font-size:1.0rem;
     transition: all 0.3s;
   }
   .theme-btn:hover, .theme-btn.active {
@@ -256,7 +256,7 @@
   }
   .shloka-english {
     font-family: 'EB Garamond', serif;
-    font-size: 1.3rem;
+    font-size:1.3rem;
     font-style: italic;
     color: var(--text-muted);
     text-align: center;
@@ -268,7 +268,7 @@
   /* Modern Anvaya Grid */
   .anvaya-title {
     font-family: 'Cinzel', serif;
-    font-size: 0.9rem;
+    font-size:1.05rem;
     letter-spacing: 0.2em;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
@@ -292,13 +292,13 @@
   }
   .anvaya-cell strong {
     font-family: 'Noto Serif Devanagari', serif;
-    font-size: 1.4rem;
+    font-size:1.4rem;
     color: var(--accent);
     display: block;
     margin-bottom: 0.4rem;
   }
   .anvaya-cell span {
-    font-size: 0.9rem;
+    font-size:1.05rem;
     color: var(--text-muted);
   }
 
@@ -316,7 +316,7 @@
     border-radius: 16px;
     padding: 1.5rem;
     font-family: 'Outfit', sans-serif;
-    font-size: 1.1rem;
+    font-size:1.1rem;
     min-height: 120px;
     resize: vertical;
     margin-bottom: 1rem;
@@ -583,35 +583,35 @@ function showCompletionModal() {
       <div style="width: 140px; height: 140px; margin: 0 auto 1.5rem; position: relative; display: flex; align-items: center; justify-content: center;">
         <div style="position: absolute; inset: 0; border: 3px double var(--gold); border-radius: 50%; animation: rotateRing 8s linear infinite; box-shadow: 0 0 30px var(--glow);"></div>
         <div style="position: absolute; width: 110px; height: 110px; border: 1.5px dashed var(--gold-bright); border-radius: 50%; animation: rotateRing 15s linear infinite reverse;"></div>
-        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size: 0.9rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3;">
+        <div style="z-index: 2; font-family: 'Cinzel Decorative', serif; font-weight: 700; font-size:1.05rem; color: var(--gold-bright); text-shadow: 0 0 10px var(--gold); line-height: 1.3;">
           ŚĀSTRA<br>ADHITI
         </div>
       </div>
       
-      <div style="font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
+      <div style="font-family: 'Cinzel', serif; font-size:1.6rem; color: var(--text-primary); margin-bottom: 0.5rem; letter-spacing: 0.05em;">
         Course Completed!
       </div>
-      <div style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">
+      <div style="font-family: 'Outfit', sans-serif; font-size:0.95rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem;">
         Initiate of ${activePillar.toUpperCase()}
       </div>
       
       <!-- Saṃkṣepa Rāmāyaṇam Blessing -->
       <div style="border-top: 1.5px solid var(--border-glass); padding-top: 1.5rem; margin-bottom: 2.5rem; text-align: left;">
-        <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase;">
+        <div style="font-family: 'Cinzel', serif; font-size:1.05rem; color: var(--gold-bright); letter-spacing: 0.1em; margin-bottom: 1rem; text-align: center; text-transform: uppercase;">
           Saṃkṣepa Rāmāyaṇam Blessing (${selectedShloka.ref})
         </div>
-        <div style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem;">
+        <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.35rem; color: var(--text-primary); text-align: center; line-height: 1.8; margin-bottom: 1rem;">
           ${selectedShloka.devanagari}
         </div>
-        <div style="font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem;">
+        <div style="font-family: 'Outfit', sans-serif; font-size:1.05rem; color: var(--text-muted); text-align: center; font-style: italic; margin-bottom: 1rem;">
           ${selectedShloka.translit}
         </div>
-        <p style="font-family: 'EB Garamond', Georgia, serif; font-size: 1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center;">
+        <p style="font-family: 'EB Garamond', Georgia, serif; font-size:1.05rem; line-height: 1.6; color: var(--text-primary); text-align: center;">
           <strong>Translation:</strong> "${selectedShloka.translation}"
         </p>
       </div>
       
-      <button class="submit-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow);">
+      <button class="submit-btn" onclick="closeCompletionModal()" style="padding: 0.8rem 2rem; font-family: 'Cinzel', serif; font-size:0.95rem; border: 1.5px solid var(--accent); background: var(--accent-glow);">
         Return to Course Hub
       </button>
       
