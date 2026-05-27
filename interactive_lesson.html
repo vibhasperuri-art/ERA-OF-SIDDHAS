@@ -1406,17 +1406,20 @@
     border-bottom: 1px solid rgba(139, 69, 19, 0.25) !important;
   }
   body.theme-light .pane-tab-btn {
-    color: #6b4e31 !important; /* Clearly readable medium-dark brown for unselected tabs */
+    color: #311e0a !important; /* High-contrast dark charcoal/brown for unselected tabs (matches var(--text-muted)) */
+    opacity: 0.65 !important;  /* Soft opacity for inactive tabs to distinguish them from the active tab */
   }
   body.theme-light .pane-tab-btn:hover {
-    color: #1a1208 !important;
+    color: #1a1208 !important; /* Even darker on hover */
     background: rgba(111, 48, 7, 0.08) !important;
+    opacity: 1 !important;
   }
   body.theme-light .pane-tab-btn.active {
     color: #6f3007 !important; /* Deep accent brown for active tab */
     border-bottom-color: #6f3007 !important;
     font-weight: 600 !important;
     text-shadow: none !important;
+    opacity: 1 !important;
   }
 </style>
 <script>
