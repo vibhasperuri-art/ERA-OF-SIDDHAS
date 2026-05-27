@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Sangha Hub — Era of Siddhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root, body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(2, 24, 22, 0.7);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --text-primary: #e0fcf8;
+    --text-muted: #cbf9f0;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --glow: rgba(46, 184, 166, 0.15);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.75);
+    --border-glass: rgba(196, 137, 42, 0.25);
+    --text-primary: #e8d5a3;
+    --text-muted: #ebd9b5;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #e4e7ea;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+  body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
+    --gold-bright: #c8922a;
+    --glow: rgba(200, 146, 42, 0.15);
+  }
+
+  /* ── ANCIENT RASA GRAPHICS (THEME WATERMARKS) ── */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: -1;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 80vmin;
+    opacity: 0.15;
+    transition: background-image 1.5s ease-in-out;
+    mix-blend-mode: screen;
+  }
+  body.theme-light::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%238b4513" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%238b4513" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+    mix-blend-mode: multiply !important;
+    opacity: 0.12 !important;
+  }
+  body.theme-fierce::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 5 L55 30 L85 20 L60 45 L95 50 L60 55 L85 80 L55 70 L50 95 L45 70 L15 80 L40 55 L5 50 L40 45 L15 20 L45 30 Z" fill="none" stroke="%23ff4d4d" stroke-width="0.5" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="25" fill="none" stroke="%23ff4d4d" stroke-width="0.2" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="45" fill="none" stroke="%23b52a2a" stroke-width="0.2" opacity="0.4" stroke-dasharray="1 2"/%3E%3C/svg%3E');
+  }
+  body.theme-earthy::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpath d="M50 10 Q65 40 50 50 Q35 40 50 10 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M50 90 Q65 60 50 50 Q35 60 50 90 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M10 50 Q40 65 50 50 Q40 35 10 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Cpath d="M90 50 Q60 65 50 50 Q60 35 90 50 Z" fill="none" stroke="%23c4892a" stroke-width="0.6" opacity="0.6"/%3E%3Ccircle cx="50" cy="50" r="30" fill="none" stroke="%23f0c040" stroke-width="0.3" opacity="0.5" stroke-dasharray="2 2"/%3E%3C/svg%3E');
+  }
+  body.theme-mystical::before {
+    background-image: url('data:image/svg+xml;utf8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"%3E%3Cpolygon points="50,10 90,75 10,75" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,90 90,25 10,25" fill="none" stroke="%234df5e2" stroke-width="0.5" opacity="0.6"/%3E%3Cpolygon points="50,20 80,70 20,70" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Cpolygon points="50,80 80,30 20,30" fill="none" stroke="%232eb8a6" stroke-width="0.4" opacity="0.7"/%3E%3Ccircle cx="50" cy="50" r="48" fill="none" stroke="%23176e62" stroke-width="0.3" opacity="0.5"/%3E%3Ccircle cx="50" cy="50" r="5" fill="%234df5e2" opacity="0.8"/%3E%3C/svg%3E');
+  }
+
+  .noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.04;
+    background: url('data:image/svg+xml;utf8,%3Csvg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"%3E%3Cfilter id="noiseFilter"%3E%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3E%3C/filter%3E%3Crect width="100%25" height="100%25" filter="url(%23noiseFilter)"/%3E%3C/svg%3E');
+  }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active textarea,
+  body.custom-cursor-active select,
+  body.custom-cursor-active input {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000002;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    margin: 0; padding: 0;
+    transition: all 0.5s ease;
+    overflow-x: hidden;
+  }
+
+  /* Glass Nav */
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+  }
+  .nav-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.92rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    border-radius: 4px;
+    transition: all 0.3s;
+  }
+  .nav-btn:hover {
+    color: var(--text-primary);
+    border-color: var(--border-glass);
+    background: var(--accent-glow);
+  }
+  .theme-btn {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Outfit', sans-serif;
+    font-size:1.0rem;
+    transition: all 0.3s;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  /* Split layout */
+  .sangha-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
+    display: grid;
+    grid-template-columns: 1.8fr 1.2fr;
+    gap: 2rem;
+  }
+
+  @media (max-width: 900px) {
+    .sangha-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+  }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.2rem;
+    color: var(--gold-bright);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 1.5px solid var(--border-glass);
+    padding-bottom: 0.5rem;
+  }
+
+  /* Live Feed Item */
+  .feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .feed-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 1.2rem;
+    transition: transform 0.3s, border-color 0.3s;
+  }
+  .feed-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+  }
+  .feed-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 0.9rem;
+  }
+  .feed-author {
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+  }
+  .feed-category {
+    background: var(--accent-glow);
+    padding: 2px 8px;
+    border-radius: 20px;
+    color: var(--gold-bright);
+    font-size: 0.85rem;
+  }
+  .feed-body {
+    font-size: 1.05rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+  }
+  .feed-time {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-align: right;
+    margin-top: 0.8rem;
+  }
+
+  /* Inputs styling */
+  textarea {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    border-radius: 8px;
+    padding: 1rem;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    min-height: 80px;
+    resize: vertical;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+  }
+  select {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-family: 'Outfit', sans-serif;
+    margin-right: 10px;
+    margin-bottom: 1rem;
+  }
+  .action-btn {
+    background: var(--accent);
+    color: #fff;
+    border: 1px solid var(--accent);
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .action-btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px var(--accent-glow);
+  }
+
+  /* Marathon item styling */
+  .marathon-progress-container {
+    margin-bottom: 1.5rem;
+  }
+  .marathon-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .marathon-bar-outer {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    height: 14px;
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 0.8rem;
+  }
+  .marathon-bar-inner {
+    background: linear-gradient(90deg, var(--accent), var(--gold-bright));
+    height: 100%;
+    width: 0%;
+    border-radius: 20px;
+    transition: width 1s ease-out;
+  }
+
+</style>
+<script src="js/api.js"></script>
+</head>
+<body class="theme-light">
+
+<div class="noise-overlay"></div>
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="course_hub.html" class="nav-btn" style="text-decoration:none;">Course Hub</a>
+    <a href="sanctum.html" class="nav-btn" style="text-decoration:none;">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn" style="text-decoration:none;">Guru's Eye</a>
+    <a href="pillar_hub.html" class="nav-btn" style="text-decoration:none;">Return to Pillars</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
+  </div>
+</nav>
+
+<div class="sangha-container">
+  
+  <!-- Left Side: Community Feed and Post Area -->
+  <div>
+    
+    <!-- Share Reflection Card -->
+    <div class="card">
+      <div class="section-title">Share with the Sangha</div>
+      <form id="post-form" onsubmit="postToSangha(event)">
+        <textarea id="post-text" placeholder="Share your Sādhana milestone, Socratic reflection, or treatise insights..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div>
+            <select id="post-category">
+              <option value="General Reflection">General Reflection</option>
+              <option value="Sādhana Milestone">Sādhana Milestone</option>
+              <option value="Śāstra Insight">Śāstra Insight</option>
+            </select>
+          </div>
+          <button type="submit" class="action-btn">Post to Sangha</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Live Feed Card -->
+    <div class="card">
+      <div class="section-title" style="display:flex; justify-content:space-between; align-items:center;">
+        <span>Live Sangha Feed</span>
+        <span style="font-size:0.8rem; font-family:'Outfit'; text-transform:none; color:var(--text-muted); font-weight:normal;" id="feed-sync-status">Syncing...</span>
+      </div>
+      <div class="feed-list" id="sangha-feed-container">
+        <!-- Live posts are appended here -->
+        <div style="text-align:center; padding:2rem; color:var(--text-muted);">
+          Loading communal updates...
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Right Side: Communal Marathons and System Alerts -->
+  <div>
+    
+    <!-- Sadhana Marathons Card -->
+    <div class="card">
+      <div class="section-title">Communal Sādhana Marathons</div>
+      
+      <!-- Chanting Marathon -->
+      <div class="marathon-progress-container">
+        <div class="marathon-label">
+          <span>Mantrayana Chants</span>
+          <span id="chanting-ratio">342 / 1008 repetitions</span>
+        </div>
+        <div class="marathon-bar-outer">
+          <div class="marathon-bar-inner" id="chanting-bar"></div>
+        </div>
+        <div style="text-align: right;">
+          <button class="action-btn" onclick="contributecommunal('chanting')" style="font-size:0.85rem; padding: 4px 15px;">Contribute 1 Chant</button>
+        </div>
+      </div>
+
+      <!-- Box Breathing Marathon -->
+      <div class="marathon-progress-container" style="border-top:1px solid var(--border-glass); padding-top:1.5rem; margin-top:1.5rem;">
+        <div class="marathon-label">
+          <span>Pranayama Box Breath Cycles</span>
+          <span id="breathing-ratio">84 / 200 cycles</span>
+        </div>
+        <div class="marathon-bar-outer">
+          <div class="marathon-bar-inner" id="breathing-bar"></div>
+        </div>
+        <div style="text-align: right;">
+          <button class="action-btn" onclick="contributecommunal('breathing')" style="font-size:0.85rem; padding: 4px 15px;">Contribute 1 Cycle</button>
+        </div>
+      </div>
+      
+      <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.4; margin-top: 1rem; font-style:italic;">
+        All practitioners connected to the Sangha share these goals. Perform your daily dinacharya and contribute to complete the mandala!
+      </p>
+    </div>
+
+    <!-- Active Alerts Card -->
+    <div class="card">
+      <div class="section-title">Active Notifications</div>
+      <div id="active-alerts-container" style="display:flex; flex-direction:column; gap:10px;">
+        <div style="padding: 10px; background: rgba(200, 146, 42, 0.05); border: 1px solid var(--border-glass); border-radius: 6px; font-size:0.95rem; color:var(--text-muted);">
+          No active warnings from the Guru. Stay focused on your Dinacharya.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+// Theme Management
+function setTheme(btnElement, themeName) {
+  document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+  document.body.classList.add(themeName);
+  localStorage.setItem('era_of_siddhas_theme', themeName);
+  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  if (btnElement) {
+    btnElement.classList.add('active');
+  } else {
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+        btn.classList.add('active');
+      }
+    });
+  }
+}
+
+// Custom Cursor coordinates tracking
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+let mouseX = 0, mouseY = 0;
+let ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+function animateRing() {
+  ringX += (mouseX - ringX) * 0.15;
+  ringY += (mouseY - ringY) * 0.15;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+}
+requestAnimationFrame(animateRing);
+
+function bindCursorEvents() {
+  document.querySelectorAll('a, button, input, select, textarea, .feed-card').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+// Initialise Theme
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+setTheme(null, initialTheme);
+
+// Sangha feed rendering
+async function loadFeed() {
+  if (!window.EOS_API) return;
+  const feed = await window.EOS_API.getSanghaFeed();
+  renderFeedItems(feed);
+}
+
+function renderFeedItems(feed) {
+  const container = document.getElementById("sangha-feed-container");
+  if (!feed || feed.length === 0) {
+    container.innerHTML = `
+      <div style="text-align:center; padding:2rem; color:var(--text-muted);">
+        No recent updates in the Sangha. Be the first to share your reflection!
+      </div>
+    `;
+    return;
+  }
+  
+  container.innerHTML = feed.map(item => {
+    const isSystem = item.author.toLowerCase() === "system";
+    const authorLabel = isSystem ? "🔱 Gurukula" : `seeker: @${item.author}`;
+    const cleanTime = item.timestamp ? new Date(item.timestamp).toLocaleTimeString() : "";
+    
+    return `
+      <div class="feed-card" style="${isSystem ? 'border-left: 3px solid var(--gold-bright); background: rgba(200, 146, 42, 0.03);' : ''}">
+        <div class="feed-header">
+          <span class="feed-author" style="${isSystem ? 'color: var(--gold-bright);' : ''}">${authorLabel}</span>
+          <span class="feed-category">${item.category || 'Communal'}</span>
+        </div>
+        <div class="feed-body">${item.content}</div>
+        <div class="feed-time">${cleanTime}</div>
+      </div>
+    `;
+  }).join('');
+  
+  bindCursorEvents();
+}
+
+async function postToSangha(event) {
+  event.preventDefault();
+  const text = document.getElementById("post-text").value.trim();
+  const category = document.getElementById("post-category").value;
+  
+  if (!text) {
+    alert("Please write some wisdom before posting!");
+    return;
+  }
+  
+  if (window.EOS_API) {
+    const res = await window.EOS_API.saveReflection("sangha", "general_post", text, "shared");
+    if (res && res.status === "success") {
+      document.getElementById("post-text").value = "";
+      // Reload feed
+      loadFeed();
+    } else {
+      alert("Offline Mode: Sync failed. Saved reflection locally.");
+    }
+  }
+}
+
+// Marathon Contributions
+async function loadMarathons() {
+  try {
+    const res = await fetch("/api/marathon");
+    if (res.ok) {
+      const data = await res.json();
+      updateMarathonBars(data);
+    }
+  } catch (e) {
+    console.log("Failed to fetch marathons (offline mode):", e);
+  }
+}
+
+function updateMarathonBars(counts) {
+  const chantingVal = counts.chanting || 342;
+  const breathingVal = counts.breathing || 84;
+  
+  document.getElementById("chanting-ratio").textContent = `${chantingVal} / 1008 repetitions`;
+  document.getElementById("breathing-ratio").textContent = `${breathingVal} / 200 cycles`;
+  
+  // Calculate percentages
+  const chantingPct = Math.min(100, (chantingVal / 1008) * 100);
+  const breathingPct = Math.min(100, (breathingVal / 200) * 100);
+  
+  document.getElementById("chanting-bar").style.width = chantingPct + "%";
+  document.getElementById("breathing-bar").style.width = breathingPct + "%";
+}
+
+async function contributecommunal(type) {
+  try {
+    const res = await fetch("/api/marathon/contribute", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({ type })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      updateMarathonBars(data.counts);
+    }
+  } catch (e) {
+    // offline increment
+    console.log("Offline contribution trigger");
+  }
+}
+
+// WebSocket Live Events Listener
+window.addEventListener("eos-ws-message", (event) => {
+  const data = event.detail;
+  console.log("Sangha page WS received:", data);
+  
+  if (data.type === "post" || data.type === "milestone") {
+    // Prepend new item to feed
+    loadFeed();
+  } else if (data.type === "marathon_update") {
+    updateMarathonBars(data.counts);
+  }
+});
+
+// Load initialization data
+document.addEventListener("DOMContentLoaded", () => {
+  loadFeed();
+  loadMarathons();
+  bindCursorEvents();
+  
+  // Update indicator text
+  setInterval(() => {
+    const indicator = document.querySelector(".eos-connection-indicator");
+    const statusText = document.getElementById("feed-sync-status");
+    if (statusText) {
+      if (indicator && indicator.classList.contains("online")) {
+        statusText.textContent = "Synced Live 🟢";
+      } else {
+        statusText.textContent = "Offline Mode ⚪";
+      }
+    }
+  }, 1000);
+});
+
+</script>
+</body>
+</html>
