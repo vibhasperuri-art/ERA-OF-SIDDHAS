@@ -374,6 +374,7 @@
     --bg-glass: rgba(237, 229, 208, 0.85);
   }
 </style>
+<script src="js/api.js"></script>
 </head>
 <body>
 
@@ -736,7 +737,7 @@
     document.getElementById('insightsList').innerHTML = insights.map(ins => `<div>${ins}</div>`).join('');
   }
 
-  function enterGurukula() {
+  async function enterGurukula() {
     const data = window.tempOnboardingData;
     if (!data) return;
 
@@ -758,6 +759,11 @@
     
     // Save onboarding completion timestamp
     localStorage.setItem('eos_onboarded_time', new Date().toISOString());
+
+    // Sync with backend database
+    if (window.EOS_API) {
+      await window.EOS_API.onboardSeeker(data);
+    }
 
     // Redirect to Course Hub
     window.location.href = 'course_hub.html';
