@@ -1,0 +1,291 @@
+// js/api.js - Client side API wrapper & real-time WebSocket connection
+const API_BASE = window.location.origin + "/api";
+const WS_URL = (window.location.protocol === "https:" ? "wss://" : "ws://") + window.location.host + "/ws";
+
+window.EOS_API = {
+  async onboardSeeker(data) {
+    try {
+      const res = await fetch(`${API_BASE}/onboard`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data)
+      });
+      const resData = await res.json();
+      if (res.ok) {
+        localStorage.setItem('eos_user_name', resData.username);
+        localStorage.setItem('eos_role', resData.username === 'admin' ? 'admin' : 'seeker');
+      }
+      return resData;
+    } catch (e) {
+      console.error("API Error onboarding seeker:", e);
+      return null;
+    }
+  },
+  
+  async getSeeker(username) {
+    try {
+      const res = await fetch(`${API_BASE}/seeker/${encodeURIComponent(username)}`);
+      if (res.ok) return await res.json();
+    } catch (e) {
+      console.error("API Error fetching seeker:", e);
+    }
+    return null;
+  },
+
+  async completeCourseLesson(pillar, course, grade) {
+    const seeker = localStorage.getItem('eos_user_name');
+    if (!seeker) return null;
+    try {
+      const res = await fetch(`${API_BASE}/progress/complete`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seeker_username: seeker, pillar, course, grade })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error completing lesson:", e);
+      return null;
+    }
+  },
+
+  async saveReflection(pillar, course, content, status = "private") {
+    const seeker = localStorage.getItem('eos_user_name');
+    if (!seeker) return null;
+    try {
+      const res = await fetch(`${API_BASE}/reflections`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ seeker_username: seeker, pillar, course, content, status })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error saving reflection:", e);
+      return null;
+    }
+  },
+
+  async shareReflection(reflectionId) {
+    try {
+      const res = await fetch(`${API_BASE}/reflections/share`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id: parseInt(reflectionId) })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error sharing reflection:", e);
+      return null;
+    }
+  },
+
+  async getSanghaFeed() {
+    try {
+      const res = await fetch(`${API_BASE}/sangha/feed`);
+      return await res.json();
+    } catch (e) {
+      console.error("API Error fetching Sangha feed:", e);
+      return [];
+    }
+  },
+
+  async adminGetSeekers() {
+    try {
+      const res = await fetch(`${API_BASE}/admin/seekers`);
+      return await res.json();
+    } catch (e) {
+      console.error("API Error fetching admin seekers:", e);
+      return [];
+    }
+  },
+
+  async adminGetAlerts() {
+    try {
+      const res = await fetch(`${API_BASE}/admin/alerts`);
+      return await res.json();
+    } catch (e) {
+      console.error("API Error fetching admin alerts:", e);
+      return [];
+    }
+  },
+
+  async adminCreateAlert(title, body, type = "alert-gold") {
+    try {
+      const res = await fetch(`${API_BASE}/admin/alerts`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title, body, type })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error creating admin alert:", e);
+      return null;
+    }
+  },
+
+  async adminBroadcast(message, type = "warning") {
+    try {
+      const res = await fetch(`${API_BASE}/admin/broadcast`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message, type })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error posting admin broadcast:", e);
+      return null;
+    }
+  }
+};
+
+// WebSocket connection management with auto-reconnect
+let ws = null;
+let reconnectTimer = null;
+
+function connectWS() {
+  if (ws && (ws.readyState === WebSocket.OPEN || ws.readyState === WebSocket.CONNECTING)) {
+    return;
+  }
+  
+  ws = new WebSocket(WS_URL);
+  
+  ws.onopen = () => {
+    console.log("WebSocket connected to Sangha Hub.");
+    updateIndicator(true);
+    if (reconnectTimer) {
+      clearInterval(reconnectTimer);
+      reconnectTimer = null;
+    }
+  };
+  
+  ws.onclose = () => {
+    console.log("WebSocket closed. Reconnecting in 5s...");
+    updateIndicator(false);
+    if (!reconnectTimer) {
+      reconnectTimer = setInterval(connectWS, 5000);
+    }
+  };
+  
+  ws.onerror = (e) => {
+    console.error("WebSocket error:", e);
+    updateIndicator(false);
+  };
+  
+  ws.onmessage = (event) => {
+    try {
+      const data = JSON.parse(event.data);
+      handleWSMessage(data);
+    } catch (e) {
+      console.error("Error parsing WebSocket message:", e);
+    }
+  };
+}
+
+function updateIndicator(isOnline) {
+  const dots = document.querySelectorAll(".eos-connection-indicator");
+  dots.forEach(dot => {
+    if (isOnline) {
+      dot.classList.add("online");
+      dot.title = "Connected to Sangha Hub (Real-time syncing active)";
+      dot.style.background = "#2eb8a6";
+      dot.style.boxShadow = "0 0 8px #4df5e2";
+    } else {
+      dot.classList.remove("online");
+      dot.title = "Offline Mode (Reconnecting...)";
+      dot.style.background = "#7a8288";
+      dot.style.boxShadow = "none";
+    }
+  });
+}
+
+function handleWSMessage(data) {
+  // 1. Dispatch custom event for page listeners (e.g. Sangha Feed UI updates)
+  window.dispatchEvent(new CustomEvent("eos-ws-message", { detail: data }));
+  
+  // 2. Universal handle for alerts or broadcasts showing popup notifications
+  if (data.type === "broadcast" || data.type === "alert") {
+    showSystemNotificationModal(data);
+  }
+}
+
+function showSystemNotificationModal(data) {
+  // Remove existing modals if any
+  const oldModal = document.getElementById("eos-system-broadcast-modal");
+  if (oldModal) oldModal.remove();
+  
+  const modal = document.createElement("div");
+  modal.id = "eos-system-broadcast-modal";
+  modal.style.position = "fixed";
+  modal.style.top = "0";
+  modal.style.left = "0";
+  modal.style.width = "100vw";
+  modal.style.height = "100vh";
+  modal.style.background = "rgba(0, 0, 0, 0.75)";
+  modal.style.display = "flex";
+  modal.style.justifyContent = "center";
+  modal.style.alignItems = "center";
+  modal.style.zIndex = "99999";
+  modal.style.backdropFilter = "blur(6px)";
+  
+  const isAlert = data.type === "alert";
+  const title = isAlert ? data.title : "🔱 Gurukula Broadcast Announcement";
+  const content = isAlert ? data.body : data.content;
+  const border = data.alertType === "alert-ember" ? "2px solid #ff4d4d" : "2px solid var(--gold, #c8922a)";
+  const glow = data.alertType === "alert-ember" ? "rgba(255, 77, 77, 0.2)" : "rgba(200, 146, 42, 0.2)";
+  
+  modal.innerHTML = `
+    <div style="background: var(--bg-secondary, #0a0000); border: ${border}; box-shadow: 0 0 30px ${glow}; border-radius: 8px; width: 90%; max-width: 480px; padding: 2rem; text-align: center; position: relative; animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+      <div style="font-size: 2.5rem; margin-bottom: 1rem;">🔔</div>
+      <h3 style="font-family: 'Cinzel', serif; color: var(--gold-bright, #ff4d4d); margin-bottom: 1rem; font-size: 1.3rem; letter-spacing: 0.05em;">${title}</h3>
+      <p style="font-size: 1.05rem; line-height: 1.6; color: var(--text-primary, #ffffff); margin-bottom: 2rem;">${content}</p>
+      <button onclick="document.getElementById('eos-system-broadcast-modal').remove()" class="action-btn" style="padding: 8px 24px; font-family: 'Cinzel', serif; font-size: 1rem; background: rgba(200, 146, 42, 0.15); border: 1.5px solid var(--gold-bright); color: var(--gold-bright); cursor: pointer; border-radius: 4px;">
+        Acknowledge Wisdom
+      </button>
+    </div>
+  `;
+  
+  // Inject keyframe if not present
+  if (!document.getElementById("eos-modal-anim-style")) {
+    const style = document.createElement("style");
+    style.id = "eos-modal-anim-style";
+    style.innerHTML = `
+      @keyframes modalPop {
+        from { transform: scale(0.85); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+  
+  document.body.appendChild(modal);
+}
+
+// Automatically connect WebSocket on page load and initialize connection indicator
+document.addEventListener("DOMContentLoaded", () => {
+  // Inject CSS for indicator in navbar
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .eos-connection-indicator {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #7a8288;
+      display: inline-block;
+      margin-left: 8px;
+      cursor: help;
+      transition: all 0.3s;
+    }
+  `;
+  document.head.appendChild(style);
+  
+  // Connect to WS
+  connectWS();
+  
+  // Try to append indicator dot next to brand name if nav-brand is found
+  const navBrand = document.querySelector(".nav-brand");
+  if (navBrand && !document.querySelector(".eos-connection-indicator")) {
+    const dot = document.createElement("span");
+    dot.className = "eos-connection-indicator";
+    navBrand.appendChild(dot);
+    updateIndicator(ws && ws.readyState === WebSocket.OPEN);
+  }
+});
