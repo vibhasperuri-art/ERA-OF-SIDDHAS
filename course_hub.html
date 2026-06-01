@@ -435,6 +435,30 @@
       display: none;
     }
   }
+  @media (max-width: 768px) {
+    .glass-nav {
+      position: relative !important;
+      padding: 0.75rem 1rem !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      align-items: center !important;
+    }
+    .glass-nav > div {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    .theme-btn {
+      padding: 4px 8px !important;
+      font-size: 0.75rem !important;
+    }
+    .hero-intro {
+      padding-top: 2rem !important;
+    }
+  }
 </style>
 </head>
 <body class="theme-fierce">
@@ -708,16 +732,18 @@ const pillarData = {
       ],
       games: [
         {
-          title: "Chakravyūha Entrance Challenge",
-          desc: "Test your mathematical and military positioning. Choose the correct angle of entry to break past the defensive concentric rings.",
-          actionText: "Play Now",
-          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyūhas"
-        },
-        {
           title: "Gita Shloka Recitation Quiz",
           desc: "Listen to chanting excerpts and identify the missing words or select the correct pronunciation elongation rules.",
           actionText: "Start Quiz",
           actionLink: "chanting.html"
+        }
+      ],
+      simulations: [
+        {
+          title: "Chakravyūha Entrance Challenge",
+          desc: "Test your mathematical and military positioning. Choose the correct angle of entry to break past the defensive concentric rings.",
+          actionText: "Play Now",
+          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyūhas"
         }
       ],
       nano: [
@@ -811,16 +837,18 @@ const pillarData = {
       ],
       games: [
         {
-          title: "Saptāṅga Balance Simulation",
-          desc: "Can you balance the 7 limbs? Adjust sliders representing Treasury, Army, and Citizen welfare to maintain high Dharma Stability.",
-          actionText: "Play Now",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=saptāṅga"
-        },
-        {
           title: "Socratic Guru Chat Challenge",
           desc: "Answer the Guru AI's counter-questions regarding ethical dilemmas in rule and taxation.",
           actionText: "Start Challenge",
           actionLink: "sanctum.html?pillar=rājya"
+        }
+      ],
+      simulations: [
+        {
+          title: "Saptāṅga Balance Simulation",
+          desc: "Can you balance the 7 limbs? Adjust sliders representing Treasury, Army, and Citizen welfare to maintain high Dharma Stability.",
+          actionText: "Play Now",
+          actionLink: "interactive_lesson.html?pillar=rājya&course=saptāṅga"
         }
       ],
       nano: [
@@ -914,16 +942,18 @@ const pillarData = {
       ],
       games: [
         {
-          title: "Vastu Maṇḍala Room Planner",
-          desc: "Test your environmental engineering alignment. Drag the Kitchen, Water Well, and Master Bedroom to their appropriate directional grid cells.",
-          actionText: "Play Now",
-          actionLink: "interactive_lesson.html?pillar=nagara&course=vastu"
-        },
-        {
           title: "Sacred Dimensions Calculator",
           desc: "Calculate the exact mathematical proportion of a residential room using traditional measurements (Hasta and Angula).",
           actionText: "Start Game",
           actionLink: "interactive_lesson.html?pillar=nagara&course=sthapatya"
+        }
+      ],
+      simulations: [
+        {
+          title: "Vastu Maṇḍala Room Planner",
+          desc: "Test your environmental engineering alignment. Drag the Kitchen, Water Well, and Master Bedroom to their appropriate directional grid cells.",
+          actionText: "Play Now",
+          actionLink: "interactive_lesson.html?pillar=nagara&course=vastu"
         }
       ],
       nano: [
@@ -998,6 +1028,7 @@ function renderPage() {
     <button class="tab active" onclick="switchTab(this, 'learn')">Learn (Sub-topics)</button>
     <button class="tab" onclick="switchTab(this, 'stories')">Stories</button>
     <button class="tab" onclick="switchTab(this, 'games')">Games & Quiz</button>
+    <button class="tab" onclick="switchTab(this, 'simulations')">Simulations</button>
     <button class="tab" onclick="switchTab(this, 'nano')">Nano Courses</button>
   `;
 
@@ -1122,7 +1153,82 @@ function setTheme(btnElement, themeName) {
 }
 
 // Initialization on Load
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
+  // Fetch custom content first
+  if (window.EOS_API && typeof window.EOS_API.getAllCustomContent === 'function') {
+    const customContent = await window.EOS_API.getAllCustomContent();
+    if (customContent) {
+      // 1. Process custom stories
+      if (customContent.stories) {
+        customContent.stories.forEach(story => {
+          const p = story.pillar;
+          if (pillarData[p]) {
+            if (!pillarData[p].tabs.stories) {
+              pillarData[p].tabs.stories = [];
+            }
+            pillarData[p].tabs.stories.push({
+              title: story.title,
+              desc: story.desc,
+              actionText: "Read Story",
+              actionLink: `#story-dynamic-${story.id}`
+            });
+            // Map story content in readerContentData
+            const pillarLabels = { nagara: "Nagara Nirmana", rājya: "Rājya Palanam", yuddham: "Yuddham" };
+            const label = pillarLabels[p] || p.toUpperCase();
+            readerContentData[`story-dynamic-${story.id}`] = {
+              category: `${label} — Custom Story`,
+              title: story.title,
+              content: story.content
+            };
+          }
+        });
+      }
+      
+      // 2. Process custom activities
+      if (customContent.activities) {
+        customContent.activities.forEach(act => {
+          const p = act.pillar;
+          if (pillarData[p]) {
+            if (!pillarData[p].tabs.games) {
+              pillarData[p].tabs.games = [];
+            }
+            pillarData[p].tabs.games.push({
+              title: act.title,
+              desc: act.desc,
+              actionText: "Play Challenge",
+              actionLink: act.action_link
+            });
+          }
+        });
+      }
+
+      // 3. Process custom simulations
+      if (customContent.simulations) {
+        customContent.simulations.forEach(sim => {
+          const p = sim.pillar;
+          if (pillarData[p]) {
+            if (!pillarData[p].tabs.simulations) {
+              pillarData[p].tabs.simulations = [];
+            }
+            pillarData[p].tabs.simulations.push({
+              title: sim.title,
+              desc: sim.desc,
+              actionText: "Run Simulation",
+              actionLink: sim.action_link
+            });
+          }
+        });
+      }
+    }
+  }
+
+  // Ensure every pillar has simulations array so rendering doesn't break
+  Object.keys(pillarData).forEach(p => {
+    if (!pillarData[p].tabs.simulations) {
+      pillarData[p].tabs.simulations = [];
+    }
+  });
+
   renderPage();
   const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   setTheme(null, initialTheme);
