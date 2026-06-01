@@ -1,0 +1,25 @@
+
+[*] Auditing file: admin.html
+
+[*] Auditing file: begin-journey.html
+
+[*] Auditing file: chanting.html
+    [!] Warning: document.getElementById queries reference non-existent static IDs (could be dynamic): ['completion-modal']
+
+[*] Auditing file: course_hub.html
+
+[*] Auditing file: index.html
+
+[*] Auditing file: interactive_lesson.html
+    [!] Warning: document.getElementById queries reference non-existent static IDs (could be dynamic): ['br-inhale', 'sap-slide-danda', 'ay-res-yoni', 'yj-fill-temp', 'breath-trigger', 'completion-modal', 'breath-glow', 'yoga-harmony-val', 'vy┼½ha-canvas', 'res-fill', 'eq-in-1', 'yj-fill-purity', 'samatvam-score', 'vy┼½ha-trace-btn', 'sh-status-Bathroom', 'vastu-harmony-val', 'br-hold2', 'trackpad', 'ay-length', 'ay-canvas', 'sap-score-circle', 'vy┼½ha-feedback', 'vy┼½ha-spin-btn', 'sap-slide-swami', 'ay-width', 'eq-in-3', 'solver-explanation', 'yoga-feedback', 'sap-score-num', 'd-divide', 'yj-flame', 'ay-res-rating', 'tr-target', 'lesson-completion-box', 'vy┼½ha-lock-btn', 'd-info', 'sap-slide-amatya', 'br-hold1', 'd-treaty', 'eq-in-2', 'yajna-feedback', 'd-reset', 'ay-res-vyaya', 'tab-content-area', 'solver-results-box', 'yj-val-temp', 'sap-slide-kosha', 'sap-slide-durga', 'yj-reset-btn', 'shuddhi-purity-val', 'yj-fill-rain', 'yj-val-purity', 'sh-status-Living', 'vastu-feedback', 'breath-inst', 'tr-pointer', 'sh-status-Bedroom', 'sap-slide-janapada', 'br-exhale', 'd-spy', 'breath-state', 'sap-slide-mitra', 'yj-val-rain', 'y-svg', 'maß╣çß©ìala-action-log', 'ay-res-aya', 'eq-in-4', 'shuddhi-feedback', 'sap-analysis', 'sh-status-Kitchen']
+
+[*] Auditing file: pillar_hub.html
+
+[*] Auditing file: sanctum.html
+    [!] Warning: document.getElementById queries reference non-existent static IDs (could be dynamic): ['completion-modal']
+
+[*] Auditing file: sangha.html
+
+[*] Auditing file: wisdom_hub.html
+
+[+] Comprehensive validation successful: 0 errors detected.
