@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Admin Dashboard — Era of Siddhas</title>
@@ -118,14 +121,28 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.65rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     text-decoration: none;
-    border-left: 2px solid transparent;
+    border: 1px solid transparent;
+    border-right: none;
+    border-radius: 8px 0 0 8px;
+    margin-left: 10px;
+    background: transparent;
+    position: relative;
   }
-  .nav-item:hover { background: var(--gold-dim); }
-  .nav-item.active { background: rgba(200,146,42,0.1); border-left-color: var(--gold); }
+  .nav-item:hover {
+    background: rgba(200,146,42,0.05);
+    border-color: rgba(200,146,42,0.15) transparent rgba(200,146,42,0.15) rgba(200,146,42,0.15);
+  }
+  .nav-item.active {
+    background: rgba(200,146,42,0.08) !important;
+    border-color: var(--gold) transparent var(--gold) var(--gold) !important;
+    border-left: 3px solid var(--gold) !important;
+    box-shadow: -5px 0 15px rgba(200,146,42,0.05);
+  }
+
   .nav-item-icon { font-size:1.05rem; min-width: 1rem; text-align: center; }
   .nav-item-label {
     font-family: 'Cinzel', serif;
