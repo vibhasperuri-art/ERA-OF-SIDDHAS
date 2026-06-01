@@ -489,6 +489,53 @@
     white-space: nowrap;
     font-family: 'Cinzel', serif;
   }
+  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    text-decoration: none !important;
+    color: var(--text-muted, var(--ash)) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: 1px solid var(--border-glass, var(--gold-dim));
+    border-radius: 20px;
+    transition: all 0.3s;
+    background: rgba(200, 146, 42, 0.02);
+    display: inline-block;
+  }
+  .nav-btn:hover {
+    color: var(--accent, var(--gold)) !important;
+    background: var(--accent-glow, var(--gold-dim)) !important;
+    border-color: var(--accent, var(--gold)) !important;
+    box-shadow: 0 0 10px var(--accent-glow, var(--gold-dim));
+  }
+  .nav-btn.active {
+    color: var(--text-primary, var(--cream)) !important;
+    background: var(--accent-glow, var(--gold-dim)) !important;
+    border-color: var(--accent, var(--gold)) !important;
+    font-weight: 600;
+    box-shadow: 0 0 15px var(--accent-glow, var(--gold-dim));
+  }
+  .nav-btn.admin-tab {
+    border-color: var(--gold-bright, var(--gold)) !important;
+    background: rgba(181, 42, 42, 0.05) !important;
+    color: var(--gold-bright, var(--gold)) !important;
+  }
+  .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
+    color: var(--gold-bright, var(--gold)) !important;
+  }
+  .nav-btn.admin-tab:hover {
+    background: rgba(181, 42, 42, 0.15) !important;
+    border-color: var(--gold-bright, var(--gold)) !important;
+    box-shadow: 0 0 12px rgba(181, 42, 42, 0.2);
+  }
+  .nav-btn.admin-tab.active {
+    background: rgba(181, 42, 42, 0.2) !important;
+    border-color: var(--gold-bright, var(--gold)) !important;
+    box-shadow: 0 0 18px rgba(181, 42, 42, 0.3);
+  }
+
   @media (max-width: 768px) {
     header {
       flex-direction: column !important;
@@ -515,8 +562,16 @@
 <body>
 
 <!-- HEADER -->
-<header>
+<header style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
   <a href="index.html" class="header-logo">Era of Siddhas</a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn admin-tab active">Guru's Eye</a>
+  </div>
   <div class="header-right">
     <div style="display:flex; gap: 6px; margin-right: 15px;">
       <button class="btn-sm" onclick="setTheme(this, 'theme-light')">Parchment</button>
