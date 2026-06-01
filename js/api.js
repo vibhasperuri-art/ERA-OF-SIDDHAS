@@ -134,6 +134,82 @@ window.EOS_API = {
       console.error("API Error posting admin broadcast:", e);
       return null;
     }
+  },
+
+  async addAdminStory(pillar, title, desc, content) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/stories`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pillar, title, desc, content })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error adding admin story:", e);
+      return null;
+    }
+  },
+
+  async addAdminActivity(pillar, title, desc, actionLink) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/activities`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pillar, title, desc, action_link: actionLink })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error adding admin activity:", e);
+      return null;
+    }
+  },
+
+  async addAdminSimulation(pillar, title, desc, actionLink) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/simulations`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pillar, title, desc, action_link: actionLink })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error adding admin simulation:", e);
+      return null;
+    }
+  },
+
+  async getAllCustomContent() {
+    try {
+      const res = await fetch(`${API_BASE}/content/all`);
+      return await res.json();
+    } catch (e) {
+      console.error("API Error fetching custom content:", e);
+      return { stories: [], activities: [], simulations: [] };
+    }
+  },
+
+  async addAdminArticle(category, title, author, summary, content, imageUrl) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/articles`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ category, title, author, summary, content, image_url: imageUrl })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error adding admin article:", e);
+      return null;
+    }
+  },
+
+  async getPublicArticles() {
+    try {
+      const res = await fetch(`${API_BASE}/public/articles`);
+      return await res.json();
+    } catch (e) {
+      console.error("API Error fetching public articles:", e);
+      return [];
+    }
   }
 };
 
