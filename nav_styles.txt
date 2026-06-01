@@ -1,0 +1,106 @@
+
+=== admin.html ===
+1359:     document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+1363:       document.querySelectorAll('.theme-btn').forEach(btn => {
+=== begin-journey.html ===
+
+=== chanting.html ===
+67:   .theme-btn {
+78:   .theme-btn:hover, .theme-btn.active {
+346:     .theme-btn {
+370:       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+371:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+372:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+373:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+611:   document.querySelectorAll('a, button, .theme-btn, #completion-modal button').forEach(el => {
+624:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+628:     document.querySelectorAll('.theme-btn').forEach(btn => {
+=== course_hub.html ===
+79:   .theme-btn {
+90:   .theme-btn:hover, .theme-btn.active {
+139:   body.custom-cursor-active .theme-btn {
+454:     .theme-btn {
+638:       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+639:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+640:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+641:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+1037:   const sanctumNavBtn = document.querySelector('.nav-btn[href^="sanctum.html"]');
+1133:   document.querySelectorAll('a, button, .tab, .course-card, .theme-btn, .action-btn').forEach(el => {
+1144:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+1148:     document.querySelectorAll('.theme-btn').forEach(btn => {
+=== index.html ===
+91:   .theme-btn {
+101:   .theme-btn:hover, .theme-btn.active {
+969:     .theme-btn {
+1002:   <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+1003:   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce & Martial</button>
+1004:   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy & Ancient</button>
+1005:   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical & Ethereal</button>
+1522:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+1526:     document.querySelectorAll('.theme-btn').forEach(btn => {
+1564: document.querySelectorAll('a, button, .theme-btn, .stage-card, .sangha-feature').forEach(el => {
+=== interactive_lesson.html ===
+221:   .nav-btn {
+231:   .nav-btn:hover {
+237:   .theme-btn {
+247:   .theme-btn:hover, .theme-btn.active {
+1237:     .theme-btn {
+1636:       <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Light</button>
+1637:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+1638:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+1639:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+2540:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+2544:     document.querySelectorAll('.theme-btn').forEach(btn => {
+4555:   const sanctumNavBtn = document.querySelector('.nav-btn[href^="sanctum.html"]');
+4591:   document.querySelectorAll('a, button, select, input, textarea, .tab, .course-card, .theme-btn, .interactive-cell, .slider-thumb, .room-chip, .action-btn, .vastu-cell').forEach(el => {
+=== pillar_hub.html ===
+92:   body.custom-cursor-active .theme-btn {
+159:   .nav-btn {
+167:   .nav-btn:hover {
+170:   .theme-btn {
+181:   .theme-btn:hover, .theme-btn.active {
+335:     .theme-btn {
+374:       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+375:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+376:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+377:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+497:   document.querySelectorAll('a, button, .pillar-card, .theme-btn').forEach(el => {
+507:     document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+511:       document.querySelectorAll('.theme-btn').forEach(btn => {
+=== sanctum.html ===
+181:   .theme-btn {
+192:   .theme-btn:hover, .theme-btn.active {
+360:     .theme-btn {
+393:       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+394:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+395:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+396:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+442:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+446:     document.querySelectorAll('.theme-btn').forEach(btn => {
+676:   document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell, #completion-modal button').forEach(el => {
+=== sangha.html ===
+182:   .nav-btn {
+192:   .nav-btn:hover {
+197:   .theme-btn {
+208:   .theme-btn:hover, .theme-btn.active {
+381:     .theme-btn {
+416:       <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+417:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+418:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+419:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+523:   document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+527:     document.querySelectorAll('.theme-btn').forEach(btn => {
+=== wisdom_hub.html ===
+95:   body.custom-cursor-active .theme-btn {
+164:   .nav-btn {
+170:   .nav-btn:hover {
+173:   .theme-btn {
+184:   .theme-btn:hover, .theme-btn.active {
+409:     .theme-btn {
+456:       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+457:       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+458:       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+459:       <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+657:     document.querySelectorAll('a, button, .tab, .article-card, .theme-btn, .reader-close').forEach(el => {
+668:     document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+672:       document.querySelectorAll('.theme-btn').forEach(btn => {
