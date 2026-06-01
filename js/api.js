@@ -387,7 +387,7 @@ document.addEventListener("DOMContentLoaded", () => {
         window.openProfileModal();
       };
       
-      // Insert before admin-tab (Guru's Eye) if it exists, or insert before theme buttons, or append at end
+      // Insert before admin-tab (Admin) if it exists, or insert before theme buttons, or append at end
       const adminTab = navContainer.querySelector('.admin-tab');
       if (adminTab) {
         navContainer.insertBefore(profileBtn, adminTab);
