@@ -1,0 +1,84 @@
+=== .workspace-layout STYLE ===
+.workspace-layout {
+    display: flex;
+    flex: 1;
+    min-height: calc(100vh - 60px);
+    flex-wrap: wrap;
+  }
+  .left-pane {
+    flex: 0 0 100%;
+    max-width: 100%;
+    background: var(--bg-primary);
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    box-sizing: border-box;
+  }
+  .right-pane {
+    display: none;
+  }
+
+  /* TEXT STYLE */
+  .lesson-cat {
+    f
+
+=== .left-pane STYLE ===
+.left-pane {
+    flex: 0 0 100%;
+    max-width: 100%;
+    background: var(--bg-primary);
+    padding: 2.5rem 3rem;
+    overflow-y: auto;
+    max-height: calc(100vh - 60px);
+    box-sizing: border-box;
+  }
+  .right-pane {
+    display: none;
+  }
+
+  /* TEXT STYLE */
+  .lesson-cat {
+    font-family: 'Outfit', sans-serif;
+    font-size:1.0rem;
+    color: var(--accent);
+    text-transform: uppercase;
+  
+
+=== .right-pane STYLE ===
+.right-pane {
+    display: none;
+  }
+
+  /* TEXT STYLE */
+  .lesson-cat {
+    font-family: 'Outfit', sans-serif;
+    font-size:1.0rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+  .lesson-title {
+    font-family: 'Cinzel', serif;
+    font-size:2.2rem;
+    color: var(--text-primary);
+    margin: 0 0 1.5rem;
+ 
+
+=== body STYLE ===
+body, body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
+    --gold-bright: #c8922a;
+    --gold-dim: #7a4d0a;
+    --parchment: #f7f2e8;
+    --par
+
