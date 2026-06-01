@@ -489,6 +489,26 @@
     white-space: nowrap;
     font-family: 'Cinzel', serif;
   }
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      padding: 1rem !important;
+      text-align: center !important;
+    }
+    .header-right {
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      width: 100% !important;
+    }
+    .header-right div {
+      justify-content: center !important;
+      flex-wrap: wrap !important;
+    }
+    main {
+      padding: 1rem !important;
+    }
+  }
 </style>
 <script src="js/api.js"></script>
 </head>
@@ -544,6 +564,10 @@
   <a href="#" class="nav-item" data-tab="curriculum">
     <span class="nav-item-icon">◎</span>
     <span class="nav-item-label">Curriculum</span>
+  </a>
+  <a href="#" class="nav-item" data-tab="publications">
+    <span class="nav-item-icon">📖</span>
+    <span class="nav-item-label">Publications</span>
   </a>
   <a href="#" class="nav-item" data-tab="marathons">
     <span class="nav-item-icon">◇</span>
@@ -861,12 +885,95 @@
   <!-- TAB: CURRICULUM -->
   <div id="tab-curriculum" class="admin-tab-content" style="display:none;">
     <div class="page-title">Curriculum Structure</div>
-    <p class="page-sub">Inspect enrollment distributions, average assessment scores, and dynamic lesson unlocks.</p>
+    <p class="page-sub">Inspect enrollment distributions, average assessment scores, and publish new custom components.</p>
     
     <div class="panel" style="margin-bottom:1.5rem;">
       <div class="panel-title">Enrollment Statistics</div>
       <div style="display:flex; flex-direction:column; gap:1.2rem;" id="curriculumProgressRows">
         <!-- Progress rows populated dynamically -->
+      </div>
+    </div>
+
+    <!-- CONTENT PUBLISHER PANEL -->
+    <div class="panel">
+      <div class="panel-title">Publish New Curriculum Component</div>
+      <div style="display:flex; flex-direction:column; gap:1.2rem; max-width:600px;">
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Component Type</label>
+          <select id="contentTypeSelect" onchange="toggleContentFormFields()" style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem; outline:none; font-family:inherit;">
+            <option value="story">Story</option>
+            <option value="activity">Activity (Challenge / Game)</option>
+            <option value="simulation">Sadhana Simulation (Dynamic Model)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Target Pillar</label>
+          <select id="contentPillarSelect" style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem; outline:none; font-family:inherit;">
+            <option value="nagara">Nagara Nirmana (Pillar I)</option>
+            <option value="rājya">Rājya Palanam (Pillar II)</option>
+            <option value="yuddham">Yuddham (Pillar III)</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Title</label>
+          <input type="text" id="contentTitleInput" placeholder="Enter content title..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Short Description</label>
+          <input type="text" id="contentDescInput" placeholder="Enter brief summary or purpose..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div id="contentUrlField" style="display:none;">
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Action Link / URL</label>
+          <input type="text" id="contentUrlInput" placeholder="interactive_lesson.html?pillar=...&course=..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div id="contentTextAreaField">
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Story Content (HTML Allowed)</label>
+          <textarea id="contentTextAreaInput" placeholder="Write the full treatise story narration here..." style="width:100%; min-height:150px; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none; line-height:1.6; resize:vertical;"></textarea>
+        </div>
+        <button class="btn-broadcast" onclick="publishCurriculumContent()" style="align-self:flex-start; padding:0.6rem 1.5rem; font-size:0.95rem;">Publish to Gurukulam ⚡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB: PUBLICATIONS -->
+  <div id="tab-publications" class="admin-tab-content" style="display:none;">
+    <div class="page-title">Wisdom Publications Desk</div>
+    <p class="page-sub">Publish magazines, articles, blogs, modern research on ancient knowledge, and Itihasa/Purana stories.</p>
+
+    <div class="panel">
+      <div class="panel-title">Publish New Wisdom Component</div>
+      <div style="display:flex; flex-direction:column; gap:1.2rem; max-width:600px;">
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Category</label>
+          <select id="pubCategorySelect" style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem; outline:none; font-family:inherit;">
+            <option value="magazine">Magazine Edition</option>
+            <option value="article">Weekly Article</option>
+            <option value="blog">Spiritual Blog Post</option>
+            <option value="research">Modern Research Validation</option>
+            <option value="story">Itihasa & Purana Story</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Title</label>
+          <input type="text" id="pubTitleInput" placeholder="Enter publication title..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Author</label>
+          <input type="text" id="pubAuthorInput" placeholder="Author name (e.g. Vibhas, Agastya)..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Short Summary</label>
+          <input type="text" id="pubSummaryInput" placeholder="Brief summary of the publication..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Header Image URL (Optional)</label>
+          <input type="text" id="pubImageInput" placeholder="Link to header image..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
+        </div>
+        <div>
+          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Content (HTML Allowed)</label>
+          <textarea id="pubContentInput" placeholder="Write full text here..." style="width:100%; min-height:200px; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none; line-height:1.6; resize:vertical;"></textarea>
+        </div>
+        <button class="btn-broadcast" onclick="publishWisdomContent()" style="align-self:flex-start; padding:0.6rem 1.5rem; font-size:0.95rem;">Publish to Wisdom Hub ⚡</button>
       </div>
     </div>
   </div>
@@ -1264,6 +1371,103 @@
   // Load theme on start
   const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   setTheme(null, initialTheme);
+
+  // Content form toggling
+  function toggleContentFormFields() {
+    const type = document.getElementById('contentTypeSelect').value;
+    const urlField = document.getElementById('contentUrlField');
+    const textSelectField = document.getElementById('contentTextAreaField');
+    
+    if (type === 'story') {
+      urlField.style.display = 'none';
+      textSelectField.style.display = 'block';
+    } else {
+      urlField.style.display = 'block';
+      textSelectField.style.display = 'none';
+    }
+  }
+
+  // Publish dynamic content
+  async function publishCurriculumContent() {
+    const type = document.getElementById('contentTypeSelect').value;
+    const pillar = document.getElementById('contentPillarSelect').value;
+    const title = document.getElementById('contentTitleInput').value.trim();
+    const desc = document.getElementById('contentDescInput').value.trim();
+    const url = document.getElementById('contentUrlInput').value.trim();
+    const contentText = document.getElementById('contentTextAreaInput').value.trim();
+
+    if (!title || !desc) {
+      alert("Please enter a title and description.");
+      return;
+    }
+
+    if (type === 'story' && !contentText) {
+      alert("Please enter the story content.");
+      return;
+    }
+
+    if (type !== 'story' && !url) {
+      alert("Please enter an action link/URL.");
+      return;
+    }
+
+    if (window.EOS_API) {
+      let result = null;
+      if (type === 'story') {
+        result = await window.EOS_API.addAdminStory(pillar, title, desc, contentText);
+      } else if (type === 'activity') {
+        result = await window.EOS_API.addAdminActivity(pillar, title, desc, url);
+      } else if (type === 'simulation') {
+        result = await window.EOS_API.addAdminSimulation(pillar, title, desc, url);
+      }
+      
+      if (result && result.status === 'success') {
+        alert(`Successfully published ${type} "${title}" to the Gurukula curriculum! ✦`);
+        // Clear fields
+        document.getElementById('contentTitleInput').value = '';
+        document.getElementById('contentDescInput').value = '';
+        document.getElementById('contentUrlInput').value = '';
+        document.getElementById('contentTextAreaInput').value = '';
+      } else {
+        alert("Error publishing content. Please check connection.");
+      }
+    } else {
+      alert(`Simulation Mode: Published ${type} "${title}" to ${pillar}.`);
+    }
+  }
+
+  async function publishWisdomContent() {
+    const category = document.getElementById('pubCategorySelect').value;
+    const title = document.getElementById('pubTitleInput').value.trim();
+    const author = document.getElementById('pubAuthorInput').value.trim();
+    const summary = document.getElementById('pubSummaryInput').value.trim();
+    const imageUrl = document.getElementById('pubImageInput').value.trim();
+    const content = document.getElementById('pubContentInput').value.trim();
+
+    if (!title || !author || !summary || !content) {
+      alert("Please fill in Title, Author, Summary, and Content fields.");
+      return;
+    }
+
+    if (window.EOS_API && typeof window.EOS_API.addAdminArticle === 'function') {
+      const result = await window.EOS_API.addAdminArticle(category, title, author, summary, content, imageUrl);
+      if (result && result.status === 'success') {
+        alert(`Successfully published ${category} "${title}" to the Wisdom Hub! ✦`);
+        document.getElementById('pubTitleInput').value = '';
+        document.getElementById('pubAuthorInput').value = '';
+        document.getElementById('pubSummaryInput').value = '';
+        document.getElementById('pubImageInput').value = '';
+        document.getElementById('pubContentInput').value = '';
+      } else {
+        alert("Error publishing content. Please check connection.");
+      }
+    } else {
+      alert(`Simulation Mode: Published ${category} "${title}" by ${author}.`);
+    }
+  }
+
+  // Bind initial fields on startup
+  toggleContentFormFields();
 </script>
 </body>
 </html>
