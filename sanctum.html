@@ -178,6 +178,52 @@
     color: var(--text-primary);
     text-decoration: none;
   }
+  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    text-decoration: none !important;
+    color: var(--text-muted) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    transition: all 0.3s;
+    background: rgba(200, 146, 42, 0.02);
+    display: inline-block;
+  }
+  .nav-btn:hover {
+    color: var(--accent) !important;
+    background: var(--accent-glow) !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+  .nav-btn.active {
+    color: var(--text-primary) !important;
+    background: var(--accent-glow) !important;
+    border-color: var(--accent) !important;
+    font-weight: 600;
+    box-shadow: 0 0 15px var(--accent-glow);
+  }
+  .nav-btn.admin-tab {
+    border-color: var(--gold-bright) !important;
+    background: rgba(181, 42, 42, 0.05) !important;
+    color: var(--gold-bright) !important;
+  }
+  .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
+    color: var(--gold-bright) !important;
+  }
+  .nav-btn.admin-tab:hover {
+    background: rgba(181, 42, 42, 0.15) !important;
+    border-color: var(--gold-bright) !important;
+    box-shadow: 0 0 12px rgba(181, 42, 42, 0.2);
+  }
+  .nav-btn.admin-tab.active {
+    background: rgba(181, 42, 42, 0.2) !important;
+    border-color: var(--gold-bright) !important;
+    box-shadow: 0 0 18px rgba(181, 42, 42, 0.3);
+  }
   .theme-btn {
     background: transparent;
     border: 1px solid var(--border-glass);
@@ -384,11 +430,12 @@
     Siddha Vidya
   </a>
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
-    <a href="wisdom_hub.html" class="nav-btn" style="text-decoration:none;">Wisdom Hub</a>
-    <a href="sangha.html" class="nav-btn" style="text-decoration:none;">The Sangha</a>
-    <a href="course_hub.html" class="nav-btn" style="text-decoration:none;">Course Hub</a>
-    <a href="admin.html" class="nav-btn" style="text-decoration:none;">Guru's Eye</a>
-    <a href="pillar_hub.html" class="nav-btn" style="text-decoration:none;">Return to Pillars</a>
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="sanctum.html" class="nav-btn active">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn admin-tab">Guru's Eye</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
