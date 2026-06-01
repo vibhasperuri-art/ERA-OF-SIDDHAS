@@ -489,7 +489,7 @@
     white-space: nowrap;
     font-family: 'Cinzel', serif;
   }
-  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    .nav-btn, .nav-btn:link, .nav-btn:visited {
     text-decoration: none !important;
     color: var(--text-muted, var(--ash)) !important;
     font-family: 'Cinzel', serif;
@@ -497,43 +497,47 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 6px 16px;
+    padding: 8px 18px;
     border: 1px solid var(--border-glass, var(--gold-dim));
-    border-radius: 20px;
-    transition: all 0.3s;
+    border-top: 3px solid transparent;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
     background: rgba(200, 146, 42, 0.02);
     display: inline-block;
   }
-  .nav-btn:hover {
+  .nav-btn:hover, .nav-btn:visited:hover {
     color: var(--accent, var(--gold)) !important;
     background: var(--accent-glow, var(--gold-dim)) !important;
     border-color: var(--accent, var(--gold)) !important;
-    box-shadow: 0 0 10px var(--accent-glow, var(--gold-dim));
+    border-top-color: var(--accent, var(--gold)) !important;
+    box-shadow: 0 2px 10px var(--accent-glow, var(--gold-dim));
   }
-  .nav-btn.active {
+  .nav-btn.active, .nav-btn.active:visited {
     color: var(--text-primary, var(--cream)) !important;
     background: var(--accent-glow, var(--gold-dim)) !important;
     border-color: var(--accent, var(--gold)) !important;
+    border-top: 3px solid var(--accent, var(--gold)) !important;
     font-weight: 600;
-    box-shadow: 0 0 15px var(--accent-glow, var(--gold-dim));
+    box-shadow: 0 4px 15px var(--accent-glow, var(--gold-dim));
   }
-  .nav-btn.admin-tab {
+  .nav-btn.admin-tab, .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
     border-color: var(--gold-bright, var(--gold)) !important;
     background: rgba(181, 42, 42, 0.05) !important;
     color: var(--gold-bright, var(--gold)) !important;
+    border-top: 3px solid transparent;
   }
-  .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
-    color: var(--gold-bright, var(--gold)) !important;
-  }
-  .nav-btn.admin-tab:hover {
+  .nav-btn.admin-tab:hover, .nav-btn.admin-tab:visited:hover {
     background: rgba(181, 42, 42, 0.15) !important;
     border-color: var(--gold-bright, var(--gold)) !important;
-    box-shadow: 0 0 12px rgba(181, 42, 42, 0.2);
+    border-top-color: var(--gold-bright, var(--gold)) !important;
+    box-shadow: 0 2px 12px rgba(181, 42, 42, 0.2);
   }
-  .nav-btn.admin-tab.active {
+  .nav-btn.admin-tab.active, .nav-btn.admin-tab.active:visited {
     background: rgba(181, 42, 42, 0.2) !important;
     border-color: var(--gold-bright, var(--gold)) !important;
-    box-shadow: 0 0 18px rgba(181, 42, 42, 0.3);
+    border-top: 3px solid var(--gold-bright, var(--gold)) !important;
+    box-shadow: 0 4px 18px rgba(181, 42, 42, 0.3);
+    color: var(--gold-bright, var(--gold)) !important;
   }
 
   @media (max-width: 768px) {
@@ -998,16 +1002,7 @@
     <div class="panel">
       <div class="panel-title">Publish New Wisdom Component</div>
       <div style="display:flex; flex-direction:column; gap:1.2rem; max-width:600px;">
-        <div>
-          <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Category</label>
-          <select id="pubCategorySelect" style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem; outline:none; font-family:inherit;">
-            <option value="magazine">Magazine Edition</option>
-            <option value="article">Weekly Article</option>
-            <option value="blog">Spiritual Blog Post</option>
-            <option value="research">Modern Research Validation</option>
-            <option value="story">Itihasa & Purana Story</option>
-          </select>
-        </div>
+
         <div>
           <label style="display:block; margin-bottom:0.4rem; font-family:'Cinzel',serif; font-size:0.9rem; color:var(--gold);">Title</label>
           <input type="text" id="pubTitleInput" placeholder="Enter publication title..." style="width:100%; background:rgba(0,0,0,0.3); border:1px solid var(--gold-dim); color:var(--cream); padding:0.6rem 1rem; border-radius:4px; font-family:'EB Garamond',serif; font-size:1.1rem; outline:none;"/>
@@ -1492,7 +1487,7 @@
   }
 
   async function publishWisdomContent() {
-    const category = document.getElementById('pubCategorySelect').value;
+    const category = 'article';
     const title = document.getElementById('pubTitleInput').value.trim();
     const author = document.getElementById('pubAuthorInput').value.trim();
     const summary = document.getElementById('pubSummaryInput').value.trim();
