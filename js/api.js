@@ -337,7 +337,7 @@ function showSystemNotificationModal(data) {
 
 // Automatically connect WebSocket on page load and initialize connection indicator
 document.addEventListener("DOMContentLoaded", () => {
-  // Inject CSS for indicator in navbar
+  // Inject CSS for indicator and profile elements in navbar
   const style = document.createElement("style");
   style.innerHTML = `
     .eos-connection-indicator {
@@ -349,6 +349,14 @@ document.addEventListener("DOMContentLoaded", () => {
       margin-left: 8px;
       cursor: help;
       transition: all 0.3s;
+    }
+    /* Profile tab special hover styles */
+    .profile-nav-btn {
+      border-color: var(--accent) !important;
+      color: var(--text-primary) !important;
+    }
+    .profile-nav-btn:hover {
+      box-shadow: 0 0 12px var(--accent-glow) !important;
     }
   `;
   document.head.appendChild(style);
@@ -364,4 +372,141 @@ document.addEventListener("DOMContentLoaded", () => {
     navBrand.appendChild(dot);
     updateIndicator(ws && ws.readyState === WebSocket.OPEN);
   }
+
+  // Check and append Seeker Profile tab if onboarded
+  const baseBtn = document.querySelector('.nav-btn');
+  if (baseBtn) {
+    const navContainer = baseBtn.parentElement;
+    if (!document.querySelector('.profile-nav-btn') && localStorage.getItem('eos_user_name')) {
+      const profileBtn = document.createElement('a');
+      profileBtn.href = '#';
+      profileBtn.className = 'nav-btn profile-nav-btn';
+      profileBtn.innerHTML = '👤 Profile';
+      profileBtn.onclick = (e) => {
+        e.preventDefault();
+        window.openProfileModal();
+      };
+      
+      // Insert before admin-tab (Guru's Eye) if it exists, or insert before theme buttons, or append at end
+      const adminTab = navContainer.querySelector('.admin-tab');
+      if (adminTab) {
+        navContainer.insertBefore(profileBtn, adminTab);
+      } else {
+        const firstThemeBtn = navContainer.querySelector('.theme-btn');
+        if (firstThemeBtn) {
+          const themeContainer = firstThemeBtn.parentElement;
+          if (themeContainer && themeContainer.parentElement === navContainer) {
+            navContainer.insertBefore(profileBtn, themeContainer);
+          } else {
+            navContainer.insertBefore(profileBtn, firstThemeBtn);
+          }
+        } else {
+          navContainer.appendChild(profileBtn);
+        }
+      }
+    }
+  }
 });
+
+// Profile modal global control methods
+window.openProfileModal = function() {
+  let modal = document.getElementById('eos-profile-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'eos-profile-modal';
+    modal.style.position = 'fixed';
+    modal.style.top = '0';
+    modal.style.left = '0';
+    modal.style.width = '100vw';
+    modal.style.height = '100vh';
+    modal.style.background = 'rgba(0, 0, 0, 0.75)';
+    modal.style.display = 'none';
+    modal.style.justifyContent = 'center';
+    modal.style.alignItems = 'center';
+    modal.style.zIndex = '999999';
+    modal.style.backdropFilter = 'blur(10px)';
+    
+    modal.onclick = (e) => {
+      if (e.target === modal) window.closeProfileModal();
+    };
+    
+    document.body.appendChild(modal);
+  }
+  
+  const username = localStorage.getItem('eos_user_name') || 'Seeker';
+  const role = localStorage.getItem('eos_role') || 'seeker';
+  const grade = localStorage.getItem('eos_user_grade') || localStorage.getItem('era_of_siddhas_grade') || 'Mumukshu';
+  const age = localStorage.getItem('eos_user_age') || 'N/A';
+  const interests = localStorage.getItem('eos_user_interests') || 'N/A';
+  const discovery = localStorage.getItem('eos_user_discovery') || 'N/A';
+  const ideology = localStorage.getItem('eos_user_ideology') || 'N/A';
+  const wake = localStorage.getItem('eos_user_schedule_wake') || 'N/A';
+  const study = localStorage.getItem('eos_user_schedule_study') || 'N/A';
+  const sleep = localStorage.getItem('eos_user_schedule_sleep') || 'N/A';
+  const onboardTime = localStorage.getItem('eos_onboarded_time') 
+    ? new Date(localStorage.getItem('eos_onboarded_time')).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })
+    : 'N/A';
+  
+  let avatarChar = username.charAt(0).toUpperCase();
+  if (username.toLowerCase() === 'admin') avatarChar = '👁';
+  
+  let levelColor = '#7a8288';
+  let levelBg = 'rgba(122, 130, 136, 0.1)';
+  if (grade.toLowerCase() === 'shishya') {
+    levelColor = '#c4892a';
+    levelBg = 'rgba(196, 137, 42, 0.15)';
+  } else if (grade.toLowerCase() === 'sadhaka') {
+    levelColor = '#ffb020';
+    levelBg = 'rgba(255, 176, 32, 0.15)';
+  } else if (grade.toLowerCase() === 'siddha') {
+    levelColor = '#2eb8a6';
+    levelBg = 'rgba(46, 184, 166, 0.15)';
+  }
+  
+  modal.innerHTML = `
+    <div class="profile-card-modal" style="background: var(--bg-secondary, #0a0000); border: 2px solid var(--border-glass, rgba(200,146,42,0.2)); box-shadow: 0 8px 32px var(--glow, rgba(200,146,42,0.15)); border-radius: 12px; width: 90%; max-width: 460px; padding: 2rem; position: relative; color: var(--text-primary, #fff); font-family: 'Outfit', sans-serif; animation: modalPop 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);">
+      <button onclick="window.closeProfileModal()" style="position: absolute; top: 15px; right: 15px; background: none; border: none; color: var(--text-muted, #7a8288); font-size: 1.5rem; cursor: pointer; transition: color 0.2s;" onmouseover="this.style.color='var(--accent, #c8922a)'" onmouseout="this.style.color='var(--text-muted)'">×</button>
+      
+      <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 1.5rem;">
+        <div style="width: 70px; height: 70px; border-radius: 50%; background: var(--accent-glow, rgba(200,146,42,0.1)); border: 2px solid var(--accent, #c8922a); display: flex; justify-content: center; align-items: center; font-size: 2.2rem; font-family: 'Cinzel', serif; color: var(--gold-bright, #c8922a); margin-bottom: 0.8rem; box-shadow: 0 0 15px var(--accent-glow);">
+          ${avatarChar}
+        </div>
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.4rem; letter-spacing: 0.05em; margin: 0; color: var(--text-primary, #fff);">${username}</h3>
+        <span style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.15em; font-weight: 600; text-transform: uppercase; color: ${levelColor}; background: ${levelBg}; border: 1px solid ${levelColor}; padding: 3px 10px; border-radius: 20px; margin-top: 0.5rem; display: inline-block;">
+          ${grade}
+        </span>
+      </div>
+      
+      <div style="display: flex; flex-direction: column; gap: 0.8rem; font-size: 0.95rem; border-top: 1px solid var(--border-glass, rgba(255,255,255,0.08)); padding-top: 1.2rem; margin-bottom: 1.8rem;">
+        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-muted, #7a8288);">Age:</span><span style="font-weight: 500;">${age}</span></div>
+        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-muted, #7a8288);">Interests:</span><span style="font-weight: 500; text-align: right; max-width: 250px;">${interests}</span></div>
+        <div style="display: flex; justify-content: space-between;"><span style="color: var(--text-muted, #7a8288);">Ideology:</span><span style="font-weight: 500; text-align: right; max-width: 250px;">${ideology}</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border-glass, rgba(255,255,255,0.04)); padding-top: 0.5rem;"><span style="color: var(--text-muted, #7a8288);">Agamic Clock Routine:</span><span style="font-weight: 500; font-family: monospace;">🌅 ${wake} | 📚 ${study} | 🌌 ${sleep}</span></div>
+        <div style="display: flex; justify-content: space-between; border-top: 1px dashed var(--border-glass, rgba(255,255,255,0.04)); padding-top: 0.5rem;"><span style="color: var(--text-muted, #7a8288);">Onboarded:</span><span style="font-weight: 500;">${onboardTime}</span></div>
+      </div>
+      
+      <div style="display: flex; gap: 10px; justify-content: stretch;">
+        <button onclick="window.logoutSeeker()" style="flex: 1; padding: 10px; background: rgba(181, 42, 42, 0.1); border: 1.5px solid #ff4d4d; color: #ff4d4d; font-family: 'Cinzel', serif; font-size: 0.9rem; cursor: pointer; border-radius: 4px; transition: all 0.2s;" onmouseover="this.style.background='rgba(181, 42, 42, 0.2)'" onmouseout="this.style.background='rgba(181, 42, 42, 0.1)'">
+          Reset Journey
+        </button>
+        <button onclick="window.closeProfileModal()" style="flex: 1; padding: 10px; background: rgba(200, 146, 42, 0.1); border: 1.5px solid var(--accent, #c8922a); color: var(--gold-bright, #c8922a); font-family: 'Cinzel', serif; font-size: 0.9rem; cursor: pointer; border-radius: 4px; transition: all 0.2s;" onmouseover="this.style.background='rgba(200, 146, 42, 0.2)'" onmouseout="this.style.background='rgba(200, 146, 42, 0.1)'">
+          Acknowledge
+        </button>
+      </div>
+    </div>
+  `;
+  
+  modal.style.display = 'flex';
+};
+
+window.closeProfileModal = function() {
+  const modal = document.getElementById('eos-profile-modal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.logoutSeeker = function() {
+  if (confirm("Are you sure you want to reset your Gurukulam journey? All your answers and local progress will be cleared.")) {
+    localStorage.clear();
+    window.location.href = 'index.html';
+  }
+};
