@@ -1,0 +1,145 @@
+=== File: admin.html ===
+Found 4 setTheme buttons.
+   <button class="btn-sm" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="btn-sm" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="btn-sm" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="btn-sm" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+Found nav block (first 500 chars):
+<nav>
+  <div class="nav-section-label">Overview</div>
+  <a href="#" class="nav-item active" data-tab="dashboard">
+    <span class="nav-item-icon">◈</span>
+    <span class="nav-item-label">Dashboard</span>
+  </a>
+  <a href="#" class="nav-item" data-tab="seekers">
+    <span class="nav-item-icon">◉</span>
+    <span class="nav-item-label">Seekers</span>
+  </a>
+
+  <div class="nav-section-label">Sangha</div>
+  <a href="#" class="nav-item" data-tab="activity">
+    <span class="nav-item-icon">✦</span>...
+Found media queries:
+   @media (max-width: 900px) {     .two-col { grid-template-columns: 1fr; }
+
+=== File: begin-journey.html ===
+Found media queries:
+   @media (max-width: 600px) {     .top-bar { padding: 1rem; }
+
+=== File: chanting.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+Found nav block (first 500 chars):
+<nav class="glass-nav">
+  <a href="course_hub.html" class="nav-brand">
+    ← Return to Yuddham Hub
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <div style="color: var(--text-muted); font-family: 'Outfit';">Chanting Assessment Module</div>
+    <div style="display:flex; gap: 8px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</b...
+
+=== File: course_hub.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+Found nav block (first 500 chars):
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="sangha.html" class="nav-btn" st...
+Found media queries:
+   @media (max-width: 860px) {     .hero-grid-layout {       grid-template-columns: 1fr !important;       gap: 2rem !important;     }
+
+=== File: index.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce & Martial</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy & Ancient</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical & Ethereal</button>
+Found media queries:
+   @media (max-width: 860px) {     #mission .section-inner,     #sangha .section-inner {       grid-template-columns: 1fr;       gap: 3rem;     }
+   @media (max-width: 500px) {     section { padding: 4rem 1.25rem; }
+
+=== File: interactive_lesson.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Light</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+Found nav block (first 500 chars):
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="sangha.html" class="nav-btn">Th...
+Found media queries:
+   @media (max-width: 900px) {     .left-pane {       flex: 0 0 100%;       max-width: 100%;       max-height: none;       border-right: none;       border-bottom: 1px solid var(--border-glass);     }
+
+=== File: pillar_hub.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+
+=== File: sanctum.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+Found nav block (first 500 chars):
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="sangh...
+
+=== File: sangha.html ===
+Found 4 setTheme buttons.
+   <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+Found nav block (first 500 chars):
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="cours...
+Found media queries:
+   @media (max-width: 900px) {     .sangha-container {       grid-template-columns: 1fr;     }
+
+Done search.
