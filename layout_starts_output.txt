@@ -1,0 +1,43 @@
+=== File: sanctum.html layout start ===
+<div class="sanctum-wrapper">
+  <div class="pillar-tabs">
+    <button class="tab active" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
+    <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
+    <button class="tab" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
+  </div>
+  <div class="glass-card" id="content-card">
+    <div class="shloka-sanskrit" id="shloka-sanskrit-box">
+      कर्मण्येवाधिकारस्ते म
+--------------------------------------------------
+
+=== File: sangha.html layout start ===
+<div class="sangha-container">
+  
+  <!-- Left Side: Community Feed and Post Area -->
+  <div>
+    
+    <!-- Share Reflection Card -->
+    <div class="card">
+      <div class="section-title">Share with the Sangha</div>
+      <form id="post-form" onsubmit="postToSangha(event)">
+        <textarea id="post-text" placeholder="Share your Sādhana milestone, Socratic reflection, or treatise insights..."></textarea>
+        <div style="display: flex; justify-content: space-between; align-items: ce
+--------------------------------------------------
+
+=== File: chanting.html layout start ===
+<div class="chanting-container">
+  <div class="shloka-header">Bhagavad Gita 2.38</div>
+
+  <div class="shloka-card">
+    <div class="sanskrit-text">
+      सुखदुःखे समे कृत्वा लाभालाभौ जयाजयौ ।<br>
+      ततो युद्धाय युज्यस्व नैवं पापमवाप्स्यसि ॥
+    </div>
+    <div class="transliteration">
+      sukha-duḥkhe same kṛtvā labhālābhau jayājayau |<br>
+      tato yuddhāya yujyasva naivaṃ pāpam avāpsyasi ||
+    </div>
+    <div class="meaning">
+      Treating alike happiness and distress, loss and
+--------------------------------------------------
+
