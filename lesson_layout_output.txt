@@ -1,0 +1,29 @@
+=== BODY TAG ===
+<body class="theme-light">
+
+=== AFTER NAV ===
+
+
+<div class="workspace-layout">
+  <div class="left-pane" id="left-text-pane">
+    <!-- Dynamic text content injected here -->
+  </div>
+  <div class="right-pane">
+    <div class="workspace-card" id="workspace-card-container">
+      <!-- Dynamic simulation markup injected here -->
+    </div>
+  </div>
+</div>
+
+<script>
+// Dynamic lesson metadata database — enriched with IKS-STEM academic content
+const lessons = {
+  yuddham: {
+    yoga: {
+      category: "Yuddham — Martial Breath",
+      title: "Yuddha Yoga: Tactical Pranayama",
+      shloka: {
+        ref: "Bhagavad Gita 4.29 — Pranayama Offered in Sacrifice",
+        devanagari: "अपाने जुह्वति प्राणं प्राणेऽपानं तथापरे ।\nप्राणापानगती रुद्ध्वा प्राणायामपरायणाः ॥",
+        translit: "apāne juhvati prāṇaṃ prāṇe'pānaṃ tathāpare |\nprāṇāpānagatī ruddhvā prāṇāyāmaparāyaṇaḥ ||",
+        translation: "Others offer the incoming breath into the outgoing breath, and the outgoing breath into the incoming breath, restraining the flow of both i
