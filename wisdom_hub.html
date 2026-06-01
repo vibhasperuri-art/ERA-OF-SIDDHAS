@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wisdom Hub — Era of Siddhas</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<script src="js/api.js"></script>
+<style>
+  :root, body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(2, 24, 22, 0.7);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --text-primary: #e0fcf8;
+    --text-muted: #cbf9f0;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --gold-dim: #176e62;
+    --parchment: #e0fcf8;
+    --parch-mid: #9cf0e2;
+    --parch-dim: #53c2b1;
+    --glow: rgba(46, 184, 166, 0.15);
+  }
+  body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
+    --gold-bright: #c8922a;
+    --gold-dim: #7a4d0a;
+    --parchment: #f7f2e8;
+    --parch-mid: #d4b896;
+    --parch-dim: #a07850;
+    --glow: rgba(200, 146, 42, 0.15);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.85);
+    --border-glass: rgba(196, 137, 42, 0.2);
+    --text-primary: #e8d5a3;
+    --text-muted: #ebd9b5;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --gold-dim: #7a5415;
+    --parchment: #e8d5a3;
+    --parch-mid: #b89a60;
+    --parch-dim: #7a6440;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #e4e7ea;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --gold-dim: #5c1414;
+    --parchment: #f4f5f6;
+    --parch-mid: #b0b5b9;
+    --parch-dim: #7a8288;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: all 0.5s ease;
+  }
+
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .tab,
+  body.custom-cursor-active .article-card,
+  body.custom-cursor-active .theme-btn {
+    cursor: none !important;
+  }
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000002;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-btn {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 1rem;
+    transition: color 0.3s;
+  }
+  .nav-btn:hover {
+    color: var(--accent);
+  }
+  .theme-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    cursor: none !important;
+    transition: all 0.3s;
+    border-radius: 40px;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  .hub-header {
+    padding: 5rem 2rem 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+  .hub-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 2rem auto;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1rem;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+  }
+  .tab.active, .tab:hover {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .article-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .article-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+  }
+  .card-img-box {
+    width: 100%;
+    height: 180px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .card-badge {
+    position: absolute;
+    top: 15px; left: 15px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-glass);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+  }
+  .card-summary {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .card-author {
+    font-weight: 500;
+  }
+
+  /* Immersive Reader Modal */
+  #reader-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+  .reader-box {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    padding: 3rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+  .reader-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reader-header {
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1rem;
+  }
+  .reader-category {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.0rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .reader-title {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    margin: 0; font-size: 2.0rem;
+    line-height: 1.3;
+  }
+  .reader-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+  .reader-content {
+    max-height: 450px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    padding-right: 0.8rem;
+  }
+
+  @media (max-width: 768px) {
+    .glass-nav {
+      position: relative !important;
+      padding: 0.75rem 1rem !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      align-items: center !important;
+    }
+    .glass-nav > div {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    .theme-btn {
+      padding: 4px 8px !important;
+      font-size: 0.75rem !important;
+    }
+    .hub-header {
+      padding: 2.5rem 1rem 1.5rem !important;
+    }
+    .hub-title {
+      font-size: 2.2rem !important;
+    }
+    .hub-subtitle {
+      font-size: 1.05rem !important;
+    }
+    .articles-grid {
+      padding: 0 1rem !important;
+      gap: 1.5rem !important;
+    }
+    .reader-box {
+      padding: 2rem 1.5rem !important;
+    }
+    .reader-title {
+      font-size: 1.5rem !important;
+    }
+  }
+</style>
+</head>
+<body class="theme-light">
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
+    <a href="admin.html" class="nav-btn" style="color:var(--accent); border:1.5px solid var(--border-glass); border-radius: 20px; padding: 4px 10px;">Guru's Eye</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hub-header">
+  <h1 class="hub-title">Wisdom Publications Hub</h1>
+  <p class="hub-subtitle">
+    Explore magazines, weekly articles, spiritual reflections, modern scientific research validations, and Itihasa/Purana stories.
+  </p>
+</div>
+
+<div class="tabs-container" id="categoryTabs">
+  <button class="tab active" onclick="switchFilter(this, 'all')">All Material</button>
+  <button class="tab" onclick="switchFilter(this, 'magazine')">Magazines</button>
+  <button class="tab" onclick="switchFilter(this, 'article')">Weekly Articles</button>
+  <button class="tab" onclick="switchFilter(this, 'blog')">Blogs</button>
+  <button class="tab" onclick="switchFilter(this, 'research')">Modern Research</button>
+  <button class="tab" onclick="switchFilter(this, 'story')">Itihasa & Purana</button>
+</div>
+
+<div class="articles-grid" id="articlesGrid">
+  <!-- Dynamic articles will be loaded here -->
+</div>
+
+<!-- Reader Modal -->
+<div id="reader-modal">
+  <div class="reader-box">
+    <button onclick="closeReader()" class="reader-close">×</button>
+    <div class="reader-header">
+      <div id="reader-category" class="reader-category">Category</div>
+      <h2 id="reader-title" class="reader-title">Title</h2>
+      <div id="reader-meta" class="reader-meta">Published by Author</div>
+    </div>
+    <div id="reader-content" class="reader-content">
+      <!-- Article contents -->
+    </div>
+  </div>
+</div>
+
+<script>
+  let allArticles = [];
+  let activeFilter = 'all';
+
+  async function loadArticles() {
+    if (window.EOS_API && typeof window.EOS_API.getPublicArticles === 'function') {
+      allArticles = await window.EOS_API.getPublicArticles();
+    } else {
+      // Mock data for offline or demo run
+      allArticles = [
+        {
+          id: 1,
+          category: 'research',
+          title: 'Sacred Acoustics & Cardiac Rhythms: The Geometry of Chidambaram',
+          author: 'Vibhas Peruri & Council',
+          summary: 'An empirical exploration of how the Nataraja temple dimensions resonate with the human heart rate variability (HRV).',
+          content: '<p>The ancient temple of Nataraja in Chidambaram is not merely a place of worship, but a structural marvel designed to stabilize human bio-energetic fields. By analyzing its dimensions, we find that the 21,600 roof tiles and 72,000 iron nails mirror the daily respiration rate and nadis of the human body.</p><p>Modern cardiac research has demonstrated that stepping inside highly resonant stone chambers triggers a shift in autonomic nervous system balance. The heart rate variability stabilizes, promoting vagal tone and parasympathetic dominance. This aligns the physiological self with the higher Agamic levels of consciousness.</p>',
+          image_url: 'sacred_city.png',
+          created_at: '2026-06-01T00:00:00'
+        },
+        {
+          id: 2,
+          category: 'story',
+          title: 'The Descent of the Astra: Parashurama\'s Mahendra Training',
+          author: 'Siddha Tradition',
+          summary: 'Explore the legends of Mount Mahendra, where Sage Parashurama initiated warriors into higher dimensions of weapon acoustics.',
+          content: '<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (Śāstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>',
+          image_url: 'ancient_weapons.png',
+          created_at: '2026-05-28T00:00:00'
+        },
+        {
+          id: 3,
+          category: 'magazine',
+          title: 'Era of Siddhas Magazine — Issue I: Resonating Temple Cities',
+          author: 'Siddha Editorial',
+          summary: 'Our launch edition covering Vastu Purusha Mandala layouts, town thermodynamic principles, and spiritual architecture.',
+          content: '<p>Welcome to the first edition of the Era of Siddhas Magazine. In this edition, we examine the ancient town planning models outlined in the Samarangana Sutradhara. By setting the thermodynamic grids and central space (Brahma Sthana) open to the sky, ancient architects created natural cooling drafts that kept temples comfortable during harsh monsoons.</p><p>We also discuss how these concepts are being implemented in modern eco-villages and sustainable residential plans to restore the connection between human dwelling and nature.</p>',
+          image_url: 'flying_manuscript.png',
+          created_at: '2026-05-25T00:00:00'
+        }
+      ];
+    }
+    renderArticles();
+  }
+
+  function renderArticles() {
+    const grid = document.getElementById('articlesGrid');
+    grid.innerHTML = '';
+
+    const filtered = allArticles.filter(art => activeFilter === 'all' || art.category === activeFilter);
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-muted);">
+        <p>No publications are found under this gate. More wisdom is compiling in the archives.</p>
+      </div>`;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(art => {
+      const categoryLabels = {
+        magazine: 'Magazine',
+        article: 'Weekly Article',
+        blog: 'Blog',
+        research: 'Modern Research',
+        story: 'Itihasa & Purana'
+      };
+      const label = categoryLabels[art.category] || art.category.toUpperCase();
+      const date = new Date(art.created_at).toLocaleDateString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      });
+      const fallbackImage = art.category === 'research' ? 'sacred_city.png' :
+                            art.category === 'story' ? 'ancient_weapons.png' : 'flying_manuscript.png';
+      const img = art.image_url || fallbackImage;
+
+      return `
+        <a href="#" class="article-card" onclick="openArticle(${art.id}, event)">
+          <div class="card-img-box">
+            <img src="${img}" alt="${art.title}" class="card-img">
+            <span class="card-badge">${label}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${art.title}</h3>
+            <p class="card-summary">${art.summary}</p>
+            <div class="card-footer">
+              <span class="card-author">By ${art.author}</span>
+              <span>${date}</span>
+            </div>
+          </div>
+        </a>
+      `;
+    }).join('');
+
+    bindCursorEvents();
+  }
+
+  function switchFilter(btn, filterKey) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = filterKey;
+    renderArticles();
+  }
+
+  function openArticle(id, event) {
+    event.preventDefault();
+    const art = allArticles.find(a => a.id === id);
+    if (!art) return;
+
+    const categoryLabels = {
+      magazine: 'Magazine Edition',
+      article: 'Weekly Article',
+      blog: 'Blog Post',
+      research: 'Modern Research Validation',
+      story: 'Itihasa & Purana Story'
+    };
+
+    document.getElementById('reader-category').innerText = categoryLabels[art.category] || art.category.toUpperCase();
+    document.getElementById('reader-title').innerText = art.title;
+    document.getElementById('reader-meta').innerText = `By ${art.author} · Published on ${new Date(art.created_at).toLocaleDateString('en-IN')}`;
+    document.getElementById('reader-content').innerHTML = art.content;
+    document.getElementById('reader-modal').style.display = 'flex';
+    bindCursorEvents();
+  }
+
+  function closeReader() {
+    document.getElementById('reader-modal').style.display = 'none';
+  }
+
+  // Custom Cursor Logic
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    if (cursor) {
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
+    }
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.2;
+    ringY += (mouseY - ringY) * 0.2;
+    if (cursorRing) {
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+    }
+    requestAnimationFrame(animateRing);
+  }
+
+  if (cursor && cursorRing) {
+    document.body.classList.add('custom-cursor-active');
+    animateRing();
+  }
+
+  function bindCursorEvents() {
+    document.querySelectorAll('a, button, .tab, .article-card, .theme-btn, .reader-close').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  // Theme Management
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    if (btnElement) {
+      btnElement.classList.add('active');
+    } else {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+          btn.classList.add('active');
+        }
+      });
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    loadArticles();
+    const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+    setTheme(null, initialTheme);
+  });
+</script>
+</body>
+</html>
