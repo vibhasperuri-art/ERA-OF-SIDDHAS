@@ -81,6 +81,52 @@ def init_db():
     )
     """)
     
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS stories (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        pillar TEXT,
+        title TEXT,
+        desc TEXT,
+        content TEXT,
+        created_at TEXT
+    )
+    """)
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS activities (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        pillar TEXT,
+        title TEXT,
+        desc TEXT,
+        action_link TEXT,
+        created_at TEXT
+    )
+    """)
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS simulations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        pillar TEXT,
+        title TEXT,
+        desc TEXT,
+        action_link TEXT,
+        created_at TEXT
+    )
+    """)
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS articles (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        category TEXT,
+        title TEXT,
+        author TEXT,
+        summary TEXT,
+        content TEXT,
+        image_url TEXT,
+        created_at TEXT
+    )
+    """)
+    
     conn.commit()
     conn.close()
 
@@ -120,6 +166,32 @@ class AlertCreate(BaseModel):
 class BroadcastMessage(BaseModel):
     message: str
     type: str = "warning"
+
+class StoryCreate(BaseModel):
+    pillar: str
+    title: str
+    desc: str
+    content: str
+
+class ActivityCreate(BaseModel):
+    pillar: str
+    title: str
+    desc: str
+    action_link: str
+
+class SimulationCreate(BaseModel):
+    pillar: str
+    title: str
+    desc: str
+    action_link: str
+
+class ArticleCreate(BaseModel):
+    category: str
+    title: str
+    author: str
+    summary: str
+    content: str
+    image_url: Optional[str] = ""
 
 # Connection Manager for WebSockets
 class ConnectionManager:
@@ -451,6 +523,125 @@ async def admin_broadcast(data: BroadcastMessage):
     }
     await manager.broadcast(broadcast_msg)
     return {"status": "success", "recipients": len(manager.active_connections)}
+
+@app.post("/api/admin/stories")
+async def create_story(data: StoryCreate):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    now_str = datetime.now().isoformat()
+    try:
+        cursor.execute(
+            "INSERT INTO stories (pillar, title, desc, content, created_at) VALUES (?, ?, ?, ?, ?)",
+            (data.pillar, data.title, data.desc, data.content, now_str)
+        )
+        conn.commit()
+        await manager.broadcast({
+            "type": "content_update",
+            "category": "story",
+            "pillar": data.pillar,
+            "title": data.title
+        })
+    except Exception as e:
+        conn.close()
+        raise HTTPException(status_code=500, detail=str(e))
+    conn.close()
+    return {"status": "success"}
+
+@app.post("/api/admin/activities")
+async def create_activity(data: ActivityCreate):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    now_str = datetime.now().isoformat()
+    try:
+        cursor.execute(
+            "INSERT INTO activities (pillar, title, desc, action_link, created_at) VALUES (?, ?, ?, ?, ?)",
+            (data.pillar, data.title, data.desc, data.action_link, now_str)
+        )
+        conn.commit()
+        await manager.broadcast({
+            "type": "content_update",
+            "category": "activity",
+            "pillar": data.pillar,
+            "title": data.title
+        })
+    except Exception as e:
+        conn.close()
+        raise HTTPException(status_code=500, detail=str(e))
+    conn.close()
+    return {"status": "success"}
+
+@app.post("/api/admin/simulations")
+async def create_simulation(data: SimulationCreate):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    now_str = datetime.now().isoformat()
+    try:
+        cursor.execute(
+            "INSERT INTO simulations (pillar, title, desc, action_link, created_at) VALUES (?, ?, ?, ?, ?)",
+            (data.pillar, data.title, data.desc, data.action_link, now_str)
+        )
+        conn.commit()
+        await manager.broadcast({
+            "type": "content_update",
+            "category": "simulation",
+            "pillar": data.pillar,
+            "title": data.title
+        })
+    except Exception as e:
+        conn.close()
+        raise HTTPException(status_code=500, detail=str(e))
+    conn.close()
+    return {"status": "success"}
+
+@app.get("/api/content/all")
+async def get_all_custom_content():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    
+    stories = [dict(r) for r in cursor.execute("SELECT * FROM stories ORDER BY id DESC").fetchall()]
+    activities = [dict(r) for r in cursor.execute("SELECT * FROM activities ORDER BY id DESC").fetchall()]
+    simulations = [dict(r) for r in cursor.execute("SELECT * FROM simulations ORDER BY id DESC").fetchall()]
+    
+    conn.close()
+    return {
+        "stories": stories,
+        "activities": activities,
+        "simulations": simulations
+    }
+
+@app.post("/api/admin/articles")
+async def create_article(data: ArticleCreate):
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    now_str = datetime.now().isoformat()
+    try:
+        cursor.execute(
+            "INSERT INTO articles (category, title, author, summary, content, image_url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)",
+            (data.category, data.title, data.author, data.summary, data.content, data.image_url, now_str)
+        )
+        conn.commit()
+        await manager.broadcast({
+            "type": "content_update",
+            "category": "article",
+            "title": data.title
+        })
+    except Exception as e:
+        conn.close()
+        raise HTTPException(status_code=500, detail=str(e))
+    conn.close()
+    return {"status": "success"}
+
+@app.get("/api/public/articles")
+async def get_public_articles():
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    rows = cursor.execute("SELECT * FROM articles ORDER BY id DESC").fetchall()
+    articles = [dict(row) for row in rows]
+    conn.close()
+    return articles
+
 
 
 # WebSocket Endpoint for real-time updates and announcements
