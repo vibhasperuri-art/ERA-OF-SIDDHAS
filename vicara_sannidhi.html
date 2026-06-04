@@ -890,14 +890,17 @@ function bindCursorEvents() {
 const cursor = document.getElementById('cursor');
 const cursorRing = document.getElementById('cursor-ring');
 
-document.addEventListener('mousemove', (e) => {
-  cursor.style.left = e.clientX + 'px';
-  cursor.style.top = e.clientY + 'px';
-  cursorRing.style.left = e.clientX + 'px';
-  cursorRing.style.top = e.clientY + 'px';
-});
-
-document.body.classList.add('custom-cursor-active');
+if (cursor && cursorRing) {
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursorRing.style.left = e.clientX + 'px';
+    cursorRing.style.top = e.clientY + 'px';
+    if (!document.body.classList.contains('custom-cursor-active')) {
+      document.body.classList.add('custom-cursor-active');
+    }
+  });
+}
 
 // Load persisted theme on start
 const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
