@@ -193,6 +193,12 @@ class ArticleCreate(BaseModel):
     content: str
     image_url: Optional[str] = ""
 
+class GuruChatRequest(BaseModel):
+    pillar: str
+    message: str
+    history: List[Dict[str, str]]
+
+
 # Connection Manager for WebSockets
 class ConnectionManager:
     def __init__(self):
@@ -641,6 +647,48 @@ async def get_public_articles():
     articles = [dict(row) for row in rows]
     conn.close()
     return articles
+
+@app.post("/api/guru/chat")
+async def guru_chat(data: GuruChatRequest):
+    pillar = data.pillar.lower()
+    message = data.message
+    history = data.history
+    
+    # Count how many messages are from the user
+    user_msg_count = sum(1 for m in history if m.get("sender") == "user")
+    
+    response_text = ""
+    complete = False
+    
+    if pillar == "nagara":
+        if user_msg_count == 0:
+            response_text = "You speak of physical placement, but how does the empty center—the Brahmasthana—connect to the unmanifest space within your own heart? If the center is cluttered, does the architecture truly stand?"
+        elif user_msg_count == 1:
+            response_text = "But if you rely on the alignment of walls and elements to find peace, are you not making your consciousness dependent on physical forms? Can a bound spirit be freed by a geometric alignment?"
+        else:
+            response_text = "Indeed. The Vastu Shastra teaches that outer structure is merely a physical support for inner expansion. When the microcosm is aligned, the wall ceases to divide, and the Brahmasthana merges with the infinite. Your transmission of Nagara Nirmana is validated. The sanctuary gates are open."
+            complete = True
+            
+    elif pillar == "rājya" or pillar == "rajya":
+        if user_msg_count == 0:
+            response_text = "A noble reflection. But when you are surrounded by flatterers and the intoxicant of absolute authority, how do you distinguish genuine feedback from the echo chamber of your own ego? What is your mirror?"
+        elif user_msg_count == 1:
+            response_text = "You speak of vigilance, yet the very act of 'governing' carries the weight of doership (Kartrtva). If you believe you are the one protecting Dharma, has pride not already conquered your crown?"
+        else:
+            response_text = "Pragmatic and profound. The raja acts only as a trustee (Nimitta-matra) of the cosmic order. Real governance is Rajya Palanam—ruling the kingdom of one's mind first. Your transmission of Rajya Palanam is validated. The sanctuary gates are open."
+            complete = True
+            
+    else:  # yuddham
+        if user_msg_count == 0:
+            response_text = "Fierce action is easy when fueled by anger or desire for victory. But if you have no attachment to the outcome, where does the fire to fight injustice come from? Does detachment not breed passivity?"
+        elif user_msg_count == 1:
+            response_text = "If you say you fight because it is your duty, who decides what is 'just'? If your sword is drawn in detachment, does it not become indifferent to the suffering it inflicts or heals?"
+        else:
+            response_text = "You have touched the core of Gita's wisdom. Action without attachment is not passive; it is the absolute flow of universal will through a purified instrument. You fight not for personal fruits, but to restore cosmic balance. Your transmission of Yuddham is validated. The sanctuary gates are open."
+            complete = True
+            
+    return {"response": response_text, "complete": complete}
+
 
 
 
