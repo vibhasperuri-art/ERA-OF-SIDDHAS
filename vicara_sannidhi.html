@@ -745,17 +745,23 @@ async function sendChatMessage() {
   
   let responseText = "";
   let isComplete = false;
+  let chatSuccess = false;
   
   if (window.EOS_API && typeof window.EOS_API.sendGuruChatMessage === 'function') {
-    const historyPayload = chatHistory[normPillar].slice(0, -1);
-    const result = await window.EOS_API.sendGuruChatMessage(normPillar, text, historyPayload);
-    if (result) {
-      responseText = result.response;
-      isComplete = result.complete;
-    } else {
-      responseText = "The connection to the Gurukulam was interrupted. The Guru remains silent...";
+    try {
+      const historyPayload = chatHistory[normPillar].slice(0, -1);
+      const result = await window.EOS_API.sendGuruChatMessage(normPillar, text, historyPayload);
+      if (result) {
+        responseText = result.response;
+        isComplete = result.complete;
+        chatSuccess = true;
+      }
+    } catch (e) {
+      console.error("API Error in Socratic Guru chat, falling back to simulation:", e);
     }
-  } else {
+  }
+  
+  if (!chatSuccess) {
     // Local / Offline fallback
     const userMsgCount = chatHistory[normPillar].filter(m => m.sender === 'user').length;
     if (userMsgCount === 1) {
