@@ -687,7 +687,7 @@
     <a href="pillar_hub.html" class="nav-btn active">Pillars</a>
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
-    <a href="sanctum.html" class="nav-btn">Inner Sanctum</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
@@ -844,7 +844,7 @@ const pillarData = {
           title: "1. Rājya Upanishads (Ethical Sovereignty)",
           desc: "Sovereign power must serve the ultimate truth (Satya) and welfare of all (Loka Sangraha). Study the philosophical foundations of righteous governance.",
           actionText: "Enter Shloka Module",
-          actionLink: "sanctum.html?pillar=rājya"
+          actionLink: "vicara_sannidhi.html?pillar=rājya"
         },
         {
           title: "2. Rājya Yoga (Mindful Leadership)",
@@ -896,7 +896,7 @@ const pillarData = {
           title: "Socratic Guru Chat Challenge",
           desc: "Answer the Guru AI's counter-questions regarding ethical dilemmas in rule and taxation.",
           actionText: "Start Challenge",
-          actionLink: "sanctum.html?pillar=rājya"
+          actionLink: "vicara_sannidhi.html?pillar=rājya"
         }
       ],
       simulations: [
@@ -1088,10 +1088,10 @@ function renderPage() {
     <button class="tab" onclick="switchTab(this, 'nano')">Nano Courses</button>
   `;
 
-  // Update Inner Sanctum nav button href to pass the current pillar
-  const sanctumNavBtn = document.querySelector('.nav-btn[href^="sanctum.html"]');
+  // Update Vicāra Sannidhi nav button href to pass the current pillar
+  const sanctumNavBtn = document.querySelector('.nav-btn[href^="vicara_sannidhi.html"]');
   if (sanctumNavBtn) {
-    sanctumNavBtn.href = `sanctum.html?pillar=${currentPillar}`;
+    sanctumNavBtn.href = `vicara_sannidhi.html?pillar=${currentPillar}`;
   }
 
   // Render Learn tab content by default
@@ -1129,7 +1129,7 @@ function renderTabContent(tabKey) {
       }
     } else if (card.actionLink.includes('chanting.html') && completedPillar.includes('chanting')) {
       isCompleted = true;
-    } else if (card.actionLink.includes('sanctum.html') && completedPillar.includes('sanctum')) {
+    } else if (card.actionLink.includes('vicara_sannidhi.html') && completedPillar.includes('sanctum')) {
       isCompleted = true;
     }
 
