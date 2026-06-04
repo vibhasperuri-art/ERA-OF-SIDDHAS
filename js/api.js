@@ -64,6 +64,21 @@ window.EOS_API = {
     }
   },
 
+  async sendGuruChatMessage(pillar, message, history) {
+    try {
+      const res = await fetch(`${API_BASE}/guru/chat`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ pillar, message, history })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error in Socratic Guru chat:", e);
+      return null;
+    }
+  },
+
+
   async shareReflection(reflectionId) {
     try {
       const res = await fetch(`${API_BASE}/reflections/share`, {
