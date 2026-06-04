@@ -118,8 +118,9 @@
     pointer-events: none;
     z-index: 1000002;
     transform: translate(-50%, -50%);
-    transition: width 0.3s, height 0.3s, background 0.3s;
+    transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s;
     box-shadow: 0 0 15px 3px var(--gold-bright);
+    opacity: 0;
   }
   .custom-cursor-ring {
     position: fixed;
@@ -130,8 +131,9 @@
     pointer-events: none;
     z-index: 1000001;
     transform: translate(-50%, -50%);
-    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s;
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
     box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+    opacity: 0;
   }
   .cursor-hover .custom-cursor {
     width: 60px;
@@ -451,6 +453,11 @@
   @keyframes pulse {
     0% { opacity: 0.3; transform: scale(0.8); }
     100% { opacity: 1; transform: scale(1.2); }
+  }
+
+  body.custom-cursor-active .custom-cursor,
+  body.custom-cursor-active .custom-cursor-ring {
+    opacity: 1 !important;
   }
 </style>
 <script src="js/api.js"></script>
