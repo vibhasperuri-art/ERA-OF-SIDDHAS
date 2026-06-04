@@ -881,11 +881,23 @@ function closeCompletionModal() {
 }
 
 function bindCursorEvents() {
-  document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell, #completion-modal button').forEach(el => {
+  document.querySelectorAll('a, button, .tab, .theme-btn, .anvaya-cell, #completion-modal button, textarea, input').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
   });
 }
+
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursor-ring');
+
+document.addEventListener('mousemove', (e) => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px';
+  cursorRing.style.top = e.clientY + 'px';
+});
+
+document.body.classList.add('custom-cursor-active');
 
 // Load persisted theme on start
 const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
