@@ -127,6 +127,54 @@ def init_db():
     )
     """)
     
+    
+    # Seed default articles if empty
+    cursor.execute("SELECT COUNT(*) FROM articles")
+    if cursor.fetchone()[0] == 0:
+        now_str = datetime.now().isoformat()
+        default_articles = [
+            (
+                "research",
+                "The Sacred Geometry of Nagara Nirmana: How the Divine Reality is Built",
+                "Siddha Council",
+                "A deep dive into the Vastu Purusha Mandala, the 9x9 Paramasayika grid, and the living lotus geometry of Madurai Sthalam.",
+                "<h3>The Texts of Nagara Nirmana</h3><p>The layout and development of divine settlements in India are codified in the Shilpa Shastras (such as the <i>Manasara</i>, <i>Mayamatam</i>, <i>Samarangana Sutradhara</i>, and <i>Aparajita Priccha</i>), the Samhitas and Puranas (like Varahamihira\'s <i>Brihat Samhita</i> and the <i>Vishnudharmottara Purana</i>), and the Agamas (including the <i>Kamikagama</i>). These texts dictate that the physical environment directly governs human consciousness, mandating that the city structure must serve as a living reflection (pratikriti) of the cosmos.</p><h3>The Blueprint of the Vastu Purusha Mandala</h3><p>For a major city, a 9x9 grid of 81 squares, known as the <b>Paramasayika Mandala</b>, is drawn on the earth. At the absolute center sits the <b>Brahmasthana</b>\u2014the seat of the Creator. Reserved exclusively for the temple, no mortal is allowed to reside here, establishing the Divine as the city\'s spiritual anchor. The city spreads outward in concentric rectangular layers (Prakaras) representing the descending sheaths of spirit into matter: the Inner Ring (Sattvic: scholars and ascetics), the Middle Ring (Rajasic: rulers and merchants), the Outer Ring (Tamasic: labor and agriculture), and the Periphery far outside (polluting industries like tanneries, ensuring the center\'s purity).</p><h3>Madurai: The Living Lotus City</h3><p>Madurai stands as the ultimate living embodiment of the Mayamatam and Agamic layout. Known in the shastras as a <b>Padma Vana</b> (Lotus Forest) or Kudal, the city represents the petals of a lotus radiating from the central Meenakshi Sundareswarar Temple. Shiva (Sundareswarar) represents pure, formless consciousness, and Shakti (Meenakshi) represents dynamic energy. The concentric streets are named after the Tamil months: Chitrai, Aavani Moola, Masi, and Aadi Veedhi. Because these streets wrap around the temple, every daily activity performs circumambulation (Pradakshina) of God. The Vaigai River and Potramarai Kulam (Golden Lotus Tank) provide physical and spiritual purification, making Madurai the flawless synthesis of civic life and sacred geometry.</p>",
+                "sacred_city.png",
+                now_str
+            ),
+            (
+                "research",
+                "Sacred Acoustics & Cardiac Rhythms: The Geometry of Chidambaram",
+                "Vibhas Peruri & Council",
+                "An empirical exploration of how the Nataraja temple dimensions resonate with the human heart rate variability (HRV).",
+                "<p>The ancient temple of Nataraja in Chidambaram is not merely a place of worship, but a structural marvel designed to stabilize human bio-energetic fields. By analyzing its dimensions, we find that the 21,600 roof tiles and 72,000 iron nails mirror the daily respiration rate and nadis of the human body.</p><p>Modern cardiac research has demonstrated that stepping inside highly resonant stone chambers triggers a shift in autonomic nervous system balance. The heart rate variability stabilizes, promoting vagal tone and parasympathetic dominance. This aligns the physiological self with the higher Agamic levels of consciousness.</p>",
+                "sacred_city.png",
+                now_str
+            ),
+            (
+                "story",
+                "The Descent of the Astra: Parashurama\'s Mahendra Training",
+                "Siddha Tradition",
+                "Explore the legends of Mount Mahendra, where Sage Parashurama initiated warriors into higher dimensions of weapon acoustics.",
+                "<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (Śāstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>",
+                "ancient_weapons.png",
+                now_str
+            ),
+            (
+                "magazine",
+                "Era of Siddhas Magazine — Issue I: Resonating Temple Cities",
+                "Siddha Editorial",
+                "Our launch edition covering Vastu Purusha Mandala layouts, town thermodynamic principles, and spiritual architecture.",
+                "<p>Welcome to the first edition of the Era of Siddhas Magazine. In this edition, we examine the ancient town planning models outlined in the Samarangana Sutradhara. By setting the thermodynamic grids and central space (Brahma Sthana) open to the sky, ancient architects created natural cooling drafts that kept temples comfortable during harsh monsoons.</p><p>We also discuss how these concepts are being implemented in modern eco-villages and sustainable residential plans to restore the connection between human dwelling and nature.</p>",
+                "flying_manuscript.png",
+                now_str
+            )
+        ]
+        cursor.executemany("""
+        INSERT INTO articles (category, title, author, summary, content, image_url, created_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, default_articles)
+    
     conn.commit()
     conn.close()
 
