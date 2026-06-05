@@ -1,0 +1,10 @@
+﻿# robots.txt for Era of Siddhas
+
+User-agent: *
+Disallow: /admin.html
+Disallow: /js/api.js
+
+# Allow all other content
+Allow: /
+
+Sitemap: https://vibhasperuri-art.github.io/ERA-OF-SIDDHAS/sitemap.xml
