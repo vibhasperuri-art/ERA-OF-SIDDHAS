@@ -537,6 +537,35 @@
     overflow: visible !important;
     clip: auto !important;
   }
+
+  /* Bloom's Taxonomy Badges */
+  .bloom-badge {
+    font-size: 0.7rem;
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block;
+    margin-top: 0.6rem;
+    margin-bottom: 0.4rem;
+  }
+  .bloom-badge.mumukshu {
+    background: rgba(232, 197, 122, 0.1);
+    color: #e8c57a;
+    border: 1px solid rgba(232, 197, 122, 0.3);
+  }
+  .bloom-badge.shishya {
+    background: rgba(122, 173, 232, 0.1);
+    color: #7aade8;
+    border: 1px solid rgba(122, 173, 232, 0.3);
+  }
+  .bloom-badge.sadhaka {
+    background: rgba(122, 232, 160, 0.1);
+    color: #7ae8a0;
+    border: 1px solid rgba(122, 232, 160, 0.3);
+  }
 </style>
   <meta name="description" content="Era of Siddhas – A Vedic Gurukula platform integrating ancient Indian knowledge systems with modern STEM education."/>
   <meta name="keywords" content="Siddha, Vedic education, ancient architecture, Vastu Shastra, Nagara Nirmāṇa, Vimāna Śāstra, Astra Vidyā, Rasa Śāstra, Jyotiṣa, STEM"/>
@@ -729,6 +758,8 @@
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="about.html" class="nav-btn">About</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
@@ -1159,6 +1190,50 @@ function switchTab(btn, tabKey) {
   renderTabContent(tabKey);
 }
 
+function getBloomStageLabel(actionLink, tabKey) {
+  if (tabKey !== 'learn') return ''; // Only show for core lessons
+  
+  if (actionLink.includes('chanting.html')) {
+    return `<div style="margin-bottom:0.4rem;"><span class="bloom-badge mumukshu">Mumukṣu (Remember/Understand)</span></div>`;
+  }
+  if (actionLink.includes('vicara_sannidhi.html')) {
+    return `<div style="margin-bottom:0.4rem;"><span class="bloom-badge shishya">Śiṣya (Apply/Analyze)</span></div>`;
+  }
+  
+  const courseMatch = actionLink.match(/course=([^&]+)/);
+  const pillarMatch = actionLink.match(/pillar=([^&]+)/);
+  if (!courseMatch || !pillarMatch) return '';
+  
+  const course = courseMatch[1];
+  const pillar = pillarMatch[1];
+  
+  const mapping = {
+    nagara: {
+      upanishads: "Mumukṣu (Remember/Understand)",
+      yoga: "Śiṣya (Apply/Analyze)",
+      upasana: "Śiṣya (Apply/Analyze)",
+      vastu: "Mumukṣu (Remember/Understand)",
+      sthapatya: "Sādhaka (Evaluate/Create)"
+    },
+    rājya: {
+      yoga: "Mumukṣu (Remember/Understand)",
+      upasana: "Śiṣya (Apply/Analyze)",
+      saptāṅga: "Śiṣya (Apply/Analyze)",
+      neeti: "Sādhaka (Evaluate/Create)"
+    },
+    yuddham: {
+      yoga: "Mumukṣu (Remember/Understand)",
+      upasana: "Śiṣya (Apply/Analyze)",
+      maṇḍala: "Sādhaka (Evaluate/Create)",
+      vyūhas: "Sādhaka (Evaluate/Create)"
+    }
+  };
+  
+  const level = mapping[pillar]?.[course] || "Mumukṣu (Remember/Understand)";
+  const className = level.toLowerCase().includes('mumuk') ? 'mumukshu' : (level.toLowerCase().includes('shish') ? 'shishya' : 'sadhaka');
+  return `<div style="margin-bottom:0.4rem;"><span class="bloom-badge ${className}">${level}</span></div>`;
+}
+
 function renderTabContent(tabKey) {
   const courseGrid = document.getElementById('course-grid');
   const cards = activeData.tabs[tabKey] || [];
@@ -1197,6 +1272,7 @@ function renderTabContent(tabKey) {
             <span>${card.title}</span>
             ${checkmark}
           </div>
+          ${getBloomStageLabel(card.actionLink, tabKey)}
           <div class="card-desc">${card.desc}</div>
         </div>
         <div style="margin-top: 1.5rem;">
