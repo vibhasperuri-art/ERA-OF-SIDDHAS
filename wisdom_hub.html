@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -6,9 +6,9 @@
 <meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wisdom Hub — Era of Siddhas</title>
+<title>Wisdom Hub â€” Era of Siddhas</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<script src="js/api.js"></script>
+<script src="js/api.js" defer></script>
 <style>
   :root, body.theme-mystical {
     --bg-primary: #010908;
@@ -481,7 +481,27 @@
   body.custom-cursor-active .custom-cursor-ring {
     opacity: 1 !important;
   }
+
+  /* Accessible Skip-Link styling */
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1, #1a0505);
+    color: var(--gold-bright, #ff4d4d);
+    padding: 10px 20px;
+    border: 2px solid var(--gold, #b52a2a);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
 </style>
+<script type=\"application/ld+json\">
+{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CreativeWork\",\n  \"name\": \"Wisdom Hub â€” Era of Siddhas\",\n  \"description\": \"Educational content about the Vedic Siddha tradition and its integration with modern science.\",\n  \"url\": \"https://example.com/wisdom_hub.html\"\n}\n</script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="theme-light">
 
@@ -490,7 +510,7 @@
 
 <nav class="glass-nav">
   <a href="pillar_hub.html" class="nav-brand">
-    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
       <circle cx="50" cy="50" r="40" opacity="0.5"/>
       <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
       <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
@@ -500,15 +520,15 @@
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <a href="index.html" class="nav-btn">Home</a>
     <a href="pillar_hub.html" class="nav-btn">Pillars</a>
-    <a href="wisdom_hub.html" class="nav-btn active">Wisdom Hub</a>
+    <a href="wisdom_hub.html" class="nav-btn active" aria-current="page">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
-    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">VicÄra Sannidhi</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
     </div>
   </div>
 </nav>
@@ -536,7 +556,7 @@
 <!-- Reader Modal -->
 <div id="reader-modal">
   <div class="reader-box">
-    <button onclick="closeReader()" class="reader-close">×</button>
+    <button onclick="closeReader()" class="reader-close">Ã—</button>
     <div class="reader-header">
       <div id="reader-category" class="reader-category">Category</div>
       <h2 id="reader-title" class="reader-title">Title</h2>
@@ -575,7 +595,7 @@
           title: 'The Atharvaveda of City Planning: Prana, Protection, and the Blueprint of Madurai',
           author: 'Siddha Council',
           summary: 'Explore how the Atharvaveda provides the spiritual prana (life force) and energetic shield for sacred city planning, working in tandem with the Mayamatam and Agamas.',
-          content: `<h3>The Energetic Soul of Nagara Nirmana</h3><p>While the Shilpa Shastras (like the <i>Manasara</i>) and the Agamas provide the structural and geometric blueprint (the physical anatomy and measurements), the <b>Atharvaveda</b> provides the <i>prana</i> (life force), the ritual execution, and the protective wisdom required to make that physical structure actually "alive" and divine. Without the energetic rituals of the Atharvaveda, a city built using only the Agamas would just be a mathematically perfect, but ultimately "dead" pile of stones.</p><h3>The Wisdom (The Knowing): Earth as a Living Organism</h3><p>The Atharvaveda (housing the Sthapatya Veda) teaches that land is not dead dirt, but a living, breathing organism with energy meridians (Nadīs), similar to the human body. It gives the wisdom to identify the <i>marma sthanas</i> (vital energy points) of a geographical site so that the central temple (Brahmasthana) can be placed exactly on the earth's spiritual nerve center. Furthermore, by balancing the five elements (Pancha Bhoota) in the physical geography of the city, it prevents societal decay, poverty, and discord. Deep philosophical hymns are dedicated to <b>Vastospati</b> (the deity of physical spaces), showing that a city is a shared dwelling for humans, nature, and divine forces.</p><h3>The Execution (The Doing): Shielding and Hydrology</h3><p>The Atharvaveda guides the practical execution of consecration and protection. Before building, the land must be pacified and healed using specific purification rituals (Bhoomi Pujan and Vastu Shanti), utilizing hymns like <b>Book 3, Hymn 12</b> to invoke the creator Tvastar for foundation-raising. Border protection is established through <i>Nagara Raksha</i>, utilizing Rakshoghna and Krivinashana hymns to project energetic shields at the outer walls and the four cardinal gates. Water hydrology, invoking the rain deity Parjanya, guides the digging of temple tanks (like the Potramarai Kulam in Madurai) and river alignments to ensure prosperity. Class zoning is structured under Atharvanic principles of statecraft to maintain social harmony.</p><h3>The limits & Hand-off: The Anesthetic vs the Scalpel</h3><p>To understand the Atharvaveda's effectiveness, one must also recognize its limits. It will not detail the exact width of streets, the proportions of Gopurams, or which stone to carve. For these structural measurements, it hands off to the Agamas (Kamikagama) and Shilpa Shastras (Mayamatam). Thus, the Atharvaveda behaves like the <b>anesthetic, life-support, and blessing</b> (spiritual execution) to the <b>scalpel and anatomical charts</b> (structural execution) of the Shastras. Both are mandatory to construct a living temple city.</p>`,
+          content: `<h3>The Energetic Soul of Nagara Nirmana</h3><p>While the Shilpa Shastras (like the <i>Manasara</i>) and the Agamas provide the structural and geometric blueprint (the physical anatomy and measurements), the <b>Atharvaveda</b> provides the <i>prana</i> (life force), the ritual execution, and the protective wisdom required to make that physical structure actually "alive" and divine. Without the energetic rituals of the Atharvaveda, a city built using only the Agamas would just be a mathematically perfect, but ultimately "dead" pile of stones.</p><h3>The Wisdom (The Knowing): Earth as a Living Organism</h3><p>The Atharvaveda (housing the Sthapatya Veda) teaches that land is not dead dirt, but a living, breathing organism with energy meridians (NadÄ«s), similar to the human body. It gives the wisdom to identify the <i>marma sthanas</i> (vital energy points) of a geographical site so that the central temple (Brahmasthana) can be placed exactly on the earth's spiritual nerve center. Furthermore, by balancing the five elements (Pancha Bhoota) in the physical geography of the city, it prevents societal decay, poverty, and discord. Deep philosophical hymns are dedicated to <b>Vastospati</b> (the deity of physical spaces), showing that a city is a shared dwelling for humans, nature, and divine forces.</p><h3>The Execution (The Doing): Shielding and Hydrology</h3><p>The Atharvaveda guides the practical execution of consecration and protection. Before building, the land must be pacified and healed using specific purification rituals (Bhoomi Pujan and Vastu Shanti), utilizing hymns like <b>Book 3, Hymn 12</b> to invoke the creator Tvastar for foundation-raising. Border protection is established through <i>Nagara Raksha</i>, utilizing Rakshoghna and Krivinashana hymns to project energetic shields at the outer walls and the four cardinal gates. Water hydrology, invoking the rain deity Parjanya, guides the digging of temple tanks (like the Potramarai Kulam in Madurai) and river alignments to ensure prosperity. Class zoning is structured under Atharvanic principles of statecraft to maintain social harmony.</p><h3>The limits & Hand-off: The Anesthetic vs the Scalpel</h3><p>To understand the Atharvaveda's effectiveness, one must also recognize its limits. It will not detail the exact width of streets, the proportions of Gopurams, or which stone to carve. For these structural measurements, it hands off to the Agamas (Kamikagama) and Shilpa Shastras (Mayamatam). Thus, the Atharvaveda behaves like the <b>anesthetic, life-support, and blessing</b> (spiritual execution) to the <b>scalpel and anatomical charts</b> (structural execution) of the Shastras. Both are mandatory to construct a living temple city.</p>`,
           image_url: 'flying_manuscript.png',
           created_at: '2026-06-04T00:00:00'
         },
@@ -585,7 +605,7 @@
           title: 'The Sacred Geometry of Nagara Nirmana: How the Divine Reality is Built',
           author: 'Siddha Council',
           summary: 'A deep dive into the Vastu Purusha Mandala, the 9x9 Paramasayika grid, and the living lotus geometry of Madurai Sthalam.',
-          content: `<h3>The Sacred Texts of Nagara Nirmana</h3><p>While the term 'Samhita' broadly refers to compendiums or collections of knowledge, the rules for building a divine city are found across Shilpa Shastras (architectural manuals), Agamas (temple and societal codes), and Puranic Samhitas.</p><h4>A. The Shilpa Shastras (The Architectural Manuals)</h4><ul><li><b>Manasara (Manasara Shilpa Shastra):</b> This is the ultimate encyclopedia of Vastu. It contains a specific section called Nagara Vidhana (Rules for Towns). It categorizes settlements into eight types (from a small village to a massive capital city) and explains how to lay out the Vastu Purusha Mandala (the cosmic grid) to ensure the city aligns with solar and magnetic energies.</li><li><b>Mayamatam (Mayamata):</b> Attributed to the divine architect Maya Danava, this text is the absolute authority on Dravidian (South Indian) architecture. It meticulously details how to build temple cities, the exact dimensions of streets, and the zoning of different castes and professions around the central temple.</li><li><b>Samarangana Sutradhara:</b> Written by King Bhoja (11th century), this text deals extensively with Nagara (city) planning, focusing on royal capitals, the layout of the central palace/temple, and the aesthetic geometry of the city.</li><li><b>Aparajita Priccha:</b> A 12th-century text formatted as a dialogue. It contains exhaustive details on town planning, street widths (Rajamarga), drainage, and the placement of markets and guilds.</li></ul><h4>B. The Samhitas and Puranas</h4><ul><li><b>Brihat Samhita (by Varahamihira):</b> Chapter 53 (Vastu-vidya) provides rules for selecting land, testing soil, and laying out the grid for a city. It dictates that a city should be shaped like a square, rectangle, or circle, with the primary deity at the exact center.</li><li><b>Vishnudharmottara Purana:</b> Contains chapters dedicated to Nagara Nirmana, emphasizing that a city must be protected by water bodies (moats/rivers) and walls, with the temple acting as the spiritual anchor.</li><li><b>Agni Purana & Matsya Purana:</b> Both contain detailed encyclopedic chapters on town planning, specifying the widths of concentric streets and the placement of different social classes (Varnas) based on their proximity to the divine center.</li></ul><h4>C. The Agamas (The Living Codes of the Temple City)</h4><ul><li><b>Kamikagama, Karanagama, and Suprabhedagama:</b> In South India, the Agamas are the supreme law. They do not just dictate how to carve the deity; they dictate how the entire town must be built around the deity. They prescribe the Prakaras (concentric rectangular walls and streets) that protect the sanctum from the chaotic energies of the outside world.</li></ul><h3>The Blueprint: How the 'Divine Reality' is Built</h3><p>According to these texts, a divine city is built using the Vastu Purusha Mandala. For a major city, a grid of 81 squares (9x9), known as the <b>Paramasayika mandala</b>, is drawn on the earth.</p><ul><li><b>The Brahmasthana (The Divine Center):</b> The central squares of the grid are the Brahmasthana (the seat of the Creator). This area is considered pure consciousness. No mortal is allowed to live here. It is exclusively reserved for the main Temple. This is the anchor of the city.</li><li><b>The Prakaras (The Concentric Layers):</b> As you move outward from the Brahmasthana, the energy transitions from pure spirit to pure matter. The city is built in concentric rectangular or circular layers.</li><li><b>The Zoning of Samsara (Worldly Life):</b><ul><li><i>Inner Ring:</i> Priests, Vedic scholars, and ascetics (Sattvic lifestyle, closest to the divine).</li><li><i>Middle Ring:</i> Rulers, warriors, merchants, and artisans (Rajasic lifestyle, the engine of society).</li><li><i>Outer Ring:</i> Agriculture, heavy industries, and labor (Tamasic/Earthly lifestyle).</li><li><i>The Periphery:</i> Cremation grounds and specific polluting industries (like tanneries) are placed far outside the city gates to protect the spiritual purity of the center.</li></ul></li></ul><h3>The Ultimate Example: Madurai Sthalam</h3><p>Madurai is the flawless, living embodiment of the Mayamatam and the Agamas. It is known in the texts as a <b>Padma Vana</b> (Lotus Forest) or <b>Kudal</b> (The Confluence).</p><ul><li><b>The Center (The Pistil of the Lotus):</b> At the absolute Brahmasthana sits the Meenakshi Sundareswarar Temple. Shiva (Sundareswarar) represents pure, formless Consciousness, and Shakti (Meenakshi) represents the dynamic Energy of the universe. They are the still point of the turning world.</li><li><b>The Streets (The Petals of the Lotus):</b> Radiating outward from the temple are concentric rectangular streets, named after the Tamil months: Chitrai Veedhi (Innermost), Aavani Moola Veedhi, Masi Veedhi, and Aadi Veedhi (Outermost).</li><li><b>The Transformation of Samsara into Dharma:</b> In a modern city, the center is usually a bank, a mall, or a corporate plaza (representing greed and commerce). In Madurai, the center is the Divine. Because the streets wrap around the temple, every time a citizen walks to the market, goes to school, or visits a friend, they are inherently performing Pradakshina (circumambulation) of God. Samsara (worldly life) is not opposed to spirituality; it physically revolves around it. The commerce of the outer streets is protected and sanctified by the stillness of the inner sanctum.</li><li><b>The Water Element:</b> The texts demand a water body for purification. Madurai is built on the banks of the Vaigai River, and the temple itself houses the Potramarai Kulam (Golden Lotus Tank), which historically served as the Sangam (the supreme academy of Tamil literature and spirituality).</li></ul><h3>Summary: Environment Dictates Consciousness</h3><p>The ancient texts of Nagara Nirmana realized a profound psychological and spiritual truth: Environment dictates consciousness. If you build a city with a shopping mall at the center, the society revolves around consumption. If you build a city with a stock exchange at the center, the society revolves around wealth. But if you build the city like Madurai—with the Temple (the symbol of eternal truth and inner peace) at the absolute center—then the entire society, no matter how busy their Samsara gets, is always held in the loving, gravitational embrace of the Divine.</p>`,
+          content: `<h3>The Sacred Texts of Nagara Nirmana</h3><p>While the term 'Samhita' broadly refers to compendiums or collections of knowledge, the rules for building a divine city are found across Shilpa Shastras (architectural manuals), Agamas (temple and societal codes), and Puranic Samhitas.</p><h4>A. The Shilpa Shastras (The Architectural Manuals)</h4><ul><li><b>Manasara (Manasara Shilpa Shastra):</b> This is the ultimate encyclopedia of Vastu. It contains a specific section called Nagara Vidhana (Rules for Towns). It categorizes settlements into eight types (from a small village to a massive capital city) and explains how to lay out the Vastu Purusha Mandala (the cosmic grid) to ensure the city aligns with solar and magnetic energies.</li><li><b>Mayamatam (Mayamata):</b> Attributed to the divine architect Maya Danava, this text is the absolute authority on Dravidian (South Indian) architecture. It meticulously details how to build temple cities, the exact dimensions of streets, and the zoning of different castes and professions around the central temple.</li><li><b>Samarangana Sutradhara:</b> Written by King Bhoja (11th century), this text deals extensively with Nagara (city) planning, focusing on royal capitals, the layout of the central palace/temple, and the aesthetic geometry of the city.</li><li><b>Aparajita Priccha:</b> A 12th-century text formatted as a dialogue. It contains exhaustive details on town planning, street widths (Rajamarga), drainage, and the placement of markets and guilds.</li></ul><h4>B. The Samhitas and Puranas</h4><ul><li><b>Brihat Samhita (by Varahamihira):</b> Chapter 53 (Vastu-vidya) provides rules for selecting land, testing soil, and laying out the grid for a city. It dictates that a city should be shaped like a square, rectangle, or circle, with the primary deity at the exact center.</li><li><b>Vishnudharmottara Purana:</b> Contains chapters dedicated to Nagara Nirmana, emphasizing that a city must be protected by water bodies (moats/rivers) and walls, with the temple acting as the spiritual anchor.</li><li><b>Agni Purana & Matsya Purana:</b> Both contain detailed encyclopedic chapters on town planning, specifying the widths of concentric streets and the placement of different social classes (Varnas) based on their proximity to the divine center.</li></ul><h4>C. The Agamas (The Living Codes of the Temple City)</h4><ul><li><b>Kamikagama, Karanagama, and Suprabhedagama:</b> In South India, the Agamas are the supreme law. They do not just dictate how to carve the deity; they dictate how the entire town must be built around the deity. They prescribe the Prakaras (concentric rectangular walls and streets) that protect the sanctum from the chaotic energies of the outside world.</li></ul><h3>The Blueprint: How the 'Divine Reality' is Built</h3><p>According to these texts, a divine city is built using the Vastu Purusha Mandala. For a major city, a grid of 81 squares (9x9), known as the <b>Paramasayika mandala</b>, is drawn on the earth.</p><ul><li><b>The Brahmasthana (The Divine Center):</b> The central squares of the grid are the Brahmasthana (the seat of the Creator). This area is considered pure consciousness. No mortal is allowed to live here. It is exclusively reserved for the main Temple. This is the anchor of the city.</li><li><b>The Prakaras (The Concentric Layers):</b> As you move outward from the Brahmasthana, the energy transitions from pure spirit to pure matter. The city is built in concentric rectangular or circular layers.</li><li><b>The Zoning of Samsara (Worldly Life):</b><ul><li><i>Inner Ring:</i> Priests, Vedic scholars, and ascetics (Sattvic lifestyle, closest to the divine).</li><li><i>Middle Ring:</i> Rulers, warriors, merchants, and artisans (Rajasic lifestyle, the engine of society).</li><li><i>Outer Ring:</i> Agriculture, heavy industries, and labor (Tamasic/Earthly lifestyle).</li><li><i>The Periphery:</i> Cremation grounds and specific polluting industries (like tanneries) are placed far outside the city gates to protect the spiritual purity of the center.</li></ul></li></ul><h3>The Ultimate Example: Madurai Sthalam</h3><p>Madurai is the flawless, living embodiment of the Mayamatam and the Agamas. It is known in the texts as a <b>Padma Vana</b> (Lotus Forest) or <b>Kudal</b> (The Confluence).</p><ul><li><b>The Center (The Pistil of the Lotus):</b> At the absolute Brahmasthana sits the Meenakshi Sundareswarar Temple. Shiva (Sundareswarar) represents pure, formless Consciousness, and Shakti (Meenakshi) represents the dynamic Energy of the universe. They are the still point of the turning world.</li><li><b>The Streets (The Petals of the Lotus):</b> Radiating outward from the temple are concentric rectangular streets, named after the Tamil months: Chitrai Veedhi (Innermost), Aavani Moola Veedhi, Masi Veedhi, and Aadi Veedhi (Outermost).</li><li><b>The Transformation of Samsara into Dharma:</b> In a modern city, the center is usually a bank, a mall, or a corporate plaza (representing greed and commerce). In Madurai, the center is the Divine. Because the streets wrap around the temple, every time a citizen walks to the market, goes to school, or visits a friend, they are inherently performing Pradakshina (circumambulation) of God. Samsara (worldly life) is not opposed to spirituality; it physically revolves around it. The commerce of the outer streets is protected and sanctified by the stillness of the inner sanctum.</li><li><b>The Water Element:</b> The texts demand a water body for purification. Madurai is built on the banks of the Vaigai River, and the temple itself houses the Potramarai Kulam (Golden Lotus Tank), which historically served as the Sangam (the supreme academy of Tamil literature and spirituality).</li></ul><h3>Summary: Environment Dictates Consciousness</h3><p>The ancient texts of Nagara Nirmana realized a profound psychological and spiritual truth: Environment dictates consciousness. If you build a city with a shopping mall at the center, the society revolves around consumption. If you build a city with a stock exchange at the center, the society revolves around wealth. But if you build the city like Maduraiâ€”with the Temple (the symbol of eternal truth and inner peace) at the absolute centerâ€”then the entire society, no matter how busy their Samsara gets, is always held in the loving, gravitational embrace of the Divine.</p>`,
           image_url: 'sacred_city.png',
           created_at: '2026-06-04T00:00:00'
         },
@@ -605,14 +625,14 @@
           title: 'The Descent of the Astra: Parashurama\'s Mahendra Training',
           author: 'Siddha Tradition',
           summary: 'Explore the legends of Mount Mahendra, where Sage Parashurama initiated warriors into higher dimensions of weapon acoustics.',
-          content: `<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (Śāstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>`,
+          content: `<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (ÅšÄstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>`,
           image_url: 'ancient_weapons.png',
           created_at: '2026-05-28T00:00:00'
         },
         {
           id: 3,
           category: 'magazine',
-          title: 'Era of Siddhas Magazine — Issue I: Resonating Temple Cities',
+          title: 'Era of Siddhas Magazine â€” Issue I: Resonating Temple Cities',
           author: 'Siddha Editorial',
           summary: 'Our launch edition covering Vastu Purusha Mandala layouts, town thermodynamic principles, and spiritual architecture.',
           content: `<p>Welcome to the first edition of the Era of Siddhas Magazine. In this edition, we examine the ancient town planning models outlined in the Samarangana Sutradhara. By setting the thermodynamic grids and central space (Brahma Sthana) open to the sky, ancient architects created natural cooling drafts that kept temples comfortable during harsh monsoons.</p><p>We also discuss how these concepts are being implemented in modern eco-villages and sustainable residential plans to restore the connection between human dwelling and nature.</p>`,
@@ -696,7 +716,7 @@
 
     document.getElementById('reader-category').innerText = categoryLabels[art.category] || art.category.toUpperCase();
     document.getElementById('reader-title').innerText = art.title;
-    document.getElementById('reader-meta').innerText = `By ${art.author} · Published on ${new Date(art.created_at).toLocaleDateString('en-IN')}`;
+    document.getElementById('reader-meta').innerText = `By ${art.author} Â· Published on ${new Date(art.created_at).toLocaleDateString('en-IN')}`;
     document.getElementById('reader-content').innerHTML = art.content;
     document.getElementById('reader-modal').style.display = 'flex';
     bindCursorEvents();
@@ -734,13 +754,18 @@
     document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
     document.body.classList.add(themeName);
     localStorage.setItem('era_of_siddhas_theme', themeName);
-    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
     if (btnElement) {
       btnElement.classList.add('active');
+      btnElement.setAttribute('aria-pressed', 'true');
     } else {
       document.querySelectorAll('.theme-btn').forEach(btn => {
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
           btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
         }
       });
     }
@@ -752,5 +777,19 @@
     setTheme(null, initialTheme);
   });
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
