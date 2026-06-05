@@ -476,6 +476,33 @@
     overflow: visible !important;
     clip: auto !important;
   }
+
+  /* AI Disclosure styling */
+  .ai-disclosure {
+    background: var(--bg-secondary);
+    border: 1px dashed var(--border-glass);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .ai-disclosure summary {
+    font-family: 'Cinzel', serif;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--gold-bright);
+    outline: none;
+    user-select: none;
+    margin-bottom: 0.5rem;
+  }
+  .ai-disclosure[open] summary {
+    margin-bottom: 1rem;
+  }
+  .ai-disclosure p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
+  }
 </style>
 <script src="js/api.js" defer></script>
   <meta name="description" content="Era of Siddhas – A Vedic Gurukula platform integrating ancient Indian knowledge systems with modern STEM education."/>
@@ -517,6 +544,8 @@
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="vicara_sannidhi.html" class="nav-btn active" aria-current="page">Vicāra Sannidhi</a>
+    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="about.html" class="nav-btn">About</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
@@ -574,6 +603,15 @@
         <textarea id="reflection-textarea" placeholder="Reflect upon this. The Gurukulam is listening..." style="flex: 1; margin-bottom: 0; min-height: 80px;"></textarea>
         <button class="submit-btn" id="send-chat-btn" onclick="sendChatMessage()" style="padding: 18px 30px; height: 80px; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; letter-spacing: 0.1em; white-space: nowrap;">Reflect</button>
       </div>
+
+      <!-- AI Disclosure -->
+      <details class="ai-disclosure">
+        <summary>🤖 About the Guru AI</summary>
+        <p><strong>Model:</strong> This Socratic dialogue uses a large language model (LLM) with Retrieval-Augmented Generation (RAG) grounded in verified scriptural sources.</p>
+        <p><strong>Limitations:</strong> The AI may occasionally generate inaccurate interpretations. All scriptural claims should be verified against primary texts.</p>
+        <p><strong>Privacy:</strong> Your reflections are stored locally and on our server. They are never shared with third parties or used for model training.</p>
+        <p><strong>Human Review:</strong> Published reflections may be reviewed by the Gurukula advisory council.</p>
+      </details>
     </div>
   </div>
 
