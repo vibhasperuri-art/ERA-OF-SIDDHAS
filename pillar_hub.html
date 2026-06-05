@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -6,11 +6,11 @@
 <meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Era of Siddhas — The Three Pillars</title>
+<title>Era of Siddhas â€” The Three Pillars</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="js/api.js"></script>
+<script src="js/api.js" defer></script>
 <style>
   :root, body.theme-fierce {
     --bg:         #0a000000;
@@ -405,7 +405,27 @@
   body.custom-cursor-active .custom-cursor-ring {
     opacity: 1 !important;
   }
+
+  /* Accessible Skip-Link styling */
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1, #1a0505);
+    color: var(--gold-bright, #ff4d4d);
+    padding: 10px 20px;
+    border: 2px solid var(--gold, #b52a2a);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
 </style>
+<script type=\"application/ld+json\">
+{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CreativeWork\",\n  \"name\": \"Era of Siddhas â€” The Three Pillars\",\n  \"description\": \"Educational content about the Vedic Siddha tradition and its integration with modern science.\",\n  \"url\": \"https://example.com/pillar_hub.html\"\n}\n</script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="theme-fierce">
 
@@ -416,16 +436,16 @@
   <div class="logo">Era of Siddhas</div>
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <a href="index.html" class="nav-btn">Home</a>
-    <a href="pillar_hub.html" class="nav-btn active">Pillars</a>
+    <a href="pillar_hub.html" class="nav-btn active" aria-current="page">Pillars</a>
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
-    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">VicÄra Sannidhi</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
     </div>
   </div>
 </header>
@@ -442,7 +462,7 @@
       <div class="pillar-number">I</div>
       <div class="pillar-content">
         <h2 class="pillar-title">Nagara Nirmana</h2>
-        <div class="pillar-sanskrit">नगर निर्माण · City Building</div>
+        <div class="pillar-sanskrit">à¤¨à¤—à¤° à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£ Â· City Building</div>
         <p class="pillar-desc">
           Designing spaces where the divine is reality. Actions dedicated to Bhagavan and Loka Sangraha.
         </p>
@@ -464,13 +484,13 @@
     </a>
 
     <!-- RAJYA PALANAM CARD -->
-    <a href="course_hub.html?pillar=rājya" class="pillar-card">
+    <a href="course_hub.html?pillar=rÄjya" class="pillar-card">
       <div class="pillar-number">II</div>
       <div class="pillar-content">
-        <h2 class="pillar-title">Rājya Palanam</h2>
-        <div class="pillar-sanskrit">राज्य पालनम् · Governance</div>
+        <h2 class="pillar-title">RÄjya Palanam</h2>
+        <div class="pillar-sanskrit">à¤°à¤¾à¤œà¥à¤¯ à¤ªà¤¾à¤²à¤¨à¤®à¥ Â· Governance</div>
         <p class="pillar-desc">
-          The profound constituency and way of ruling to lead the world toward the ultimate goal of Rama Rājyam.
+          The profound constituency and way of ruling to lead the world toward the ultimate goal of Rama RÄjyam.
         </p>
         <ul class="benefits-list">
           <li class="benefit-item">
@@ -494,7 +514,7 @@
       <div class="pillar-number">III</div>
       <div class="pillar-content">
         <h2 class="pillar-title">Yuddham</h2>
-        <div class="pillar-sanskrit">युद्धम् · The Martial Path</div>
+        <div class="pillar-sanskrit">à¤¯à¥à¤¦à¥à¤§à¤®à¥ Â· The Martial Path</div>
         <p class="pillar-desc">
           The science of conflict, Neeti, and protection of Dharma. Master the internal and external battlefield.
         </p>
@@ -556,13 +576,18 @@
     document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
     document.body.classList.add(themeName);
     localStorage.setItem('era_of_siddhas_theme', themeName);
-    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
     if (btnElement) {
       btnElement.classList.add('active');
+      btnElement.setAttribute('aria-pressed', 'true');
     } else {
       document.querySelectorAll('.theme-btn').forEach(btn => {
         if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
           btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
         }
       });
     }
@@ -572,5 +597,19 @@
   const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   setTheme(null, initialTheme);
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
