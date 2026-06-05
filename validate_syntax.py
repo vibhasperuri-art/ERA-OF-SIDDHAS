@@ -54,7 +54,9 @@ html_files = [
     "chanting.html",
     "pillar_hub.html",
     "vicara_sannidhi.html",
-    "wisdom_hub.html"
+    "wisdom_hub.html",
+    "glossary.html",
+    "about.html"
 ]
 
 all_ok = True
