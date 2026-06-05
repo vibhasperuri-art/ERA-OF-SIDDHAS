@@ -1,0 +1,17 @@
+﻿{
+  "name": "Era of Siddhas â€” The Gurukulam",
+  "short_name": "Siddhas",
+  "description": "Vedic Gurukula platform integrating ancient Indian knowledge systems with modern STEM education.",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0a0000",
+  "theme_color": "#b52a2a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "sacred_city.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
