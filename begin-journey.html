@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Begin Your Journey — Era of Siddhas</title>
+<title>Begin Your Journey â€” Era of Siddhas</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Sans+Devanagari:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -115,7 +115,7 @@
   }
 
   /* MANDALA bg */
-  .maṇḍala-bg {
+  .maá¹‡á¸ala-bg {
     position: fixed;
     inset: 0;
     display: flex;
@@ -125,7 +125,7 @@
     z-index: 0;
     opacity: 0.035;
   }
-  .maṇḍala-bg svg { width: 90vmin; height: 90vmin; animation: spin 120s linear infinite; }
+  .maá¹‡á¸ala-bg svg { width: 90vmin; height: 90vmin; animation: spin 120s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   /* QUESTION SCREENS */
@@ -376,15 +376,35 @@
     --border-glass: rgba(139, 69, 19, 0.18);
     --bg-glass: rgba(237, 229, 208, 0.85);
   }
+
+  /* Accessible Skip-Link styling */
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1, #1a0505);
+    color: var(--gold-bright, #ff4d4d);
+    padding: 10px 20px;
+    border: 2px solid var(--gold, #b52a2a);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
 </style>
-<script src="js/api.js"></script>
+<script src="js/api.js" defer></script>
+<script type=\"application/ld+json\">
+{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CreativeWork\",\n  \"name\": \"Begin Your Journey â€” Era of Siddhas\",\n  \"description\": \"Educational content about the Vedic Siddha tradition and its integration with modern science.\",\n  \"url\": \"https://example.com/begin-journey.html\"\n}\n</script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body>
 
 <!-- TOP BAR -->
 <div class="top-bar">
   <a href="index.html" class="top-logo">Era of Siddhas</a>
-  <div class="step-dots" id="stepDots">
+  <div class="step-dots" id="stepDots" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="5" aria-valuetext="Step 1 of 5: Awakening">
     <div class="step-dot active" id="dot0"></div>
     <div class="step-dot" id="dot1"></div>
     <div class="step-dot" id="dot2"></div>
@@ -395,8 +415,8 @@
 </div>
 
 <!-- MANDALA BACKGROUND -->
-<div class="maṇḍala-bg">
-  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<div class="maá¹‡á¸ala-bg">
+  <svg aria-hidden="true" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
     <circle cx="100" cy="100" r="95" fill="none" stroke="#c8922a" stroke-width="0.3"/>
     <circle cx="100" cy="100" r="75" fill="none" stroke="#c8922a" stroke-width="0.3"/>
     <circle cx="100" cy="100" r="55" fill="none" stroke="#c8922a" stroke-width="0.3"/>
@@ -408,7 +428,7 @@
 
 <!-- SCREEN 0: COSMIC INTRO -->
 <div class="screen active" id="screen0" style="position:relative; z-index:1;">
-  <div class="cosmic-devanagari">॥ अथातो ब्रह्मजिज्ञासा ॥</div>
+  <div class="cosmic-devanagari">à¥¥ à¤…à¤¥à¤¾à¤¤à¥‹ à¤¬à¥à¤°à¤¹à¥à¤®à¤œà¤¿à¤œà¥à¤žà¤¾à¤¸à¤¾ à¥¥</div>
   <h1 class="cosmic-title">Now, the inquiry into Brahman begins.</h1>
   <p class="cosmic-body">Before entering the Gurukula, you must establish your starting ground. This questionnaire maps your interests, academic grade, daily routines, and worldview to customize your curriculum path.</p>
   <div class="gold-divider"></div>
@@ -420,7 +440,7 @@
 <!-- SCREEN 1: SEEKER DETAILS -->
 <div class="screen" id="screen1">
   <div class="question-wrap fade-in">
-    <div class="q-label">Step 1 of 3 — Seeker Identity</div>
+    <div class="q-label">Step 1 of 3 â€” Seeker Identity</div>
     <div class="q-text">Establish your persona inside the Gurukula.</div>
     
     <div class="form-group">
@@ -440,7 +460,7 @@
       <select id="interest-in" class="q-select">
         <option value="" disabled selected>Select an interest...</option>
         <option value="Nagara">Nagara Nirmana (Sacred Cities & Fractal Urbanism)</option>
-        <option value="Rajya">Rājya Pālanam (Governance, Ecology & Economics)</option>
+        <option value="Rajya">RÄjya PÄlanam (Governance, Ecology & Economics)</option>
         <option value="Yuddham">Yuddha Upasana (Martial Science & Deterrence)</option>
         <option value="Yoga">Breathing Sciences & Cosmic Wave Resonance</option>
       </select>
@@ -462,7 +482,7 @@
 <!-- SCREEN 2: ACADEMIC LEVEL & IDEOLOGY -->
 <div class="screen" id="screen2">
   <div class="question-wrap fade-in">
-    <div class="q-label">Step 2 of 3 — Academic Level & Worldview</div>
+    <div class="q-label">Step 2 of 3 â€” Academic Level & Worldview</div>
     <div class="q-text">Establish your study depth parameters.</div>
 
     <div class="form-group">
@@ -496,7 +516,7 @@
 <!-- SCREEN 3: DINACHARYA (DAILY ROUTINE) -->
 <div class="screen" id="screen3">
   <div class="question-wrap fade-in">
-    <div class="q-label">Step 3 of 3 — Daily Routine & Dinacharya</div>
+    <div class="q-label">Step 3 of 3 â€” Daily Routine & Dinacharya</div>
     <div class="q-text">Input your schedule to receive Dinacharya optimization guidelines.</div>
 
     <div class="form-group">
@@ -543,7 +563,7 @@
 <!-- SCREEN 4: RESULTS & DINACHARYA INSIGHTS -->
 <div class="screen" id="screen4">
   <div id="resultContent" class="fade-in" style="width: 100%; max-width: 620px;">
-    <div class="result-badge" id="resultBadge">शि</div>
+    <div class="result-badge" id="resultBadge">à¤¶à¤¿</div>
     <div class="result-level" id="resultLevel">Shishya</div>
     <div class="result-sublevel" id="resultSublevel">The Earnest Seeker</div>
     <div class="gold-divider"></div>
@@ -554,7 +574,7 @@
 
     <div class="insights-card">
       <div class="insights-title">
-        <span>🧘</span> Dinacharya Daily Schedule Insights
+        <span>ðŸ§˜</span> Dinacharya Daily Schedule Insights
       </div>
       <div class="insights-list" id="insightsList">
         <!-- Dynamically filled with Vedic-Scientific Schedule analysis -->
@@ -562,7 +582,7 @@
     </div>
 
     <div class="btn-row">
-      <button onclick="enterGurukula()" class="btn-primary" id="enterGurukulaBtn">Enter the Gurukula →</button>
+      <button onclick="enterGurukula()" class="btn-primary" id="enterGurukulaBtn">Enter the Gurukula â†’</button>
     </div>
   </div>
 </div>
@@ -579,6 +599,11 @@
       if (i === n) d.classList.add('active');
     });
     document.getElementById('stepLabel').textContent = stepLabels[n];
+    const dotsEl = document.getElementById('stepDots');
+    if (dotsEl) {
+      dotsEl.setAttribute('aria-valuenow', n + 1);
+      dotsEl.setAttribute('aria-valuetext', 'Step ' + (n + 1) + ' of 5: ' + stepLabels[n]);
+    }
     window.scrollTo(0, 0);
   }
 
@@ -676,13 +701,13 @@
 
     // Determine seek level details
     const levels = {
-      primary: { badge: 'मु', level: 'Mumukshu', sub: 'The Foundation Seeker',
+      primary: { badge: 'à¤®à¥', level: 'Mumukshu', sub: 'The Foundation Seeker',
                  path: ['Simple Shastra Analogies & Visual Stories', 'Basic breathing cycle exercises', 'No complex equations (story-based science)', 'Checkmark indicators unlocked'] },
-      secondary: { badge: 'शि', level: 'Shishya', sub: 'The Earnest Student',
+      secondary: { badge: 'à¤¶à¤¿', level: 'Shishya', sub: 'The Earnest Student',
                  path: ['Concentric Shloka Reference Maps', 'Intermediate step-by-step math solver', 'Autonomic neuroscience & basic wave acoustics', 'Saptanga & Geopolitical dashboard simulations'] },
-      ug: { badge: 'साध', level: 'Sadhaka', sub: 'The Disciplined Practitioner',
+      ug: { badge: 'à¤¸à¤¾à¤§', level: 'Sadhaka', sub: 'The Disciplined Practitioner',
                  path: ['Advanced Darshana & Sanskrit Word-by-word Anvaya', 'Complete Systemic Equations Solver', 'Fractal Dimension & Pascal-Vastu architectural math', 'Diplomatic scenario dilemmas'] },
-      phd: { badge: 'सि', level: 'Siddha', sub: 'Higher Knowledge (PhD)',
+      phd: { badge: 'à¤¸à¤¿', level: 'Siddha', sub: 'Higher Knowledge (PhD)',
                  path: ['Full Devanagari, Transliteration, Anvaya & Translation', 'Scholarly computational notes (Lyapunov stability & Congruence sieves)', 'Fractal analysis of town layout blueprints', 'Ayadi structural acoustics modes solver'] }
     };
 
@@ -698,7 +723,7 @@
 
     const pathHTML = data.path.map(p => `
       <div class="result-path-item">
-        <span class="result-path-check">✦</span>
+        <span class="result-path-check">âœ¦</span>
         <span>${p}</span>
       </div>`).join('');
     
@@ -712,29 +737,29 @@
 
     // 1. Wake Time Analysis
     if (wake.includes("Brahma Muhurta")) {
-      insights.push(`🌅 <strong>Wake Time (Excellent):</strong> Waking before 5:30 AM capitalizes on the high atmospheric concentration of nascent oxygen (Prana Vayu) and high geomagnetic stability. This stimulates the pineal gland and optimizes morning neural cognitive load.`);
+      insights.push(`ðŸŒ… <strong>Wake Time (Excellent):</strong> Waking before 5:30 AM capitalizes on the high atmospheric concentration of nascent oxygen (Prana Vayu) and high geomagnetic stability. This stimulates the pineal gland and optimizes morning neural cognitive load.`);
     } else if (wake.includes("Sunrise window")) {
-      insights.push(`🌅 <strong>Wake Time (Sub-optimal):</strong> Waking during sunrise (5:30 - 6:30 AM) is decent, but misses the peak concentration of silent morning atmospheric field. Try shifting 30 minutes earlier into the Brahma Muhurta zone.`);
+      insights.push(`ðŸŒ… <strong>Wake Time (Sub-optimal):</strong> Waking during sunrise (5:30 - 6:30 AM) is decent, but misses the peak concentration of silent morning atmospheric field. Try shifting 30 minutes earlier into the Brahma Muhurta zone.`);
     } else {
-      insights.push(`🌅 <strong>Wake Time (Alert!):</strong> Waking after 6:30 AM aligns your waking state with high cortisol delay, reducing active daytime attention levels. According to Ayurveda, waking up after Kapha-dosha starts (6:00 AM onwards) generates physical lethargy (Tamas).`);
+      insights.push(`ðŸŒ… <strong>Wake Time (Alert!):</strong> Waking after 6:30 AM aligns your waking state with high cortisol delay, reducing active daytime attention levels. According to Ayurveda, waking up after Kapha-dosha starts (6:00 AM onwards) generates physical lethargy (Tamas).`);
     }
 
     // 2. Sleep Time Analysis
     if (sleep.includes("Optimal cellular recovery")) {
-      insights.push(`🌙 <strong>Sleep Time (Perfect):</strong> Sleeping before 10:00 PM aligns with the natural circadian reduction in solar heat, allowing your body to enter deep non-REM recovery when metabolic heat shifts to hepatic detoxification (Pitta phase).`);
+      insights.push(`ðŸŒ™ <strong>Sleep Time (Perfect):</strong> Sleeping before 10:00 PM aligns with the natural circadian reduction in solar heat, allowing your body to enter deep non-REM recovery when metabolic heat shifts to hepatic detoxification (Pitta phase).`);
     } else if (sleep.includes("Circadian limit")) {
-      insights.push(`🌙 <strong>Sleep Time (Acceptable):</strong> Sleeping between 10:00 - 11:00 PM is close to the circadian limit. Ensure you shut off screen blue-light by 9:30 PM to avoid delaying melatonin secretion.`);
+      insights.push(`ðŸŒ™ <strong>Sleep Time (Acceptable):</strong> Sleeping between 10:00 - 11:00 PM is close to the circadian limit. Ensure you shut off screen blue-light by 9:30 PM to avoid delaying melatonin secretion.`);
     } else {
-      insights.push(`🌙 <strong>Sleep Time (Alert!):</strong> Retaining activity past 11:00 PM spikes sympathetic fight-or-flight parameters (Pitta disturbance). This decreases sleep depth, disrupts blood glucose cycles, and fragments neural detoxification. Shift bedtime to 10:30 PM.`);
+      insights.push(`ðŸŒ™ <strong>Sleep Time (Alert!):</strong> Retaining activity past 11:00 PM spikes sympathetic fight-or-flight parameters (Pitta disturbance). This decreases sleep depth, disrupts blood glucose cycles, and fragments neural detoxification. Shift bedtime to 10:30 PM.`);
     }
 
     // 3. Study hours Analysis
     if (study.includes("Morning Peak")) {
-      insights.push(`📚 <strong>Study Window (Optimal):</strong> Studying in the morning (6:00 - 10:00 AM) matches the natural state of mental clarity (Sattva) and peak cognitive absorption. Perfect for reviewing core philosophical and scientific principles.`);
+      insights.push(`ðŸ“š <strong>Study Window (Optimal):</strong> Studying in the morning (6:00 - 10:00 AM) matches the natural state of mental clarity (Sattva) and peak cognitive absorption. Perfect for reviewing core philosophical and scientific principles.`);
     } else if (study.includes("Afternoon Peak")) {
-      insights.push(`📚 <strong>Study Window (Moderate):</strong> Afternoon studying is suitable for active work (simulations, layout planning) but is sub-optimal for dense text memory retention compared to the morning.`);
+      insights.push(`ðŸ“š <strong>Study Window (Moderate):</strong> Afternoon studying is suitable for active work (simulations, layout planning) but is sub-optimal for dense text memory retention compared to the morning.`);
     } else {
-      insights.push(`📚 <strong>Study Window (Alert!):</strong> Late night study under artificial light increases visual stress and interferes with sleep preparation. Move high-cognition study sessions to morning hours for 2x faster memory encoding.`);
+      insights.push(`ðŸ“š <strong>Study Window (Alert!):</strong> Late night study under artificial light increases visual stress and interferes with sleep preparation. Move high-cognition study sessions to morning hours for 2x faster memory encoding.`);
     }
 
     document.getElementById('insightsList').innerHTML = insights.map(ins => `<div>${ins}</div>`).join('');
@@ -776,5 +801,19 @@
   const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
   document.body.classList.add(initialTheme);
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
