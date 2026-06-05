@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Sangha Hub — Era of Siddhas</title>
+<title>The Sangha Hub â€” Era of Siddhas</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root, body.theme-mystical {
@@ -62,7 +62,7 @@
     --glow: rgba(200, 146, 42, 0.15);
   }
 
-  /* ── ANCIENT RASA GRAPHICS (THEME WATERMARKS) ── */
+  /* â”€â”€ ANCIENT RASA GRAPHICS (THEME WATERMARKS) â”€â”€ */
   body::before {
     content: '';
     position: fixed;
@@ -426,8 +426,28 @@
     }
   }
 
+
+  /* Accessible Skip-Link styling */
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1, #1a0505);
+    color: var(--gold-bright, #ff4d4d);
+    padding: 10px 20px;
+    border: 2px solid var(--gold, #b52a2a);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
 </style>
-<script src="js/api.js"></script>
+<script src="js/api.js" defer></script>
+<script type=\"application/ld+json\">
+{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CreativeWork\",\n  \"name\": \"The Sangha Hub â€” Era of Siddhas\",\n  \"description\": \"Educational content about the Vedic Siddha tradition and its integration with modern science.\",\n  \"url\": \"https://example.com/sangha.html\"\n}\n</script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="theme-light">
 
@@ -437,7 +457,7 @@
 
 <nav class="glass-nav">
   <a href="pillar_hub.html" class="nav-brand">
-    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4" style="margin-right:8px;">
       <circle cx="50" cy="50" r="40" opacity="0.5"/>
       <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
       <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
@@ -448,14 +468,14 @@
     <a href="index.html" class="nav-btn">Home</a>
     <a href="pillar_hub.html" class="nav-btn">Pillars</a>
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
-    <a href="sangha.html" class="nav-btn active">The Sangha</a>
-    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="sangha.html" class="nav-btn active" aria-current="page">The Sangha</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">VicÄra Sannidhi</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
-      <button class="theme-btn active" onclick="setTheme(this, 'theme-light')">Parchment</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+      <button class="theme-btn active" onclick="setTheme(this, 'theme-light')" aria-pressed="true" aria-label="Switch theme to Parchment">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
     </div>
   </div>
 </nav>
@@ -469,13 +489,13 @@
     <div class="card">
       <div class="section-title">Share with the Sangha</div>
       <form id="post-form" onsubmit="postToSangha(event)">
-        <textarea id="post-text" placeholder="Share your Sādhana milestone, Socratic reflection, or treatise insights..."></textarea>
+        <textarea id="post-text" placeholder="Share your SÄdhana milestone, Socratic reflection, or treatise insights..."></textarea>
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
           <div>
             <select id="post-category">
               <option value="General Reflection">General Reflection</option>
-              <option value="Sādhana Milestone">Sādhana Milestone</option>
-              <option value="Śāstra Insight">Śāstra Insight</option>
+              <option value="SÄdhana Milestone">SÄdhana Milestone</option>
+              <option value="ÅšÄstra Insight">ÅšÄstra Insight</option>
             </select>
           </div>
           <button type="submit" class="action-btn">Post to Sangha</button>
@@ -504,7 +524,7 @@
     
     <!-- Sadhana Marathons Card -->
     <div class="card">
-      <div class="section-title">Communal Sādhana Marathons</div>
+      <div class="section-title">Communal SÄdhana Marathons</div>
       
       <!-- Chanting Marathon -->
       <div class="marathon-progress-container">
@@ -559,13 +579,18 @@ function setTheme(btnElement, themeName) {
   document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
   document.body.classList.add(themeName);
   localStorage.setItem('era_of_siddhas_theme', themeName);
-  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
   if (btnElement) {
     btnElement.classList.add('active');
+    btnElement.setAttribute('aria-pressed', 'true');
   } else {
     document.querySelectorAll('.theme-btn').forEach(btn => {
       if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
       }
     });
   }
@@ -624,7 +649,7 @@ function renderFeedItems(feed) {
   
   container.innerHTML = feed.map(item => {
     const isSystem = item.author.toLowerCase() === "system";
-    const authorLabel = isSystem ? "🔱 Gurukula" : `seeker: @${item.author}`;
+    const authorLabel = isSystem ? "ðŸ”± Gurukula" : `seeker: @${item.author}`;
     const cleanTime = item.timestamp ? new Date(item.timestamp).toLocaleTimeString() : "";
     
     return `
@@ -734,14 +759,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const statusText = document.getElementById("feed-sync-status");
     if (statusText) {
       if (indicator && indicator.classList.contains("online")) {
-        statusText.textContent = "Synced Live 🟢";
+        statusText.textContent = "Synced Live ðŸŸ¢";
       } else {
-        statusText.textContent = "Offline Mode ⚪";
+        statusText.textContent = "Offline Mode âšª";
       }
     }
   }, 1000);
 });
 
 </script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
