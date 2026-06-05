@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanskrit-English Glossary — Era of Siddhas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700;900&family=Noto+Serif+Devanagari:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/api.js" defer></script>
+<style>
+  :root, body.theme-fierce {
+    --bg:         #0a000000;
+    --bg-deep:    #0a0000;
+    --bg-1:       #1a0505;
+    --bg-2:       #240a0a;
+    --bg-3:       #330f0f;
+    --gold:       #b52a2a;
+    --gold-bright:#ff4d4d;
+    --gold-dim:   #5c1414;
+    --parchment:  #f4f5f6;
+    --parch-mid:  #b0b5b9;
+    --parch-dim:  #7a8288;
+    --terracotta: #8b1a1a;
+    --terra-dim:  #4a0e0e;
+    --forest:     #1a3d0a;
+    --crimson:    #ff0000;
+    --glow:       rgba(181,42,42,0.15);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --bg-glass:   rgba(26, 5, 5, 0.7);
+  }
+  body.theme-light {
+    --bg:         #f7f2e800;
+    --bg-deep:    #f7f2e8;
+    --bg-1:       #ede5d0;
+    --bg-2:       #e5dac0;
+    --bg-3:       #dbceb0;
+    --gold:       #b8730a;
+    --gold-bright:#8b4513;
+    --gold-dim:   rgba(139,69,19,0.15);
+    --parchment:  #1a1208;
+    --parch-mid:  #5c3d1a;
+    --parch-dim:  #7a5a3a;
+    --terracotta: #c44a1a;
+    --terra-dim:  #f5dfa0;
+    --forest:     #2e7d32;
+    --crimson:    #d32f2f;
+    --glow:       rgba(139, 69, 19, 0.08);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --bg-glass:   rgba(247, 242, 232, 0.92);
+  }
+  body.theme-earthy {
+    --bg:         #07040200;
+    --bg-deep:    #070402;
+    --bg-1:       #0f0a05;
+    --bg-2:       #17100a;
+    --bg-3:       #201710;
+    --gold:       #c4892a;
+    --gold-bright:#f0c040;
+    --gold-dim:   #7a5415;
+    --parchment:  #e8d5a3;
+    --parch-mid:  #b89a60;
+    --parch-dim:  #7a6440;
+    --glow:       rgba(196,137,42,0.15);
+    --border-glass: rgba(196, 137, 42, 0.25);
+    --bg-glass:   rgba(15, 10, 5, 0.75);
+  }
+  body.theme-mystical {
+    --bg:         #01090800;
+    --bg-deep:    #010908;
+    --bg-1:       #021816;
+    --bg-2:       #042b27;
+    --bg-3:       #06423c;
+    --gold:       #2eb8a6;
+    --gold-bright:#4df5e2;
+    --gold-dim:   #176e62;
+    --parchment:  #e0fcf8;
+    --parch-mid:  #9cf0e2;
+    --parch-dim:  #53c2b1;
+    --glow:       rgba(46,184,166,0.15);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --bg-glass:   rgba(2, 24, 22, 0.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--parchment);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    transition: all 0.5s ease;
+  }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .glossary-card,
+  body.custom-cursor-active .filter-chip,
+  body.custom-cursor-active .theme-btn {
+    cursor: none !important;
+  }
+
+  /* CURSOR */
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000002;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+    opacity: 0;
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+    opacity: 0;
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  body.custom-cursor-active .custom-cursor,
+  body.custom-cursor-active .custom-cursor-ring {
+    opacity: 1 !important;
+  }
+
+  /* HEADER */
+  header {
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gold-dim);
+    background: var(--bg-1);
+    position: relative;
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    text-decoration: none !important;
+    color: var(--parch-mid) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid var(--border-glass);
+    border-top: 3px solid transparent;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    background: rgba(200, 146, 42, 0.02);
+    display: inline-block;
+  }
+  .nav-btn:hover, .nav-btn:visited:hover {
+    color: var(--gold-bright) !important;
+    background: var(--glow) !important;
+    border-color: var(--gold) !important;
+    border-top-color: var(--gold-bright) !important;
+    box-shadow: 0 2px 10px var(--glow);
+  }
+  .nav-btn.active, .nav-btn.active:visited {
+    color: var(--parchment) !important;
+    background: var(--glow) !important;
+    border-color: var(--gold) !important;
+    border-top: 3px solid var(--gold-bright) !important;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--glow);
+  }
+  .nav-btn.admin-tab, .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
+    border-color: var(--gold-bright) !important;
+    background: rgba(181, 42, 42, 0.05) !important;
+    color: var(--gold-bright) !important;
+    border-top: 3px solid transparent;
+  }
+  .nav-btn.admin-tab:hover, .nav-btn.admin-tab:visited:hover {
+    background: rgba(181, 42, 42, 0.15) !important;
+    border-color: var(--gold-bright) !important;
+    border-top-color: var(--gold-bright) !important;
+    box-shadow: 0 2px 12px rgba(181, 42, 42, 0.2);
+  }
+  .nav-btn.admin-tab.active, .nav-btn.admin-tab.active:visited {
+    background: rgba(181, 42, 42, 0.2) !important;
+    border-color: var(--gold-bright) !important;
+    border-top: 3px solid var(--gold-bright) !important;
+    box-shadow: 0 4px 18px rgba(181, 42, 42, 0.3);
+    color: var(--gold-bright) !important;
+  }
+  .theme-btn {
+    background: var(--bg-2);
+    border: 1px solid var(--gold-dim);
+    color: var(--parch-mid);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    border-color: var(--gold-bright);
+    color: var(--parchment);
+    background: var(--bg-3);
+  }
+
+  /* BREADCRUMB */
+  .breadcrumb-nav {
+    padding: 1rem 4rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--gold-dim);
+    background: var(--bg-deep);
+  }
+  .breadcrumb-nav a {
+    color: var(--gold-bright);
+    text-decoration: none;
+  }
+  .breadcrumb-nav a:hover {
+    text-decoration: underline;
+  }
+  .breadcrumb-nav li {
+    display: inline;
+    color: var(--parch-dim);
+  }
+  .breadcrumb-nav li+li:before {
+    content: " / ";
+    padding: 0 8px;
+    color: var(--parch-dim);
+  }
+
+  /* MAIN WRAPPER */
+  main {
+    flex: 1;
+    max-width: 1200px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    width: 100%;
+  }
+  
+  .page-title-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--parchment);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--glow);
+  }
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--parch-mid);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* SEARCH AND FILTERS */
+  .search-container {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 2rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  .search-wrapper {
+    position: relative;
+    margin-bottom: 1.5rem;
+  }
+  .search-input {
+    width: 100%;
+    background: var(--bg-2);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 1.2rem 1.5rem 1.2rem 3.5rem;
+    color: var(--parchment);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+  }
+  .search-input:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 10px var(--glow);
+  }
+  .search-icon {
+    position: absolute;
+    left: 1.2rem;
+    top: 50%;
+    transform: translateY(-50%);
+    fill: var(--parch-dim);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+  }
+  
+  .filter-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+  }
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .filter-chip {
+    background: var(--bg-2);
+    border: 1px solid var(--border-glass);
+    color: var(--parch-mid);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-chip:hover {
+    border-color: var(--gold-bright);
+    color: var(--parchment);
+  }
+  .filter-chip.active {
+    background: var(--gold);
+    color: #ffffff;
+    border-color: var(--gold);
+    box-shadow: 0 4px 15px var(--glow);
+  }
+
+  /* GLOSSARY GRID */
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 2rem;
+  }
+  .glossary-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 18px;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    animation: cardFadeIn 0.5s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+  }
+  .glossary-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 10px 25px var(--glow);
+  }
+  @keyframes cardFadeIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-top {
+    margin-bottom: 1.5rem;
+  }
+  .card-category {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  .card-sanskrit {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.8rem;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
+  }
+  .card-iast {
+    font-family: 'Cinzel', serif;
+    font-size: 1.1rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.8rem;
+    font-style: italic;
+  }
+  .card-english {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--parchment);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.5rem;
+  }
+  .card-definition {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    color: var(--parch-mid);
+    line-height: 1.6;
+  }
+
+  .no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    background: var(--bg-glass);
+    border: 1px dashed var(--border-glass);
+    border-radius: 18px;
+    color: var(--parch-dim);
+    font-size: 1.2rem;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--gold-dim);
+    background: var(--bg-1);
+    font-size: 0.9rem;
+    color: var(--parch-dim);
+    line-height: 1.6;
+  }
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+  }
+  .footer-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .footer-links {
+    list-style: none;
+  }
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-links a {
+    color: var(--parch-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--gold-bright);
+  }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 2rem auto 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gold-dim);
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  /* Accessible Skip-Link styling */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1);
+    color: var(--gold-bright);
+    padding: 10px 20px;
+    border: 2px solid var(--gold);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    .breadcrumb-nav {
+      padding: 1rem 2rem;
+    }
+    main {
+      padding: 0 1.5rem;
+      margin: 2rem auto;
+    }
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    footer {
+      padding: 2rem;
+    }
+  }
+</style>
+</head>
+<body class="theme-fierce">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<header role="banner">
+  <a href="index.html" class="logo">Era of Siddhas</a>
+  <nav aria-label="Main Navigation" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="glossary.html" class="nav-btn active" aria-current="page">Glossary</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="admin.html" class="nav-btn admin-tab">Admin</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
+    </div>
+  </nav>
+</header>
+
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-current="page">Glossary</li>
+  </ol>
+</nav>
+
+<main id="main-content" role="main" aria-label="Sanskrit-English Glossary">
+  <section class="page-title-section">
+    <h1 class="page-title">Sanskrit-English Glossary</h1>
+    <p class="page-subtitle">
+      A curated linguistic bridge for seekers exploring the intersections of ancient Indian Knowledge Systems (IKS) and modern science.
+    </p>
+  </section>
+
+  <!-- Search and Filters Section -->
+  <section class="search-container" aria-label="Search and filter terms">
+    <div class="search-wrapper">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input type="text" id="glossary-search" class="search-input" placeholder="Search by Sanskrit, transliteration, or meaning..." aria-label="Type search query">
+    </div>
+    
+    <div>
+      <div class="filter-label">Filter by Pillar / Category</div>
+      <div class="filter-chips" id="category-filters" role="group" aria-label="Filter terms by category">
+        <button class="filter-chip active" data-category="all">All Terms</button>
+        <button class="filter-chip" data-category="General">General</button>
+        <button class="filter-chip" data-category="Nagara Nirmāṇa">Nagara Nirmāṇa</button>
+        <button class="filter-chip" data-category="Rājya Pālanam">Rājya Pālanam</button>
+        <button class="filter-chip" data-category="Vimāna Śāstra">Vimāna Śāstra</button>
+        <button class="filter-chip" data-category="Astra Vidyā">Astra Vidyā</button>
+        <button class="filter-chip" data-category="Rasa Śāstra">Rasa Śāstra</button>
+        <button class="filter-chip" data-category="Jyotiṣa">Jyotiṣa</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Glossary Cards Grid -->
+  <section class="glossary-grid" id="glossary-terms-grid" aria-label="Glossary Definitions">
+    <!-- Loaded via JavaScript -->
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Advisory Board & Lineage</h3>
+      <p style="margin-bottom:1rem;">
+        The academic curriculum of the Era of Siddhas Gurukula is reviewed and approved by scholars representing the Sanskrit Academy, the Department of Vedic Sciences, and traditional lineage lineage keepers of Śilpa, Rasa, and Astra traditions.
+      </p>
+      <p>
+        Lineage Acknowledgment: This system draws from the living lineages and lineages of Āgama and Śilpa Śāstras, honoring the guru-śiṣya paramparā that preserved this wisdom for millennia.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>Pillars of Study</h3>
+      <ul class="footer-links">
+        <li><a href="course_hub.html?pillar=nagara">Nagara Nirmāṇa (City Building)</a></li>
+        <li><a href="course_hub.html?pillar=rājya">Rājya Pālanam (Governance)</a></li>
+        <li><a href="course_hub.html?pillar=yuddham">Yuddham (Action/Astra Vidyā)</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pillar_hub.html">Pillar Hub</a></li>
+        <li><a href="wisdom_hub.html">Wisdom Publications</a></li>
+        <li><a href="sangha.html">Saṅgha Community</a></li>
+        <li><a href="glossary.html">Sanskrit Glossary</a>
+    <a href="about.html" class="nav-btn">About</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Era of Siddhas Gurukula. All rights reserved. Your reflections and learning progress remain your property.</p>
+  </div>
+</footer>
+
+<script>
+  // Glossary Data
+  const glossaryTerms = [
+    { iast: "Brahmasthāna", devanagari: "ब्रह्मस्थान", english: "Divine Center", definition: "The central sacred zone of a Vāstu Puruṣa Maṇḍala, kept open and free from constructions to allow energy circulation.", category: "Nagara Nirmāṇa" },
+    { iast: "Prākāra", devanagari: "प्राकार", english: "Concentric Enclosure Wall", definition: "Concentric protective boundaries radiating outward around a temple or sacred city, symbolizing levels of spiritual ascent.", category: "Nagara Nirmāṇa" },
+    { iast: "Pradakṣiṇā", devanagari: "प्रदक्षिणा", english: "Clockwise Circumambulation", definition: "The ritual practice of walking clockwise around a sacred center, deity, or temple path.", category: "General" },
+    { iast: "Śāstra", devanagari: "शास्त्र", english: "Sacred or Scientific Treatise", definition: "Any traditional text detailing laws, rules, science, or sacred precepts of a specific discipline.", category: "General" },
+    { iast: "Vāstu Puruṣa Maṇḍala", devanagari: "वास्तुपुरुषमण्डल", english: "Sacred Spatial Grid", definition: "The metaphysical square diagram representing the cosmic person, aligning structures with planetary and elemental coordinates.", category: "Nagara Nirmāṇa" },
+    { iast: "Matsya Nyāya", devanagari: "मात्स्यन्याय", english: "Law of the Fish", definition: "The concept describing anarchy where the strong swallow the weak, which structured governance (Rājya Pālanam) acts to prevent through Dharma.", category: "Rājya Pālanam" },
+    { iast: "Vimāna", devanagari: "विमान", english: "Sacred Spire / Flying Chariot", definition: "The superstructure or tower rising above the sanctum in south Indian temples, or a flying chariot detailed in ancient epic literature.", category: "Vimāna Śāstra" },
+    { iast: "Astra", devanagari: "अस्त्र", english: "Mantra-Activated Weapon", definition: "A projectile or missile activated through spiritual formulas and sacred sound resonance (mantra).", category: "Astra Vidyā" },
+    { iast: "Śastra", devanagari: "शस्त्र", english: "Handheld Physical Weapon", definition: "A close-combat physical weapon (like a sword or mace) used manually without mantra activation.", category: "Astra Vidyā" },
+    { iast: "Rasa Śāstra", devanagari: "रसशास्त्र", english: "Vedic Alchemy and Metallurgy", definition: "The system of purifying mercury, metals, and minerals (Saṃskāras) for pharmaceutical and spiritual longevity purposes.", category: "Rasa Śāstra" },
+    { iast: "Jyotiṣa", devanagari: "ज्योतिष", english: "Vedic Astronomy & Astrology", definition: "The 'science of light' studying celestial alignments, planetary movements, and their correlation to terrestrial time and karma.", category: "Jyotiṣa" },
+    { iast: "Nagara Nirmāṇa", devanagari: "नगरनिर्माण", english: "Sacred Town Planning", definition: "The Āgamic and Śilpa principles of organizing settlements, towns, and temple cities based on spiritual and social harmony.", category: "Nagara Nirmāṇa" },
+    { iast: "Mumukṣu", devanagari: "मुमुक्षु", english: "Liberation Seeker", definition: "A student who is beginning their journey on the path of knowledge and spiritual liberation (Bloom's Remember/Understand level).", category: "General" },
+    { iast: "Śiṣya", devanagari: "शिष्य", english: "Formal Disciple", definition: "An intermediate level student undergoing systematic disciplines and studies under a qualified teacher (Bloom's Apply/Analyze level).", category: "General" },
+    { iast: "Sādhaka", devanagari: "साधक", english: "Spiritual Practitioner", definition: "An advanced practitioner who applies the principles practically in daily life and specialized disciplines (Bloom's Evaluate/Create level).", category: "General" },
+    { iast: "Vāstospati", devanagari: "वास्तोष्पति", english: "Guardian Deity of the Home", definition: "The Vedic deity invoked to protect, bless, and bring prosperity to a new dwelling or constructed space.", category: "Nagara Nirmāṇa" },
+    { iast: "Paramaśāyika", devanagari: "परमशायिक", english: "Eighty-One Square Grid", definition: "The 9x9 square mandala layout specified in Śilpa Śāstras for laying out major temples, palaces, and towns.", category: "Nagara Nirmāṇa" },
+    { iast: "Saṃskāra", devanagari: "संस्कार", english: "Transformative Processing", definition: "The systematic chemical or spiritual processes applied to change, purify, and sublimate a substance or individual.", category: "Rasa Śāstra" },
+    { iast: "Nakṣatra", devanagari: "नक्षत्र", english: "Lunar Mansion", definition: "One of the 27 stellar divisions of the ecliptic, representing the moon's position relative to stars.", category: "Jyotiṣa" },
+    { iast: "Rāśi", devanagari: "राशि", english: "Zodiac Sign", definition: "One of the 12 spatial divisions of the zodiac through which the sun and planets transit.", category: "Jyotiṣa" }
+  ];
+
+  // DOM Elements
+  const gridElement = document.getElementById('glossary-terms-grid');
+  const searchInput = document.getElementById('glossary-search');
+  const categoryFilters = document.getElementById('category-filters');
+
+  let activeCategory = 'all';
+  let searchQuery = '';
+
+  // Render function
+  function renderGlossary() {
+    gridElement.innerHTML = '';
+    const filteredTerms = glossaryTerms.filter(term => {
+      const matchesCategory = activeCategory === 'all' || term.category === activeCategory;
+      const termSearchText = `${term.iast} ${term.devanagari} ${term.english} ${term.definition}`.toLowerCase();
+      const matchesSearch = termSearchText.includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+
+    if (filteredTerms.length === 0) {
+      gridElement.innerHTML = `
+        <div class="no-results" role="alert">
+          No terms found matching your query. Try a different search term or category.
+        </div>
+      `;
+      return;
+    }
+
+    filteredTerms.forEach(term => {
+      const card = document.createElement('article');
+      card.className = 'glossary-card';
+      card.setAttribute('aria-label', `${term.iast} definition`);
+      card.innerHTML = `
+        <div class="card-top">
+          <div class="card-category">${term.category}</div>
+          <h2 class="card-sanskrit" lang="sa">${term.devanagari}</h2>
+          <div class="card-iast">${term.iast}</div>
+          <div class="card-english">${term.english}</div>
+          <p class="card-definition">${term.definition}</p>
+        </div>
+      `;
+      gridElement.appendChild(card);
+    });
+
+    // Reset Cursor Listeners
+    setupCursorListeners();
+  }
+
+  // Event Listeners
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    renderGlossary();
+  });
+
+  categoryFilters.addEventListener('click', (e) => {
+    if (e.target.classList.contains('filter-chip')) {
+      document.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
+      e.target.classList.add('active');
+      activeCategory = e.target.getAttribute('data-category');
+      renderGlossary();
+    }
+  });
+
+  // Cursor Setup
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let cursorVisible = false;
+
+  window.addEventListener('mousemove', (e) => {
+    if (!cursorVisible) {
+      document.body.classList.add('custom-cursor-active');
+      cursorVisible = true;
+    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.2;
+    ringY += (mouseY - ringY) * 0.2;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  function setupCursorListeners() {
+    document.querySelectorAll('a, button, .glossary-card, .filter-chip, .theme-btn').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  // Theme Management with Persistence
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    if (btnElement) {
+      btnElement.classList.add('active');
+      btnElement.setAttribute('aria-pressed', 'true');
+    } else {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+        }
+      });
+    }
+  }
+
+  // Initial Load
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+  setTheme(null, initialTheme);
+  renderGlossary();
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
+</body>
+</html>
