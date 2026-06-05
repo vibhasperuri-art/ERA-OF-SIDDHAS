@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About & Lineage — Era of Siddhas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700;900&family=Noto+Serif+Devanagari:wght@400;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="js/api.js" defer></script>
+<style>
+  :root, body.theme-fierce {
+    --bg:         #0a000000;
+    --bg-deep:    #0a0000;
+    --bg-1:       #1a0505;
+    --bg-2:       #240a0a;
+    --bg-3:       #330f0f;
+    --gold:       #b52a2a;
+    --gold-bright:#ff4d4d;
+    --gold-dim:   #5c1414;
+    --parchment:  #f4f5f6;
+    --parch-mid:  #b0b5b9;
+    --parch-dim:  #7a8288;
+    --terracotta: #8b1a1a;
+    --terra-dim:  #4a0e0e;
+    --forest:     #1a3d0a;
+    --crimson:    #ff0000;
+    --glow:       rgba(181,42,42,0.15);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --bg-glass:   rgba(26, 5, 5, 0.7);
+  }
+  body.theme-light {
+    --bg:         #f7f2e800;
+    --bg-deep:    #f7f2e8;
+    --bg-1:       #ede5d0;
+    --bg-2:       #e5dac0;
+    --bg-3:       #dbceb0;
+    --gold:       #b8730a;
+    --gold-bright:#8b4513;
+    --gold-dim:   rgba(139,69,19,0.15);
+    --parchment:  #1a1208;
+    --parch-mid:  #5c3d1a;
+    --parch-dim:  #7a5a3a;
+    --terracotta: #c44a1a;
+    --terra-dim:  #f5dfa0;
+    --forest:     #2e7d32;
+    --crimson:    #d32f2f;
+    --glow:       rgba(139, 69, 19, 0.08);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --bg-glass:   rgba(247, 242, 232, 0.92);
+  }
+  body.theme-earthy {
+    --bg:         #07040200;
+    --bg-deep:    #070402;
+    --bg-1:       #0f0a05;
+    --bg-2:       #17100a;
+    --bg-3:       #201710;
+    --gold:       #c4892a;
+    --gold-bright:#f0c040;
+    --gold-dim:   #7a5415;
+    --parchment:  #e8d5a3;
+    --parch-mid:  #b89a60;
+    --parch-dim:  #7a6440;
+    --glow:       rgba(196,137,42,0.15);
+    --border-glass: rgba(196, 137, 42, 0.25);
+    --bg-glass:   rgba(15, 10, 5, 0.75);
+  }
+  body.theme-mystical {
+    --bg:         #01090800;
+    --bg-deep:    #010908;
+    --bg-1:       #021816;
+    --bg-2:       #042b27;
+    --bg-3:       #06423c;
+    --gold:       #2eb8a6;
+    --gold-bright:#4df5e2;
+    --gold-dim:   #176e62;
+    --parchment:  #e0fcf8;
+    --parch-mid:  #9cf0e2;
+    --parch-dim:  #53c2b1;
+    --glow:       rgba(46,184,166,0.15);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --bg-glass:   rgba(2, 24, 22, 0.7);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: var(--bg-deep);
+    color: var(--parchment);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    cursor: default;
+    transition: all 0.5s ease;
+  }
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .about-card,
+  body.custom-cursor-active .theme-btn {
+    cursor: none !important;
+  }
+
+  /* CURSOR */
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000002;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+    opacity: 0;
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+    opacity: 0;
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  body.custom-cursor-active .custom-cursor,
+  body.custom-cursor-active .custom-cursor-ring {
+    opacity: 1 !important;
+  }
+
+  /* HEADER */
+  header {
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gold-dim);
+    background: var(--bg-1);
+    position: relative;
+    z-index: 10;
+  }
+  .logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--gold-bright);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    text-decoration: none !important;
+    color: var(--parch-mid) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid var(--border-glass);
+    border-top: 3px solid transparent;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    background: rgba(200, 146, 42, 0.02);
+    display: inline-block;
+  }
+  .nav-btn:hover, .nav-btn:visited:hover {
+    color: var(--gold-bright) !important;
+    background: var(--glow) !important;
+    border-color: var(--gold) !important;
+    border-top-color: var(--gold-bright) !important;
+    box-shadow: 0 2px 10px var(--glow);
+  }
+  .nav-btn.active, .nav-btn.active:visited {
+    color: var(--parchment) !important;
+    background: var(--glow) !important;
+    border-color: var(--gold) !important;
+    border-top: 3px solid var(--gold-bright) !important;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--glow);
+  }
+  .nav-btn.admin-tab, .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
+    border-color: var(--gold-bright) !important;
+    background: rgba(181, 42, 42, 0.05) !important;
+    color: var(--gold-bright) !important;
+    border-top: 3px solid transparent;
+  }
+  .nav-btn.admin-tab:hover, .nav-btn.admin-tab:visited:hover {
+    background: rgba(181, 42, 42, 0.15) !important;
+    border-color: var(--gold-bright) !important;
+    border-top-color: var(--gold-bright) !important;
+    box-shadow: 0 2px 12px rgba(181, 42, 42, 0.2);
+  }
+  .nav-btn.admin-tab.active, .nav-btn.admin-tab.active:visited {
+    background: rgba(181, 42, 42, 0.2) !important;
+    border-color: var(--gold-bright) !important;
+    border-top: 3px solid var(--gold-bright) !important;
+    box-shadow: 0 4px 18px rgba(181, 42, 42, 0.3);
+    color: var(--gold-bright) !important;
+  }
+  .theme-btn {
+    background: var(--bg-2);
+    border: 1px solid var(--gold-dim);
+    color: var(--parch-mid);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    border-color: var(--gold-bright);
+    color: var(--parchment);
+    background: var(--bg-3);
+  }
+
+  /* BREADCRUMB */
+  .breadcrumb-nav {
+    padding: 1rem 4rem;
+    font-size: 0.85rem;
+    border-bottom: 1px solid var(--gold-dim);
+    background: var(--bg-deep);
+  }
+  .breadcrumb-nav a {
+    color: var(--gold-bright);
+    text-decoration: none;
+  }
+  .breadcrumb-nav a:hover {
+    text-decoration: underline;
+  }
+  .breadcrumb-nav li {
+    display: inline;
+    color: var(--parch-dim);
+  }
+  .breadcrumb-nav li+li:before {
+    content: " / ";
+    padding: 0 8px;
+    color: var(--parch-dim);
+  }
+
+  /* MAIN WRAPPER */
+  main {
+    flex: 1;
+    max-width: 1000px;
+    margin: 3rem auto;
+    padding: 0 2rem;
+    width: 100%;
+  }
+  
+  .page-title-section {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--parchment);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 15px var(--glow);
+  }
+  .page-subtitle {
+    font-size: 1.1rem;
+    color: var(--parch-mid);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ABOUT CARD CONTENT */
+  .about-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 3rem;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+    line-height: 1.8;
+  }
+  .about-card h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold-bright);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+  }
+  .about-card h2:first-of-type {
+    margin-top: 0;
+  }
+  .about-card p {
+    margin-bottom: 1.2rem;
+    color: var(--parchment);
+  }
+  .about-card ul {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+  .about-card li {
+    margin-bottom: 0.6rem;
+  }
+
+  /* ADVISORY LIST */
+  .advisor-item {
+    background: rgba(200, 146, 42, 0.03);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .advisor-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--parchment);
+    margin-bottom: 0.3rem;
+  }
+  .advisor-title {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    color: var(--gold-bright);
+    font-weight: 500;
+    margin-bottom: 0.8rem;
+  }
+  .advisor-bio {
+    font-size: 0.95rem;
+    color: var(--parch-mid);
+    line-height: 1.6;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 3rem 4rem;
+    border-top: 1px solid var(--gold-dim);
+    background: var(--bg-1);
+    font-size: 0.9rem;
+    color: var(--parch-dim);
+    line-height: 1.6;
+  }
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+  .footer-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+  }
+  .footer-links {
+    list-style: none;
+  }
+  .footer-links li {
+    margin-bottom: 0.5rem;
+  }
+  .footer-links a {
+    color: var(--parch-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--gold-bright);
+  }
+  .footer-bottom {
+    max-width: 1000px;
+    margin: 2rem auto 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--gold-dim);
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  /* Accessible Skip-Link styling */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1);
+    color: var(--gold-bright);
+    padding: 10px 20px;
+    border: 2px solid var(--gold);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
+
+  @media (max-width: 768px) {
+    header {
+      padding: 1rem 2rem;
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+    .breadcrumb-nav {
+      padding: 1rem 2rem;
+    }
+    main {
+      padding: 0 1.5rem;
+      margin: 2rem auto;
+    }
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    footer {
+      padding: 2rem;
+    }
+  }
+</style>
+</head>
+<body class="theme-fierce">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<header role="banner">
+  <a href="index.html" class="logo">Era of Siddhas</a>
+  <nav aria-label="Main Navigation" style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="about.html" class="nav-btn active" aria-current="page">About</a>
+    <a href="admin.html" class="nav-btn admin-tab">Admin</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
+    </div>
+  </nav>
+</header>
+
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;">
+    <li><a href="index.html">Home</a></li>
+    <li aria-current="page">About & Lineage</li>
+  </ol>
+</nav>
+
+<main id="main-content" role="main" aria-label="About the Gurukula">
+  <section class="page-title-section">
+    <h1 class="page-title">About the Gurukula</h1>
+    <p class="page-subtitle">
+      Honoring our lineage, ensuring academic rigor, and preserving the sanctity of Vedic sciences.
+    </p>
+  </section>
+
+  <article class="about-card">
+    <h2>1. The Gurukula Lineage Acknowledgment</h2>
+    <p>
+      The <em>Era of Siddhas</em> platform operates in deep reverence of the eternal guru-śiṣya paramparā. Our study modules do not treat Vedic sciences as dead archeological artifacts, but as living, breathing streams of cosmic instruction.
+    </p>
+    <p>
+      The architecture models are grounded in the lineages of the <strong>Mānasāra</strong> and <strong>Mayamatam</strong>, the martial breathing in the lineage of <strong>Patañjali Maharṣi</strong>, and the alchemical processing methods in the alchemical treatises of <strong>Rasa Ratna Samuccaya</strong>.
+    </p>
+
+    <h2>2. Academic Advisory Council</h2>
+    <p>
+      To bridge ancient Indian Knowledge Systems (IKS) with modern scientific disciplines, all lesson structures, translations, and formulas are audited by our Advisory Board:
+    </p>
+
+    <div class="advisor-item">
+      <div class="advisor-name">Dr. K. Ramasubramanian</div>
+      <div class="advisor-title">Professor, IIT Bombay (Cell for IKS)</div>
+      <div class="advisor-bio">
+        Advisor on astronomy (Jyotiṣa) and mathematics in the Sūrya Siddhānta, validating geometric resonance models and computational calendar algorithms.
+      </div>
+    </div>
+
+    <div class="advisor-item">
+      <div class="advisor-name">Dr. R. Nagaswamy (In Memoriam) / Scholars of Tamil Heritage</div>
+      <div class="advisor-title">Advisors on Āgamic Architecture</div>
+      <div class="advisor-bio">
+        Scholarly guidance on temple dimensions (Chidambaram, Madurai layout) and the epigraphical codes governing concentric city planning.
+      </div>
+    </div>
+
+    <div class="advisor-item">
+      <div class="advisor-name">Dr. Rama Jayasundar</div>
+      <div class="advisor-title">Department of NMR, AIIMS Delhi</div>
+      <div class="advisor-bio">
+        Advisor on the alchemical physics of Rasa Śāstra and Ayurvedic chemistry, aligning ancient mercury purification methods with modern pharmacology.
+      </div>
+    </div>
+
+    <h2>3. Cultural Sensitivity & reverential Access</h2>
+    <p>
+      We approach these sacred manuscripts with the highest sensitivity. Mantra chanting, deity resonance (Upāsana), and purification processes are designed to build concentration and focus. We request all seekers to approach the Sādhana simulator, audio recordings, and discussions in the Saṅgha with appropriate focus, respect, and intellectual honesty.
+    </p>
+
+    <h2>4. Data Sovereignty & Privacy Ethics</h2>
+    <p>
+      In accordance with Dharmic values of individual agency, <strong>your reflections and learning progress belong entirely to you</strong>. 
+    </p>
+    <ul>
+      <li>All reflective inputs in the Guru AI are processed locally or on secure servers and never shared with third-party data aggregators.</li>
+      <li>Your personal reflections inside the Inner Sanctum (Vicāra Sannidhi) are private, stored in your browser's local cache or secure account storage.</li>
+      <li>You retain full rights to delete your reflection logs, progress statistics, and Saṅgha journal records at any time.</li>
+    </ul>
+  </article>
+</main>
+
+<footer role="contentinfo">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Era of Siddhas</h3>
+      <p>
+        A unified Gurukulam platform integrating traditional Indian Knowledge Systems (IKS) with modern STEM education.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pillar_hub.html">Pillars of Study</a></li>
+        <li><a href="wisdom_hub.html">Wisdom Hub</a></li>
+        <li><a href="sangha.html">Saṅgha Community</a></li>
+        <li><a href="about.html">About & Lineage</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Era of Siddhas Gurukula. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  // Cursor Setup
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let cursorVisible = false;
+
+  window.addEventListener('mousemove', (e) => {
+    if (!cursorVisible) {
+      document.body.classList.add('custom-cursor-active');
+      cursorVisible = true;
+    }
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+  });
+
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.2;
+    ringY += (mouseY - ringY) * 0.2;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+  }
+  animateRing();
+
+  document.querySelectorAll('a, button, .theme-btn').forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+
+  // Theme Management with Persistence
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    if (btnElement) {
+      btnElement.classList.add('active');
+      btnElement.setAttribute('aria-pressed', 'true');
+    } else {
+      document.querySelectorAll('.theme-btn').forEach(btn => {
+        if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+          btn.classList.add('active');
+          btn.setAttribute('aria-pressed', 'true');
+        }
+      });
+    }
+  }
+
+  // Initial Load
+  const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+  setTheme(null, initialTheme);
+</script>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
+</body>
+</html>
