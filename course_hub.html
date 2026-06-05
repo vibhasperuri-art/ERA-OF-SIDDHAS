@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
@@ -6,9 +6,9 @@
 <meta http-equiv="Expires" content="0"/>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yuddham Course Hub — Era of Siddhas</title>
+<title>Yuddham Course Hub â€” Era of Siddhas</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="js/api.js"></script>
+<script src="js/api.js" defer></script>
 <style>
   :root, body.theme-mystical {
     --bg-primary: #010908;
@@ -147,7 +147,7 @@
     background: var(--accent-glow);
   }
 
-  /* ── ANCIENT RASA GRAPHICS (THEME WATERMARKS) ── */
+  /* â”€â”€ ANCIENT RASA GRAPHICS (THEME WATERMARKS) â”€â”€ */
   body::before {
     content: '';
     position: fixed;
@@ -380,7 +380,7 @@
   }
 
 
-  /* ── THEME GRAPHICS BG ── */
+  /* â”€â”€ THEME GRAPHICS BG â”€â”€ */
   .theme-graphics-bg {
     position: fixed;
     top: 0; left: 0; width: 100vw; height: 100vh;
@@ -520,13 +520,33 @@
   body.custom-cursor-active .custom-cursor-ring {
     opacity: 1 !important;
   }
+
+  /* Accessible Skip-Link styling */
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-1, #1a0505);
+    color: var(--gold-bright, #ff4d4d);
+    padding: 10px 20px;
+    border: 2px solid var(--gold, #b52a2a);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
 </style>
+<script type=\"application/ld+json\">
+{\n  \"@context\": \"https://schema.org\",\n  \"@type\": \"CreativeWork\",\n  \"name\": \"Yuddham Course Hub â€” Era of Siddhas\",\n  \"description\": \"Educational content about the Vedic Siddha tradition and its integration with modern science.\",\n  \"url\": \"https://example.com/course_hub.html\"\n}\n</script>
+<link rel="manifest" href="manifest.json">
 </head>
 <body class="theme-fierce">
 <div class="theme-graphics-bg">
   <!-- FIERCE THEME: Crossed swords, trident, shield, bow -->
   <div class="graphic-element weapons-graphic graphic-top-right">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <!-- Shield -->
       <circle cx="100" cy="100" r="35" fill="none" stroke="currentColor" stroke-width="2"/>
       <circle cx="100" cy="100" r="28" stroke-dasharray="2 3"/>
@@ -557,7 +577,7 @@
     </svg>
   </div>
   <div class="graphic-element weapons-graphic graphic-bottom-left">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <circle cx="100" cy="100" r="30"/>
       <path d="M30 30 L170 170" />
       <path d="M170 30 L30 170" />
@@ -569,7 +589,7 @@
 
   <!-- EARTHY THEME: Flying palm-leaf manuscripts, scripts, leaves -->
   <div class="graphic-element manuscript-graphic graphic-top-right">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <!-- Palm leaf 1 -->
       <g transform="rotate(15 100 100)">
         <rect x="30" y="70" width="140" height="25" rx="3" stroke="currentColor" stroke-width="2"/>
@@ -597,7 +617,7 @@
     </svg>
   </div>
   <div class="graphic-element manuscript-graphic graphic-bottom-left">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <g transform="rotate(-25 100 100)">
         <rect x="30" y="80" width="140" height="25" rx="3"/>
         <line x1="45" y1="87" x2="155" y2="87" stroke-dasharray="3 2"/>
@@ -613,7 +633,7 @@
 
   <!-- MYSTICAL THEME: Sri Chakra, Yantra, sacred geometry, ripples -->
   <div class="graphic-element yantra-graphic graphic-top-right">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
       <!-- Outer Square (Bhupura) -->
       <rect x="25" y="25" width="150" height="150" stroke-width="1.5"/>
       <path d="M90 25 L90 15 M110 25 L110 15 M25 90 L15 90 M25 110 L15 110 M90 175 L90 185 M110 175 L110 185 M175 90 L185 90 M175 110 L185 110" />
@@ -636,7 +656,7 @@
     </svg>
   </div>
   <div class="graphic-element yantra-graphic graphic-bottom-left">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.2">
       <circle cx="100" cy="100" r="60"/>
       <polygon points="100,45 140,120 60,120" />
       <polygon points="100,155 140,80 60,80" />
@@ -647,7 +667,7 @@
 
   <!-- LIGHT THEME: Lotus, columns, borders -->
   <div class="graphic-element royal-graphic graphic-top-right">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <!-- Sacred Lotus -->
       <path d="M100 130 Q100 70 100 60 Q100 70 100 130 Z" fill="none" stroke-width="2"/>
       <!-- Petals Left -->
@@ -667,7 +687,7 @@
     </svg>
   </div>
   <div class="graphic-element royal-graphic graphic-bottom-left">
-    <svg viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <svg aria-hidden="true" viewBox="0 0 200 200" width="100%" height="100%" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
       <path d="M100 120 Q100 65 100 55 Q100 65 100 120" stroke-width="2"/>
       <path d="M100 120 Q75 75 70 70 Q82 95 100 120" />
       <path d="M100 120 Q125 75 130 70 Q118 95 100 120" />
@@ -682,7 +702,7 @@
 
 <nav class="glass-nav">
   <a href="pillar_hub.html" class="nav-brand">
-    <svg width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
       <circle cx="50" cy="50" r="40" opacity="0.5"/>
       <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
       <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
@@ -691,16 +711,16 @@
   </a>
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <a href="index.html" class="nav-btn">Home</a>
-    <a href="pillar_hub.html" class="nav-btn active">Pillars</a>
+    <a href="pillar_hub.html" class="nav-btn active" aria-current="page">Pillars</a>
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
-    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">VicÄra Sannidhi</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
     </div>
   </div>
 </nav>
@@ -709,11 +729,11 @@
   <!-- Dynamic content will be injected here -->
 </div>
 
-<div class="tabs-container" id="tabs-section">
+<div class="tabs-container" id="tabs-section" role="tablist" aria-label="Course Sections">
   <!-- Dynamic content will be injected here -->
 </div>
 
-<div class="content-grid" id="course-grid">
+<div class="content-grid" id="course-grid" role="tabpanel" aria-label="Course Items">
   <!-- Dynamic content will be injected here -->
 </div>
 
@@ -722,21 +742,21 @@
 const pillarData = {
   yuddham: {
     title: "Yuddham : The Martial Intellect",
-    subtitle: "The sovereign science of conflict, strategy, and dismantling opposition. To protect Dharma, one must master the art of war—both psychological and physical.",
+    subtitle: "The sovereign science of conflict, strategy, and dismantling opposition. To protect Dharma, one must master the art of warâ€”both psychological and physical.",
     sourceTexts: [
       {
         title: "1. Bhagavad Gita (Mahabharata)",
-        composed: "~400 BCE - 200 CE • Vyasa",
+        composed: "~400 BCE - 200 CE â€¢ Vyasa",
         description: "The ultimate psychological treatise on duty (Dharma) in the face of insurmountable conflict. Arjuna's crisis and Krishna's resolution form the core of Yuddham's inner battle."
       },
       {
-        title: "2. Arthaśāstra",
-        composed: "~3rd Century BCE • Chanakya (Kautilya)",
+        title: "2. ArthaÅ›Ästra",
+        composed: "~3rd Century BCE â€¢ Chanakya (Kautilya)",
         description: "The definitive manual on statecraft, espionage, and military strategy. It details the mechanics of survival, power, and securing the kingdom against all threats."
       },
       {
         title: "3. Ramayana (Yuddha Kanda)",
-        composed: "~5th Century BCE • Valmiki",
+        composed: "~5th Century BCE â€¢ Valmiki",
         description: "The practical application of loyalty, righteous anger, and strategic warfare against tyrannical forces."
       }
     ],
@@ -761,16 +781,16 @@ const pillarData = {
           actionLink: "interactive_lesson.html?pillar=yuddham&course=upasana"
         },
         {
-          title: "4. Maṇḍala Siddhanta",
+          title: "4. Maá¹‡á¸ala Siddhanta",
           desc: "Chanakya's theory of the geopolitical circle. Identify natural allies, enemies, and neutral forces based on spatial relationships and strategic necessities.",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=yuddham&course=maṇḍala"
+          actionLink: "interactive_lesson.html?pillar=yuddham&course=maá¹‡á¸ala"
         },
         {
-          title: "5. Vyūhas: Battlefield Formations",
-          desc: "An interactive study of the Chakravyūha, Krauncha Vyūha, and Padma Vyūha. Understanding structural defense, lock patterns, and strategic penetration.",
+          title: "5. VyÅ«has: Battlefield Formations",
+          desc: "An interactive study of the ChakravyÅ«ha, Krauncha VyÅ«ha, and Padma VyÅ«ha. Understanding structural defense, lock patterns, and strategic penetration.",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyūhas"
+          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyÅ«has"
         }
       ],
       stories: [
@@ -803,35 +823,35 @@ const pillarData = {
       ],
       simulations: [
         {
-          title: "Chakravyūha Entrance Challenge",
+          title: "ChakravyÅ«ha Entrance Challenge",
           desc: "Test your mathematical and military positioning. Choose the correct angle of entry to break past the defensive concentric rings.",
           actionText: "Play Now",
-          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyūhas"
+          actionLink: "interactive_lesson.html?pillar=yuddham&course=vyÅ«has"
         }
       ],
       nano: [
         {
-          title: "Astra vs Śāstra",
-          desc: "A 2-minute guide explaining the distinction between weapons propelled by mantra invocation (Astras) and hand-held physical weapons (Śāstras).",
+          title: "Astra vs ÅšÄstra",
+          desc: "A 2-minute guide explaining the distinction between weapons propelled by mantra invocation (Astras) and hand-held physical weapons (ÅšÄstras).",
           actionText: "Start Quick Lesson",
           actionLink: "#nano-astra"
         },
         {
-          title: "Nyāya Logic in Battle",
-          desc: "How logical debates were fought like physical wars. Learn the 5-step syllogism of Nyāya to dismantle arguments instantly.",
+          title: "NyÄya Logic in Battle",
+          desc: "How logical debates were fought like physical wars. Learn the 5-step syllogism of NyÄya to dismantle arguments instantly.",
           actionText: "Start Quick Lesson",
-          actionLink: "#nano-nyāya"
+          actionLink: "#nano-nyÄya"
         }
       ]
     }
   },
-  rājya: {
-    title: "Rājya Palanam : Sovereign Governance",
-    subtitle: "The profound administrative science of constituency, justice, and leadership. Learn to rule and guide society in accordance with the cosmic law, heading towards Rama Rājyam.",
+  rÄjya: {
+    title: "RÄjya Palanam : Sovereign Governance",
+    subtitle: "The profound administrative science of constituency, justice, and leadership. Learn to rule and guide society in accordance with the cosmic law, heading towards Rama RÄjyam.",
     sourceTexts: [
       {
         title: "1. Mahabharata (Shanti Parva - Rajadharma)",
-        composed: "~400 BCE • Vyasa",
+        composed: "~400 BCE â€¢ Vyasa",
         description: "Bhishma's ultimate discourse to Yudhisthira on the duties of a king, the ethical usage of power, and the administration of justice."
       },
       {
@@ -848,34 +868,34 @@ const pillarData = {
     tabs: {
       learn: [
         {
-          title: "1. Rājya Upanishads (Ethical Sovereignty)",
+          title: "1. RÄjya Upanishads (Ethical Sovereignty)",
           desc: "Sovereign power must serve the ultimate truth (Satya) and welfare of all (Loka Sangraha). Study the philosophical foundations of righteous governance.",
           actionText: "Enter Shloka Module",
-          actionLink: "vicara_sannidhi.html?pillar=rājya"
+          actionLink: "vicara_sannidhi.html?pillar=rÄjya"
         },
         {
-          title: "2. Rājya Yoga (Mindful Leadership)",
+          title: "2. RÄjya Yoga (Mindful Leadership)",
           desc: "Cultivate mental equilibrium (Samatvam) and clarity of intellect (Buddhi) to make fair, empire-level decisions without clouding from personal biases.",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=yoga"
+          actionLink: "interactive_lesson.html?pillar=rÄjya&course=yoga"
         },
         {
-          title: "3. Rājya Upasana (Ritual & Cosmic Order)",
+          title: "3. RÄjya Upasana (Ritual & Cosmic Order)",
           desc: "Align governance with the cosmic rhythm (Rta) through state-level sacrifices, public rituals, and alignment of administrative cycles with nature.",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=upasana"
+          actionLink: "interactive_lesson.html?pillar=rÄjya&course=upasana"
         },
         {
-          title: "4. Rājyanga Saptāṅga (Seven Limbs of State)",
+          title: "4. RÄjyanga SaptÄá¹…ga (Seven Limbs of State)",
           desc: "Understand Chanakya's structural definition of an empire: King (Swami), Minister (Amatya), Territory (Janapada), Fort (Durga), Treasury (Kosha), Army (Danda), Ally (Mitra).",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=saptāṅga"
+          actionLink: "interactive_lesson.html?pillar=rÄjya&course=saptÄá¹…ga"
         },
         {
-          title: "5. Neeti Śāstras (Administrative Policy)",
+          title: "5. Neeti ÅšÄstras (Administrative Policy)",
           desc: "Ancient codes of diplomacy, trade policies, justice administration, and administrative hierarchies.",
           actionText: "Start Learning",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=neeti"
+          actionLink: "interactive_lesson.html?pillar=rÄjya&course=neeti"
         }
       ],
       stories: [
@@ -892,7 +912,7 @@ const pillarData = {
           actionLink: "#story-harishchandra"
         },
         {
-          title: "The Glory of Rama Rājyam",
+          title: "The Glory of Rama RÄjyam",
           desc: "How Lord Rama ruled his kingdom according to the highest principles of Dharma, making Ayodhya a blooming, prosperous land free of fear and disease.",
           actionText: "Read Story",
           actionLink: "#story-ramarajjyam"
@@ -903,15 +923,15 @@ const pillarData = {
           title: "Socratic Guru Chat Challenge",
           desc: "Answer the Guru AI's counter-questions regarding ethical dilemmas in rule and taxation.",
           actionText: "Start Challenge",
-          actionLink: "vicara_sannidhi.html?pillar=rājya"
+          actionLink: "vicara_sannidhi.html?pillar=rÄjya"
         }
       ],
       simulations: [
         {
-          title: "Saptāṅga Balance Simulation",
+          title: "SaptÄá¹…ga Balance Simulation",
           desc: "Can you balance the 7 limbs? Adjust sliders representing Treasury, Army, and Citizen welfare to maintain high Dharma Stability.",
           actionText: "Play Now",
-          actionLink: "interactive_lesson.html?pillar=rājya&course=saptāṅga"
+          actionLink: "interactive_lesson.html?pillar=rÄjya&course=saptÄá¹…ga"
         }
       ],
       nano: [
@@ -922,8 +942,8 @@ const pillarData = {
           actionLink: "#nano-sama"
         },
         {
-          title: "The Law of the Fishes (Matsya Nyāya)",
-          desc: "Understand Chanakya's warning on anarchy—where the big fish eat the small fish—and why sovereign law (Danda) is needed.",
+          title: "The Law of the Fishes (Matsya NyÄya)",
+          desc: "Understand Chanakya's warning on anarchyâ€”where the big fish eat the small fishâ€”and why sovereign law (Danda) is needed.",
           actionText: "Start Quick Lesson",
           actionLink: "#nano-matsya"
         }
@@ -981,7 +1001,7 @@ const pillarData = {
           actionLink: "interactive_lesson.html?pillar=nagara&course=upasana"
         },
         {
-          title: "4. Vastu Purusha Maṇḍala Grid",
+          title: "4. Vastu Purusha Maá¹‡á¸ala Grid",
           desc: "Practical layout instructions for residences, optimizing natural air current flow, water access points, and internal thermodynamic balance.",
           actionText: "Start Learning",
           actionLink: "interactive_lesson.html?pillar=nagara&course=vastu"
@@ -1023,7 +1043,7 @@ const pillarData = {
       ],
       simulations: [
         {
-          title: "Vastu Maṇḍala Room Planner",
+          title: "Vastu Maá¹‡á¸ala Room Planner",
           desc: "Test your environmental engineering alignment. Drag the Kitchen, Water Well, and Master Bedroom to their appropriate directional grid cells.",
           actionText: "Play Now",
           actionLink: "interactive_lesson.html?pillar=nagara&course=vastu"
@@ -1055,7 +1075,7 @@ const activeData = pillarData[currentPillar] || pillarData.nagara;
 // Render dynamic content
 function renderPage() {
   // Update browser tab title
-  document.title = activeData.title.split(':')[0] + "Hub — Era of Siddhas";
+  document.title = activeData.title.split(':')[0] + "Hub â€” Era of Siddhas";
 
   // Update Hero Section
   const heroSection = document.getElementById('hero-section');
@@ -1069,7 +1089,7 @@ function renderPage() {
   sourceTextsHTML = sourceTextsHTML.slice(0, -8);
 
   let branchImg = 'ancient_weapons.png';
-  if (currentPillar === 'rājya') branchImg = 'flying_manuscript.png';
+  if (currentPillar === 'rÄjya') branchImg = 'flying_manuscript.png';
   if (currentPillar === 'nagara') branchImg = 'sacred_city.png';
 
   heroSection.innerHTML = `
@@ -1098,14 +1118,14 @@ function renderPage() {
   // Update Tabs
   const tabsSection = document.getElementById('tabs-section');
   tabsSection.innerHTML = `
-    <button class="tab active" onclick="switchTab(this, 'learn')">Learn (Sub-topics)</button>
-    <button class="tab" onclick="switchTab(this, 'stories')">Stories</button>
-    <button class="tab" onclick="switchTab(this, 'games')">Games & Quiz</button>
-    <button class="tab" onclick="switchTab(this, 'simulations')">Simulations</button>
-    <button class="tab" onclick="switchTab(this, 'nano')">Nano Courses</button>
+    <button class="tab active" role="tab" aria-selected="true" aria-controls="course-grid" onclick="switchTab(this, 'learn')">Learn (Sub-topics)</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="course-grid" onclick="switchTab(this, 'stories')">Stories</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="course-grid" onclick="switchTab(this, 'games')">Games & Quiz</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="course-grid" onclick="switchTab(this, 'simulations')">Simulations</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="course-grid" onclick="switchTab(this, 'nano')">Nano Courses</button>
   `;
 
-  // Update Vicāra Sannidhi nav button href to pass the current pillar
+  // Update VicÄra Sannidhi nav button href to pass the current pillar
   const sanctumNavBtn = document.querySelector('.nav-btn[href^="vicara_sannidhi.html"]');
   if (sanctumNavBtn) {
     sanctumNavBtn.href = `vicara_sannidhi.html?pillar=${currentPillar}`;
@@ -1116,8 +1136,12 @@ function renderPage() {
 }
 
 function switchTab(btn, tabKey) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => {
+    t.classList.remove('active');
+    t.setAttribute('aria-selected', 'false');
+  });
   btn.classList.add('active');
+  btn.setAttribute('aria-selected', 'true');
   renderTabContent(tabKey);
 }
 
@@ -1150,7 +1174,7 @@ function renderTabContent(tabKey) {
       isCompleted = true;
     }
 
-    const checkmark = isCompleted ? `<span class="completed-badge">✓ Completed</span>` : '';
+    const checkmark = isCompleted ? `<span class="completed-badge">âœ“ Completed</span>` : '';
 
     return `
       <a href="${card.actionLink}" class="course-card ${isCompleted ? 'completed-card' : ''}" style="text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;">
@@ -1214,13 +1238,18 @@ function setTheme(btnElement, themeName) {
   document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
   document.body.classList.add(themeName);
   localStorage.setItem('era_of_siddhas_theme', themeName);
-  document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+  document.querySelectorAll('.theme-btn').forEach(btn => {
+    btn.classList.remove('active');
+    btn.setAttribute('aria-pressed', 'false');
+  });
   if (btnElement) {
     btnElement.classList.add('active');
+    btnElement.setAttribute('aria-pressed', 'true');
   } else {
     document.querySelectorAll('.theme-btn').forEach(btn => {
       if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
       }
     });
   }
@@ -1247,10 +1276,10 @@ document.addEventListener('DOMContentLoaded', async () => {
               actionLink: `#story-dynamic-${story.id}`
             });
             // Map story content in readerContentData
-            const pillarLabels = { nagara: "Nagara Nirmana", rājya: "Rājya Palanam", yuddham: "Yuddham" };
+            const pillarLabels = { nagara: "Nagara Nirmana", rÄjya: "RÄjya Palanam", yuddham: "Yuddham" };
             const label = pillarLabels[p] || p.toUpperCase();
             readerContentData[`story-dynamic-${story.id}`] = {
-              category: `${label} — Custom Story`,
+              category: `${label} â€” Custom Story`,
               title: story.title,
               content: story.content
             };
@@ -1339,11 +1368,11 @@ function bindCardClicks() {
 
 const readerContentData = {
   "story-arjuna": {
-    category: "Yuddham Story — The Great Dilemma",
+    category: "Yuddham Story â€” The Great Dilemma",
     title: "The Dilemma of Arjuna",
     content: `
       <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
-        न जायते म्रियते वा कदाचि- <br> न्नायं भूत्वा भविता वा न भूयः । <br> अजो नित्यः शाश्वतोऽयं पुराणो <br> न हन्यते हन्यमाने शरीरे ॥
+        à¤¨ à¤œà¤¾à¤¯à¤¤à¥‡ à¤®à¥à¤°à¤¿à¤¯à¤¤à¥‡ à¤µà¤¾ à¤•à¤¦à¤¾à¤šà¤¿- <br> à¤¨à¥à¤¨à¤¾à¤¯à¤‚ à¤­à¥‚à¤¤à¥à¤µà¤¾ à¤­à¤µà¤¿à¤¤à¤¾ à¤µà¤¾ à¤¨ à¤­à¥‚à¤¯à¤ƒ à¥¤ <br> à¤…à¤œà¥‹ à¤¨à¤¿à¤¤à¥à¤¯à¤ƒ à¤¶à¤¾à¤¶à¥à¤µà¤¤à¥‹à¤½à¤¯à¤‚ à¤ªà¥à¤°à¤¾à¤£à¥‹ <br> à¤¨ à¤¹à¤¨à¥à¤¯à¤¤à¥‡ à¤¹à¤¨à¥à¤¯à¤®à¤¾à¤¨à¥‡ à¤¶à¤°à¥€à¤°à¥‡ à¥¥
       </div>
       <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
         "The soul is neither born, nor does it ever die; nor having once existed, does it ever cease to be. The soul is unborn, eternal, ever-existing, and primeval. It is not slain when the body is slain." (Bhagavad Gita 2.20)
@@ -1357,14 +1386,14 @@ const readerContentData = {
     `
   },
   "story-parashurama": {
-    category: "Yuddham Story — The Warrior Sage",
+    category: "Yuddham Story â€” The Warrior Sage",
     title: "Parashurama and the Disciples",
     content: `
       <p>
         Lord Parashurama, the sixth avatar of Vishnu, represents the ultimate synthesis of Brahmana intellect and Kshatriya martial prowess (Astra-Vidya). Having cleared the earth twenty-one times of corrupt, tyrannical rulers who deviated from Dharma, he established a gurukulam on Mount Mahendra to train select seekers in the highest forms of warfare.
       </p>
       <p>
-        His disciples—including Bhishma, Drona, and Karna—underwent extreme physical and mental tests. Parashurama demanded absolute focus and obedience. One legend tells of Karna offering his lap as a pillow for his sleeping Guru. A fierce insect bored deep into Karna's thigh, causing excruciating pain and heavy bleeding, yet Karna remained absolutely motionless to avoid waking his master.
+        His disciplesâ€”including Bhishma, Drona, and Karnaâ€”underwent extreme physical and mental tests. Parashurama demanded absolute focus and obedience. One legend tells of Karna offering his lap as a pillow for his sleeping Guru. A fierce insect bored deep into Karna's thigh, causing excruciating pain and heavy bleeding, yet Karna remained absolutely motionless to avoid waking his master.
       </p>
       <p>
         Upon waking, Parashurama saw the blood and immediately recognized Karna's extreme tolerance, realizing Karna was not a Brahmana as he had claimed (since only a warrior's blood could withstand such pain without moving). Though Parashurama cursed Karna for the deception, the legend illustrates the unyielding, iron-like physical discipline (Dharana Shakti) that Yuddham demands of its true adepts.
@@ -1372,14 +1401,14 @@ const readerContentData = {
     `
   },
   "story-chanakya": {
-    category: "Yuddham Story — Silent Statecraft",
+    category: "Yuddham Story â€” Silent Statecraft",
     title: "Chanakya's Silent War",
     content: `
       <p>
         When Chanakya, a humble teacher of political science at Takshashila, was publicly insulted by Dhanananda, the arrogant king of the massive Nanda Empire, Chanakya untied his topknot (Shikha) and vowed never to bind it again until the empire was completely dismantled and replaced by righteous rule.
       </p>
       <p>
-        Rather than raising a conventional army, Chanakya waged a silent, psychological war. He leveraged Chanakya Neeti—employing espionage, deep-cover double agents (Vishakanyas), and sowing systemic division (Bheda) within the Nanda court. He mentored young Chandragupta Maurya, teaching him to view the kingdom as a unified organic system (Saptāṅga) and to target the empire's outer layers before striking the core.
+        Rather than raising a conventional army, Chanakya waged a silent, psychological war. He leveraged Chanakya Neetiâ€”employing espionage, deep-cover double agents (Vishakanyas), and sowing systemic division (Bheda) within the Nanda court. He mentored young Chandragupta Maurya, teaching him to view the kingdom as a unified organic system (SaptÄá¹…ga) and to target the empire's outer layers before striking the core.
       </p>
       <p>
         Chanakya proved that strategic intellect (Buddhi) is far superior to mere physical force (Danda). By aligning his actions with long-term societal well-being and structural integrity, he united the fractured sub-continent, creating the Mauryan Empire and establishing a golden era of peace.
@@ -1388,32 +1417,32 @@ const readerContentData = {
   },
   "nano-astra": {
     category: "Yuddham Nano Course",
-    title: "Astra vs Śāstra",
+    title: "Astra vs ÅšÄstra",
     content: `
       <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
-        शस्त्रेण रक्षिते राष्ट्रे शास्त्रचिन्ता प्रवर्तते ॥
+        à¤¶à¤¸à¥à¤¤à¥à¤°à¥‡à¤£ à¤°à¤•à¥à¤·à¤¿à¤¤à¥‡ à¤°à¤¾à¤·à¥à¤Ÿà¥à¤°à¥‡ à¤¶à¤¾à¤¸à¥à¤¤à¥à¤°à¤šà¤¿à¤¨à¥à¤¤à¤¾ à¤ªà¥à¤°à¤µà¤°à¥à¤¤à¤¤à¥‡ à¥¥
       </div>
       <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
-        "śastreṇa rakṣite rāṣṭre śāstracintā pravartate ||"<br>
+        "Å›astreá¹‡a raká¹£ite rÄá¹£á¹­re Å›ÄstracintÄ pravartate ||"<br>
         (When the nation is secured by arms, the study of scriptures and sciences can flourish.)
       </p>
       <p>
-        In ancient Sanskrit military treatises (Dhanurveda), weapons are strictly divided into two distinct categories: <strong>Śāstras</strong> (hand-held physical weapons like swords and spears) and <strong>Astras</strong> (propelled mystic weapons invoked through mental and sound resonance).
+        In ancient Sanskrit military treatises (Dhanurveda), weapons are strictly divided into two distinct categories: <strong>ÅšÄstras</strong> (hand-held physical weapons like swords and spears) and <strong>Astras</strong> (propelled mystic weapons invoked through mental and sound resonance).
       </p>
       <p>
-        The foundational truth of Yuddham is that martial vigilance is not the opposite of culture and science, but its essential shield. As the shloka from the <em>Nītidviṣaṣṭikā</em> states, it is only when the nation is secured by arms (Śāstra/Astra) that intellectual inquiry, scripture, and peaceful civilization (Śāstra Chintā) can flourish.
+        The foundational truth of Yuddham is that martial vigilance is not the opposite of culture and science, but its essential shield. As the shloka from the <em>NÄ«tidviá¹£aá¹£á¹­ikÄ</em> states, it is only when the nation is secured by arms (ÅšÄstra/Astra) that intellectual inquiry, scripture, and peaceful civilization (ÅšÄstra ChintÄ) can flourish.
       </p>
     `
   },
-  "nano-nyāya": {
+  "nano-nyÄya": {
     category: "Yuddham Nano Course",
-    title: "Nyāya Logic in Battle",
+    title: "NyÄya Logic in Battle",
     content: `
       <p>
-        Nyāya is one of the six orthodox schools of Hindu philosophy (Shad Darshanas), focusing on logic, epistemology, and dismantling false arguments. In ancient India, intellectual debates (Śāstrartha) were fought like physical wars. A philosopher who failed to defend their thesis was defeated, sometimes leading to their entire school converting to the victor's philosophy.
+        NyÄya is one of the six orthodox schools of Hindu philosophy (Shad Darshanas), focusing on logic, epistemology, and dismantling false arguments. In ancient India, intellectual debates (ÅšÄstrartha) were fought like physical wars. A philosopher who failed to defend their thesis was defeated, sometimes leading to their entire school converting to the victor's philosophy.
       </p>
       <p>
-        Nyāya established a rigorous five-step syllogism to prove any truth:
+        NyÄya established a rigorous five-step syllogism to prove any truth:
       </p>
       <ol>
         <li><strong>Pratijna (Proposition)</strong>: The statement to be proved (e.g., "The hill has fire").</li>
@@ -1428,7 +1457,7 @@ const readerContentData = {
     `
   },
   "story-vikramaditya": {
-    category: "Rājya Story — The Seat of Justice",
+    category: "RÄjya Story â€” The Seat of Justice",
     title: "The Judgment Seat of Vikramaditya",
     content: `
       <p>
@@ -1443,7 +1472,7 @@ const readerContentData = {
     `
   },
   "story-harishchandra": {
-    category: "Rājya Story — Absolute Truth",
+    category: "RÄjya Story â€” Absolute Truth",
     title: "Raja Harishchandra's Commitment",
     content: `
       <p>
@@ -1453,38 +1482,38 @@ const readerContentData = {
         Rather than break his word, Harishchandra sold his wife and son into servitude and became a low-caste worker at a cremation ground in Varanasi. When his own son died of a snakebite, and his grief-stricken wife brought the body for cremation, Harishchandra stood firm in his duty, refusing to burn the body without the standard cremation tax.
       </p>
       <p>
-        Recognizing his ultimate surrender to cosmic truth, the gods descended, restored his son to life, and returned his kingdom. His legacy stands as the ultimate benchmark of ethical integrity in leadership—proving that a sovereign must protect the truth even when it demands their own complete destruction.
+        Recognizing his ultimate surrender to cosmic truth, the gods descended, restored his son to life, and returned his kingdom. His legacy stands as the ultimate benchmark of ethical integrity in leadershipâ€”proving that a sovereign must protect the truth even when it demands their own complete destruction.
       </p>
     `
   },
   "story-ramarajjyam": {
-    category: "Rājya Story — Rama Rājyam",
-    title: "Rama Rājyam: The Golden Age of Ayodhya",
+    category: "RÄjya Story â€” Rama RÄjyam",
+    title: "Rama RÄjyam: The Golden Age of Ayodhya",
     content: `
       <div style="font-family: 'Noto Serif Devanagari', serif; font-size:1.4rem; color: var(--gold-bright); text-align: center; margin-bottom: 1rem;">
-        रामो रामो राम इति प्रजानामभवन् कथाः ।<br>
-        रामभूतं जगदभूद्रामे राज्यं प्रशासति ॥
+        à¤°à¤¾à¤®à¥‹ à¤°à¤¾à¤®à¥‹ à¤°à¤¾à¤® à¤‡à¤¤à¤¿ à¤ªà¥à¤°à¤œà¤¾à¤¨à¤¾à¤®à¤­à¤µà¤¨à¥ à¤•à¤¥à¤¾à¤ƒ à¥¤<br>
+        à¤°à¤¾à¤®à¤­à¥‚à¤¤à¤‚ à¤œà¤—à¤¦à¤­à¥‚à¤¦à¥à¤°à¤¾à¤®à¥‡ à¤°à¤¾à¤œà¥à¤¯à¤‚ à¤ªà¥à¤°à¤¶à¤¾à¤¸à¤¤à¤¿ à¥¥
       </div>
       <p style="font-style: italic; color: var(--text-muted); text-align: center; margin-bottom: 1.5rem;">
         "While Rama was ruling, the conversations of the subjects were centered solely on Rama. The entire world appeared as if it were filled with Rama and the spirit of righteousness." (Valmiki Ramayana 7.128.95)
       </p>
       <p>
-        The Solar Dynasty (Suryavamsha), originating from Manu, Ikshvaku, Kakutstha, Dilipa, and Raghu, reached its pinnacle of glory under Lord Rama in Ayodhya. Rama's administration, known as <strong>Rama Rājyam</strong>, has served as the eternal blueprint for ideal, righteous governance.
+        The Solar Dynasty (Suryavamsha), originating from Manu, Ikshvaku, Kakutstha, Dilipa, and Raghu, reached its pinnacle of glory under Lord Rama in Ayodhya. Rama's administration, known as <strong>Rama RÄjyam</strong>, has served as the eternal blueprint for ideal, righteous governance.
       </p>
       <p>
         According to the <em>Valmiki Ramayana</em>, Rama ruled by prioritizing his subjects' welfare (Loka Sangraha) and upholding absolute truth (Satya). Under his administration, the kingdom was blooming and prosperous in every dimension. There was no fear of famine, disease, theft, or violence. The elders never had to perform funeral rites for the young, for untimely death was unknown. The winds blew sweet, the trees bore abundant fruit, and the rains fell in perfect harmony with the seasons.
       </p>
       <p>
-        Crucially, Rama Rajyam was not a state of passive luxury, but a society where every citizen performed their Svadharma (personal duty) and cooperated in maintaining cosmic order (Rta). Rama's glory lies in his willingness to sacrifice his personal happiness to protect the integrity of the state and the trust of his citizens—establishing that sovereign power is a sacred duty, not a personal privilege.
+        Crucially, Rama Rajyam was not a state of passive luxury, but a society where every citizen performed their Svadharma (personal duty) and cooperated in maintaining cosmic order (Rta). Rama's glory lies in his willingness to sacrifice his personal happiness to protect the integrity of the state and the trust of his citizensâ€”establishing that sovereign power is a sacred duty, not a personal privilege.
       </p>
     `
   },
   "nano-sama": {
-    category: "Rājya Nano Course",
+    category: "RÄjya Nano Course",
     title: "Sama, Dana, Bheda, Danda",
     content: `
       <p>
-        In ancient Indian statecraft (Arthaśāstra), a ruler is advised to employ the four Upayas (diplomatic methods) in sequence to resolve conflicts and manage external threats:
+        In ancient Indian statecraft (ArthaÅ›Ästra), a ruler is advised to employ the four Upayas (diplomatic methods) in sequence to resolve conflicts and manage external threats:
       </p>
       <ol>
         <li><strong>Sama (Conciliation / Negotiation)</strong>: Attempting peaceful dialogue, treaty validation, and finding common ground. Always the first step.</li>
@@ -1498,14 +1527,14 @@ const readerContentData = {
     `
   },
   "nano-matsya": {
-    category: "Rājya Nano Course",
-    title: "The Law of the Fishes (Matsya Nyāya)",
+    category: "RÄjya Nano Course",
+    title: "The Law of the Fishes (Matsya NyÄya)",
     content: `
       <p>
-        <strong>Matsya Nyāya</strong> is the ancient Sanskrit term for anarchy, literally translating to "the law of the fishes"—a state of nature where the big fish eat the small fish without restraint.
+        <strong>Matsya NyÄya</strong> is the ancient Sanskrit term for anarchy, literally translating to "the law of the fishes"â€”a state of nature where the big fish eat the small fish without restraint.
       </p>
       <p>
-        Chanakya warns that in the absence of a sovereign, legitimate governing power (Danda) and legal order, society naturally falls into Matsya Nyāya, where the strong exploit the weak, and might becomes right. 
+        Chanakya warns that in the absence of a sovereign, legitimate governing power (Danda) and legal order, society naturally falls into Matsya NyÄya, where the strong exploit the weak, and might becomes right. 
       </p>
       <p>
         To prevent this chaos, the state must maintain a strong, righteous treasury (Kosha) and military defense (Danda), guided by the ethical principles of Swami (leadership). Danda must never be used arbitrarily, but must act as a protective shield for the weak, ensuring that every citizen has the freedom to pursue their spiritual and material life in peace.
@@ -1513,14 +1542,14 @@ const readerContentData = {
     `
   },
   "story-parashurama-kshetram": {
-    category: "Nagara Story — Parashurama Kshetram",
+    category: "Nagara Story â€” Parashurama Kshetram",
     title: "The Legend of Parashurama Kshetram (Kerala)",
     content: `
       <p>
-        The coastal land of Kerala is traditionally known as <strong>Bhargava Kshetram</strong> or <strong>Parashurama Kshetram</strong>. According to the traditional history found in texts like the <em>Kerala Kalpam</em>, Sage Parashurama—an avatāra of Lord Narayana, a Chiranjeevi (immortal), and a great warrior-sage holding immense Jñāna, Kriyā, and Icchā shaktis—performed intense penance after his battles. Seeking to create a peaceful sanctuary for seekers, he was offered land by Varuna (Lord of Oceans) and Bhumi Devi (Earth Mother) as far as he could throw his battle-axe. He hurled his divine battle-axe (Parashu) from Gokarna; the waters receded up to Kanyakumari, reclaiming the beautiful coastal territory.
+        The coastal land of Kerala is traditionally known as <strong>Bhargava Kshetram</strong> or <strong>Parashurama Kshetram</strong>. According to the traditional history found in texts like the <em>Kerala Kalpam</em>, Sage Parashuramaâ€”an avatÄra of Lord Narayana, a Chiranjeevi (immortal), and a great warrior-sage holding immense JÃ±Äna, KriyÄ, and IcchÄ shaktisâ€”performed intense penance after his battles. Seeking to create a peaceful sanctuary for seekers, he was offered land by Varuna (Lord of Oceans) and Bhumi Devi (Earth Mother) as far as he could throw his battle-axe. He hurled his divine battle-axe (Parashu) from Gokarna; the waters receded up to Kanyakumari, reclaiming the beautiful coastal territory.
       </p>
       <p>
-        <strong>Why did Parashurama build the temples?</strong> The reclaimed land, having just risen from the depths of the ocean, was extremely unstable, clayey, and prone to severe earthquakes and saline oceanic winds. In addition, subterranean forces and serpents troubled the early settlers. To geophysically and spiritually stabilize this trembling coastline, Parashurama designed a massive regional mandala grid of sacred structures. He consecrated and installed <strong>108 Śivalayas</strong> (temples dedicated to Lord Shiva) and <strong>108 Bhagavati/Devi temples</strong> along the coastal, midland, and highland corridors. These temples acted as energetic "grounding rods" or spikes, stabilizing the tectonic energies of the earth, filtering the saline soil, and aligning the geography into a resonant spiritual fortress.
+        <strong>Why did Parashurama build the temples?</strong> The reclaimed land, having just risen from the depths of the ocean, was extremely unstable, clayey, and prone to severe earthquakes and saline oceanic winds. In addition, subterranean forces and serpents troubled the early settlers. To geophysically and spiritually stabilize this trembling coastline, Parashurama designed a massive regional mandala grid of sacred structures. He consecrated and installed <strong>108 Åšivalayas</strong> (temples dedicated to Lord Shiva) and <strong>108 Bhagavati/Devi temples</strong> along the coastal, midland, and highland corridors. These temples acted as energetic "grounding rods" or spikes, stabilizing the tectonic energies of the earth, filtering the saline soil, and aligning the geography into a resonant spiritual fortress.
       </p>
       <p>
         <strong>The Shiva Trinity</strong>: The core of this system comprises three major Shiva temples representing the human body's bio-energetic centers:
@@ -1531,7 +1560,7 @@ const readerContentData = {
         <li><strong>Kaduthuruthy Thaliyil Mahadeva Temple</strong>: Represents the intellectual center (wisdom, clarity, and higher intellect).</li>
       </ul>
       <p>
-        Legend states that standing in all three of these temples between sunrise and noon completes a powerful loop of physical, pranic, and mental purification. Other key Śivalayas include **Vadakkunnathan Temple in Thrissur** (where the central jyotirlinga is continuously cooled under centuries of ghee offerings that symbolise infinite tranquil energy) and **Thiruvalla Temple**. Among the 108 Devi temples, **Chengannur Bhagavathy Temple** represents the creative power of mother nature, and **Chottanikkara Bhagavathy Temple** acts as a sanctuary for healing mental agitation and emotional imbalances.
+        Legend states that standing in all three of these temples between sunrise and noon completes a powerful loop of physical, pranic, and mental purification. Other key Åšivalayas include **Vadakkunnathan Temple in Thrissur** (where the central jyotirlinga is continuously cooled under centuries of ghee offerings that symbolise infinite tranquil energy) and **Thiruvalla Temple**. Among the 108 Devi temples, **Chengannur Bhagavathy Temple** represents the creative power of mother nature, and **Chottanikkara Bhagavathy Temple** acts as a sanctuary for healing mental agitation and emotional imbalances.
       </p>
       <p>
         <strong>The Shat-Chakra Sthala & Sabarimala</strong>: To map the path of spiritual ascension, Parashurama established five Shasta (Ayyappa) temples representing the progressive stages of yogic chakra awakening along the spine:
@@ -1541,22 +1570,22 @@ const readerContentData = {
         <li><strong>Aryankavu Shasta Temple (representing Swadhishthana)</strong>: Worshipped as a celibate student (Brahmachari), signifying self-discipline and vital conservation.</li>
         <li><strong>Achankovil Shasta Temple (representing Manipura)</strong>: Worshipped as a householder alongside his consorts Poorna and Pushkala, representing community leadership and active engagement.</li>
         <li><strong>Erumeli Shasta Temple (representing Anahata)</strong>: Worshipped as a protector, representing heart-centered courage and overcoming fear.</li>
-        <li><strong>Sabarimala Shasta Temple (representing Ajna & Sahasrara)</strong>: The peak of the ascent. Here, Lord Ayyappa sits in deep meditation in Yoga Posture (Chin-Mudra). Seekers climb the 18 sacred steps—representing the mastery of the 5 senses, 5 motor organs, 5 pranas, and 3 gunas—to realize the ultimate Agamic truth: <em>Tat Tvam Asi</em> (Thou Art That), realizing the individual soul's identity with Brahman.</li>
+        <li><strong>Sabarimala Shasta Temple (representing Ajna & Sahasrara)</strong>: The peak of the ascent. Here, Lord Ayyappa sits in deep meditation in Yoga Posture (Chin-Mudra). Seekers climb the 18 sacred stepsâ€”representing the mastery of the 5 senses, 5 motor organs, 5 pranas, and 3 gunasâ€”to realize the ultimate Agamic truth: <em>Tat Tvam Asi</em> (Thou Art That), realizing the individual soul's identity with Brahman.</li>
       </ol>
       <p>
-        At Mahendragiri, Parashurama met <strong>Agastya Maharishi</strong>, which represents the union of northern and southern spiritual streams. Agastya initiated him into the supreme mysteries of Śrī Vidyā Upāsanā. In accordance with this wisdom, Parashurama compiled the **Paraśurāma Kalpasūtra**, which remains the ultimate authority for temple worship, mandala construction, and Agamic rituals throughout Kerala.
+        At Mahendragiri, Parashurama met <strong>Agastya Maharishi</strong>, which represents the union of northern and southern spiritual streams. Agastya initiated him into the supreme mysteries of ÅšrÄ« VidyÄ UpÄsanÄ. In accordance with this wisdom, Parashurama compiled the **ParaÅ›urÄma KalpasÅ«tra**, which remains the ultimate authority for temple worship, mandala construction, and Agamic rituals throughout Kerala.
       </p>
     `
   },
   "story-mayasabha": {
-    category: "Nagara Story — Palace of Illusions",
+    category: "Nagara Story â€” Palace of Illusions",
     title: "The Illusions of Maya Sabha",
     content: `
       <p>
         Following the burning of the Khandava forest, the architect Maya Danava, out of gratitude to Arjuna, offered to construct a grand assembly hall (Sabha) for the Pandavas in Indraprastha.
       </p>
       <p>
-        Utilizing sacred geometry, ancient engineering, and rare reflective materials, Maya constructed the Maya Sabha—a palace of illusions. The floors were polished to look like transparent water, complete with artificial fish, while actual ponds were constructed with clear glass borders to look like solid land.
+        Utilizing sacred geometry, ancient engineering, and rare reflective materials, Maya constructed the Maya Sabhaâ€”a palace of illusions. The floors were polished to look like transparent water, complete with artificial fish, while actual ponds were constructed with clear glass borders to look like solid land.
       </p>
       <p>
         When Duryodhana visited the palace, he stepped into a dry floor thinking it was water, and later fell into an actual pond thinking it was solid ground, prompting Draupadi's laughter and stoking the seeds of the Mahabharata conflict. Beyond the lore, the Maya Sabha represents the pinnacle of optical engineering, material sciences, and architectural illusion in ancient times.
@@ -1564,11 +1593,11 @@ const readerContentData = {
     `
   },
   "story-chidambaram": {
-    category: "Nagara Story — Sacred Geometry",
+    category: "Nagara Story â€” Sacred Geometry",
     title: "The Temple of the Heart (Chidambaram)",
     content: `
       <p>
-        The ancient Nataraja temple in Chidambaram, Tamil Nadu, is a physical, architectural manifestation of the human body and the cosmos. It anchors the "Dahara Akasha"—the space of the heart where the cosmic dance (Ananda Tandava) occurs.
+        The ancient Nataraja temple in Chidambaram, Tamil Nadu, is a physical, architectural manifestation of the human body and the cosmos. It anchors the "Dahara Akasha"â€”the space of the heart where the cosmic dance (Ananda Tandava) occurs.
       </p>
       <p>
         The temple layout matches biological proportions:
@@ -1579,7 +1608,7 @@ const readerContentData = {
         <li>The nine entrances of the temple correspond to the nine openings (gates) of the human body.</li>
       </ul>
       <p>
-        By structuring the temple to match biological parameters, ancient Sthāpatis created an environment that harmonizes the biological field of the seeker, allowing them to enter deep states of meditation simply by standing within the sanctum.
+        By structuring the temple to match biological parameters, ancient SthÄpatis created an environment that harmonizes the biological field of the seeker, allowing them to enter deep states of meditation simply by standing within the sanctum.
       </p>
     `
   },
@@ -1588,14 +1617,14 @@ const readerContentData = {
     title: "Pancha Bhootas in Design",
     content: `
       <p>
-        Vāstu Śāstra teaches that physical space is composed of the five great elements (Pancha Bhootas). A harmonious architectural structure must align its functional rooms with the cardinal directions governed by these elements:
+        VÄstu ÅšÄstra teaches that physical space is composed of the five great elements (Pancha Bhootas). A harmonious architectural structure must align its functional rooms with the cardinal directions governed by these elements:
       </p>
       <ol>
-        <li><strong>Northeast (NE / Ishanya) — Water (Ap)</strong>: Governs spiritual energy, purity, and clarity. Ideal for study rooms, wells, and shrines.</li>
-        <li><strong>Southeast (SE / Agneya) — Fire (Tejas)</strong>: Governs heat, digestion, and chemical reactions. Ideal location for the kitchen and electrical control points.</li>
-        <li><strong>Southwest (SW / Nairutya) — Earth (Prithvi)</strong>: Governs stability, weight, and rest. Ideal location for master bedrooms and heavy storage.</li>
-        <li><strong>Northwest (NW / Vayavya) — Air (Vayu)</strong>: Governs movement, ventilation, and exchange. Ideal for guest rooms, garages, and wind turbines.</li>
-        <li><strong>Center (Brahma Sthana) — Space (Akasha)</strong>: Governs ether, circulation, and sound. Must remain completely open to allow atmospheric venting.</li>
+        <li><strong>Northeast (NE / Ishanya) â€” Water (Ap)</strong>: Governs spiritual energy, purity, and clarity. Ideal for study rooms, wells, and shrines.</li>
+        <li><strong>Southeast (SE / Agneya) â€” Fire (Tejas)</strong>: Governs heat, digestion, and chemical reactions. Ideal location for the kitchen and electrical control points.</li>
+        <li><strong>Southwest (SW / Nairutya) â€” Earth (Prithvi)</strong>: Governs stability, weight, and rest. Ideal location for master bedrooms and heavy storage.</li>
+        <li><strong>Northwest (NW / Vayavya) â€” Air (Vayu)</strong>: Governs movement, ventilation, and exchange. Ideal for guest rooms, garages, and wind turbines.</li>
+        <li><strong>Center (Brahma Sthana) â€” Space (Akasha)</strong>: Governs ether, circulation, and sound. Must remain completely open to allow atmospheric venting.</li>
       </ol>
     `
   },
@@ -1604,10 +1633,10 @@ const readerContentData = {
     title: "Ancient Water Harvesting",
     content: `
       <p>
-        Ancient Indian city building (Nagara Nirmana) prioritized water resource management above all. In arid regions like Rajasthan and Gujarat, Sthāpatis constructed stepwells (Baolis)—massive, multi-story subterranean stone wells that harvested monsoon runoff and preserved it.
+        Ancient Indian city building (Nagara Nirmana) prioritized water resource management above all. In arid regions like Rajasthan and Gujarat, SthÄpatis constructed stepwells (Baolis)â€”massive, multi-story subterranean stone wells that harvested monsoon runoff and preserved it.
       </p>
       <p>
-        The stepwells were not merely storage tanks; they were social hubs, cooling centers, and architectural marvels. The stone steps acted as heat-sinks, lowering temperatures by 5°C to 10°C, while the filtration basins removed sand and impurities.
+        The stepwells were not merely storage tanks; they were social hubs, cooling centers, and architectural marvels. The stone steps acted as heat-sinks, lowering temperatures by 5Â°C to 10Â°C, while the filtration basins removed sand and impurities.
       </p>
       <p>
         Additionally, temples were designed with dedicated temple tanks (Kalyanis) connected to local underground canals, ensuring that the water table of the entire township remained stable even during prolonged droughts.
@@ -1620,7 +1649,7 @@ const readerContentData = {
 <!-- Immersive Reader Modal -->
 <div id="reader-modal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);">
   <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-radius: 28px; padding: 3rem; width: 90%; max-width: 800px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); display: flex; flex-direction: column; gap: 1.5rem; position: relative;">
-    <button onclick="closeReaderModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary); border-radius: 50%; width: 40px; height: 40px; font-size:1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center;" class="action-btn">×</button>
+    <button onclick="closeReaderModal()" style="position: absolute; top: 1.5rem; right: 1.5rem; background: transparent; border: 1px solid var(--border-glass); color: var(--text-primary); border-radius: 50%; width: 40px; height: 40px; font-size:1.4rem; cursor: pointer; display: flex; align-items: center; justify-content: center;" class="action-btn">Ã—</button>
     <div id="reader-header" style="border-bottom: 1px solid var(--border-glass); padding-bottom: 1rem;">
       <div id="reader-category" style="font-family: 'Outfit', sans-serif; font-size:1.0rem; color: var(--accent); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0.5rem;">CATEGORY</div>
       <h2 id="reader-title" style="font-family: 'Cinzel', serif; color: var(--text-primary); margin: 0; font-size:2.0rem;">Topic Title</h2>
@@ -1630,5 +1659,19 @@ const readerContentData = {
     </div>
   </div>
 </div>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('Service Worker registered'))
+        .catch(err => console.log('Service Worker registration failed', err));
+    });
+  }
+</script>
 </body>
 </html>
+
+
+
+
+
