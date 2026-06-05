@@ -1712,6 +1712,8 @@
     <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="about.html" class="nav-btn">About</a>
     <a href="course_hub.html" id="back-to-hub-btn" class="nav-btn">Return to Courses</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
@@ -2599,6 +2601,67 @@ const scienceStories = {
   }
 };
 
+function getBloomTaxonomyLabel(pillar, course) {
+  const mapping = {
+    nagara: {
+      vastu: {
+        level: "Mumukṣu (Remember & Understand)",
+        objective: "Identify the 9x9 Paramaśāyika grid and name 3 Śilpa Śāstras."
+      },
+      upanishads: {
+        level: "Mumukṣu (Remember & Understand)",
+        objective: "Define Dahara Vidyā and locate the heart space inside architectural blueprints."
+      },
+      yoga: {
+        level: "Śiṣya (Apply & Analyze)",
+        objective: "Analyze Madurai's concentric layout against the Vāstu Puruṣa Maṇḍala."
+      },
+      sthapatya: {
+        level: "Sādhaka (Evaluate & Create)",
+        objective: "Design a settlement plan applying Āgamic zoning principles."
+      }
+    },
+    rājya: {
+      yoga: {
+        level: "Mumukṣu (Remember & Understand)",
+        objective: "List the components of mindful sovereignty and recall Gita guidelines."
+      },
+      upasana: {
+        level: "Śiṣya (Apply & Analyze)",
+        objective: "Compare statecraft rituals with psychological behavioral alignment."
+      },
+      saptāṅga: {
+        level: "Śiṣya (Apply & Analyze)",
+        objective: "Analyze governance structures using the saptāṅga (seven organs) framework."
+      },
+      neeti: {
+        level: "Sādhaka (Evaluate & Create)",
+        objective: "Evaluate law and order policies under Dhaṇḍanīti principles."
+      }
+    },
+    yuddham: {
+      yoga: {
+        level: "Mumukṣu (Remember & Understand)",
+        objective: "Recall basic tactical pranayama ratios and explain vagal tone activation."
+      },
+      upasana: {
+        level: "Śiṣya (Apply & Analyze)",
+        objective: "Analyze vocal and geometric resonance of mantra-activated weapons."
+      },
+      maṇḍala: {
+        level: "Sādhaka (Evaluate & Create)",
+        objective: "Design a geopolitical alliance strategy based on Maṇḍala Siddhānta."
+      },
+      vyūhas: {
+        level: "Sādhaka (Evaluate & Create)",
+        objective: "Synthesize strategic troop formations (vyūhas) to solve defensive scenarios."
+      }
+    }
+  };
+
+  return mapping[pillar]?.[course] || { level: "Mumukṣu (Remember & Understand)", objective: "Acquire fundamental concepts of the lesson." };
+}
+
 function getGradeLabel(grade) {
   if (grade === 'primary') return 'Primary (Grades 1-5)';
   if (grade === 'secondary') return 'High School (Grades 6-12)';
@@ -2749,8 +2812,17 @@ function renderLeftPane() {
 
     <div class="lesson-cat">${lesson.category}</div>
     <h1 class="lesson-title" style="font-size:1.6rem; margin-bottom: 0.8rem;">${lesson.title}</h1>
-    <div style="font-size:0.95rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-glass); display: inline-block; padding: 3px 8px; border-radius: 40px; margin-bottom: 1.2rem; font-family: 'Outfit'; font-weight: 500;">
-      Level: ${getGradeLabel(currentGrade)}
+    <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem;">
+      <div style="font-size:0.95rem; background: var(--accent-glow); color: var(--accent); border: 1px solid var(--border-glass); padding: 3px 12px; border-radius: 40px; font-family: 'Outfit'; font-weight: 500;">
+        Grade: ${getGradeLabel(currentGrade)}
+      </div>
+      <div style="font-size:0.95rem; background: rgba(200, 146, 42, 0.1); color: var(--gold-bright); border: 1px solid var(--gold-bright); padding: 3px 12px; border-radius: 40px; font-family: 'Outfit'; font-weight: 500;">
+        Path Stage: ${getBloomTaxonomyLabel(currentPillar, currentCourse).level}
+      </div>
+    </div>
+    <div style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(200, 146, 42, 0.05); border-left: 4px solid var(--gold); border-radius: 4px; text-align: left;">
+      <strong style="display: block; font-family: 'Cinzel'; font-size: 0.85rem; letter-spacing: 0.1em; color: var(--gold-bright); margin-bottom: 0.3rem;">Learning Objective</strong>
+      <p style="margin: 0; font-size: 0.95rem; color: var(--text-muted, var(--parchment));">${getBloomTaxonomyLabel(currentPillar, currentCourse).objective}</p>
     </div>
 
     <div class="pane-tabs">
