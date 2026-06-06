@@ -10,8 +10,11 @@ const ASSETS = [
   './chanting.html',
   './begin-journey.html',
   './interactive_lesson.html',
+  './about.html',
+  './glossary.html',
   './admin.html',
   './js/api.js',
+  './js/translations.js',
   './sacred_city.png',
   './flying_manuscript.png',
   './ancient_weapons.png'
