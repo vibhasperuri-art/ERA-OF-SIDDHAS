@@ -1520,6 +1520,7 @@
 </script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <script src="js/api.js" defer></script>
+  <script src="js/translations.js" defer></script>
   <meta name="description" content="Era of Siddhas – A Vedic Gurukula platform integrating ancient Indian knowledge systems with modern STEM education."/>
   <meta name="keywords" content="Siddha, Vedic education, ancient architecture, Vastu Shastra, Nagara Nirmāṇa, Vimāna Śāstra, Astra Vidyā, Rasa Śāstra, Jyotiṣa, STEM"/>
   <meta property="og:title" content="Era of Siddhas — The Architecture of Siddha Vidyā"/>
@@ -4010,8 +4011,8 @@ function renderBhutaShuddhi(container) {
 function renderVastu(container) {
   container.innerHTML = `
     <div class="widget-title">Vastu Maṇḍala Room Planner</div>
-    <div class="vastu-layout-area">
-      <div class="vastu-room-dock" id="vastu-dock">
+    <div class="vastu-layout-area" style="display:flex; flex-direction:column; align-items:center; gap:15px;">
+      <div class="vastu-room-dock" id="vastu-dock" style="display:flex; flex-wrap:wrap; justify-content:center; gap:8px;">
         <button class="room-chip selected" data-room="Kitchen">Kitchen (SE)</button>
         <button class="room-chip" data-room="Well">Well/Water (NE)</button>
         <button class="room-chip" data-room="Master Bed">Master Bed (SW)</button>
@@ -4019,57 +4020,29 @@ function renderVastu(container) {
         <button class="room-chip" data-room="Study">Study (E)</button>
       </div>
 
-      <div class="vastu-grid-wrapper">
-        <div class="vastu-silhouette"></div>
-        <div class="vastu-grid" id="vastu-grid-cells">
-          <!-- 9 cells for direction-placement (3x3 grid layout) -->
-          <div class="vastu-cell" data-dir="NW" data-element="Vayu (Air)">
-            <span class="cell-dir">NW</span><span class="cell-element">Air</span>
-            <div class="cell-placed-room" id="cell-NW">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="N" data-element="Kubera (Wealth)">
-            <span class="cell-dir">N</span><span class="cell-element">Wealth</span>
-            <div class="cell-placed-room" id="cell-N">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="NE" data-element="Ishanya (Water)">
-            <span class="cell-dir">NE</span><span class="cell-element">Water</span>
-            <div class="cell-placed-room" id="cell-NE">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="W" data-element="Varuna (Space)">
-            <span class="cell-dir">W</span><span class="cell-element">Space</span>
-            <div class="cell-placed-room" id="cell-W">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="Center" data-element="Brahma Sthana">
-            <span class="cell-dir">Center</span><span class="cell-element">Brahma</span>
-            <div class="cell-placed-room" id="cell-Center">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="E" data-element="Aditya (Sun)">
-            <span class="cell-dir">E</span><span class="cell-element">Sun</span>
-            <div class="cell-placed-room" id="cell-E">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="SW" data-element="Nairutya (Earth)">
-            <span class="cell-dir">SW</span><span class="cell-element">Earth</span>
-            <div class="cell-placed-room" id="cell-SW">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="S" data-element="Yama (Mortals)">
-            <span class="cell-dir">S</span><span class="cell-element">Mortals</span>
-            <div class="cell-placed-room" id="cell-S">-</div><div class="cell-status-dot"></div>
-          </div>
-          <div class="vastu-cell" data-dir="SE" data-element="Agni (Fire)">
-            <span class="cell-dir">SE</span><span class="cell-element">Fire</span>
-            <div class="cell-placed-room" id="cell-SE">-</div><div class="cell-status-dot"></div>
-          </div>
-        </div>
+      <div class="vastu-grid-wrapper" style="position:relative; width:100%; max-width:500px; margin:10px auto; overflow:visible;">
+        <canvas id="vastu-canvas" width="500" height="350" style="display:block; width:100%; max-width:500px; height:350px; background:rgba(0,0,0,0.25); border:1px solid var(--border-glass); border-radius:12px; backdrop-filter:blur(5px); box-shadow:0 8px 32px rgba(0,0,0,0.45); cursor:pointer;"></canvas>
       </div>
 
-      <div class="vastu-feedback-box" id="vastu-feedback">
+      <div class="vastu-feedback-box" id="vastu-feedback" style="min-height:50px; text-align:center; padding:10px 15px; border-radius:6px; background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); width:100%; max-width:500px; font-size:0.95rem; line-height:1.5;">
         Select a room chip above, then click a grid cell to place it. Match elements for maximum thermodynamic harmony!
       </div>
-      <div style="font-family:'Outfit', sans-serif; font-size:1.05rem; color: var(--gold-bright);">
-        Harmony Index: <strong id="vastu-harmony-val">0%</strong>
+      <div style="font-family:'Outfit', sans-serif; font-size:1.1rem; color: var(--gold-bright); display:flex; align-items:center; gap:8px; font-weight:600;">
+        Harmony Index: <strong id="vastu-harmony-val" style="font-size:1.3rem;">0%</strong>
       </div>
     </div>
   `;
+
+  const canvas = document.getElementById('vastu-canvas');
+  const ctx = canvas.getContext('2d');
+  
+  // Handle High-DPI screens
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = 500 * dpr;
+  canvas.height = 350 * dpr;
+  ctx.scale(dpr, dpr);
+  canvas.style.width = '500px';
+  canvas.style.height = '350px';
 
   let selectedRoom = "Kitchen";
   const placements = {
@@ -4086,6 +4059,24 @@ function renderVastu(container) {
     "Study": "E"
   };
 
+  const gridDirs = [
+    ["NW", "N", "NE"],
+    ["W", "Center", "E"],
+    ["SW", "S", "SE"]
+  ];
+
+  const cellElements = {
+    NW: "Air", N: "Wealth", NE: "Water",
+    W: "Space", Center: "Brahma", E: "Sun",
+    SW: "Earth", S: "Mortals", SE: "Fire"
+  };
+
+  const elementColors = {
+    NW: '#00d2d3', N: '#4cd137', NE: '#00a8ff',
+    W: '#9c88ff', Center: '#db0a5b', E: '#fbc531',
+    SW: '#e1b12c', S: '#c23616', SE: '#e84118'
+  };
+
   // Select room chip
   document.querySelectorAll('.room-chip').forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -4095,14 +4086,71 @@ function renderVastu(container) {
     });
   });
 
-  // Grid Cell Clicks
-  document.querySelectorAll('.vastu-cell').forEach(cell => {
-    cell.addEventListener('click', () => {
-      const dir = cell.getAttribute('data-dir');
+  let hoveredRow = -1;
+  let hoveredCol = -1;
+
+  // Track hover and clicks
+  canvas.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Grid settings
+    const cellWidth = 90;
+    const cellHeight = 45;
+    const centerX = 250;
+    const centerY = 100;
+    
+    const dx = x - centerX;
+    const dy = y - centerY - cellHeight / 2;
+    
+    const col = Math.floor(dx / cellWidth + dy / cellHeight + 0.5);
+    const row = Math.floor(dy / cellHeight - dx / cellWidth + 0.5);
+    
+    if (col >= 0 && col < 3 && row >= 0 && row < 3) {
+      if (hoveredRow !== row || hoveredCol !== col) {
+        hoveredRow = row;
+        hoveredCol = col;
+        drawScene();
+      }
+    } else {
+      if (hoveredRow !== -1 || hoveredCol !== -1) {
+        hoveredRow = -1;
+        hoveredCol = -1;
+        drawScene();
+      }
+    }
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    hoveredRow = -1;
+    hoveredCol = -1;
+    drawScene();
+  });
+
+  canvas.addEventListener('click', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const cellWidth = 90;
+    const cellHeight = 45;
+    const centerX = 250;
+    const centerY = 100;
+    
+    const dx = x - centerX;
+    const dy = y - centerY - cellHeight / 2;
+    
+    const col = Math.floor(dx / cellWidth + dy / cellHeight + 0.5);
+    const row = Math.floor(dy / cellHeight - dx / cellWidth + 0.5);
+    
+    if (col >= 0 && col < 3 && row >= 0 && row < 3) {
+      const dir = gridDirs[row][col];
       
-      // Validation rules
       if (dir === 'Center') {
-        document.getElementById('vastu-feedback').innerText = "Warning: The center (Brahma Sthana) represents the ether/space core. In Vastu, this must remain open and unbuilt to allow atmospheric venting and electromagnetic currents to circulate freely.";
+        const fbox = document.getElementById('vastu-feedback');
+        fbox.innerText = "Warning: The center (Brahma Sthana) represents the ether/space core. In Vastu, this must remain open and unbuilt to allow atmospheric venting and electromagnetic currents to circulate freely.";
+        fbox.style.color = "#ff4d4d";
         return;
       }
 
@@ -4110,42 +4158,276 @@ function renderVastu(container) {
       for (const d in placements) {
         if (placements[d] === selectedRoom) {
           placements[d] = null;
-          document.getElementById(`cell-${d}`).innerText = "-";
-          const cellEl = document.querySelector(`.vastu-cell[data-dir="${d}"]`);
-          cellEl.classList.remove('correct', 'clash');
         }
       }
 
       // Place in new cell
       placements[dir] = selectedRoom;
-      document.getElementById(`cell-${dir}`).innerText = selectedRoom;
       
-      // Update cell coloring based on correct placement
-      const targetDir = correctMapping[selectedRoom];
-      if (dir === targetDir) {
-        cell.classList.add('correct');
-        cell.classList.remove('clash');
-      } else {
-        cell.classList.add('clash');
-        cell.classList.remove('correct');
-      }
-
       evaluateVastuMaṇḍala();
-    });
+      drawScene();
+    }
   });
+
+  function drawScene() {
+    ctx.clearRect(0, 0, 500, 350);
+    
+    const cellWidth = 90;
+    const cellHeight = 45;
+    const centerX = 250;
+    const centerY = 100;
+    
+    // 1. Draw floor grid shadow
+    ctx.save();
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+    ctx.shadowBlur = 15;
+    ctx.shadowOffsetY = 10;
+    ctx.beginPath();
+    const pTop = { x: centerX, y: centerY };
+    const pRight = { x: centerX + (3 * cellWidth / 2), y: centerY + (3 * cellHeight / 2) };
+    const pBottom = { x: centerX, y: centerY + 3 * cellHeight };
+    const pLeft = { x: centerX - (3 * cellWidth / 2), y: centerY + (3 * cellHeight / 2) };
+    ctx.moveTo(pTop.x, pTop.y);
+    ctx.lineTo(pRight.x, pRight.y);
+    ctx.lineTo(pBottom.x, pBottom.y);
+    ctx.lineTo(pLeft.x, pLeft.y);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
+    ctx.fill();
+    ctx.restore();
+
+    // 2. Draw Vastu Purusha gold outline under the grid
+    drawVastuPurusha(ctx, cellWidth, cellHeight, centerX, centerY);
+
+    // 3. Draw grid cells
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        const dir = gridDirs[r][c];
+        const isoX = (c - r) * (cellWidth / 2) + centerX;
+        const isoY = (c + r) * (cellHeight / 2) + centerY;
+        
+        const isHovered = (r === hoveredRow && c === hoveredCol);
+        
+        const vt = { x: isoX, y: isoY };
+        const vr = { x: isoX + cellWidth / 2, y: isoY + cellHeight / 2 };
+        const vb = { x: isoX, y: isoY + cellHeight };
+        const vl = { x: isoX - cellWidth / 2, y: isoY + cellHeight / 2 };
+        
+        ctx.beginPath();
+        ctx.moveTo(vt.x, vt.y);
+        ctx.lineTo(vr.x, vr.y);
+        ctx.lineTo(vb.x, vb.y);
+        ctx.lineTo(vl.x, vl.y);
+        ctx.closePath();
+        
+        if (dir === 'Center') {
+          ctx.fillStyle = 'rgba(219, 10, 91, 0.05)';
+        } else {
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.03)';
+        }
+        ctx.fill();
+        
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        if (isHovered) {
+          ctx.save();
+          ctx.fillStyle = elementColors[dir] + '22';
+          ctx.beginPath();
+          ctx.moveTo(vt.x, vt.y);
+          ctx.lineTo(vr.x, vr.y);
+          ctx.lineTo(vb.x, vb.y);
+          ctx.lineTo(vl.x, vl.y);
+          ctx.closePath();
+          ctx.fill();
+          
+          ctx.strokeStyle = elementColors[dir];
+          ctx.shadowColor = elementColors[dir];
+          ctx.shadowBlur = 10;
+          ctx.lineWidth = 2.5;
+          ctx.stroke();
+          ctx.restore();
+        }
+        
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+        ctx.font = '500 0.75rem "Outfit", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(dir, isoX, isoY + cellHeight / 2 - 5);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        ctx.font = '400 0.6rem "Outfit", sans-serif';
+        ctx.fillText(cellElements[dir], isoX, isoY + cellHeight / 2 + 8);
+      }
+    }
+
+    // 4. Draw placed rooms as 3D blocks
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        const dir = gridDirs[r][c];
+        const room = placements[dir];
+        if (room) {
+          const isoX = (c - r) * (cellWidth / 2) + centerX;
+          const isoY = (c + r) * (cellHeight / 2) + centerY;
+          
+          const targetDir = correctMapping[room];
+          const isCorrect = (dir === targetDir);
+          
+          drawIsometricBlock(ctx, isoX, isoY, cellWidth, cellHeight, room, isCorrect);
+        }
+      }
+    }
+  }
+
+  function drawVastuPurusha(ctx, cellWidth, cellHeight, centerX, centerY) {
+    ctx.save();
+    ctx.strokeStyle = 'rgba(200, 146, 42, 0.25)';
+    ctx.lineWidth = 2;
+    
+    const headX = (2 - 0) * (cellWidth / 2) + centerX;
+    const headY = (2 + 0 + 0.5) * (cellHeight / 2) + centerY + 10;
+    
+    const feetX = (0 - 2) * (cellWidth / 2) + centerX;
+    const feetY = (0 + 2 + 0.5) * (cellHeight / 2) + centerY + 10;
+    
+    const centerXGrid = centerX;
+    const centerYGrid = (1 + 1 + 0.5) * (cellHeight / 2) + centerY + 10;
+    
+    ctx.beginPath();
+    ctx.moveTo(feetX, feetY);
+    ctx.lineTo(centerXGrid, centerYGrid);
+    ctx.lineTo(headX, headY);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.arc(headX, headY, 15, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(200, 146, 42, 0.05)';
+    ctx.fill();
+    ctx.stroke();
+    
+    const handNWX = (0 - 0) * (cellWidth / 2) + centerX;
+    const handNWY = (0 + 0 + 0.5) * (cellHeight / 2) + centerY + 10;
+    const handSEX = (2 - 2) * (cellWidth / 2) + centerX;
+    const handSEY = (2 + 2 + 0.5) * (cellHeight / 2) + centerY + 10;
+    
+    ctx.beginPath();
+    ctx.moveTo(handNWX, handNWY);
+    ctx.lineTo(centerXGrid, centerYGrid - 10);
+    ctx.lineTo(handSEX, handSEY);
+    ctx.stroke();
+    
+    const legWX = (0 - 1) * (cellWidth / 2) + centerX;
+    const legWY = (0 + 1 + 0.5) * (cellHeight / 2) + centerY + 10;
+    const legSX = (1 - 2) * (cellWidth / 2) + centerX;
+    const legSY = (1 + 2 + 0.5) * (cellHeight / 2) + centerY + 10;
+    
+    ctx.beginPath();
+    ctx.moveTo(legWX, legWY);
+    ctx.lineTo(centerXGrid, centerYGrid + 10);
+    ctx.lineTo(legSX, legSY);
+    ctx.stroke();
+    
+    const chakras = [
+      { x: feetX + (headX - feetX) * 0.15, y: feetY + (headY - feetY) * 0.15, color: '#ff4d4d' },
+      { x: feetX + (headX - feetX) * 0.35, y: feetY + (headY - feetY) * 0.35, color: '#ffa500' },
+      { x: centerXGrid, y: centerYGrid, color: '#ffff00' },
+      { x: feetX + (headX - feetX) * 0.65, y: feetY + (headY - feetY) * 0.65, color: '#00ff00' },
+      { x: feetX + (headX - feetX) * 0.8, y: feetY + (headY - feetY) * 0.8, color: '#00ffff' },
+      { x: headX, y: headY, color: '#ee82ee' }
+    ];
+    
+    chakras.forEach(c => {
+      ctx.beginPath();
+      ctx.arc(c.x, c.y, 4, 0, Math.PI * 2);
+      ctx.fillStyle = c.color;
+      ctx.shadowColor = c.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+    });
+    ctx.restore();
+  }
+
+  function drawIsometricBlock(ctx, isoX, isoY, cellWidth, cellHeight, roomName, isCorrect) {
+    const h = 35;
+    
+    const b_top = { x: isoX, y: isoY };
+    const b_right = { x: isoX + cellWidth / 2, y: isoY + cellHeight / 2 };
+    const b_bottom = { x: isoX, y: isoY + cellHeight };
+    const b_left = { x: isoX - cellWidth / 2, y: isoY + cellHeight / 2 };
+    
+    const t_top = { x: isoX, y: isoY - h };
+    const t_right = { x: isoX + cellWidth / 2, y: isoY + cellHeight / 2 - h };
+    const t_bottom = { x: isoX, y: isoY + cellHeight - h };
+    const t_left = { x: isoX - cellWidth / 2, y: isoY + cellHeight / 2 - h };
+    
+    const colorTheme = isCorrect ? '46, 184, 166' : '232, 65, 24';
+    
+    ctx.beginPath();
+    ctx.moveTo(b_left.x, b_left.y);
+    ctx.lineTo(b_bottom.x, b_bottom.y);
+    ctx.lineTo(t_bottom.x, t_bottom.y);
+    ctx.lineTo(t_left.x, t_left.y);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(${colorTheme}, 0.5)`;
+    ctx.fill();
+    ctx.strokeStyle = `rgba(${colorTheme}, 0.7)`;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(b_bottom.x, b_bottom.y);
+    ctx.lineTo(b_right.x, b_right.y);
+    ctx.lineTo(t_right.x, t_right.y);
+    ctx.lineTo(t_bottom.x, t_bottom.y);
+    ctx.closePath();
+    ctx.fillStyle = `rgba(${colorTheme}, 0.35)`;
+    ctx.fill();
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(t_top.x, t_top.y);
+    ctx.lineTo(t_right.x, t_right.y);
+    ctx.lineTo(t_bottom.x, t_bottom.y);
+    ctx.lineTo(t_left.x, t_left.y);
+    ctx.closePath();
+    
+    const topGrad = ctx.createLinearGradient(t_top.x, t_top.y, t_bottom.x, t_bottom.y);
+    topGrad.addColorStop(0, `rgba(${colorTheme}, 0.7)`);
+    topGrad.addColorStop(1, `rgba(${colorTheme}, 0.25)`);
+    ctx.fillStyle = topGrad;
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.save();
+    ctx.strokeStyle = isCorrect ? '#4df5e2' : '#ff7979';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.moveTo(t_top.x, t_top.y);
+    ctx.lineTo(t_right.x, t_right.y);
+    ctx.lineTo(t_bottom.x, t_bottom.y);
+    ctx.lineTo(t_left.x, t_left.y);
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+    
+    ctx.fillStyle = '#ffffff';
+    ctx.font = 'bold 0.8rem "Outfit", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.shadowColor = 'rgba(0,0,0,0.8)';
+    ctx.shadowBlur = 4;
+    ctx.fillText(roomName, isoX, isoY + cellHeight / 2 - h / 2 + 4);
+    ctx.shadowBlur = 0;
+  }
 
   function evaluateVastuMaṇḍala() {
     let score = 0;
     let feedback = "";
     
-    // Evaluate placements
     const kitchenDir = getKeyByValue(placements, "Kitchen");
     const wellDir = getKeyByValue(placements, "Well");
     const bedDir = getKeyByValue(placements, "Master Bed");
     const treasuryDir = getKeyByValue(placements, "Treasury");
     const studyDir = getKeyByValue(placements, "Study");
 
-    // Kitchen: SE (Agni/Fire)
     if (kitchenDir === "SE") {
       score += 20;
     } else if (kitchenDir === "NE") {
@@ -4154,7 +4436,6 @@ function renderVastu(container) {
       feedback += "Kitchen placed in " + kitchenDir + ". Not ideal. Agni (SE) optimizes infrared sanitization. ";
     }
 
-    // Well: NE (Water)
     if (wellDir === "NE") {
       score += 20;
     } else if (wellDir === "SE") {
@@ -4163,21 +4444,18 @@ function renderVastu(container) {
       feedback += "Water source placed in " + wellDir + ". Northeastern placing harnesses optimal morning UV purification. ";
     }
 
-    // Master Bed: SW (Earth/Nairutya)
     if (bedDir === "SW") {
       score += 20;
     } else if (bedDir) {
       feedback += "Master Bedroom in " + bedDir + ". Southwest (SW) anchor provides thermal stability during sleeping hours. ";
     }
 
-    // Treasury: N (Kubera/Wealth)
     if (treasuryDir === "N") {
       score += 20;
     } else if (treasuryDir) {
       feedback += "Treasury placed in " + treasuryDir + ". Northern sectors represent Kubera, representing growth of wealth. ";
     }
 
-    // Study: E (Aditya/Sun)
     if (studyDir === "E") {
       score += 20;
     } else if (studyDir) {
@@ -4186,22 +4464,24 @@ function renderVastu(container) {
 
     document.getElementById('vastu-harmony-val').innerText = score + "%";
     
+    const fbox = document.getElementById('vastu-feedback');
     if (score === 100) {
-      document.getElementById('vastu-feedback').innerText = "Perfect Alignment achieved! The thermodynamic layout balances solar radiation, wind currents, and directional elemental flow perfectly. A highly resonant space!";
+      fbox.innerText = "Perfect Alignment achieved! The thermodynamic layout balances solar radiation, wind currents, and directional elemental flow perfectly. A highly resonant space!";
+      fbox.style.color = "#00ff88";
       unlockLessonCompletion();
     } else {
-      document.getElementById('vastu-feedback').innerText = feedback || "Place more rooms to calculate layout stability.";
+      fbox.innerText = feedback || "Place more rooms to calculate layout stability.";
+      fbox.style.color = "var(--text-muted)";
     }
   }
 
   function getKeyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
+
+  drawScene();
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   4. PRANAYAMA BREATHING TRAINER
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function renderPranayama(container) {
   container.innerHTML = `
     <div class="widget-title">Pranayama Box Breathing Trainer</div>
@@ -4698,39 +4978,39 @@ function renderDaharaAkasha(container) {
 function renderAyadi(container) {
   container.innerHTML = `
     <div class="widget-title">Ayadi Resonant Calculator</div>
-    <div class="ayadi-panel">
-      <div class="ayadi-inputs">
+    <div class="ayadi-panel" style="display:flex; flex-direction:column; gap:20px;">
+      <div class="ayadi-inputs" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
         <div class="timing-input-group">
-          <label>Width (Hasta)</label>
-          <input type="number" id="ay-width" value="12" min="2" max="100">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Width (Hasta)</label>
+          <input type="number" id="ay-width" value="12" min="2" max="100" style="width:100%; background:rgba(0,0,0,0.15); border:1px solid var(--border-glass); color:var(--text-primary); padding:6px 12px; border-radius:6px; font-size:1.1rem; outline:none; transition:border 0.3s;">
         </div>
         <div class="timing-input-group">
-          <label>Length (Hasta)</label>
-          <input type="number" id="ay-length" value="16" min="2" max="100">
+          <label style="font-size:0.9rem; color:var(--text-muted);">Length (Hasta)</label>
+          <input type="number" id="ay-length" value="16" min="2" max="100" style="width:100%; background:rgba(0,0,0,0.15); border:1px solid var(--border-glass); color:var(--text-primary); padding:6px 12px; border-radius:6px; font-size:1.1rem; outline:none; transition:border 0.3s;">
         </div>
       </div>
       
-      <div class="ayadi-results">
-        <div class="ayadi-result-card">
-          <span class="ayadi-result-lbl">Aya (Income)</span>
-          <span class="ayadi-result-val" id="ay-res-aya">4</span>
+      <div class="ayadi-results" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(100px, 1fr)); gap:10px;">
+        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
+          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Aya (Income)</span>
+          <span class="ayadi-result-val" id="ay-res-aya" style="font-size:1.3rem; font-weight:600; color:var(--gold-bright);">4</span>
         </div>
-        <div class="ayadi-result-card">
-          <span class="ayadi-result-lbl">Vyaya (Expense)</span>
-          <span class="ayadi-result-val" id="ay-res-vyaya">6</span>
+        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
+          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Vyaya (Expense)</span>
+          <span class="ayadi-result-val" id="ay-res-vyaya" style="font-size:1.3rem; font-weight:600; color:#ff4d4d;">6</span>
         </div>
-        <div class="ayadi-result-card">
-          <span class="ayadi-result-lbl">Yoni (Energy)</span>
-          <span class="ayadi-result-val" id="ay-res-yoni">Dhvaja</span>
+        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
+          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Yoni (Energy)</span>
+          <span class="ayadi-result-val" id="ay-res-yoni" style="font-size:1.3rem; font-weight:600; color:#00ff88;">Dhvaja</span>
         </div>
-        <div class="ayadi-result-card">
-          <span class="ayadi-result-lbl">Harmony Rating</span>
-          <span class="ayadi-result-val" id="ay-res-rating">Neutral</span>
+        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
+          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Harmony Rating</span>
+          <span class="ayadi-result-val" id="ay-res-rating" style="font-size:1.3rem; font-weight:600; color:#7a8288;">Neutral</span>
         </div>
       </div>
 
-      <div class="ayadi-wireframe">
-        <canvas class="ayadi-canvas-wf" id="ay-canvas" width="300" height="120"></canvas>
+      <div class="ayadi-wireframe" style="width:100%; display:flex; justify-content:center; margin-top:10px;">
+        <canvas class="ayadi-canvas-wf" id="ay-canvas" width="300" height="150" style="display:block; width:300px; height:150px; background:rgba(0,0,0,0.25); border:1px solid var(--border-glass); border-radius:8px; backdrop-filter:blur(5px); box-shadow:0 8px 32px rgba(0,0,0,0.3);"></canvas>
       </div>
     </div>
   `;
@@ -4743,6 +5023,14 @@ function renderAyadi(container) {
 
   const canvas = document.getElementById('ay-canvas');
   const ctx = canvas.getContext('2d');
+  
+  // High-DPI support
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = 300 * dpr;
+  canvas.height = 150 * dpr;
+  ctx.scale(dpr, dpr);
+  canvas.style.width = '300px';
+  canvas.style.height = '150px';
 
   function runAyadi() {
     const w = parseFloat(inpWidth.value) || 0;
@@ -4763,7 +5051,8 @@ function renderAyadi(container) {
     document.getElementById('ay-res-yoni').innerText = activeYoni;
 
     const ratingEl = document.getElementById('ay-res-rating');
-    if (aya > vyaya) {
+    const isResonant = (aya > vyaya);
+    if (isResonant) {
       ratingEl.innerText = "Resonant";
       ratingEl.style.color = "#00ff88";
       unlockLessonCompletion();
@@ -4772,34 +5061,103 @@ function renderAyadi(container) {
       ratingEl.style.color = "#ff4d4d";
     }
 
-    // Draw blueprint bounding wireframe
-    ctx.clearRect(0, 0, 300, 120);
-    ctx.strokeStyle = aya > vyaya ? '#2eb8a6' : '#ff4d4d';
-    ctx.lineWidth = 1.5;
+    // Draw 3D Isometric Columned Shrine footprint
+    ctx.clearRect(0, 0, 300, 150);
     
     // Scale layout to fit wireframe canvas
-    const scale = Math.min(200 / w, 80 / l);
-    const dw = w * scale;
-    const dl = l * scale;
+    const max_dim = Math.max(w, l);
+    const scale = max_dim > 0 ? Math.min(80 / max_dim, 4) : 2;
+    const w_px = w * scale;
+    const l_px = l * scale;
     
-    ctx.strokeRect((300 - dw)/2, (120 - dl)/2, dw, dl);
+    const centerX = 150;
+    const centerY = 80;
+    const h_px = 35; // pillar height
     
-    // Draw crosshair axes representing energy flow
+    const pt_back = { x: centerX, y: centerY - (w_px * 0.25 + l_px * 0.25) };
+    const pt_left = { x: centerX - w_px * 0.5, y: centerY + (w_px * 0.25 - l_px * 0.25) };
+    const pt_right = { x: centerX + l_px * 0.5, y: centerY - (w_px * 0.25 - l_px * 0.25) };
+    const pt_front = { x: centerX - w_px * 0.5 + l_px * 0.5, y: centerY + (w_px * 0.25 + l_px * 0.25) };
+
+    const ratingColor = isResonant ? '#00ff88' : '#ff4d4d';
+
+    // 1. Draw central energy flow lines
+    ctx.save();
     ctx.beginPath();
     ctx.setLineDash([2, 4]);
-    ctx.moveTo(150, 0); ctx.lineTo(150, 120);
-    ctx.moveTo(0, 60); ctx.lineTo(300, 60);
-    ctx.strokeStyle = 'rgba(46,184,166,0.3)';
+    ctx.moveTo(150, 0); ctx.lineTo(150, 150);
+    ctx.moveTo(0, 75); ctx.lineTo(300, 75);
+    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
     ctx.stroke();
+    ctx.restore();
+
+    // 2. Draw base foundation fill
+    ctx.beginPath();
+    ctx.moveTo(pt_back.x, pt_back.y);
+    ctx.lineTo(pt_right.x, pt_right.y);
+    ctx.lineTo(pt_front.x, pt_front.y);
+    ctx.lineTo(pt_left.x, pt_left.y);
+    ctx.closePath();
+    ctx.fillStyle = isResonant ? 'rgba(0, 255, 136, 0.08)' : 'rgba(255, 77, 77, 0.08)';
+    ctx.fill();
+    ctx.strokeStyle = ratingColor;
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // 3. Draw 4 pillars
+    const corners = [pt_back, pt_left, pt_right, pt_front];
+    ctx.strokeStyle = ratingColor;
+    ctx.lineWidth = 1.5;
+    corners.forEach(c => {
+      ctx.beginPath();
+      ctx.moveTo(c.x, c.y);
+      ctx.lineTo(c.x, c.y - h_px);
+      ctx.stroke();
+    });
+
+    // 4. Draw Top Roof/Lintel footprint
+    const pt_back_t = { x: pt_back.x, y: pt_back.y - h_px };
+    const pt_left_t = { x: pt_left.x, y: pt_left.y - h_px };
+    const pt_right_t = { x: pt_right.x, y: pt_right.y - h_px };
+    const pt_front_t = { x: pt_front.x, y: pt_front.y - h_px };
+
+    ctx.beginPath();
+    ctx.moveTo(pt_back_t.x, pt_back_t.y);
+    ctx.lineTo(pt_right_t.x, pt_right_t.y);
+    ctx.lineTo(pt_front_t.x, pt_front_t.y);
+    ctx.lineTo(pt_left_t.x, pt_left_t.y);
+    ctx.closePath();
+    ctx.fillStyle = isResonant ? 'rgba(0, 255, 136, 0.12)' : 'rgba(255, 77, 77, 0.12)';
+    ctx.fill();
+    ctx.stroke();
+
+    // 5. Draw Shikhara Spire (Pyramidal Roof)
+    const pt_spire = { x: centerX, y: centerY - h_px - (w_px * 0.25 + l_px * 0.25) - 15 };
+    ctx.strokeStyle = ratingColor;
+    ctx.lineWidth = 1;
+    ctx.setLineDash([2, 2]);
+    [pt_back_t, pt_left_t, pt_right_t, pt_front_t].forEach(t => {
+      ctx.beginPath();
+      ctx.moveTo(t.x, t.y);
+      ctx.lineTo(pt_spire.x, pt_spire.y);
+      ctx.stroke();
+    });
     ctx.setLineDash([]);
+
+    // Draw glowing spire apex
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(pt_spire.x, pt_spire.y, 4, 0, Math.PI * 2);
+    ctx.fillStyle = ratingColor;
+    ctx.shadowColor = ratingColor;
+    ctx.shadowBlur = 10;
+    ctx.fill();
+    ctx.restore();
   }
 
   runAyadi();
 }
 
-/* â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-   INITIALIZATION AND WIDGET ACTIVATION
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 document.addEventListener('DOMContentLoaded', () => {
   renderLeftPane();
   renderWidget();
