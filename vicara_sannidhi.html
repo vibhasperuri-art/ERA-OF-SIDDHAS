@@ -503,6 +503,284 @@
     margin: 0.5rem 0;
     line-height: 1.5;
   }
+
+  /* Mode Tabs */
+  .dashboard-mode-tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .mode-tab {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .mode-tab:hover {
+    border-color: var(--gold-bright);
+    color: var(--text-primary);
+  }
+  .mode-tab.active {
+    background: var(--accent) !important;
+    color: #fff !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 4px 15px var(--accent-glow);
+  }
+
+  /* Wisdom Hub articles styles */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .article-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+  }
+  .article-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+  }
+  .card-img-box {
+    width: 100%;
+    height: 150px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .card-badge {
+    position: absolute;
+    top: 12px; left: 12px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-glass);
+    color: var(--accent);
+    padding: 3px 8px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+  .card-body {
+    padding: 1.2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.15rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+  .card-summary {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 1.2rem;
+    flex-grow: 1;
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 0.8rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* Glossary styles */
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .filter-chip {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  .filter-chip:hover {
+    border-color: var(--gold-bright);
+    color: var(--text-primary);
+  }
+  .filter-chip.active {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px var(--accent-glow);
+  }
+  .glossary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  .glossary-card {
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+  }
+  .glossary-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 10px 25px var(--glow);
+  }
+  .card-top {
+    margin-bottom: 1rem;
+  }
+  .card-category {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    color: var(--gold-bright);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+  .card-sanskrit {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 0.2rem;
+  }
+  .card-iast {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold-bright);
+    margin-bottom: 0.6rem;
+    font-style: italic;
+  }
+  .card-english {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 0.4rem;
+  }
+  .card-definition {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* Reader Modal */
+  #reader-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+  .reader-box {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    padding: 3rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+  .reader-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .reader-header {
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1rem;
+  }
+  .reader-category {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.0rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .reader-title {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    margin: 0; font-size: 2.0rem;
+    line-height: 1.3;
+  }
+  .reader-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+  .reader-content {
+    max-height: 400px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-primary);
+    padding-right: 0.8rem;
+  }
 </style>
 <script src="js/api.js" defer></script>
   <script src="js/translations.js" defer></script>
@@ -552,70 +830,154 @@
       <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
-    </div>
-  </div>
-</nav>
-
-<div class="sanctum-wrapper">
-  <div class="pillar-tabs">
-    <button class="tab active" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
-    <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
-    <button class="tab" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
-  </div>
-  <div class="glass-card" id="content-card">
-    <div class="shloka-sanskrit" id="shloka-sanskrit-box">
-      कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br>
-      मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥
-    </div>
-    <div class="shloka-english" id="shloka-english-box">
-      "Your authority lies only in the action itself, never in its fruits. Do not let the fruits of action be your motive, nor let yourself become attached to inaction."
-    </div>
-    
-    <div class="anvaya-title">Layered Transmission (Anvaya)</div>
-    <div class="anvaya-grid" id="anvaya-grid-box">
-      <div class="anvaya-cell"><strong>कर्मणि</strong><span>karmaṇi — in prescribed duty (action)</span></div>
-      <div class="anvaya-cell"><strong>एव</strong><span>eva — only / certainly</span></div>
-      <div class="anvaya-cell"><strong>अधिकारः</strong><span>adhikāraḥ — right / authority</span></div>
-      <div class="anvaya-cell"><strong>ते</strong><span>te — your</span></div>
-      <div class="anvaya-cell"><strong>मा</strong><span>mā — never</span></div>
-      <div class="anvaya-cell"><strong>फलेषु</strong><span>phaleṣu — in the fruits / results</span></div>
-      <div class="anvaya-cell"><strong>कदाचन</strong><span>kadācana — at any time</span></div>
-    </div>
-
-    <div class="guru-ai-box">
-      <div class="anvaya-title" style="color: var(--accent)">The Guru's Mirror</div>
-      
-      <!-- Scrollable Message History Viewport -->
-      <div id="guru-chat-history" style="max-height: 350px; overflow-y: auto; padding: 1.5rem; margin-bottom: 1.5rem; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-glass); border-radius: 16px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; scroll-behavior: smooth;">
-        <!-- Initial greeting loaded dynamically -->
-      </div>
-      
-      <!-- Typing Indicator -->
-      <div id="typing-indicator" style="display: none; align-items: center; gap: 6px; padding: 0.5rem 1rem; color: var(--text-muted); font-size: 0.95rem; font-style: italic;">
-        <span style="font-family: 'Cinzel Decorative', serif; color: var(--gold-bright);">Guru is contemplating...</span>
-        <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate;"></div>
-        <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate 0.2s;"></div>
-        <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate 0.4s;"></div>
-      </div>
-      
-      <!-- Input Area -->
-      <div id="chat-input-row" style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
-        <textarea id="reflection-textarea" placeholder="Reflect upon this. The Gurukulam is listening..." style="flex: 1; margin-bottom: 0; min-height: 80px;"></textarea>
-        <button class="submit-btn" id="send-chat-btn" onclick="sendChatMessage()" style="padding: 18px 30px; height: 80px; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; letter-spacing: 0.1em; white-space: nowrap;">Reflect</button>
-      </div>
-
-      <!-- AI Disclosure -->
-      <details class="ai-disclosure">
-        <summary>🤖 About the Guru AI</summary>
-        <p><strong>Model:</strong> This Socratic dialogue uses a large language model (LLM) with Retrieval-Augmented Generation (RAG) grounded in verified scriptural sources.</p>
-        <p><strong>Limitations:</strong> The AI may occasionally generate inaccurate interpretations. All scriptural claims should be verified against primary texts.</p>
-        <p><strong>Privacy:</strong> Your reflections are stored locally and on our server. They are never shared with third parties or used for model training.</p>
-        <p><strong>Human Review:</strong> Published reflections may be reviewed by the Gurukula advisory council.</p>
-      </details>
-    </div>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Myst<div class="sanctum-wrapper">
+  <!-- Mode selector tabs -->
+  <div class="dashboard-mode-tabs">
+    <button class="mode-tab active" onclick="switchSannidhiMode(this, 'chat')">🔮 Socratic Chat</button>
+    <button class="mode-tab" onclick="switchSannidhiMode(this, 'wisdom')">📚 Wisdom Hub</button>
+    <button class="mode-tab" onclick="switchSannidhiMode(this, 'glossary')">📖 Sanskrit Glossary</button>
   </div>
 
+  <!-- Chat View -->
+  <div id="sannidhi-chat-view">
+    <div class="pillar-tabs">
+      <button class="tab active" onclick="switchPillar(this, 'nagara')">Nagara Nirmana (Structure)</button>
+      <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
+      <button class="tab" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
+    </div>
+    <div class="glass-card" id="content-card">
+      <div class="shloka-sanskrit" id="shloka-sanskrit-box">
+        कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br>
+        मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥
+      </div>
+      <div class="shloka-english" id="shloka-english-box">
+        "Your authority lies only in the action itself, never in its fruits. Do not let the fruits of action be your motive, nor let yourself become attached to inaction."
+      </div>
+      
+      <div class="anvaya-title">Layered Transmission (Anvaya)</div>
+      <div class="anvaya-grid" id="anvaya-grid-box">
+        <div class="anvaya-cell"><strong>कर्मणि</strong><span>karmaṇi — in prescribed duty (action)</span></div>
+        <div class="anvaya-cell"><strong>एव</strong><span>eva — only / certainly</span></div>
+        <div class="anvaya-cell"><strong>अधिकारः</strong><span>adhikāraḥ — right / authority</span></div>
+        <div class="anvaya-cell"><strong>ते</strong><span>te — your</span></div>
+        <div class="anvaya-cell"><strong>मा</strong><span>mā — never</span></div>
+        <div class="anvaya-cell"><strong>फलेषु</strong><span>phaleṣu — in the fruits / results</span></div>
+        <div class="anvaya-cell"><strong>कदाचन</strong><span>kadācena — at any time</span></div>
+      </div>
+
+      <div class="guru-ai-box">
+        <div class="anvaya-title" style="color: var(--accent)">The Guru's Mirror</div>
+        
+        <!-- Scrollable Message History Viewport -->
+        <div id="guru-chat-history" style="max-height: 350px; overflow-y: auto; padding: 1.5rem; margin-bottom: 1.5rem; background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-glass); border-radius: 16px; display: flex; flex-direction: column; gap: 1rem; box-sizing: border-box; scroll-behavior: smooth;">
+          <!-- Initial greeting loaded dynamically -->
+        </div>
+        
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" style="display: none; align-items: center; gap: 6px; padding: 0.5rem 1rem; color: var(--text-muted); font-size: 0.95rem; font-style: italic;">
+          <span style="font-family: 'Cinzel Decorative', serif; color: var(--gold-bright);">Guru is contemplating...</span>
+          <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate;"></div>
+          <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate 0.2s;"></div>
+          <div class="pulsing-dot" style="width: 6px; height: 6px; border-radius: 50%; background: var(--gold-bright); animation: pulse 1s infinite alternate 0.4s;"></div>
+        </div>
+        
+        <!-- Input Area -->
+        <div id="chat-input-row" style="display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap;">
+          <textarea id="reflection-textarea" placeholder="Reflect upon this. The Gurukulam is listening..." style="flex: 1; margin-bottom: 0; min-height: 80px;"></textarea>
+          <button class="submit-btn" id="send-chat-btn" onclick="sendChatMessage()" style="padding: 18px 30px; height: 80px; display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; letter-spacing: 0.1em; white-space: nowrap;">Reflect</button>
+        </div>
+
+        <!-- AI Disclosure -->
+        <details class="ai-disclosure">
+          <summary>🤖 About the Guru AI</summary>
+          <p><strong>Model:</strong> This Socratic dialogue uses a large language model (LLM) with Retrieval-Augmented Generation (RAG) grounded in verified scriptural sources.</p>
+          <p><strong>Limitations:</strong> The AI may occasionally generate inaccurate interpretations. All scriptural claims should be verified against primary texts.</p>
+          <p><strong>Privacy:</strong> Your reflections are stored locally and on our server. They are never shared with third parties or used for model training.</p>
+          <p><strong>Integrity:</strong> All content is verified against traditional Sanskrit systems (Vyākaraṇa and Uccāraṇa).</p>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wisdom Hub View (initially hidden) -->
+  <div id="sannidhi-wisdom-view" style="display: none;">
+    <div class="glass-card" style="padding: 2rem;">
+      <div class="hub-header" style="padding: 1rem 0 2rem; text-align: center;">
+        <h2 class="page-title" style="font-size: 2.2rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Wisdom Publications</h2>
+        <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;">
+          Explore magazines, weekly articles, and modern scientific research validations.
+        </p>
+      </div>
+      
+      <div class="filter-chips" id="wisdomCategoryChips" style="display:flex; justify-content:center; gap:0.5rem; flex-wrap:wrap; margin-bottom: 2rem; border-bottom:1px solid var(--border-glass); padding-bottom:1.2rem;">
+        <button class="filter-chip active" onclick="switchSannidhiWisdomFilter(this, 'all')">All Material</button>
+        <button class="filter-chip" onclick="switchSannidhiWisdomFilter(this, 'magazine')">Magazines</button>
+        <button class="filter-chip" onclick="switchSannidhiWisdomFilter(this, 'article')">Weekly Articles</button>
+        <button class="filter-chip" onclick="switchSannidhiWisdomFilter(this, 'blog')">Blogs</button>
+        <button class="filter-chip" onclick="switchSannidhiWisdomFilter(this, 'research')">Modern Research</button>
+        <button class="filter-chip" onclick="switchSannidhiWisdomFilter(this, 'story')">Itihasa & Purana</button>
+      </div>
+
+      <div class="articles-grid" id="sannidhiArticlesGrid">
+        <!-- Dynamic Sannidhi articles loaded here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Glossary View (initially hidden) -->
+  <div id="sannidhi-glossary-view" style="display: none;">
+    <div class="glass-card" style="padding: 2rem;">
+      <div class="hub-header" style="padding: 1rem 0 2rem; text-align: center;">
+        <h2 class="page-title" style="font-size: 2.2rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Sanskrit Glossary</h2>
+        <p style="font-size: 1.05rem; color: var(--text-muted); line-height: 1.6;">
+          A curated linguistic bridge for seekers exploring ancient systems.
+        </p>
+      </div>
+
+      <div class="search-container" style="background: rgba(0,0,0,0.2); border: 1px solid var(--border-glass); border-radius: 16px; padding: 1.5rem; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+        <div class="search-wrapper" style="position: relative; margin-bottom: 1.2rem;">
+          <input type="text" id="sannidhi-glossary-search" class="search-input" placeholder="Search by Sanskrit, transliteration, or meaning..." aria-label="Type search query" style="width:100%; background:var(--bg-secondary); border:1px solid var(--border-glass); border-radius:10px; padding:0.8rem 1rem 0.8rem 2.5rem; color:var(--text-primary); font-family:'Outfit', sans-serif; font-size:1rem; outline:none; box-sizing:border-box;">
+          <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); fill: var(--text-muted); width: 16px; height: 16px; pointer-events: none;">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+        </div>
+        
+        <div>
+          <div class="filter-label" style="font-family:'Cinzel', serif; font-size:0.8rem; color:var(--gold-bright); letter-spacing:0.05em; margin-bottom:0.6rem; text-transform:uppercase;">Filter by Category</div>
+          <div class="filter-chips" id="sannidhi-category-filters" style="display:flex; flex-wrap:wrap; gap:0.5rem;">
+            <button class="filter-chip active" data-category="all">All</button>
+            <button class="filter-chip" data-category="General">General</button>
+            <button class="filter-chip" data-category="Nagara Nirmāṇa">Nagara Nirmāṇa</button>
+            <button class="filter-chip" data-category="Rājya Pālanam">Rājya Pālanam</button>
+            <button class="filter-chip" data-category="Vimāna Śāstra">Vimāna Śāstra</button>
+            <button class="filter-chip" data-category="Astra Vidyā">Astra Vidyā</button>
+            <button class="filter-chip" data-category="Rasa Śāstra">Rasa Śāstra</button>
+            <button class="filter-chip" data-category="Jyotiṣa">Jyotiṣa</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Glossary Cards Grid -->
+      <div class="glossary-grid" id="sannidhi-glossary-terms-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+        <!-- Loaded dynamically -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sannidhi Immersive Reader Modal -->
+<div id="reader-modal">
+  <div class="reader-box">
+    <button onclick="closeReader()" class="reader-close">×</button>
+    <div class="reader-header">
+      <div id="reader-category" class="reader-category">Category</div>
+      <h2 id="reader-title" class="reader-title">Title</h2>
+      <div id="reader-meta" class="reader-meta">Published by Author</div>
+    </div>
+    <div id="reader-content" class="reader-content">
+      <!-- Article contents -->
+    </div>
+  </div>
 </div>
 
 <script>
@@ -992,6 +1354,290 @@ if (cursor && cursorRing) {
     }
   });
 }
+
+/* ──────────────────────────────────────────────────────────
+   UNIFIED DASHBOARD VIEW SWITCHING & SUB-TABS LOGIC
+──────────────────────────────────────────────────────────── */
+let sannidhiActiveMode = 'chat';
+
+function switchSannidhiMode(btn, mode) {
+  document.querySelectorAll('.mode-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  sannidhiActiveMode = mode;
+
+  document.getElementById('sannidhi-chat-view').style.display = mode === 'chat' ? 'block' : 'none';
+  document.getElementById('sannidhi-wisdom-view').style.display = mode === 'wisdom' ? 'block' : 'none';
+  document.getElementById('sannidhi-glossary-view').style.display = mode === 'glossary' ? 'block' : 'none';
+
+  if (mode === 'wisdom' && allSannidhiArticles.length === 0) {
+    loadSannidhiWisdom();
+  }
+  if (mode === 'glossary') {
+    renderSannidhiGlossary();
+  }
+}
+
+// ─── Wisdom Hub in Sannidhi ───
+let allSannidhiArticles = [];
+let activeSannidhiWisdomFilter = 'all';
+
+async function loadSannidhiWisdom() {
+  let apiSuccess = false;
+  if (window.EOS_API && typeof window.EOS_API.getPublicArticles === 'function') {
+    try {
+      const res = await window.EOS_API.getPublicArticles();
+      if (res && res.length > 0) {
+        allSannidhiArticles = res;
+        apiSuccess = true;
+      }
+    } catch (e) {
+      console.error("API Error in Sannidhi Wisdom, using fallback:", e);
+    }
+  }
+  
+  if (!apiSuccess) {
+    allSannidhiArticles = [
+      {
+        id: 5,
+        category: 'research',
+        title: 'The Atharvaveda of City Planning: Prana, Protection, and the Blueprint of Madurai',
+        author: 'Siddha Council',
+        summary: 'Explore how the Atharvaveda provides the spiritual prana (life force) and energetic shield for sacred city planning, working in tandem with the Mayamatam and Agamas.',
+        content: `<h3>The Energetic Soul of Nagara Nirmana</h3><p>While the Shilpa Shastras (like the <i>Manasara</i>) and the Agamas provide the structural and geometric blueprint (the physical anatomy and measurements), the <b>Atharvaveda</b> provides the <i>prana</i> (life force), the ritual execution, and the protective wisdom required to make that physical structure actually "alive" and divine. Without the energetic rituals of the Atharvaveda, a city built using only the Agamas would just be a mathematically perfect, but ultimately "dead" pile of stones.</p><h3>The Wisdom (The Knowing): Earth as a Living Organism</h3><p>The Atharvaveda (housing the Sthapatya Veda) teaches that land is not dead dirt, but a living, breathing organism with energy meridians (Nadīs), similar to the human body. It gives the wisdom to identify the <i>marma sthanas</i> (vital energy points) of a geographical site so that the central temple (Brahmasthana) can be placed exactly on the earth's spiritual nerve center. Furthermore, by balancing the five elements (Pancha Bhoota) in the physical geography of the city, it prevents societal decay, poverty, and discord. Deep philosophical hymns are dedicated to <b>Vastospati</b> (the deity of physical spaces), showing that a city is a shared dwelling for humans, nature, and divine forces.</p><h3>The Execution (The Doing): Shielding and Hydrology</h3><p>The Atharvaveda guides the practical execution of consecration and protection. Before building, the land must be pacified and healed using specific purification rituals (Bhoomi Pujan and Vastu Shanti), utilizing hymns like <b>Book 3, Hymn 12</b> to invoke the creator Tvastar for foundation-raising. Border protection is established through <i>Nagara Raksha</i>, utilizing Rakshoghna and Krivinashana hymns to project energetic shields at the outer walls and the four cardinal gates. Water hydrology, invoking the rain deity Parjanya, guides the digging of temple tanks (like the Potramarai Kulam in Madurai) and river alignments to ensure prosperity. Class zoning is structured under Atharvanic principles of statecraft to maintain social harmony.</p><h3>The limits & Hand-off: The Anesthetic vs the Scalpel</h3><p>To understand the Atharvaveda's effectiveness, one must also recognize its limits. It will not detail the exact width of streets, the proportions of Gopurams, or which stone to carve. For these structural measurements, it hands off to the Agamas (Kamikagama) and Shilpa Shastras (Mayamatam). Thus, the Atharvaveda behaves like the <b>anesthetic, life-support, and blessing</b> (spiritual execution) to the <b>scalpel and anatomical charts</b> (structural execution) of the Shastras. Both are mandatory to construct a living temple city.</p>`,
+        image_url: 'flying_manuscript.png',
+        created_at: '2026-06-04T00:00:00'
+      },
+      {
+        id: 4,
+        category: 'research',
+        title: 'The Sacred Geometry of Nagara Nirmana: How the Divine Reality is Built',
+        author: 'Siddha Council',
+        summary: 'A deep dive into the Vastu Purusha Mandala, the 9x9 Paramasayika grid, and the living lotus geometry of Madurai Sthalam.',
+        content: `<h3>The Sacred Texts of Nagara Nirmana</h3><p>While the term 'Samhita' broadly refers to compendiums or collections of knowledge, the rules for building a divine city are found across Shilpa Shastras (architectural manuals), Agamas (temple and societal codes), and Puranic Samhitas.</p><h4>A. The Shilpa Shastras (The Architectural Manuals)</h4><ul><li><b>Manasara (Manasara Shilpa Shastra):</b> This is the ultimate encyclopedia of Vastu. It contains a specific section called Nagara Vidhana (Rules for Towns). It categorizes settlements into eight types (from a small village to a massive capital city) and explains how to lay out the Vastu Purusha Mandala (the cosmic grid) to ensure the city aligns with solar and magnetic energies.</li><li><b>Mayamatam (Mayamata):</b> Attributed to the divine architect Maya Danava, this text is the absolute authority on Dravidian (South Indian) architecture. It meticulously details how to build temple cities, the exact dimensions of streets, and the zoning of different castes and professions around the central temple.</li><li><b>Samarangana Sutradhara:</b> Written by King Bhoja (11th century), this text deals extensively with Nagara (city) planning, focusing on royal capitals, the layout of the central palace/temple, and the aesthetic geometry of the city.</li><li><b>Aparajita Priccha:</b> A 12th-century text formatted as a dialogue. It contains exhaustive details on town planning, street widths (Rajamarga), drainage, and the placement of markets and guilds.</li></ul><h4>B. The Samhitas and Puranas</h4><ul><li><b>Brihat Samhita (by Varahamihira):</b> Chapter 53 (Vastu-vidya) provides rules for selecting land, testing soil, and laying out the grid for a city. It dictates that a city should be shaped like a square, rectangle, or circle, with the primary deity at the exact center.</li><li><b>Vishnudharmottara Purana:</b> Contains chapters dedicated to Nagara Nirmana, emphasizing that a city must be protected by water bodies (moats/rivers) and walls, with the temple acting as the spiritual anchor.</li><li><b>Agni Purana & Matsya Purana:</b> Both contain detailed encyclopedic chapters on town planning, specifying the widths of concentric streets and the placement of different social classes (Varnas) based on their proximity to the divine center.</li></ul><h4>C. The Agamas (The Living Codes of the Temple City)</h4><ul><li><b>Kamikagama, Karanagama, and Suprabhedagama:</b> In South India, the Agamas are the supreme law. They do not just dictate how to carve the deity; they dictate how the entire town must be built around the deity. They prescribe the Prakaras (concentric rectangular walls and streets) that protect the sanctum from the chaotic energies of the outside world.</li></ul><h3>The Blueprint: How the 'Divine Reality' is Built</h3><p>According to these texts, a divine city is built using the Vastu Purusha Mandala. For a major city, a grid of 81 squares (9x9), known as the <b>Paramasayika mandala</b>, is drawn on the earth.</p><ul><li><b>The Brahmasthana (The Divine Center):</b> The central squares of the grid are the Brahmasthana (the seat of the Creator). This area is considered pure consciousness. No mortal is allowed to live here. It is exclusively reserved for the main Temple. This is the anchor of the city.</li><li><b>The Prakaras (The Concentric Layers):</b> As you move outward from the Brahmasthana, the energy transitions from pure spirit to pure matter. The city is built in concentric rectangular or circular layers.</li><li><b>The Zoning of Samsara (Worldly Life):</b><ul><li><i>Inner Ring:</i> Priests, Vedic scholars, and ascetics (Sattvic lifestyle, closest to the divine).</li><li><i>Middle Ring:</i> Rulers, warriors, merchants, and artisans (Rajasic lifestyle, the engine of society).</li><li><i>Outer Ring:</i> Agriculture, heavy industries, and labor (Tamasic/Earthly lifestyle).</li><li><i>The Periphery:</i> Cremation grounds and specific polluting industries (like tanneries) are placed far outside the city gates to protect the spiritual purity of the center.</li></ul></li></ul><h3>The Ultimate Example: Madurai Sthalam</h3><p>Madurai is the flawless, living embodiment of the Mayamatam and the Agamas. It is known in the texts as a <b>Padma Vana</b> (Lotus Forest) or <b>Kudal</b> (The Confluence).</p><ul><li><b>The Center (The Pistil of the Lotus):</b> At the absolute Brahmasthana sits the Meenakshi Sundareswarar Temple. Shiva (Sundareswarar) represents pure, formless Consciousness, and Shakti (Meenakshi) represents the dynamic Energy of the universe. They are the still point of the turning world.</li><li><b>The Streets (The Petals of the Lotus):</b> Radiating outward from the temple are concentric rectangular streets, named after the Tamil months: Chitrai Veedhi (Innermost), Aavani Moola Veedhi, Masi Veedhi, and Aadi Veedhi (Outermost).</li><li><b>The Transformation of Samsara into Dharma:</b> In a modern city, the center is usually a bank, a mall, or a corporate plaza (representing greed and commerce). In Madurai, the center is the Divine. Because the streets wrap around the temple, every time a citizen walks to the market, goes to school, or visits a friend, they are inherently performing Pradakshina (circumambulation) of God. Samsara (worldly life) is not opposed to spirituality; it physically revolves around it. The commerce of the outer streets is protected and sanctified by the stillness of the inner sanctum.</li><li><b>The Water Element:</b> The texts demand a water body for purification. Madurai is built on the banks of the Vaigai River, and the temple itself houses the Potramarai Kulam (Golden Lotus Tank), which historically served as the Sangam (the supreme academy of Tamil literature and spirituality).</li></ul><h3>Summary: Environment Dictates Consciousness</h3><p>The ancient texts of Nagara Nirmana realized a profound psychological and spiritual truth: Environment dictates consciousness. If you build a city with a shopping mall at the center, the society revolves around consumption. If you build a city with a stock exchange at the center, the society revolves around wealth. But if you build the city like Madurai—with the Temple (the symbol of eternal truth and inner peace) at the absolute center—then the entire society, no matter how busy their Samsara gets, is always held in the loving, gravitational embrace of the Divine.</p>`,
+        image_url: 'flying_manuscript.png',
+        created_at: '2026-06-04T00:00:00'
+      },
+      {
+        id: 1,
+        category: 'research',
+        title: 'Sacred Acoustics & Cardiac Rhythms: The Geometry of Chidambaram',
+        author: 'Vibhas Peruri & Council',
+        summary: 'An empirical exploration of how the Nataraja temple dimensions resonate with the human heart rate variability (HRV).',
+        content: `<p>The ancient temple of Nataraja in Chidambaram is not merely a place of worship, but a structural marvel designed to stabilize human bio-energetic fields. By analyzing its dimensions, we find that the 21,600 roof tiles and 72,000 iron nails mirror the daily respiration rate and nadis of the human body.</p><p>Modern cardiac research has demonstrated that stepping inside highly resonant stone chambers triggers a shift in autonomic nervous system balance. The heart rate variability stabilizes, promoting vagal tone and parasympathetic dominance. This aligns the physiological self with the higher Agamic levels of consciousness.</p>`,
+        image_url: 'sacred_city.png',
+        created_at: '2026-06-01T00:00:00'
+      },
+      {
+        id: 2,
+        category: 'story',
+        title: 'The Descent of the Astra: Parashurama\'s Mahendra Training',
+        author: 'Siddha Tradition',
+        summary: 'Explore the legends of Mount Mahendra, where Sage Parashurama initiated warriors into higher dimensions of weapon acoustics.',
+        content: `<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (Śāstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>`,
+        image_url: 'ancient_weapons.png',
+        created_at: '2026-05-28T00:00:00'
+      },
+      {
+        id: 3,
+        category: 'magazine',
+        title: 'Era of Siddhas Magazine — Issue I: Resonating Temple Cities',
+        author: 'Siddha Editorial',
+        summary: 'Our launch edition covering Vastu Purusha Mandala layouts, town thermodynamic principles, and spiritual architecture.',
+        content: `<p>Welcome to the first edition of the Era of Siddhas Magazine. In this edition, we examine the ancient town planning models outlined in the Samarangana Sutradhara. By setting the thermodynamic grids and central space (Brahma Sthana) open to the sky, ancient architects created natural cooling drafts that kept temples comfortable during harsh monsoons.</p><p>We also discuss how these concepts are being implemented in modern eco-villages and sustainable residential plans to restore the connection between human dwelling and nature.</p>`,
+        image_url: 'flying_manuscript.png',
+        created_at: '2026-05-25T00:00:00'
+      }
+    ];
+  }
+  renderSannidhiArticles();
+}
+
+function renderSannidhiArticles() {
+  const grid = document.getElementById('sannidhiArticlesGrid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const filtered = allSannidhiArticles.filter(art => activeSannidhiWisdomFilter === 'all' || art.category === activeSannidhiWisdomFilter);
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 3rem; color: var(--text-muted);">
+      <p>No publications are found under this gate. More wisdom is compiling in the archives.</p>
+    </div>`;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(art => {
+    const categoryLabels = {
+      magazine: 'Magazine',
+      article: 'Weekly Article',
+      blog: 'Blog',
+      research: 'Modern Research',
+      story: 'Itihasa & Purana'
+    };
+    const label = categoryLabels[art.category] || art.category.toUpperCase();
+    const date = new Date(art.created_at).toLocaleDateString('en-IN', {
+      day: 'numeric', month: 'short', year: 'numeric'
+    });
+    const fallbackImage = art.category === 'research' ? 'sacred_city.png' :
+                          art.category === 'story' ? 'ancient_weapons.png' : 'flying_manuscript.png';
+    const img = art.image_url || fallbackImage;
+
+    return `
+      <div class="article-card" onclick="openArticle(${art.id}, event)" style="cursor: pointer;">
+        <div class="card-img-box">
+          <img src="${img}" alt="${art.title}" class="card-img">
+          <span class="card-badge">${label}</span>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">${art.title}</h3>
+          <p class="card-summary">${art.summary}</p>
+          <div class="card-footer">
+            <span class="card-author">By ${art.author}</span>
+            <span>${date}</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  bindCursorEvents();
+}
+
+function switchSannidhiWisdomFilter(btn, filterKey) {
+  document.querySelectorAll('#wisdomCategoryChips .filter-chip').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  activeSannidhiWisdomFilter = filterKey;
+  renderSannidhiArticles();
+}
+
+function openArticle(id, event) {
+  if (event) event.preventDefault();
+  const art = allSannidhiArticles.find(a => a.id === id);
+  if (!art) return;
+
+  const categoryLabels = {
+    magazine: 'Magazine Edition',
+    article: 'Weekly Article',
+    blog: 'Blog Post',
+    research: 'Modern Research Validation',
+    story: 'Itihasa & Purana Story'
+  };
+
+  document.getElementById('reader-category').innerText = categoryLabels[art.category] || art.category.toUpperCase();
+  document.getElementById('reader-title').innerText = art.title;
+  document.getElementById('reader-meta').innerText = `By ${art.author} · Published on ${new Date(art.created_at).toLocaleDateString('en-IN')}`;
+  document.getElementById('reader-content').innerHTML = art.content;
+  document.getElementById('reader-modal').style.display = 'flex';
+  bindCursorEvents();
+}
+
+function closeReader() {
+  document.getElementById('reader-modal').style.display = 'none';
+}
+
+// ─── Searchable Sanskrit Glossary inside Sannidhi ───
+const sannidhiGlossaryTerms = [
+  { iast: "Brahmasthāna", devanagari: "ब्रह्मस्थान", english: "Divine Center", definition: "The central sacred zone of a Vāstu Puruṣa Maṇḍala, kept open and free from constructions to allow energy circulation.", category: "Nagara Nirmāṇa" },
+  { iast: "Prākāra", devanagari: "प्राकार", english: "Concentric Enclosure Wall", definition: "Concentric protective boundaries radiating outward around a temple or sacred city, symbolizing levels of spiritual ascent.", category: "Nagara Nirmāṇa" },
+  { iast: "Pradakṣiṇā", devanagari: "प्रदक्षिणा", english: "Clockwise Circumambulation", definition: "The ritual practice of walking clockwise around a sacred center, deity, or temple path.", category: "General" },
+  { iast: "Śāstra", devanagari: "शास्त्र", english: "Sacred or Scientific Treatise", definition: "Any traditional text detailing laws, rules, science, or sacred precepts of a specific discipline.", category: "General" },
+  { iast: "Vāstu Puruṣa Maṇḍala", devanagari: "वास्तुपुरुषमण्डल", english: "Sacred Spatial Grid", definition: "The metaphysical square diagram representing the cosmic person, aligning structures with planetary and elemental coordinates.", category: "Nagara Nirmāṇa" },
+  { iast: "Matsya Nyāya", devanagari: "मात्स्यन्याय", english: "Law of the Fish", definition: "The concept describing anarchy where the strong swallow the weak, which structured governance (Rājya Pālanam) acts to prevent through Dharma.", category: "Rājya Pālanam" },
+  { iast: "Vimāna", devanagari: "विमान", english: "Sacred Spire / Flying Chariot", definition: "The superstructure or tower rising above the sanctum in south Indian temples, or a flying chariot detailed in ancient epic literature.", category: "Vimāna Śāstra" },
+  { iast: "Astra", devanagari: "अस्त्र", english: "Mantra-Activated Weapon", definition: "A projectile or missile activated through spiritual formulas and sacred sound resonance (mantra).", category: "Astra Vidyā" },
+  { iast: "Śastra", devanagari: "शस्त्र", english: "Handheld Physical Weapon", definition: "A close-combat physical weapon (like a sword or mace) used manually without mantra activation.", category: "Astra Vidyā" },
+  { iast: "Rasa Śāstra", devanagari: "रसशास्त्र", english: "Vedic Alchemy and Metallurgy", definition: "The system of purifying mercury, metals, and minerals (Saṃskāras) for pharmaceutical and spiritual longevity purposes.", category: "Rasa Śāstra" },
+  { iast: "Jyotiṣa", devanagari: "ज्योतिष", english: "Vedic Astronomy & Astrology", definition: "The 'science of light' studying celestial alignments, planetary movements, and their correlation to terrestrial time and karma.", category: "Jyotiṣa" },
+  { iast: "Nagara Nirmāṇa", devanagari: "नगरनिर्माण", english: "Sacred Town Planning", definition: "The Āgamic and Śilpa principles of organizing settlements, towns, and temple cities based on spiritual and social harmony.", category: "Nagara Nirmāṇa" },
+  { iast: "Mumukṣu", devanagari: "मुमुक्षु", english: "Liberation Seeker", definition: "A student who is beginning their journey on the path of knowledge and spiritual liberation (Bloom's Remember/Understand level).", category: "General" },
+  { iast: "Śiṣya", devanagari: "शिष्य", english: "Formal Disciple", definition: "An intermediate level student undergoing systematic disciplines and studies under a qualified teacher (Bloom's Apply/Analyze level).", category: "General" },
+  { iast: "Sādhaka", devanagari: "साधक", english: "Spiritual Practitioner", definition: "An advanced practitioner who applies the principles practically in daily life and specialized disciplines (Bloom's Evaluate/Create level).", category: "General" },
+  { iast: "Vāstospati", devanagari: "वास्तोष्पति", english: "Guardian Deity of the Home", definition: "The Vedic deity invoked to protect, bless, and bring prosperity to a new dwelling or constructed space.", category: "Nagara Nirmāṇa" },
+  { iast: "Paramaśāyika", devanagari: "परमशायिक", english: "Eighty-One Square Grid", definition: "The 9x9 square mandala layout specified in Śilpa Śāstras for laying out major temples, palaces, and towns.", category: "Nagara Nirmāṇa" },
+  { iast: "Saṃskāra", devanagari: "संस्कार", english: "Transformative Processing", definition: "The systematic chemical or spiritual processes applied to change, purify, and sublimate a substance or individual.", category: "Rasa Śāstra" },
+  { iast: "Nakṣatra", devanagari: "नक्षत्र", english: "Lunar Mansion", definition: "One of the 27 stellar divisions of the ecliptic, representing the moon's position relative to stars.", category: "Jyotiṣa" },
+  { iast: "Rāśi", devanagari: "राशि", english: "Zodiac Sign", definition: "One of the 12 spatial divisions of the zodiac through which the sun and planets transit.", category: "Jyotiṣa" },
+  { iast: "Vyākaraṇa", devanagari: "व्याकरण", english: "Sanskrit Grammar Science", definition: "The linguistic science of word derivation and grammar, functioning as a generative rules-based programming framework.", category: "General" },
+  { iast: "Śabda", devanagari: "शब्द", english: "Sound / Verbal Testimony", definition: "The linguistic and metaphysical concept of sound, carrying semantic power, inherent meaning, and cosmic vibration.", category: "General" },
+  { iast: "Dhvani", devanagari: "ध्वनि", english: "Phonetic Sound Resonance", definition: "The physical, auditory vibration of sounds and phonemes, creating specific neuro-acoustic patterns when chanted.", category: "General" },
+  { iast: "Uccāraṇa", devanagari: "उच्चारण", english: "Phonetic Pronunciation", definition: "The scientific practice of correct articulation, ensuring vocal resonance is generated from the correct physiological locations.", category: "General" },
+  { iast: "Aṣṭādhyāyī", devanagari: "अष्टाध्यायी", english: "Eight-Chapter Grammar Compendium", definition: "Pāṇini's foundational text on Sanskrit grammar, comprising nearly 4,000 algebraic rules functioning as a formal language compiler.", category: "General" },
+  { iast: "Dhanurveda", devanagari: "धनुर्वेद", english: "Science of Warfare & Archery", definition: "An Upaveda detailing military sciences, martial training, weapon dynamics, and the psychological mastery of combat.", category: "Astra Vidyā" },
+  { iast: "Vaimānika Śāstra", devanagari: "वैमानिकशास्त्र", english: "Aeronautic Treatise", definition: "An ancient manuscript detailing principles of aerodynamics, pilot training, and the construction of advanced aerial craft.", category: "Vimāna Śāstra" },
+  { iast: "Rasa Ratna Samuccaya", devanagari: "रसरत्नसमुच्चय", english: "Compendium of Alchemical Gems", definition: "Vāgbhaṭa's comprehensive work on Vedic alchemy, classifying minerals and describing apparatuses for purification (Saṃskāra).", category: "Rasa Śāstra" },
+  { iast: "Sūrya Siddhānta", devanagari: "सूर्यसिद्धान्त", english: "Sun Astronomy Treatise", definition: "A monumental treatise on Vedic astronomy detailing celestial coordinates, planetary orbits, and solar-lunar eclipses.", category: "Jyotiṣa" },
+  { iast: "Pañcāṅga", devanagari: "पञ्चाङ्ग", english: "Five-Limb Calendar", definition: "A lunar-solar calendar computing time intervals based on Tithi, Vāra, Nakṣatra, Yoga, and Karaṇa.", category: "Jyotiṣa" },
+  { iast: "Saptāṅga", devanagari: "सप्ताङ्ग", english: "Seven-Limb Governance Model", definition: "Kautilya's political structure comprising the king, ministers, territory, fort, treasury, army, and allies.", category: "Rājya Pālanam" },
+  { iast: "Vyūha", devanagari: "व्यूह", english: "Battle Formation", definition: "Strategic geometric arrangement of military assets and divisions (e.g. Padma, Cakra) to optimize tactical offense and defense.", category: "Astra Vidyā" },
+  { iast: "Ayadi", devanagari: "आयादि", english: "Architectural Harmony Formulae", definition: "Six mathematical criteria (Aya, Vyaya, Yoni, Nakṣatra, Vāra, Aṃśa) used to determine proportional dimensions for energetic resonance.", category: "Nagara Nirmāṇa" },
+  { iast: "Dahara Ākāśa", devanagari: "दहराकाश", english: "Inner Cosmic Space", definition: "The micro-cosmic space within the human heart where macro-cosmic laws, elements, and consciousness are meditated upon and realized.", category: "General" }
+];
+
+let sannidhiActiveGlossaryCategory = 'all';
+let sannidhiGlossarySearchQuery = '';
+
+function renderSannidhiGlossary() {
+  const grid = document.getElementById('sannidhi-glossary-terms-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const filtered = sannidhiGlossaryTerms.filter(term => {
+    const matchesCategory = sannidhiActiveGlossaryCategory === 'all' || term.category === sannidhiActiveGlossaryCategory;
+    const searchText = `${term.iast} ${term.devanagari} ${term.english} ${term.definition}`.toLowerCase();
+    const matchesSearch = searchText.includes(sannidhiGlossarySearchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div style="grid-column: 1/-1; text-align: center; padding: 3rem; border: 1px dashed var(--border-glass); border-radius: 12px; color: var(--text-muted);">
+        No terms found matching your query. Try a different search term or category.
+      </div>
+    `;
+    return;
+  }
+
+  filtered.forEach(term => {
+    const card = document.createElement('article');
+    card.className = 'glossary-card';
+    card.setAttribute('aria-label', `${term.iast} definition`);
+    card.innerHTML = `
+      <div class="card-top">
+        <div class="card-category">${term.category}</div>
+        <h3 class="card-sanskrit" lang="sa" style="margin: 0.2rem 0; font-family:'Noto Serif Devanagari', serif;">${term.devanagari}</h3>
+        <div class="card-iast" style="font-family:'Cinzel', serif; font-size:0.95rem; color:var(--gold-bright); font-style:italic; margin-bottom:0.5rem;">${term.iast}</div>
+        <div class="card-english" style="font-weight:600; text-transform:uppercase; font-size:0.8rem; letter-spacing:0.05em; border-bottom:1px solid var(--border-glass); padding-bottom:0.3rem; margin-bottom:0.6rem;">${term.english}</div>
+        <p class="card-definition" style="font-size:0.9rem; line-height:1.5; color:var(--text-muted);">${term.definition}</p>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+
+  bindCursorEvents();
+}
+
+// Bind Glossary Search and Filter Events inside Sannidhi
+document.addEventListener('DOMContentLoaded', () => {
+  const gSearch = document.getElementById('sannidhi-glossary-search');
+  if (gSearch) {
+    gSearch.addEventListener('input', (e) => {
+      sannidhiGlossarySearchQuery = e.target.value;
+      renderSannidhiGlossary();
+    });
+  }
+
+  const gFilters = document.getElementById('sannidhi-category-filters');
+  if (gFilters) {
+    gFilters.addEventListener('click', (e) => {
+      if (e.target.classList.contains('filter-chip')) {
+        gFilters.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        sannidhiActiveGlossaryCategory = e.target.getAttribute('data-category');
+        renderSannidhiGlossary();
+      }
+    });
+  }
+});
 
 // Load persisted theme on start
 const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
