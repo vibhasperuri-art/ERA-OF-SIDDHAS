@@ -820,10 +820,10 @@
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <a href="index.html" class="nav-btn">Home</a>
     <a href="pillar_hub.html" class="nav-btn">Pillars</a>
-    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="vicara_sannidhi.html?mode=wisdom" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="vicara_sannidhi.html" class="nav-btn active" aria-current="page">Vicāra Sannidhi</a>
-    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="vicara_sannidhi.html?mode=glossary" class="nav-btn">Glossary</a>
     <a href="about.html" class="nav-btn">About</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
     <div style="display:flex; gap: 8px; margin-left: 10px;">
@@ -1652,6 +1652,15 @@ if (initialTabBtn) {
 } else {
   switchPillar(null, initialPillar);
 }
+
+const initialMode = urlParams.get('mode');
+if (initialMode) {
+  const modeBtn = document.querySelector(`.mode-tab[onclick*="${initialMode}"]`);
+  if (modeBtn) {
+    switchSannidhiMode(modeBtn, initialMode);
+  }
+}
+
 </script>
 <script>
   if ('serviceWorker' in navigator) {
