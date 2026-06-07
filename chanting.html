@@ -500,7 +500,14 @@
     <button class="btn btn-mic" id="recordBtn">Hold to Chant</button>
   </div>
   
-  <div class="recording-wave" id="wave">|||||||||||||||||||| Listening ||||||||||||||||||||</div>
+  <div style="margin: 1.5rem auto; width: 100%; max-width: 600px; display: flex; flex-direction: column; align-items: center; gap: 8px;">
+    <canvas id="visualizerCanvas" width="600" height="130" style="width: 100%; height: 130px; border: 1px solid var(--border-glass); border-radius: 10px; background: rgba(0, 0, 0, 0.35); box-shadow: inset 0 0 20px rgba(0,0,0,0.6); display: block;"></canvas>
+    <div id="wave" style="display: none; font-family: monospace; color: var(--gold-bright); font-size:1.1rem; animation: pulse 1s infinite alternate; text-shadow: 0 0 8px var(--accent);">|||||||||||||||||||| Listening ||||||||||||||||||||</div>
+    <div id="live-audio-stats" style="font-family: 'Outfit', sans-serif; font-size: 0.95rem; color: var(--text-muted); display: none; gap: 15px; justify-content: center; width: 100%;">
+      <span>Pitch: <strong id="live-pitch" style="color: var(--gold-bright);">-- Hz</strong></span>
+      <span>Resonance: <strong id="live-resonance" style="color: var(--gold-bright);">--</strong></span>
+    </div>
+  </div>
 
   <div class="assessment-box">
     <div class="feedback-title">Real-time Assessment</div>
@@ -512,30 +519,391 @@
 </div>
 
 <script>
-// Mock Logic for Assessment
+// Web Audio Context and Node Management
+let audioCtx = null;
+let audioStream = null;
+let analyser = null;
+let micSource = null;
+let animationId = null;
+let pitchHistory = [];
+let chantStartTime = 0;
+
+// Tampura Drone Synthesizer Variables
+let activeDroneOscillators = [];
+let tampuraInterval = null;
+let isDronePlaying = false;
+
+function initAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  }
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+// ── Tampura Physical Modeling Synthesizer ──
+function pluckString(freq, time, duration) {
+  const ctx = initAudioContext();
+  
+  // Pluck filter for organic warm strings
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(380, time);
+  filter.frequency.exponentialRampToValueAtTime(140, time + duration);
+  
+  // Pluck decay envelope
+  const gainNode = ctx.createGain();
+  gainNode.gain.setValueAtTime(0, time);
+  gainNode.gain.linearRampToValueAtTime(0.12, time + 0.05); // Attack
+  gainNode.gain.exponentialRampToValueAtTime(0.001, time + duration); // Decay/Release
+  
+  // Sawtooth fundamental string tone
+  const osc1 = ctx.createOscillator();
+  osc1.type = "sawtooth";
+  osc1.frequency.setValueAtTime(freq, time);
+  
+  // Triangle overtone/harmonics
+  const osc2 = ctx.createOscillator();
+  osc2.type = "triangle";
+  osc2.frequency.setValueAtTime(freq * 2, time);
+  
+  // Subharmonic booster for extra resonance on Kharaj (C2)
+  let osc3 = null;
+  if (freq < 100) {
+    osc3 = ctx.createOscillator();
+    osc3.type = "sine";
+    osc3.frequency.setValueAtTime(freq * 0.5, time);
+    
+    const subGain = ctx.createGain();
+    subGain.gain.setValueAtTime(0, time);
+    subGain.gain.linearRampToValueAtTime(0.08, time + 0.08);
+    subGain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+    
+    osc3.connect(subGain);
+    subGain.connect(filter);
+  }
+  
+  const osc2Gain = ctx.createGain();
+  osc2Gain.gain.setValueAtTime(0.04, time);
+  
+  osc1.connect(gainNode);
+  osc2.connect(osc2Gain);
+  osc2Gain.connect(gainNode);
+  
+  gainNode.connect(filter);
+  filter.connect(ctx.destination);
+  
+  osc1.start(time);
+  osc1.stop(time + duration);
+  osc2.start(time);
+  osc2.stop(time + duration);
+  if (osc3) {
+    osc3.start(time);
+    osc3.stop(time + duration);
+  }
+  
+  activeDroneOscillators.push(osc1, osc2);
+  if (osc3) activeDroneOscillators.push(osc3);
+}
+
+function startTampuraDrone() {
+  if (isDronePlaying) return;
+  isDronePlaying = true;
+  initAudioContext();
+  
+  const stringFreqs = [195.99, 130.81, 130.81, 65.41]; // Pa (G3), Sa (C3), Sa (C3), Kharaj Sa (C2)
+  let pluckIndex = 0;
+  
+  function pluckNext() {
+    if (!isDronePlaying) return;
+    const ctx = initAudioContext();
+    const now = ctx.currentTime;
+    pluckString(stringFreqs[pluckIndex], now, 2.5);
+    pluckIndex = (pluckIndex + 1) % 4;
+  }
+  
+  pluckNext();
+  tampuraInterval = setInterval(pluckNext, 1100);
+}
+
+function stopTampuraDrone() {
+  isDronePlaying = false;
+  if (tampuraInterval) {
+    clearInterval(tampuraInterval);
+    tampuraInterval = null;
+  }
+  activeDroneOscillators.forEach(osc => {
+    try { osc.stop(); } catch(e) {}
+  });
+  activeDroneOscillators = [];
+}
+
+// ── Teacher Chanting Synthesizer ──
+function playAudio() {
+  feedback.innerHTML = "Playing source audio... Listen closely to the intonation on 'kṛtvā'.";
+  startTampuraDrone();
+  
+  const ctx = initAudioContext();
+  const now = ctx.currentTime;
+  
+  // Chanting oscillator (C3 Root note with vocal-like sawtooth)
+  const osc = ctx.createOscillator();
+  const gainNode = ctx.createGain();
+  
+  osc.type = "sawtooth";
+  osc.frequency.setValueAtTime(130.81, now);
+  
+  // Frequency/pitch modulation to simulate basic vocal pitch contours
+  osc.frequency.linearRampToValueAtTime(130.81, now + 0.8);
+  osc.frequency.linearRampToValueAtTime(135.2, now + 1.2); 
+  osc.frequency.linearRampToValueAtTime(130.81, now + 1.6);
+  osc.frequency.linearRampToValueAtTime(130.81, now + 2.4);
+  
+  const filter = ctx.createBiquadFilter();
+  filter.type = "lowpass";
+  filter.frequency.setValueAtTime(350, now);
+  
+  gainNode.gain.setValueAtTime(0, now);
+  gainNode.gain.linearRampToValueAtTime(0.08, now + 0.2); // fade in
+  gainNode.gain.setValueAtTime(0.08, now + 2.4);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, now + 3.0); // fade out
+  
+  osc.connect(gainNode);
+  gainNode.connect(filter);
+  filter.connect(ctx.destination);
+  
+  osc.start(now);
+  osc.stop(now + 3.0);
+  
+  setTimeout(() => {
+    stopTampuraDrone();
+  }, 3200);
+}
+
+// ── Autocorrelation Pitch Detection ──
+function autoCorrelate(buffer, sampleRate) {
+  const SIZE = buffer.length;
+  let rms = 0;
+
+  for (let i = 0; i < SIZE; i++) {
+    const val = buffer[i];
+    rms += val * val;
+  }
+  rms = Math.sqrt(rms / SIZE);
+  if (rms < 0.01) {
+    return -1; // Silent / background noise
+  }
+
+  let r1 = 0, r2 = SIZE - 1;
+  const thres = 0.2;
+  for (let i = 0; i < SIZE / 2; i++) {
+    if (Math.abs(buffer[i]) < thres) {
+      r1 = i;
+      break;
+    }
+  }
+  for (let i = SIZE / 2; i < SIZE; i++) {
+    if (Math.abs(buffer[i]) < thres) {
+      r2 = i;
+      break;
+    }
+  }
+
+  const slicedBuffer = buffer.subarray(r1, r2);
+  const len = slicedBuffer.length;
+
+  const correlation = new Float32Array(len);
+  for (let i = 0; i < len; i++) {
+    for (let j = 0; j < len - i; j++) {
+      correlation[i] += slicedBuffer[j] * slicedBuffer[j + i];
+    }
+  }
+
+  let d = 0;
+  while (correlation[d] > correlation[d + 1]) d++;
+  let maxval = -1;
+  let maxpos = -1;
+  for (let i = d; i < len; i++) {
+    if (correlation[i] > maxval) {
+      maxval = correlation[i];
+      maxpos = i;
+    }
+  }
+
+  let T0 = maxpos;
+  const x1 = correlation[T0 - 1];
+  const x2 = correlation[T0];
+  const x3 = correlation[T0 + 1];
+  const a = (x1 + x3 - 2 * x2) / 2;
+  const b = (x3 - x1) / 2;
+  if (a) T0 = T0 - b / (2 * a);
+
+  return sampleRate / T0;
+}
+
+function getResonanceRegister(freq) {
+  if (freq < 140) {
+    return { name: "Mandra Sthāyī (Chest)", color: "#ffb020" };
+  } else if (freq >= 140 && freq <= 240) {
+    return { name: "Madhya Sthāyī (Throat)", color: "#2eb8a6" };
+  } else {
+    return { name: "Tāra Sthāyī (Head/Nasal)", color: "#ff4d4d" };
+  }
+}
+
+// ── Visualizer & Recording Controls ──
+const bufferLength = 2048;
+const dataArray = new Float32Array(bufferLength);
+const canvas = document.getElementById('visualizerCanvas');
+const canvasCtx = canvas.getContext('2d');
+
+function startCanvasVisualizer() {
+  function draw() {
+    if (!analyser) return;
+    animationId = requestAnimationFrame(draw);
+    analyser.getFloat32TimeDomainData(dataArray);
+    
+    const width = canvas.width;
+    const height = canvas.height;
+    
+    canvasCtx.clearRect(0, 0, width, height);
+    
+    // Draw background grid lines (Sacred geometry aesthetics)
+    canvasCtx.strokeStyle = "rgba(46, 184, 166, 0.08)";
+    canvasCtx.lineWidth = 1;
+    for (let i = 0; i < width; i += 40) {
+      canvasCtx.beginPath();
+      canvasCtx.moveTo(i, 0);
+      canvasCtx.lineTo(i, height);
+      canvasCtx.stroke();
+    }
+    for (let i = 0; i < height; i += 20) {
+      canvasCtx.beginPath();
+      canvasCtx.moveTo(0, i);
+      canvasCtx.lineTo(width, i);
+      canvasCtx.stroke();
+    }
+    
+    // Draw audio waveform
+    canvasCtx.strokeStyle = "var(--gold-bright, #4df5e2)";
+    canvasCtx.lineWidth = 2.5;
+    canvasCtx.beginPath();
+    
+    const sliceWidth = width / bufferLength;
+    let x = 0;
+    
+    for (let i = 0; i < bufferLength; i++) {
+      const v = dataArray[i] * 1.8; 
+      const y = (v + 1) * height / 2;
+      if (i === 0) {
+        canvasCtx.moveTo(x, y);
+      } else {
+        canvasCtx.lineTo(x, y);
+      }
+      x += sliceWidth;
+    }
+    
+    canvasCtx.lineTo(width, height / 2);
+    canvasCtx.stroke();
+    
+    // Pitch assessment overlay
+    const pitch = autoCorrelate(dataArray, initAudioContext().sampleRate);
+    if (pitch > 50 && pitch < 1000) {
+      pitchHistory.push(pitch);
+      
+      const livePitchEl = document.getElementById('live-pitch');
+      const liveResonanceEl = document.getElementById('live-resonance');
+      
+      livePitchEl.textContent = Math.round(pitch) + " Hz";
+      const res = getResonanceRegister(pitch);
+      liveResonanceEl.textContent = res.name;
+      liveResonanceEl.style.color = res.color;
+      
+      // Map frequency (50Hz - 450Hz) to visual height
+      const dotX = ((pitch - 50) / 400) * width;
+      const dotY = height - ((pitch - 50) / 400) * height;
+      
+      canvasCtx.beginPath();
+      canvasCtx.arc(Math.max(15, Math.min(width - 15, dotX)), Math.max(15, Math.min(height - 15, dotY)), 7, 0, 2 * Math.PI);
+      canvasCtx.fillStyle = res.color;
+      canvasCtx.shadowColor = res.color;
+      canvasCtx.shadowBlur = 15;
+      canvasCtx.fill();
+      canvasCtx.shadowBlur = 0;
+    }
+  }
+  draw();
+}
+
+async function startRecording() {
+  const ctx = initAudioContext();
+  feedback.innerHTML = "Initializing microphone...";
+  
+  try {
+    audioStream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    micSource = ctx.createMediaStreamSource(audioStream);
+    analyser = ctx.createAnalyser();
+    analyser.fftSize = bufferLength;
+    micSource.connect(analyser);
+    
+    document.getElementById('live-audio-stats').style.display = 'flex';
+    document.getElementById('wave').style.display = 'block';
+    
+    pitchHistory = [];
+    chantStartTime = Date.now();
+    
+    startCanvasVisualizer();
+    startTampuraDrone();
+    
+    feedback.innerHTML = "<span style='color: var(--gold-bright);'>Mic active.</span> Chant the shloka clearly. Direct the breath to feel the resonance layers.";
+  } catch (e) {
+    console.error("Mic access failed:", e);
+    feedback.innerHTML = "<span class='error-highlight'>Mic Permission Refused:</span> Please allow mic permissions in your browser to perform the acoustic chanting test.";
+  }
+}
+
 let attempts = 0;
 const feedback = document.getElementById('feedbackText');
 const nextBtn = document.getElementById('nextBtn');
 const wave = document.getElementById('wave');
 
-function playAudio() {
-  feedback.innerHTML = "Playing source audio... Listen closely to the intonation on 'kṛtvā'.";
-}
-
-function startRecording() {
-  wave.style.display = 'block';
-  feedback.innerHTML = "Analyzing phonetic accuracy...";
-}
-
 function stopRecording() {
-  wave.style.display = 'none';
+  if (animationId) {
+    cancelAnimationFrame(animationId);
+    animationId = null;
+  }
+  if (audioStream) {
+    audioStream.getTracks().forEach(track => track.stop());
+    audioStream = null;
+  }
+  
+  stopTampuraDrone();
+  
+  document.getElementById('live-audio-stats').style.display = 'none';
+  document.getElementById('wave').style.display = 'none';
+  
   attempts++;
-  if(attempts === 1) {
-    feedback.innerHTML = "Your pronunciation of <span class='error-highlight'>'jayājayau'</span> was flat. You missed the elongation on 'yā'. Try again.";
+  const durationSec = (Date.now() - chantStartTime) / 1000;
+  const validPitches = pitchHistory.filter(p => p > 50 && p < 800);
+  
+  if (durationSec < 1.5 || validPitches.length === 0) {
+    attempts--; // Don't count silent/short bursts
+    feedback.innerHTML = "<span class='error-highlight'>Chant too short:</span> Please sustain your chant for at least 1.5 seconds. Hold the button and complete the shloka line.";
+    return;
+  }
+  
+  const sum = validPitches.reduce((a, b) => a + b, 0);
+  const avgPitch = Math.round(sum / validPitches.length);
+  const resInfo = getResonanceRegister(avgPitch);
+  
+  if (attempts === 1) {
+    feedback.innerHTML = `Your pronunciation of <span class='error-highlight'>'jayājayau'</span> was flat (average pitch: <strong style='color: var(--gold-bright);'>${avgPitch} Hz</strong>, resonance: <strong style='color: ${resInfo.color};'>${resInfo.name}</strong>). You missed the elongation on 'yā'. Keep practicing chest resonance. Try again.`;
   } else if (attempts === 2) {
-    feedback.innerHTML = "Better. But ensure the visceral aspirate 'ḥ' in <span class='error-highlight'>'duḥkhe'</span> is clearly articulated. The shloka remains locked.";
+    feedback.innerHTML = `Better pitch control (average pitch: <strong style='color: var(--gold-bright);'>${avgPitch} Hz</strong>, resonance: <strong style='color: ${resInfo.color};'>${resInfo.name}</strong>). But ensure the visceral aspirate 'ḥ' in <span class='error-highlight'>'duḥkhe'</span> is clearly articulated. The shloka remains locked.`;
   } else {
-    feedback.innerHTML = "<span class='success-highlight'>Perfect alignment.</span> The resonance and meter were accurate. Course is now complete!";
+    feedback.innerHTML = `<span class='success-highlight'>Perfect alignment.</span> The resonance (<strong style='color: ${resInfo.color};'>${resInfo.name}</strong>) and meter were accurate at average pitch <strong style='color: var(--gold-bright);'>${avgPitch} Hz</strong>. Course is now complete!`;
     nextBtn.classList.add('unlocked');
     nextBtn.innerHTML = "Complete Course & Claim Blessing →";
   }
