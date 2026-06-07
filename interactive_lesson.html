@@ -4976,186 +4976,163 @@ function renderDaharaAkasha(container) {
    10. AYADI CALCULATOR WIDGET
    â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 function renderAyadi(container) {
-  container.innerHTML = `
-    <div class="widget-title">Ayadi Resonant Calculator</div>
-    <div class="ayadi-panel" style="display:flex; flex-direction:column; gap:20px;">
-      <div class="ayadi-inputs" style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
-        <div class="timing-input-group">
-          <label style="font-size:0.9rem; color:var(--text-muted);">Width (Hasta)</label>
-          <input type="number" id="ay-width" value="12" min="2" max="100" style="width:100%; background:rgba(0,0,0,0.15); border:1px solid var(--border-glass); color:var(--text-primary); padding:6px 12px; border-radius:6px; font-size:1.1rem; outline:none; transition:border 0.3s;">
-        </div>
-        <div class="timing-input-group">
-          <label style="font-size:0.9rem; color:var(--text-muted);">Length (Hasta)</label>
-          <input type="number" id="ay-length" value="16" min="2" max="100" style="width:100%; background:rgba(0,0,0,0.15); border:1px solid var(--border-glass); color:var(--text-primary); padding:6px 12px; border-radius:6px; font-size:1.1rem; outline:none; transition:border 0.3s;">
-        </div>
-      </div>
-      
-      <div class="ayadi-results" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(100px, 1fr)); gap:10px;">
-        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
-          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Aya (Income)</span>
-          <span class="ayadi-result-val" id="ay-res-aya" style="font-size:1.3rem; font-weight:600; color:var(--gold-bright);">4</span>
-        </div>
-        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
-          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Vyaya (Expense)</span>
-          <span class="ayadi-result-val" id="ay-res-vyaya" style="font-size:1.3rem; font-weight:600; color:#ff4d4d;">6</span>
-        </div>
-        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
-          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Yoni (Energy)</span>
-          <span class="ayadi-result-val" id="ay-res-yoni" style="font-size:1.3rem; font-weight:600; color:#00ff88;">Dhvaja</span>
-        </div>
-        <div class="ayadi-result-card" style="background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:8px; padding:10px; text-align:center; display:flex; flex-direction:column; gap:4px;">
-          <span class="ayadi-result-lbl" style="font-size:0.75rem; color:var(--text-muted);">Harmony Rating</span>
-          <span class="ayadi-result-val" id="ay-res-rating" style="font-size:1.3rem; font-weight:600; color:#7a8288;">Neutral</span>
-        </div>
-      </div>
+  // Database of 15 questions
+  const quizDb = [
+    { q: "The open central zone of a Vāstu layout representing space/ether, which must remain unbuilt.", correct: "Brahmasthāna", options: ["Brahmasthāna", "Prākāra", "Ayadi"] },
+    { q: "Concentric enclosure walls surrounding a temple complex, representing stages of spiritual ascent.", correct: "Prākāra", options: ["Prākāra", "Matsya Nyāya", "Vyūha"] },
+    { q: "The cosmic spatial layout grid representing a metaphysical layout aligned with elemental directions.", correct: "Vāstu Puruṣa Maṇḍala", options: ["Vāstu Puruṣa Maṇḍala", "Paramaśāyika", "Saptāṅga"] },
+    { q: "The chaotic political state of anarchy where the strong swallow the weak, prevented by Dharma.", correct: "Matsya Nyāya", options: ["Matsya Nyāya", "Saptāṅga", "Vyūha"] },
+    { q: "A projectile weapon activated by invoking mental focus and sacred sound resonance (mantras).", correct: "Astra", options: ["Astra", "Śastra", "Dhanurveda"] },
+    { q: "The system of purification and processing applied to metals and mercury for longevity.", correct: "Rasa Śāstra", options: ["Rasa Śāstra", "Jyotiṣa", "Vyākaraṇa"] },
+    { q: "The 'science of light' detailing planetary calculations and astronomy.", correct: "Jyotiṣa", options: ["Jyotiṣa", "Pañcāṅga", "Sūrya Siddhānta"] },
+    { q: "Six mathematical formulas used in Vāstu to determine dimensions for energetic harmony.", correct: "Ayadi", options: ["Ayadi", "Brahmasthāna", "Paramaśāyika"] },
+    { q: "The 81-square grid configuration utilized for designing major temples and urban centers.", correct: "Paramaśāyika", options: ["Paramaśāyika", "Vāstu Puruṣa Maṇḍala", "Prākāra"] },
+    { q: "Generative rules-based Sanskrit grammar framework functioning like a compiler.", correct: "Vyākaraṇa", options: ["Vyākaraṇa", "Aṣṭādhyāyī", "Śabda"] },
+    { q: "Traditional compilation of aeronautics detailing aerodynamic design and flying craft.", correct: "Vaimānika Śāstra", options: ["Vaimānika Śāstra", "Sūrya Siddhānta", "Rasa Ratna Samuccaya"] },
+    { q: "A compendium of alchemical metallurgy detailing chemical processes and apparatus.", correct: "Rasa Ratna Samuccaya", options: ["Rasa Ratna Samuccaya", "Rasa Śāstra", "Dhanurveda"] },
+    { q: "The astronomical treatise that details planetary orbits, diameter calculations, and solar eclipses.", correct: "Sūrya Siddhānta", options: ["Sūrya Siddhānta", "Pañcāṅga", "Jyotiṣa"] },
+    { q: "Lunar-solar calendar computing time using Tithi, Vāra, Nakṣatra, Yoga, and Karaṇa.", correct: "Pañcāṅga", options: ["Pañcāṅga", "Sūrya Siddhānta", "Ayadi"] },
+    { q: "Strategic geometric battle formation of military assets such as Cakra or Padma.", correct: "Vyūha", options: ["Vyūha", "Saptāṅga", "Dhanurveda"] }
+  ];
 
-      <div class="ayadi-wireframe" style="width:100%; display:flex; justify-content:center; margin-top:10px;">
-        <canvas class="ayadi-canvas-wf" id="ay-canvas" width="300" height="150" style="display:block; width:300px; height:150px; background:rgba(0,0,0,0.25); border:1px solid var(--border-glass); border-radius:8px; backdrop-filter:blur(5px); box-shadow:0 8px 32px rgba(0,0,0,0.3);"></canvas>
-      </div>
-    </div>
-  `;
-
-  const inpWidth = document.getElementById('ay-width');
-  const inpLength = document.getElementById('ay-length');
-
-  inpWidth.addEventListener('input', runAyadi);
-  inpLength.addEventListener('input', runAyadi);
-
-  const canvas = document.getElementById('ay-canvas');
-  const ctx = canvas.getContext('2d');
-  
-  // High-DPI support
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = 300 * dpr;
-  canvas.height = 150 * dpr;
-  ctx.scale(dpr, dpr);
-  canvas.style.width = '300px';
-  canvas.style.height = '150px';
-
-  function runAyadi() {
-    const w = parseFloat(inpWidth.value) || 0;
-    const l = parseFloat(inpLength.value) || 0;
-
-    const perimeter = 2 * (w + l);
-
-    // Ayadi Formulas
-    const aya = Math.round((perimeter * 8) % 12);
-    const vyaya = Math.round((perimeter * 9) % 10);
-    const yoniVal = Math.round((perimeter * 3) % 8);
-
-    const yoniLabels = ["Kaka", "Dhvaja", "Dhumra", "Simha", "Vrishabha", "Khara", "Gaja", "Vrishabha"];
-    const activeYoni = yoniLabels[yoniVal] || "Dhvaja";
-
-    document.getElementById('ay-res-aya').innerText = aya;
-    document.getElementById('ay-res-vyaya').innerText = vyaya;
-    document.getElementById('ay-res-yoni').innerText = activeYoni;
-
-    const ratingEl = document.getElementById('ay-res-rating');
-    const isResonant = (aya > vyaya);
-    if (isResonant) {
-      ratingEl.innerText = "Resonant";
-      ratingEl.style.color = "#00ff88";
-      unlockLessonCompletion();
-    } else {
-      ratingEl.innerText = "Conflict";
-      ratingEl.style.color = "#ff4d4d";
-    }
-
-    // Draw 3D Isometric Columned Shrine footprint
-    ctx.clearRect(0, 0, 300, 150);
-    
-    // Scale layout to fit wireframe canvas
-    const max_dim = Math.max(w, l);
-    const scale = max_dim > 0 ? Math.min(80 / max_dim, 4) : 2;
-    const w_px = w * scale;
-    const l_px = l * scale;
-    
-    const centerX = 150;
-    const centerY = 80;
-    const h_px = 35; // pillar height
-    
-    const pt_back = { x: centerX, y: centerY - (w_px * 0.25 + l_px * 0.25) };
-    const pt_left = { x: centerX - w_px * 0.5, y: centerY + (w_px * 0.25 - l_px * 0.25) };
-    const pt_right = { x: centerX + l_px * 0.5, y: centerY - (w_px * 0.25 - l_px * 0.25) };
-    const pt_front = { x: centerX - w_px * 0.5 + l_px * 0.5, y: centerY + (w_px * 0.25 + l_px * 0.25) };
-
-    const ratingColor = isResonant ? '#00ff88' : '#ff4d4d';
-
-    // 1. Draw central energy flow lines
-    ctx.save();
-    ctx.beginPath();
-    ctx.setLineDash([2, 4]);
-    ctx.moveTo(150, 0); ctx.lineTo(150, 150);
-    ctx.moveTo(0, 75); ctx.lineTo(300, 75);
-    ctx.strokeStyle = 'rgba(255,255,255,0.06)';
-    ctx.stroke();
-    ctx.restore();
-
-    // 2. Draw base foundation fill
-    ctx.beginPath();
-    ctx.moveTo(pt_back.x, pt_back.y);
-    ctx.lineTo(pt_right.x, pt_right.y);
-    ctx.lineTo(pt_front.x, pt_front.y);
-    ctx.lineTo(pt_left.x, pt_left.y);
-    ctx.closePath();
-    ctx.fillStyle = isResonant ? 'rgba(0, 255, 136, 0.08)' : 'rgba(255, 77, 77, 0.08)';
-    ctx.fill();
-    ctx.strokeStyle = ratingColor;
-    ctx.lineWidth = 2;
-    ctx.stroke();
-
-    // 3. Draw 4 pillars
-    const corners = [pt_back, pt_left, pt_right, pt_front];
-    ctx.strokeStyle = ratingColor;
-    ctx.lineWidth = 1.5;
-    corners.forEach(c => {
-      ctx.beginPath();
-      ctx.moveTo(c.x, c.y);
-      ctx.lineTo(c.x, c.y - h_px);
-      ctx.stroke();
-    });
-
-    // 4. Draw Top Roof/Lintel footprint
-    const pt_back_t = { x: pt_back.x, y: pt_back.y - h_px };
-    const pt_left_t = { x: pt_left.x, y: pt_left.y - h_px };
-    const pt_right_t = { x: pt_right.x, y: pt_right.y - h_px };
-    const pt_front_t = { x: pt_front.x, y: pt_front.y - h_px };
-
-    ctx.beginPath();
-    ctx.moveTo(pt_back_t.x, pt_back_t.y);
-    ctx.lineTo(pt_right_t.x, pt_right_t.y);
-    ctx.lineTo(pt_front_t.x, pt_front_t.y);
-    ctx.lineTo(pt_left_t.x, pt_left_t.y);
-    ctx.closePath();
-    ctx.fillStyle = isResonant ? 'rgba(0, 255, 136, 0.12)' : 'rgba(255, 77, 77, 0.12)';
-    ctx.fill();
-    ctx.stroke();
-
-    // 5. Draw Shikhara Spire (Pyramidal Roof)
-    const pt_spire = { x: centerX, y: centerY - h_px - (w_px * 0.25 + l_px * 0.25) - 15 };
-    ctx.strokeStyle = ratingColor;
-    ctx.lineWidth = 1;
-    ctx.setLineDash([2, 2]);
-    [pt_back_t, pt_left_t, pt_right_t, pt_front_t].forEach(t => {
-      ctx.beginPath();
-      ctx.moveTo(t.x, t.y);
-      ctx.lineTo(pt_spire.x, pt_spire.y);
-      ctx.stroke();
-    });
-    ctx.setLineDash([]);
-
-    // Draw glowing spire apex
-    ctx.save();
-    ctx.beginPath();
-    ctx.arc(pt_spire.x, pt_spire.y, 4, 0, Math.PI * 2);
-    ctx.fillStyle = ratingColor;
-    ctx.shadowColor = ratingColor;
-    ctx.shadowBlur = 10;
-    ctx.fill();
-    ctx.restore();
+  // Helper to shuffle array
+  function shuffle(arr) {
+    return arr.slice().sort(() => Math.random() - 0.5);
   }
 
-  runAyadi();
+  // Pick 5 random questions for this session
+  const sessionQuestions = shuffle(quizDb).slice(0, 5).map(item => {
+    return {
+      q: item.q,
+      correct: item.correct,
+      options: shuffle(item.options) // shuffle the choices
+    };
+  });
+
+  let currentIdx = 0;
+  let score = 0;
+
+  function drawQuiz() {
+    if (currentIdx >= sessionQuestions.length) {
+      // Finished
+      container.innerHTML = `
+        <div class="widget-title">Śāstra Glossary Term Matcher</div>
+        <div class="quiz-completed" style="text-align:center; padding:30px 20px; display:flex; flex-direction:column; gap:15px; background:rgba(0,255,136,0.05); border:1px solid rgba(0,255,136,0.3); border-radius:12px; backdrop-filter:blur(10px);">
+          <span style="font-size:2.5rem; color:#00ff88;">✓ Quiz Complete</span>
+          <p style="font-size:1.1rem; color:var(--text-muted); line-height:1.5;">
+            Excellent work! You successfully matched <strong>\${score} out of 5</strong> Sanskrit glossary terms to their correct definitions.
+          </p>
+          <button class="theme-btn" id="restart-quiz-btn" style="margin: 15px auto 0 auto; align-self:center; font-family:'Cinzel', serif; letter-spacing:1px; background:var(--gold); color:#fff; border:none; padding:10px 24px; border-radius:30px; cursor:pointer;">Restart Quiz</button>
+        </div>
+      `;
+      document.getElementById('restart-quiz-btn').addEventListener('click', () => {
+        renderAyadi(container);
+      });
+      unlockLessonCompletion();
+      return;
+    }
+
+    const currentQ = sessionQuestions[currentIdx];
+
+    container.innerHTML = `
+      <div class="widget-title">Śāstra Glossary Term Matcher</div>
+      <div class="quiz-container" style="display:flex; flex-direction:column; gap:20px; background:rgba(255,255,255,0.02); border:1px solid var(--border-glass); border-radius:12px; padding:20px; backdrop-filter:blur(5px); box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+        <div class="quiz-progress" style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem; color:var(--text-muted);">
+          <span>Question \${currentIdx + 1} of 5</span>
+          <span>Score: \${score}/5</span>
+        </div>
+        <div class="quiz-progress-bar" style="width:100%; height:4px; background:rgba(255,255,255,0.05); border-radius:2px; overflow:hidden;">
+          <div style="width:\${(currentIdx / 5) * 100}%; height:100%; background:var(--gold-bright); transition:width 0.3s ease;"></div>
+        </div>
+        <div class="quiz-question" style="font-size:1.1rem; font-weight:500; line-height:1.5; color:var(--text-primary); min-height:60px;">
+          \${currentQ.q}
+        </div>
+        <div class="quiz-options" style="display:flex; flex-direction:column; gap:12px;" id="quiz-options-box">
+          \${currentQ.options.map((opt, i) => `
+            <button class="quiz-opt-btn" data-val="\${opt}" style="background:rgba(255,255,255,0.03); border:1px solid var(--border-glass); border-radius:8px; padding:12px 20px; color:var(--text-primary); font-family:'Outfit', sans-serif; font-size:1rem; text-align:left; cursor:pointer; transition:all 0.3s ease; display:flex; justify-content:space-between; align-items:center; width:100%;">
+              <span>\${opt}</span>
+              <span class="opt-status-dot" style="width:8px; height:8px; border-radius:50%; background:transparent; transition:background 0.3s;"></span>
+            </button>
+          `).join('')}
+        </div>
+        <div class="quiz-feedback" id="quiz-feedback-text" style="font-size:0.95rem; text-align:center; min-height:22px; color:var(--text-muted); font-weight:500;">
+          Select the correct Sanskrit term that matches the definition above.
+        </div>
+      </div>
+    `;
+
+    // Bind event listeners to options
+    const optButtons = container.querySelectorAll('.quiz-opt-btn');
+    let answered = false;
+
+    optButtons.forEach(btn => {
+      btn.addEventListener('mouseenter', () => {
+        if (!answered) {
+          btn.style.borderColor = 'var(--gold-bright)';
+          btn.style.background = 'rgba(255,255,255,0.07)';
+        }
+      });
+      btn.addEventListener('mouseleave', () => {
+        if (!answered) {
+          btn.style.borderColor = 'var(--border-glass)';
+          btn.style.background = 'rgba(255,255,255,0.03)';
+        }
+      });
+
+      btn.addEventListener('click', () => {
+        if (answered) return;
+        answered = true;
+
+        const val = btn.getAttribute('data-val');
+        const feedbackText = container.querySelector('#quiz-feedback-text');
+        
+        // Disable all buttons hover effect
+        optButtons.forEach(b => {
+          b.style.cursor = 'default';
+        });
+
+        if (val === currentQ.correct) {
+          score++;
+          btn.style.background = 'rgba(0, 255, 136, 0.15)';
+          btn.style.borderColor = '#00ff88';
+          btn.style.boxShadow = '0 0 15px rgba(0, 255, 136, 0.3)';
+          btn.querySelector('.opt-status-dot').style.background = '#00ff88';
+          feedbackText.innerText = "Correct! " + currentQ.correct + " is the precise technical term.";
+          feedbackText.style.color = "#00ff88";
+        } else {
+          btn.style.background = 'rgba(255, 77, 77, 0.15)';
+          btn.style.borderColor = '#ff4d4d';
+          btn.style.boxShadow = '0 0 15px rgba(255, 77, 77, 0.3)';
+          btn.querySelector('.opt-status-dot').style.background = '#ff4d4d';
+          
+          // Highlight correct one
+          optButtons.forEach(b => {
+            if (b.getAttribute('data-val') === currentQ.correct) {
+              b.style.borderColor = '#00ff88';
+              b.style.background = 'rgba(0, 255, 136, 0.08)';
+              b.querySelector('.opt-status-dot').style.background = '#00ff88';
+            }
+          });
+
+          feedbackText.innerText = "Incorrect. The correct term is " + currentQ.correct + ".";
+          feedbackText.style.color = "#ff4d4d";
+        }
+
+        // Proceed after 2 seconds
+        setTimeout(() => {
+          currentIdx++;
+          drawQuiz();
+        }, 2000);
+      });
+    });
+
+    // Custom cursor hover binding
+    if (typeof setupCursorListeners === 'function') {
+      setupCursorListeners();
+    }
+  }
+
+  drawQuiz();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
