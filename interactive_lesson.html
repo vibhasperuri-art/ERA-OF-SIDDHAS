@@ -1710,10 +1710,10 @@
   <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
     <a href="index.html" class="nav-btn">Home</a>
     <a href="pillar_hub.html" class="nav-btn">Pillars</a>
-    <a href="wisdom_hub.html" class="nav-btn">Wisdom Hub</a>
+    <a href="vicara_sannidhi.html?mode=wisdom" class="nav-btn">Wisdom Hub</a>
     <a href="sangha.html" class="nav-btn">The Sangha</a>
     <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
-    <a href="glossary.html" class="nav-btn">Glossary</a>
+    <a href="vicara_sannidhi.html?mode=glossary" class="nav-btn">Glossary</a>
     <a href="about.html" class="nav-btn">About</a>
     <a href="course_hub.html" id="back-to-hub-btn" class="nav-btn">Return to Courses</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
@@ -2343,16 +2343,17 @@ const lessons = {
       },
       dharmicPrinciples: "The temple city is a spatial guru. By circumambulating the city, devotees are not merely walking through streets; they are circumambulating the sheaths of their own consciousness. Agamic town planning bridges the gap between the material world and the divine, turning every walk to the market into a ritual Pradakshina of the Self.",
       stemBreakdown: {
-        discipline: "Neuroscience of Awe, Bio-acoustics & Fractal Geometry",
-        equation: "D_f = \\log(N) / \\log(1/r) \\text{ — Fractal Dimension of Sacred Towers (Gopurams)}",
-        equationExplanation: "The self-similar scaling of temple Gopurams produces a fractal dimension between 1.3 and 1.5, which is biophilically optimized to trigger stress-reduction and neuro-cognitive calm in human observers.",
+        discipline: "Acoustic Geometry & Spatial Resonance",
+        equation: "f_{pq} = \\frac{c}{2} \\sqrt{\\left(\\frac{p}{L}\\right)^2 + \\left(\\frac{q}{W}\\right)^2}",
+        equationExplanation: "The modal resonance frequencies of a 2D rectangular space of length L and width W. In temple design, room proportions are selected so that the resonant frequencies of the space align with the fundamental frequencies of sacred chants (like OM), creating a standing wave field that enhances cognitive focus.",
         parameters: [
-          "<strong>D_f</strong> — Fractal dimension of the Gopuram profile",
-          "<strong>N</strong> — Number of self-similar structural pieces at each scale",
-          "<strong>r</strong> — Scaling ratio between successive tower tiers",
-          "<strong>Pancha Kosha</strong> — Five sheaths mapping to the five concentric Prakaras"
+          "<strong>L</strong> — Room Length (meters)",
+          "<strong>W</strong> — Room Width (meters)",
+          "<strong>f_{pq}</strong> — Resonant frequency of the (p, q) mode (Hz)",
+          "<strong>c</strong> — Speed of sound in air (~343 m/s)",
+          "<strong>p, q</strong> — Modal integers (1, 2, ...)"
         ],
-        modernCorrelation: "Acoustic and biophilic research by Nikos Salingaros confirms that built environments with fractal scaling (D_f ≈ 1.3–1.5) measurably lower skin conductance and cortisol levels. The Agamic temple city acts as a structural stabilizer for human neurological health."
+        modernCorrelation: "Modern acoustic engineering utilizes the exact same wave equation to design concert halls and recording studios, avoiding modal pressure peaks (acoustic standing waves) that cause sonic mud or flutter echo."
       }
     },
     yoga: {
@@ -2428,16 +2429,15 @@ const lessons = {
       },
       dharmicPrinciples: "The relationship between the Atharvaveda and the Shilpa Shastras is like the anesthetic and life-support (spiritual execution) to the surgeon's scalpel and anatomical charts (structural execution). The Veda purifies the soil, aligns elements, and shields borders, while the Shastras and Agamas govern physical proportions. Together, they transform a dead pile of stones into a living, divine reality.",
       stemBreakdown: {
-        discipline: "Urban Hydrology, Passive Climatology & Passive Thermal Ventilation",
-        equation: "\\text{Sunlight Access Angle: } \\alpha = \\arctan(H / W) \\text{ where } \\alpha > \\theta_{solstice}",
-        equationExplanation: "The street width-to-height ratio is mathematically calculated so that buildings do not block sunlight access during winter solstice noon, maintaining passive solar heating and dry, sanitized street surfaces.",
+        discipline: "Fractal Geometry & Neuro-cognitive Aesthetics",
+        equation: "D_f = \\frac{\\log(N)}{\\log(1/r)}",
+        equationExplanation: "The fractal dimension of a self-similar structural design. In temple architecture, Gopurams (towers) are designed with repeating, scaled-down tiers. This self-similar geometry has a fractal dimension (typically between 1.3 and 1.5) that mirrors natural forms (like mountains or trees), which has been shown to reduce visual fatigue and lower stress levels in human observers.",
         parameters: [
-          "<strong>H</strong> — Building height (measured in daṇḍas)",
-          "<strong>W</strong> — Street width (50 daṇḍa for royal highways)",
-          "<strong>α</strong> — Sunlight access angle to the street surface",
-          "<strong>θ_solstice</strong> — Solar altitude angle at winter solstice noon"
+          "<strong>D_f</strong> — Fractal dimension",
+          "<strong>N</strong> — Number of self-similar copies at each scaling step",
+          "<strong>r</strong> — Scaling ratio (size reduction factor)"
         ],
-        modernCorrelation: "Modern daylight factor standards (LEED v4) utilize the exact same geometric solar angle boundaries that King Bhoja codified. Aligned street grids in cities like Jaipur ensure passive cooling and consistent air circulation, matching modern wind-tunnel simulations."
+        modernCorrelation: "Biophilic design principles in modern green building frameworks recognize that environments with natural fractal scaling (D_f ≈ 1.3–1.5) improve focus, lower blood pressure, and boost cognitive performance."
       }
     },
     sthapatya: {
@@ -2517,7 +2517,63 @@ const lessons = {
           "<strong>Vyaya</strong> — Auspicious residue denoting 'decrease' or expenditure",
           "<strong>Potramarai Kulam</strong> — Temple tank acting as a micro-climatic cooling engine and aquifer recharge node"
         ],
-        modernCorrelation: "Acoustic room analyses and passive thermal design studies of the Meenakshi temple complex show that the high stone walls and central water tank (Golden Lotus Tank) create a micro-climatic cooling effect, reducing local temperatures by 3–4°C and filtering ambient urban noise through physical dampening, mirroring modern green building parameters."
+      }
+    },
+    upasana: {
+      category: "Nagara Nirmana — Solar & Energy Purification",
+      title: "Bhūta Śuddhi: Passive Climatology & Solar Access",
+      shloka: {
+        ref: "Samarāṅgaṇa Sūtradhāra 10.3–5 — Sunlight & Air Flow",
+        devanagari: "सूर्यकिरणैर्विना यत्तु न तत् नगरमुच्यते ।\nवायुप्रवाहहीने च रोगवृद्धिः प्रजायते ॥\nतस्माद् वीथीविभागं च गृहद्वारं तथा कुरु ।\nयथा सूर्यप्रभा शुद्धा वायुश्च प्रविशेत् सुखम् ॥",
+        translit: "sūryakiraṇairvinā yattu na tat nagaramucyate |\nvāyupravāhahīne ca rogavṛddhiḥ prajayate ||\ntasmād vīthīvibhāgaṃ ca gṛhadvāraṃ tathā kuru |\nyathā sūryaprabhā śuddhā vāyuśca praviśet sukham ||",
+        anvaya: "<strong>sūryakiraṇaiḥ vinā</strong> (without sunrays) — that is <strong>na nagaram ucyate</strong> (not called a city). In the absence of <strong>vāyu-pravāha</strong> (airflow), <strong>roga-vṛddhiḥ</strong> (increase of diseases) occurs. Therefore, layout the <strong>vīthī</strong> (streets) and <strong>gṛha-dvāram</strong> (house doors) in such a way that <strong>śuddhā sūryaprabhā</strong> (pure sunlight) and <strong>vāyuḥ</strong> (wind) enter easily.",
+        translation: "A place without sunrays is not worthy of being called a city. In a layout devoid of proper airflow, diseases multiply. Therefore, align your streets and house portals so that pure, sanitizing sunlight and fresh breezes can enter freely and joyfully."
+      },
+      shlokas: [
+        {
+          ref: "Matsya Purāṇa 254.12–15 — On Solar Path Alignment",
+          devanagari: "पूर्वापरायता वीथी सूर्यमार्गानुसारिणी ।\nदक्षिणा उत्तरा चैव वायुविक्षेपकारिणी ॥",
+          translit: "pūrvāparāyatā vīthī sūryamārgānusāriṇī |\ndakṣiṇā uttarā caiva vāyuvikṣepakāriṇī ||",
+          anvaya: "The <strong>pūrvāpara-āyatā vīthī</strong> (east-west aligned streets) follow the <strong>sūryamārga</strong> (path of the sun). The <strong>dakṣiṇa-uttarā</strong> (north-south aligned streets) direct the <strong>vāyu-vikṣepa</strong> (flow and distribution of wind).",
+          translation: "The streets oriented from east to west align with the daily path of the sun, bringing light. The streets running from north to south channel the prevailing winds, providing natural ventilation."
+        }
+      ],
+      scientific: {
+        title: "Solar Altitude & Street Geometry",
+        text: `
+          <h3>Bhūta Śuddhi: Ambient Solar Climatology</h3>
+          <p>In the framework of Sthapatya Veda, Bhūta Śuddhi (elemental purification) forms the foundation of environmental design. For a city settlement to remain clean and free of stagnant energies, the elements of Sunlight (Tejas) and Wind (Vāyu) must interact dynamically with the soil (Pṛthivī).</p>
+          
+          <h4>The Solar Envelope and Pathogen Defense</h4>
+          <p>Ancient texts realize that light is the primary sanitizer of physical spaces. If streets are designed too narrow relative to building heights, they remain permanently shaded. Damp, dark streets lead to the accumulation of moisture and the growth of pathogens, violating the principles of environmental hygiene. By establishing height-to-width ratios, builders ensured that the low winter sun could reach the street level to dry and sanitize the city floor.</p>
+          
+          <h4>The Wind Channeling Model</h4>
+          <p>Concentric and grid-aligned street patterns are not arbitrary. Streets running North-South act as natural channels for seasonal thermal breezes, drawing cool air from water bodies (like rivers and tanks) and pushing hot, stagnant air out of residential sectors. This creates a passive cooling loop that operates without mechanical energy.</p>
+        `
+      },
+      instructions: [
+        "Calculate the minimum street width required to allow winter solstice sunlight to reach the street level.",
+        "Analyze how street orientation (East-West vs. North-South) affects solar exposure and wind channeling.",
+        "Reflect on the concept of Bhūta Śuddhi as a foundation for sustainable, self-sanitizing urban ecosystems."
+      ],
+      historicalOrigin: {
+        treatise: "Samarangana Sutradhara & Matsya Purana",
+        author: "King Bhoja Tradition",
+        period: "circa 1100 CE (codification)",
+        context: "King Bhoja's Samarāṅgaṇa Sūtradhāra dedicates extensive chapters to street layout and passive environmental design. It highlights the importance of solar penetration and wind flow for the health of city residents, combining spiritual purification (Bhūta Śuddhi) with physical sanitary engineering."
+      },
+      dharmicPrinciples: "Bhūta Śuddhi is the purification of elements. In architecture, it means designing in harmony with natural elements — light, air, water, and earth. A city that blocks the sun and stagnates the wind violates the natural order (Ṛta), leading to physical and mental stagnation. Passive solar design is a form of environmental worship.",
+      stemBreakdown: {
+        discipline: "Urban Hydrology & Passive Climatology",
+        equation: "\\alpha = \\arctan(H / W) \\text{ where } \\alpha > \\theta_{solstice}",
+        equationExplanation: "The solar access angle (α) to the street surface is calculated using the arctangent of the building height-to-street width ratio. To ensure sanitizing sunlight reaches the street on the winter solstice, this angle must be greater than the solar altitude angle at solstice noon.",
+        parameters: [
+          "<strong>H</strong> — Building height (meters)",
+          "<strong>W</strong> — Street width (meters)",
+          "<strong>α</strong> — Sunlight access angle to the street",
+          "<strong>θ_solstice</strong> — Solar altitude angle at winter solstice noon"
+        ],
+        modernCorrelation: "Modern solar envelope concepts used in passive green building design (such as LEED standards) calculate building setback angles using the exact same trigonometry to guarantee daylight access and natural sanitization."
       }
     }
   }
@@ -2578,6 +2634,10 @@ const stories = {
     yoga: {
       title: "Greeting the Morning Sun",
       text: "Once, a wise builder designed a city where every street and house faced the rising sun in the east. This allowed fresh sunlight to fill every room in the morning, keeping the people healthy, active, and happy."
+    },
+    upasana: {
+      title: "The Healing Sun",
+      text: "In a beautiful city, the streets were wide enough that even on the coldest winter days, warm sunlight reached the ground, keeping the streets dry and the people healthy and full of energy. They called this layout Bhūta Śuddhi—keeping the elements clean!"
     }
   }
 };
@@ -2598,7 +2658,8 @@ const scienceStories = {
   nagara: {
     vastu: "The Magic Grid of the City: Long ago, builders drew a giant square divided into smaller squares, like a chess board. In the middle, they built the temple, and around it, they built the houses and markets. They believed the temple at the center spreads positive energy to the whole town.",
     upanishads: "The Sky in Your Heart: The sages discovered a beautiful secret: the vast sky, the stars, the sun, and the moon are not just outside—they are also contained in a tiny, quiet space inside your heart. When you close your eyes and feel quiet, you can touch this infinite space.",
-    yoga: "Greeting the Morning Sun: Once, a wise builder designed a city where every street and house faced the rising sun in the east. This allowed fresh sunlight to fill every room in the morning, keeping the people healthy, active, and happy."
+    yoga: "Greeting the Morning Sun: Once, a wise builder designed a city where every street and house faced the rising sun in the east. This allowed fresh sunlight to fill every room in the morning, keeping the people healthy, active, and happy.",
+    upasana: "Solar Heating: Just like you wear a jacket to stay warm in winter, builders make streets wide enough so that the low winter sun can shine all the way to the floor, warming the town and killing tiny germs naturally."
   }
 };
 
@@ -2615,7 +2676,11 @@ function getBloomTaxonomyLabel(pillar, course) {
       },
       yoga: {
         level: "Śiṣya (Apply & Analyze)",
-        objective: "Analyze Madurai's concentric layout against the Vāstu Puruṣa Maṇḍala."
+        objective: "Analyze temple Gopuram profiles to determine their fractal scaling dimension."
+      },
+      upasana: {
+        level: "Śiṣya (Apply & Analyze)",
+        objective: "Calculate solar access altitude angles for passive urban microclimate sanitation."
       },
       sthapatya: {
         level: "Sādhaka (Evaluate & Create)",
