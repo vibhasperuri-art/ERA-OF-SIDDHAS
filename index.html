@@ -1365,6 +1365,87 @@
     ctx.restore();
   }
 
+  function drawTempleSilhouette(cx, cy, R) {
+    ctx.save();
+    ctx.strokeStyle = gold(0.13); // low opacity theme-specific accent
+    ctx.lineWidth = 0.8;
+    ctx.beginPath();
+
+    const baseY = cy + R * 0.95;
+    const templeWidth = R * 1.3;
+    const numTiers = 7;
+    const tierHeight = (R * 1.7) / numTiers;
+
+    // Draw stepped base (Adhisthana)
+    ctx.moveTo(cx - templeWidth * 0.5, baseY);
+    ctx.lineTo(cx - templeWidth * 0.5, baseY - 10);
+    ctx.lineTo(cx - templeWidth * 0.45, baseY - 10);
+    ctx.lineTo(cx - templeWidth * 0.45, baseY - 20);
+
+    // Draw tiers going up
+    for (let i = 0; i < numTiers; i++) {
+      const currentTierWidth = templeWidth * 0.45 * Math.pow(0.85, i);
+      const nextTierWidth = templeWidth * 0.45 * Math.pow(0.85, i + 1);
+      const y1 = baseY - 20 - i * tierHeight;
+      const y2 = baseY - 20 - (i + 1) * tierHeight;
+
+      ctx.lineTo(cx - currentTierWidth, y1);
+      ctx.lineTo(cx - currentTierWidth, y2);
+      ctx.lineTo(cx - nextTierWidth, y2);
+    }
+
+    // Top finial (Kalasha)
+    const topY = baseY - 20 - numTiers * tierHeight;
+    ctx.lineTo(cx - 3, topY);
+    ctx.lineTo(cx - 3, topY - 15);
+    ctx.lineTo(cx - 8, topY - 15);
+    ctx.quadraticCurveTo(cx, topY - 30, cx + 8, topY - 15);
+    ctx.lineTo(cx + 3, topY - 15);
+    ctx.lineTo(cx + 3, topY);
+
+    // Right side tiers going down
+    for (let i = numTiers - 1; i >= 0; i--) {
+      const currentTierWidth = templeWidth * 0.45 * Math.pow(0.85, i);
+      const nextTierWidth = templeWidth * 0.45 * Math.pow(0.85, i + 1);
+      const y1 = baseY - 20 - i * tierHeight;
+      const y2 = baseY - 20 - (i + 1) * tierHeight;
+
+      ctx.lineTo(cx + nextTierWidth, y2);
+      ctx.lineTo(cx + currentTierWidth, y2);
+      ctx.lineTo(cx + currentTierWidth, y1);
+    }
+
+    // Right side steps and base
+    ctx.lineTo(cx + templeWidth * 0.45, baseY - 20);
+    ctx.lineTo(cx + templeWidth * 0.45, baseY - 10);
+    ctx.lineTo(cx + templeWidth * 0.5, baseY - 10);
+    ctx.lineTo(cx + templeWidth * 0.5, baseY);
+    ctx.closePath();
+    ctx.stroke();
+
+    // Draw horizontal bands
+    for (let i = 0; i <= numTiers; i++) {
+      const y = baseY - 20 - i * tierHeight;
+      const w = templeWidth * 0.45 * Math.pow(0.85, i);
+      ctx.beginPath();
+      ctx.moveTo(cx - w, y);
+      ctx.lineTo(cx + w, y);
+      ctx.strokeStyle = gold(0.08);
+      ctx.stroke();
+    }
+
+    // Central line
+    ctx.beginPath();
+    ctx.moveTo(cx, baseY);
+    ctx.lineTo(cx, topY - 25);
+    ctx.strokeStyle = gold(0.05);
+    ctx.setLineDash([4, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.restore();
+  }
+
   function draw() {
     ctx.clearRect(0, 0, W, H);
     const R = Math.min(W, H) * 0.42;
@@ -1376,6 +1457,9 @@
     grd.addColorStop(1, isLight() ? 'rgba(111, 48, 7, 0)' : 'rgba(196,137,42,0)');
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, W, H);
+
+    // Draw static temple silhouette outline in the background
+    drawTempleSilhouette(cx, cy, R);
 
     // Layer 1: Outer ring of circles
     const n1 = 16;
