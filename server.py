@@ -14,14 +14,24 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="Era of Siddhas API & WebSocket Server")
 
-# Enable CORS for local testing flexibility
+# Enable CORS for local + cloud (GitHub Pages) access
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "*",
+        "https://vibhasperuri-art.github.io",
+        "http://127.0.0.1:8080",
+        "http://localhost:8080",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Health check endpoint for Render
+@app.get("/api/health")
+async def health_check():
+    return {"status": "ok", "service": "Era of Siddhas API"}
 
 DB_PATH = "database.db"
 
@@ -854,4 +864,5 @@ app.mount("/", StaticFiles(directory=".", html=True), name="static")
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("server:app", host="127.0.0.1", port=8080, reload=True)
+    port = int(os.environ.get("PORT", 8080))
+    uvicorn.run("server:app", host="0.0.0.0", port=port, reload=True)
