@@ -1,0 +1,1861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+<meta http-equiv="Pragma" content="no-cache"/>
+<meta http-equiv="Expires" content="0"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jnāna Dāna — Gifting Rishi Gnāna</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Cinzel:wght@500;700;900&family=Outfit:wght@300;400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="js/api.js" defer></script>
+<script src="js/translations.js" defer></script>
+<style>
+  :root, body.theme-mystical {
+    --bg-primary: #010908;
+    --bg-secondary: #021816;
+    --bg-glass: rgba(2, 24, 22, 0.7);
+    --border-glass: rgba(46, 184, 166, 0.35);
+    --text-primary: #e0fcf8;
+    --text-muted: #cbf9f0;
+    --accent: #2eb8a6;
+    --accent-glow: rgba(46, 184, 166, 0.2);
+    --gold: #2eb8a6;
+    --gold-bright: #4df5e2;
+    --gold-dim: #176e62;
+    --parchment: #e0fcf8;
+    --parch-mid: #9cf0e2;
+    --parch-dim: #53c2b1;
+    --glow: rgba(46, 184, 166, 0.15);
+  }
+  body.theme-light {
+    --bg-primary: #f7f2e8;
+    --bg-secondary: #ede5d0;
+    --bg-glass: rgba(247, 242, 232, 0.92);
+    --border-glass: rgba(139, 69, 19, 0.18);
+    --text-primary: #1a1208;
+    --text-muted: #311e0a;
+    --accent: #6f3007;
+    --accent-glow: rgba(111, 48, 7, 0.12);
+    --gold: #7d4e07;
+    --gold-bright: #c8922a;
+    --gold-dim: #7a4d0a;
+    --parchment: #f7f2e8;
+    --parch-mid: #d4b896;
+    --parch-dim: #a07850;
+    --glow: rgba(200, 146, 42, 0.15);
+  }
+  body.theme-earthy {
+    --bg-primary: #070402;
+    --bg-secondary: #0f0a05;
+    --bg-glass: rgba(15, 10, 5, 0.85);
+    --border-glass: rgba(196, 137, 42, 0.2);
+    --text-primary: #e8d5a3;
+    --text-muted: #ebd9b5;
+    --accent: #c4892a;
+    --accent-glow: rgba(196, 137, 42, 0.15);
+    --gold: #c4892a;
+    --gold-bright: #f0c040;
+    --gold-dim: #7a5415;
+    --parchment: #e8d5a3;
+    --parch-mid: #b89a60;
+    --parch-dim: #7a6440;
+    --glow: rgba(196, 137, 42, 0.15);
+  }
+  body.theme-fierce {
+    --bg-primary: #0a0000;
+    --bg-secondary: #1a0505;
+    --bg-glass: rgba(26, 5, 5, 0.7);
+    --border-glass: rgba(181, 42, 42, 0.3);
+    --text-primary: #f4f5f6;
+    --text-muted: #e4e7ea;
+    --accent: #b52a2a;
+    --accent-glow: rgba(255, 77, 77, 0.2);
+    --gold: #b52a2a;
+    --gold-bright: #ff4d4d;
+    --gold-dim: #5c1414;
+    --parchment: #f4f5f6;
+    --parch-mid: #b0b5b9;
+    --parch-dim: #7a8288;
+    --glow: rgba(181, 42, 42, 0.15);
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    min-height: 100vh;
+    transition: all 0.5s ease;
+  }
+
+  body.custom-cursor-active,
+  body.custom-cursor-active a,
+  body.custom-cursor-active button,
+  body.custom-cursor-active .tab,
+  body.custom-cursor-active .article-card,
+  body.custom-cursor-active .theme-btn,
+  body.custom-cursor-active select,
+  body.custom-cursor-active input {
+    cursor: none !important;
+  }
+
+  .custom-cursor {
+    position: fixed;
+    top: 0; left: 0;
+    width: 8px; height: 8px;
+    background: var(--gold-bright);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000002;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, background 0.3s, opacity 0.3s;
+    box-shadow: 0 0 15px 3px var(--gold-bright);
+    opacity: 0;
+  }
+  .custom-cursor-ring {
+    position: fixed;
+    top: 0; left: 0;
+    width: 44px; height: 44px;
+    border: 1.5px solid var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1000001;
+    transform: translate(-50%, -50%);
+    transition: transform 0.15s ease-out, width 0.3s, height 0.3s, border-color 0.3s, opacity 0.3s;
+    box-shadow: inset 0 0 10px var(--glow), 0 0 10px var(--glow);
+    opacity: 0;
+  }
+  .cursor-hover .custom-cursor {
+    width: 60px;
+    height: 60px;
+    background: var(--glow);
+    backdrop-filter: blur(4px);
+    box-shadow: 0 0 20px var(--gold);
+  }
+  .cursor-hover .custom-cursor-ring {
+    width: 80px;
+    height: 80px;
+    border-color: var(--gold-bright);
+    border-style: dotted;
+    border-width: 3px;
+    animation: rotateRing 3s linear infinite;
+  }
+  @keyframes rotateRing {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+  }
+
+  /* GLASS NAV */
+  .glass-nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg-glass);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border-glass);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .nav-brand {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--gold);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .nav-btn, .nav-btn:link, .nav-btn:visited {
+    text-decoration: none !important;
+    color: var(--text-muted) !important;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 18px;
+    border: 1px solid var(--border-glass);
+    border-top: 3px solid transparent;
+    border-radius: 6px 6px 0 0;
+    transition: all 0.3s ease;
+    background: rgba(200, 146, 42, 0.02);
+    display: inline-block;
+  }
+  .nav-btn:hover, .nav-btn:visited:hover {
+    color: var(--accent) !important;
+    background: var(--accent-glow) !important;
+    border-color: var(--accent) !important;
+    border-top-color: var(--accent) !important;
+    box-shadow: 0 2px 10px var(--accent-glow);
+  }
+  .nav-btn.active, .nav-btn.active:visited {
+    color: var(--text-primary) !important;
+    background: var(--accent-glow) !important;
+    border-color: var(--accent) !important;
+    border-top: 3px solid var(--accent) !important;
+    font-weight: 600;
+    box-shadow: 0 4px 15px var(--accent-glow);
+  }
+  .nav-btn.admin-tab, .nav-btn.admin-tab:link, .nav-btn.admin-tab:visited {
+    border-color: var(--gold-bright) !important;
+    background: rgba(181, 42, 42, 0.05) !important;
+    color: var(--gold-bright) !important;
+    border-top: 3px solid transparent;
+  }
+  .nav-btn.admin-tab:hover, .nav-btn.admin-tab:visited:hover {
+    background: rgba(181, 42, 42, 0.15) !important;
+    border-color: var(--gold-bright) !important;
+    border-top-color: var(--gold-bright) !important;
+    box-shadow: 0 2px 12px rgba(181, 42, 42, 0.2);
+  }
+  .nav-btn.admin-tab.active, .nav-btn.admin-tab.active:visited {
+    background: rgba(181, 42, 42, 0.2) !important;
+    border-color: var(--gold-bright) !important;
+    border-top: 3px solid var(--gold-bright) !important;
+    box-shadow: 0 4px 18px rgba(181, 42, 42, 0.3);
+    color: var(--gold-bright) !important;
+  }
+  .theme-btn {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    color: var(--text-muted);
+    padding: 6px 12px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    border-radius: 40px;
+  }
+  .theme-btn:hover, .theme-btn.active {
+    color: var(--text-primary);
+    border-color: var(--accent);
+    background: var(--accent-glow);
+  }
+
+  /* BREADCRUMB */
+  .breadcrumb-nav {
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 0.85rem;
+  }
+  .breadcrumb-nav ol {
+    display: flex; gap: 0.5rem; list-style: none; padding: 0; margin: 0;
+  }
+  .breadcrumb-nav a {
+    color: var(--gold-bright);
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .breadcrumb-nav a:hover {
+    opacity: 0.8;
+  }
+  .breadcrumb-nav li+li::before {
+    content: "/";
+    color: var(--text-muted);
+    margin-right: 0.5rem;
+  }
+  .breadcrumb-nav li[aria-current="page"] {
+    color: var(--text-muted);
+  }
+
+  /* MAIN HEADER */
+  .hub-header {
+    padding: 4rem 2rem 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .hub-title {
+    font-family: 'Cinzel', serif;
+    font-size: 3rem;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    text-shadow: 0 0 20px var(--glow);
+  }
+  .hub-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin: 0 auto 2.5rem;
+  }
+
+  /* COUNTER CARD */
+  .gift-stats-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 1.2rem 2.5rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+  .stats-number {
+    font-family: 'Cinzel', serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--gold-bright);
+    text-shadow: 0 0 12px var(--glow);
+  }
+  .stats-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: left;
+    line-height: 1.3;
+  }
+
+  /* SEARCH / FILTER SECTION */
+  .search-filter-section {
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+    padding: 0 2rem;
+  }
+  .search-box {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+  .search-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+  }
+  .search-input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.6;
+  }
+  .search-icon {
+    width: 20px; height: 20px;
+    fill: var(--text-muted);
+  }
+
+  .tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1.2rem;
+  }
+  .tab {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    padding: 0.5rem 1.2rem;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+  }
+  .tab.active, .tab:hover {
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+  }
+
+  /* ARTICLES GRID */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .article-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .article-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px var(--accent-glow);
+  }
+  .card-img-box {
+    width: 100%;
+    height: 180px;
+    background: var(--bg-secondary);
+    position: relative;
+    overflow: hidden;
+  }
+  .card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+  }
+  .card-badge {
+    position: absolute;
+    top: 15px; left: 15px;
+    background: var(--bg-primary);
+    border: 1px solid var(--border-glass);
+    color: var(--accent);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+  }
+  .card-body {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    line-height: 1.4;
+    text-align: left;
+  }
+  .card-summary {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+    text-align: left;
+  }
+  .card-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 1.2rem;
+  }
+  .card-btn {
+    padding: 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    background: transparent;
+    color: var(--text-primary);
+    transition: all 0.3s;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .card-btn:hover {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+  .card-btn.primary-btn {
+    background: var(--accent-glow);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .card-btn.primary-btn:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 15px var(--accent);
+  }
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid var(--border-glass);
+    padding-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+
+  /* CARD GENERATOR WIDGET */
+  .generator-section {
+    max-width: 1000px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .generator-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    background: var(--bg-glass);
+    border: 2px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 3rem;
+    backdrop-filter: blur(15px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
+  .generator-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: left;
+  }
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .form-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--gold-bright);
+    letter-spacing: 1px;
+  }
+  .form-select, .form-input, .form-textarea {
+    width: 100%;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 8px;
+    padding: 10px 15px;
+    color: var(--text-primary);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  .form-select:focus, .form-input:focus, .form-textarea:focus {
+    border-color: var(--accent);
+  }
+  .style-chips {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .style-chip {
+    padding: 8px 16px;
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    transition: all 0.3s;
+  }
+  .style-chip.active, .style-chip:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    color: var(--text-primary);
+  }
+  .generator-preview-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  .canvas-container {
+    width: 100%;
+    max-width: 360px;
+    aspect-ratio: 1/1;
+    border: 1px solid var(--border-glass);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  }
+  #generatorCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .download-btn {
+    padding: 12px 30px;
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    background: var(--accent-glow);
+    color: var(--text-primary);
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .download-btn:hover {
+    background: var(--accent);
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--accent);
+  }
+
+  /* IMMERSIVE MODAL & READER */
+  #reader-modal, #gift-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+  }
+  .reader-box, .gift-box {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 28px;
+    padding: 3rem;
+    width: 90%;
+    max-width: 800px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  .gift-box {
+    max-width: 600px;
+    text-align: center;
+  }
+  .reader-close, .gift-close {
+    position: absolute;
+    top: 1.5rem; right: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    border-radius: 50%;
+    width: 40px; height: 40px;
+    font-size: 1.4rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.3s;
+  }
+  .reader-close:hover, .gift-close:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 10px var(--accent-glow);
+  }
+  .reader-header {
+    border-bottom: 1px solid var(--border-glass);
+    padding-bottom: 1rem;
+    text-align: left;
+  }
+  .reader-category {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.0rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .reader-title {
+    font-family: 'Cinzel', serif;
+    color: var(--text-primary);
+    margin: 0; font-size: 2.0rem;
+    line-height: 1.3;
+  }
+  .reader-meta {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: 0.5rem;
+  }
+  .reader-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 1.15rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    padding-right: 0.8rem;
+    text-align: left;
+  }
+
+  /* LEDGER TICKER */
+  .ledger-section {
+    max-width: 1000px;
+    margin: 0 auto 5rem;
+    padding: 0 2rem;
+  }
+  .ledger-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  }
+  .ledger-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.4rem;
+    color: var(--gold-bright);
+    margin-bottom: 1.5rem;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .ledger-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    max-height: 250px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+  }
+  .ledger-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.01);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 10px;
+    font-size: 0.95rem;
+  }
+  .ledger-item-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+  }
+  .ledger-avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--accent-glow);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+  }
+  .ledger-time {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* GIFT OPTION BOXES */
+  .gift-options-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin: 2rem 0;
+  }
+  .gift-option-card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-glass);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    transition: all 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .gift-option-card:hover {
+    border-color: var(--accent);
+    background: var(--accent-glow);
+    box-shadow: 0 5px 15px var(--accent-glow);
+  }
+  .gift-option-icon {
+    font-size: 2.2rem;
+  }
+  .gift-option-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+  .gift-option-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* FOOTER */
+  footer {
+    padding: 4rem 2rem;
+    border-top: 1px solid var(--gold-dim);
+    background: var(--bg-secondary);
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .footer-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+  }
+  .footer-section h3 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    text-align: left;
+  }
+  .footer-section p {
+    text-align: left;
+  }
+  .footer-links {
+    list-style: none;
+  }
+  .footer-links li {
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover {
+    color: var(--gold-bright);
+  }
+  .footer-bottom {
+    max-width: 1000px;
+    margin: 2rem auto 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-glass);
+    text-align: center;
+    font-size: 0.8rem;
+  }
+
+  /* SKIP LINK */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .skip-link:focus {
+    position: fixed !important;
+    top: 10px;
+    left: 10px;
+    z-index: 10000;
+    background: var(--bg-secondary);
+    color: var(--gold-bright);
+    padding: 10px 20px;
+    border: 2px solid var(--gold);
+    outline: none;
+    width: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    clip: auto !important;
+  }
+
+  @media (max-width: 900px) {
+    .generator-grid {
+      grid-template-columns: 1fr;
+      padding: 2rem 1.5rem;
+      gap: 2rem;
+    }
+    .gift-options-row {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .glass-nav {
+      position: relative !important;
+      padding: 0.75rem 1rem !important;
+      flex-direction: column !important;
+      gap: 0.75rem !important;
+      align-items: center !important;
+    }
+    .glass-nav > div {
+      flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      gap: 10px !important;
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+    .theme-btn {
+      padding: 4px 8px !important;
+      font-size: 0.75rem !important;
+    }
+    .hub-header {
+      padding: 2.5rem 1rem 1.5rem !important;
+    }
+    .hub-title {
+      font-size: 2.2rem !important;
+    }
+    .hub-subtitle {
+      font-size: 1.05rem !important;
+    }
+    .articles-grid {
+      padding: 0 1rem !important;
+      gap: 1.5rem !important;
+    }
+    .reader-box, .gift-box {
+      padding: 2rem 1.5rem !important;
+    }
+    .reader-title {
+      font-size: 1.5rem !important;
+    }
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
+</head>
+<body class="theme-light">
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-ring" id="cursor-ring"></div>
+
+<!-- NAVIGATION -->
+<nav class="glass-nav">
+  <a href="pillar_hub.html" class="nav-brand">
+    <svg aria-hidden="true" width="24" height="24" viewBox="0 0 100 100" fill="none" stroke="var(--gold)" stroke-width="4">
+      <circle cx="50" cy="50" r="40" opacity="0.5"/>
+      <path d="M50 10 L90 90 L10 90 Z" opacity="0.8"/>
+      <circle cx="50" cy="60" r="5" fill="var(--gold)"/>
+    </svg>
+    Siddha Vidya
+  </a>
+  <div style="display: flex; gap: 15px; align-items: center; flex-wrap: wrap;">
+    <a href="index.html" class="nav-btn">Home</a>
+    <a href="pillar_hub.html" class="nav-btn">Pillars</a>
+    <a href="sangha.html" class="nav-btn">The Sangha</a>
+    <a href="vicara_sannidhi.html" class="nav-btn">Vicāra Sannidhi</a>
+    <a href="gift_wisdom.html" class="nav-btn active" aria-current="page">Gift Wisdom</a>
+    <a href="about.html" class="nav-btn">About</a>
+    <a href="admin.html" class="nav-btn admin-tab">Admin</a>
+    <div style="display:flex; gap: 8px; margin-left: 10px;">
+      <button class="theme-btn" onclick="setTheme(null, 'theme-light')">Parchment</button>
+      <button class="theme-btn" onclick="setTheme(null, 'theme-fierce')">Fierce</button>
+      <button class="theme-btn" onclick="setTheme(null, 'theme-earthy')">Earthy</button>
+      <button class="theme-btn" onclick="setTheme(null, 'theme-mystical')">Mystical</button>
+    </div>
+  </div>
+</nav>
+
+<!-- BREADCRUMBS -->
+<nav aria-label="Breadcrumb" class="breadcrumb-nav">
+  <ol>
+    <li><a href="index.html">Home</a></li>
+    <li aria-current="page">Gift Wisdom</li>
+  </ol>
+</nav>
+
+<main id="main-content">
+  <!-- INTRO HEADER -->
+  <div class="hub-header">
+    <h1 class="hub-title">Jnāna Dāna — Gift of Rishi Gnāna</h1>
+    <p class="hub-subtitle">
+      In Dharmic tradition, the highest form of offering is Jnāna Dāna—the sharing of sacred, verified wisdom. The Gurukula Administrators have compiled these publications and research modules, offered freely as a gift to the world. We invite you to read, generate customized quote graphics, and gift this wisdom to fellow seekers.
+    </p>
+
+    <!-- COUNTER stats -->
+    <div class="gift-stats-card">
+      <span class="stats-number" id="statsCounter">1,842</span>
+      <span class="stats-label">Manuscripts &<br>Shlokas Gifted</span>
+    </div>
+  </div>
+
+  <!-- ARTICLE SEARCH AND BRONZE FILES -->
+  <div class="search-filter-section">
+    <div class="search-box">
+      <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+      </svg>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search rishi gnana by title, category, or author..." aria-label="Search articles">
+    </div>
+
+    <div class="tabs-container" id="categoryTabs">
+      <button class="tab active" onclick="switchFilter(this, 'all')">All Manuscripts</button>
+      <button class="tab" onclick="switchFilter(this, 'research')">Modern Research</button>
+      <button class="tab" onclick="switchFilter(this, 'magazine')">Magazines</button>
+      <button class="tab" onclick="switchFilter(this, 'article')">Weekly Articles</button>
+      <button class="tab" onclick="switchFilter(this, 'story')">Itihasa & Purana</button>
+    </div>
+  </div>
+
+  <!-- ARTICLE GRID -->
+  <div class="articles-grid" id="articlesGrid">
+    <!-- Dynamic admin articles generated here -->
+  </div>
+
+  <!-- SHLOKA / MANTRA IMAGE GENERATOR -->
+  <div class="generator-section">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <h2 style="font-family: 'Cinzel', serif; font-size: 2rem; color: var(--gold-bright); margin-bottom: 0.5rem; text-shadow: 0 0 15px var(--glow);">Mantra & Shloka Gift Generator</h2>
+      <p style="font-size: 1.05rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+        Create beautifully stylized scriptural cards. Customize the text, choose a traditional aesthetic, and download a high-resolution graphic to share the light of the Rishis.
+      </p>
+    </div>
+
+    <div class="generator-grid">
+      <!-- Controls -->
+      <div class="generator-controls">
+        <div class="form-group">
+          <label class="form-label" for="shlokaSelect">1. Select a Sacred Verse</label>
+          <select id="shlokaSelect" class="form-select" onchange="loadPresetShloka()">
+            <option value="parashurama_tattva">Bhagavān Parashurāma Tattva (Brahma-Kṣatra)</option>
+            <option value="parashurama_mantra">Bhagavān Parashurāma Mūla Mantra</option>
+            <option value="vastu_purusha">Vāstu Puruṣa Maṇḍala (Nagara Nirmāṇa)</option>
+            <option value="vyakarana_panini">Panini's Sanskrit Vyākaraṇa (Acoustic Code)</option>
+            <option value="dharma_protection">Active Guardianship of Dharma</option>
+            <option value="custom">-- Custom Text (Write your own) --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cardTitleInput">2. Card Heading</label>
+          <input type="text" id="cardTitleInput" class="form-input" value="Parashurāma Tattva" oninput="drawCanvas()">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cardTextInput">3. Verse / Text (Sanskrit / English)</label>
+          <textarea id="cardTextInput" class="form-textarea" rows="4" oninput="drawCanvas()">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।&#10;मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="cardSubTextInput">4. Meaning / Translation</label>
+          <textarea id="cardSubTextInput" class="form-textarea" rows="3" oninput="drawCanvas()">"The synthesis of intellectual vision and martial action: power is an extension of scriptural order, dedicated to re-establishing a protected space for seekers of truth."</textarea>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">5. Visual Aesthetic Theme</label>
+          <div class="style-chips" id="styleChips">
+            <button class="style-chip active" onclick="switchCardStyle(this, 'parchment')">📜 Parchment</button>
+            <button class="style-chip" onclick="switchCardStyle(this, 'emerald')">🟢 Emerald</button>
+            <button class="style-chip" onclick="switchCardStyle(this, 'agni')">🔥 Fierce Agni</button>
+            <button class="style-chip" onclick="switchCardStyle(this, 'sky')">🌌 Ethereal Sky</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Preview Canvas -->
+      <div class="generator-preview-box">
+        <div class="form-label">Live Preview (1080x1080px Sharing Card)</div>
+        <div class="canvas-container">
+          <canvas id="generatorCanvas" width="1080" height="1080"></canvas>
+        </div>
+        <button class="download-btn" onclick="downloadGeneratedCard()">
+          <span>💾</span> Download High-Res Graphic
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECENT GIFTS LEDGER -->
+  <div class="ledger-section">
+    <div class="ledger-card">
+      <h2 class="ledger-title">🔱 Global Ledger of Gifted Wisdom</h2>
+      <div class="ledger-list" id="ledgerList">
+        <div class="ledger-item">
+          <div class="ledger-item-left">
+            <div class="ledger-avatar">VP</div>
+            <div><strong>Vibhas Peruri</strong> gifted <i>Parashurāma Tattva Validation</i> via dynamic card.</div>
+          </div>
+          <span class="ledger-time">Just now</span>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-item-left">
+            <div class="ledger-avatar">SS</div>
+            <div><strong>Soma Shekar</strong> downloaded <i>Atharvaveda of City Planning</i> as manuscript.</div>
+          </div>
+          <span class="ledger-time">10 mins ago</span>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-item-left">
+            <div class="ledger-avatar">MK</div>
+            <div><strong>Madan K.</strong> shared deep link for <i>Acoustics of Chidambaram</i>.</div>
+          </div>
+          <span class="ledger-time">1 hour ago</span>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-item-left">
+            <div class="ledger-avatar">RK</div>
+            <div><strong>Rohan K.</strong> generated and gifted a <i>Vāstu Puruṣa Shloka</i> card.</div>
+          </div>
+          <span class="ledger-time">3 hours ago</span>
+        </div>
+        <div class="ledger-item">
+          <div class="ledger-item-left">
+            <div class="ledger-avatar">A</div>
+            <div><strong>Anonymous seeker</strong> downloaded Issue I of the Gurukula Magazine.</div>
+          </div>
+          <span class="ledger-time">Yesterday</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- READER MODAL -->
+<div id="reader-modal">
+  <div class="reader-box">
+    <button onclick="closeReader()" class="reader-close">×</button>
+    <div class="reader-header">
+      <div id="reader-category" class="reader-category">Category</div>
+      <h2 id="reader-title" class="reader-title">Title</h2>
+      <div id="reader-meta" class="reader-meta">Published by Author</div>
+    </div>
+    <div id="reader-content" class="reader-content">
+      <!-- Loaded dynamically -->
+    </div>
+  </div>
+</div>
+
+<!-- GIFT SHARE MODAL -->
+<div id="gift-modal">
+  <div class="gift-box">
+    <button onclick="closeGiftModal()" class="gift-close">×</button>
+    <div class="reader-header" style="text-align: center;">
+      <div class="reader-category" style="color: var(--gold-bright);">Jnāna Dāna Option</div>
+      <h2 style="font-family: 'Cinzel', serif; color: var(--text-primary);" id="giftModalTitle">Gift this Manuscript</h2>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Choose how you wish to transmit this ancient knowledge.</p>
+    </div>
+
+    <div class="gift-options-row">
+      <div class="gift-option-card" onclick="giftViaCopyLink()">
+        <span class="gift-option-icon">🔗</span>
+        <span class="gift-option-name">Copy Link</span>
+        <span class="gift-option-desc">Share a direct link to this verified manuscript.</span>
+      </div>
+      <div class="gift-option-card" onclick="giftViaTextDownload()">
+        <span class="gift-option-icon">📜</span>
+        <span class="gift-option-name">Manuscript File</span>
+        <span class="gift-option-desc">Download as a clean text file to read offline.</span>
+      </div>
+      <div class="gift-option-card" onclick="giftViaGraphicGenerator()">
+        <span class="gift-option-icon">🎨</span>
+        <span class="gift-option-name">Wisdom Card</span>
+        <span class="gift-option-desc">Customize and generate a graphic card.</span>
+      </div>
+    </div>
+
+    <div id="giftNotification" style="padding: 10px; border-radius: 8px; font-size: 0.95rem; color: var(--accent); background: var(--accent-glow); display: none; margin-top: 1rem;">
+      Success! Transmitting wisdom...
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer role="contentinfo">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Era of Siddhas</h3>
+      <p>
+        A unified Gurukulam platform integrating traditional Indian Knowledge Systems (IKS) with modern STEM education. Offering verified ancient sciences to the modern world.
+      </p>
+    </div>
+    <div class="footer-section">
+      <h3>Quick Links</h3>
+      <ul class="footer-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="pillar_hub.html">Pillars of Study</a></li>
+        <li><a href="vicara_sannidhi.html?mode=wisdom">Wisdom Hub</a></li>
+        <li><a href="gift_wisdom.html">Gift Wisdom (Jnāna Dāna)</a></li>
+        <li><a href="sangha.html">Saṅgha Community</a></li>
+        <li><a href="about.html">About & Lineage</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Era of Siddhas Gurukula. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  let allArticles = [];
+  let activeFilter = 'all';
+  let selectedArticleId = null;
+  let activeCardStyle = 'parchment';
+
+  // Preset Shlokas Database
+  const shlokaPresets = {
+    parashurama_tattva: {
+      title: "Parashurāma Tattva",
+      text: "ब्रह्मतेजोमयं दिव्यं शास्त्रं शस्तं च धारकम् ।\nपरशुरामस्य तत्त्वं तु ब्रह्मक्षत्रं विनिर्मितम् ॥",
+      translation: "\"The divine principle of Parashurama unites scriptural intellect (Brahma-tejas) and physical weapons science (Kshetra-virya). Power is a precise extensions of logic and cosmic order.\""
+    },
+    parashurama_mantra: {
+      title: "Bhārgava Mūla Mantra",
+      text: "ॐ नमो भगवते परशुरामाय नमः ।\nॐ परशुहस्ताय विद्महे महाराजाय धीमहि तन्नो रामः प्रचोदयात् ॥",
+      translation: "\"Om Namo Bhagavate Parashuramaya Namaha. Salutations to the great warrior-sage carrying the battleaxe. May that master direct and illuminate our intellect.\""
+    },
+    vastu_purusha: {
+      title: "Vāstu Puruṣa Shloka",
+      text: "अनेकवर्णमुकुटैः युक्तः सर्वैश्च धातुभिः ।\nवास्तुपुरुषोऽयं भूताधिपः सदा पातु गृहाणि नः ॥",
+      translation: "\"Adorned with crowns of many spectra, aligned with all physical metals and minerals, may the Vastu Purusha, lord of spatial energies, protect our dwellings.\""
+    },
+    vyakarana_panini: {
+      title: "Vyākaraṇa Code",
+      text: "आईउण् । ऋऌक् । एओङ् । ऐऔच् ।\nहयवरट् । लण् । ञमङणनम् ॥",
+      translation: "\"The Shiva Sutras of Panini: the algebraic, acoustic organization of Sanskrit phonetics. A context-free generative framework functioning as the computer language of reality.\""
+    },
+    dharma_protection: {
+      title: "Active Guardianship",
+      text: "यदा यदा हि धर्मस्य ग्लानिर्भवति भारत ।\nअभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ॥",
+      translation: "\"Whenever there is a decline in Dharmic righteousness and a rise of chaotic forces, that creative energy manifests to re-establish dynamic protection and order.\""
+    }
+  };
+
+  // Load Preset Shloka into Generator Controls
+  function loadPresetShloka() {
+    const key = document.getElementById('shlokaSelect').value;
+    if (key === 'custom') return;
+    const preset = shlokaPresets[key];
+    if (!preset) return;
+    
+    document.getElementById('cardTitleInput').value = preset.title;
+    document.getElementById('cardTextInput').value = preset.text;
+    document.getElementById('cardSubTextInput').value = preset.translation;
+    
+    drawCanvas();
+  }
+
+  // Draw Wisdom Card onto HTML5 Canvas
+  function drawCanvas() {
+    const canvas = document.getElementById('generatorCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    
+    const title = document.getElementById('cardTitleInput').value.trim();
+    const text = document.getElementById('cardTextInput').value.trim();
+    const subtext = document.getElementById('cardSubTextInput').value.trim();
+    
+    // Set up canvas styling based on style select
+    let bgColor, primaryColor, secondaryColor, accentColor, borderStyle;
+    
+    if (activeCardStyle === 'parchment') {
+      bgColor = '#fdfbf7';
+      primaryColor = '#1a1208';
+      secondaryColor = '#6f3007';
+      accentColor = '#7d4e07';
+      borderStyle = 'classic';
+    } else if (activeCardStyle === 'emerald') {
+      bgColor = '#010f0d';
+      primaryColor = '#e0fcf8';
+      secondaryColor = '#4df5e2';
+      accentColor = '#2eb8a6';
+      borderStyle = 'neon-emerald';
+    } else if (activeCardStyle === 'agni') {
+      bgColor = '#0b0101';
+      primaryColor = '#f4f5f6';
+      secondaryColor = '#ff4d4d';
+      accentColor = '#b52a2a';
+      borderStyle = 'neon-fire';
+    } else if (activeCardStyle === 'sky') {
+      bgColor = '#010512';
+      primaryColor = '#e3f2fd';
+      secondaryColor = '#64b5f6';
+      accentColor = '#1e88e5';
+      borderStyle = 'neon-sky';
+    }
+    
+    // 1. Draw Background
+    ctx.fillStyle = bgColor;
+    ctx.fillRect(0, 0, 1080, 1080);
+    
+    // 2. Draw Subtle Background Graphic (Mandala circle overlay)
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.06;
+    ctx.beginPath();
+    ctx.arc(540, 540, 350, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(540, 540, 280, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.arc(540, 540, 150, 0, Math.PI * 2);
+    ctx.stroke();
+    ctx.globalAlpha = 1.0;
+    
+    // 3. Draw Borders
+    if (borderStyle === 'classic') {
+      // Double border
+      ctx.strokeStyle = accentColor;
+      ctx.lineWidth = 4;
+      ctx.strokeRect(40, 40, 1000, 1000);
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(55, 55, 970, 970);
+      
+      // Corner flourishes
+      ctx.fillStyle = accentColor;
+      drawCornerFlower(ctx, 40, 40);
+      drawCornerFlower(ctx, 1040, 40);
+      drawCornerFlower(ctx, 40, 1040);
+      drawCornerFlower(ctx, 1040, 1040);
+    } else {
+      // Modern neon borders
+      ctx.strokeStyle = accentColor;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(40, 40, 1000, 1000);
+      
+      // Corner brackets
+      ctx.strokeStyle = secondaryColor;
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      // Top Left
+      ctx.moveTo(35, 80); ctx.lineTo(35, 35); ctx.lineTo(80, 35);
+      // Top Right
+      ctx.moveTo(1000, 35); ctx.lineTo(1045, 35); ctx.lineTo(1045, 80);
+      // Bottom Left
+      ctx.moveTo(35, 1000); ctx.lineTo(35, 1045); ctx.lineTo(80, 1045);
+      // Bottom Right
+      ctx.moveTo(1000, 1045); ctx.lineTo(1045, 1045); ctx.lineTo(1045, 1000);
+      ctx.stroke();
+    }
+    
+    // 4. Draw Header Emblem
+    ctx.fillStyle = secondaryColor;
+    ctx.font = "30px 'Cinzel'";
+    ctx.textAlign = "center";
+    ctx.fillText("🔱   ERA OF SIDDHAS   🔱", 540, 120);
+    
+    // 5. Draw Title
+    ctx.fillStyle = primaryColor;
+    ctx.font = "bold 52px 'Cinzel'";
+    ctx.fillText(title.toUpperCase(), 540, 250);
+    
+    // Draw decorative line under title
+    ctx.strokeStyle = secondaryColor;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(390, 290);
+    ctx.lineTo(690, 290);
+    ctx.stroke();
+    // Dot in center
+    ctx.fillStyle = secondaryColor;
+    ctx.beginPath();
+    ctx.arc(540, 290, 8, 0, Math.PI * 2);
+    ctx.fill();
+    
+    // 6. Draw Sanskrit / Primary Text
+    ctx.fillStyle = primaryColor;
+    ctx.font = "42px 'Noto Serif Devanagari', 'EB Garamond', serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    
+    const textLines = text.split('\n');
+    let startY = 480 - ((textLines.length - 1) * 35);
+    for (let k = 0; k < textLines.length; k++) {
+      ctx.fillText(textLines[k], 540, startY + (k * 70));
+    }
+    
+    // 7. Draw Divider
+    ctx.strokeStyle = accentColor;
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(480, 680);
+    ctx.lineTo(600, 680);
+    ctx.stroke();
+    
+    // 8. Draw Translation / English Text
+    ctx.fillStyle = borderStyle === 'classic' ? '#5c3d1a' : '#9ea8b6';
+    ctx.font = "italic 32px 'EB Garamond', 'Outfit', sans-serif";
+    ctx.textBaseline = "top";
+    wrapText(ctx, subtext, 540, 720, 800, 48);
+    
+    // 9. Draw Footer Branding
+    ctx.fillStyle = accentColor;
+    ctx.font = "bold 20px 'Outfit'";
+    ctx.textAlign = "center";
+    ctx.fillText("GIFTED VIA JNĀNA DĀNA GATEWAY", 540, 980);
+    
+    ctx.font = "16px 'Outfit'";
+    ctx.fillStyle = primaryColor;
+    ctx.globalAlpha = 0.5;
+    ctx.fillText("era-of-siddhas.gurukulam.org", 540, 1010);
+    ctx.globalAlpha = 1.0;
+  }
+
+  // Draw Corner Flourish Helper
+  function drawCornerFlower(ctx, x, y) {
+    ctx.beginPath();
+    ctx.arc(x, y, 15, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // Helper function to wrap text on canvas
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+    const words = text.split(' ');
+    let line = '';
+    let currentY = y;
+    for (let n = 0; n < words.length; n++) {
+      let testLine = line + words[n] + ' ';
+      let metrics = ctx.measureText(testLine);
+      let testWidth = metrics.width;
+      if (testWidth > maxWidth && n > 0) {
+        ctx.fillText(line, x, currentY);
+        line = words[n] + ' ';
+        currentY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, currentY);
+    return currentY + lineHeight;
+  }
+
+  // Switch card style in generator
+  function switchCardStyle(btn, styleName) {
+    document.querySelectorAll('#styleChips .style-chip').forEach(c => c.classList.remove('active'));
+    btn.classList.add('active');
+    activeCardStyle = styleName;
+    drawCanvas();
+  }
+
+  // Trigger download of generated card
+  function downloadGeneratedCard() {
+    const canvas = document.getElementById('generatorCanvas');
+    if (!canvas) return;
+    
+    // Update counter visually
+    incrementStatsCounter();
+    
+    const dataURL = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.download = `siddha_vidya_wisdom_card_${Date.now()}.png`;
+    link.href = dataURL;
+    link.click();
+    
+    // Push new simulated event to ledger
+    pushSimulationLedgerEvent("Wisdom Card generated and downloaded.");
+  }
+
+  // Load articles from DB
+  async function loadArticles() {
+    let apiSuccess = false;
+    if (window.EOS_API && typeof window.EOS_API.getPublicArticles === 'function') {
+      try {
+        const res = await window.EOS_API.getPublicArticles();
+        if (res && res.length > 0) {
+          allArticles = res;
+          apiSuccess = true;
+        }
+      } catch (e) {
+        console.error("API Error loading articles, using fallback:", e);
+      }
+    }
+    
+    if (!apiSuccess) {
+      // Fallback articles database
+      allArticles = [
+        {
+          id: 6,
+          category: 'research',
+          title: 'Parashurāma Tattva: The Metaphysical Union of Brahma and Kṣatra',
+          author: 'Siddha Council',
+          summary: 'A detailed exposition of the Tattva (essence) and Paramparā (lineages) of Bhagavan Parashurama, explaining the synthesis of scriptural wisdom and martial power.',
+          content: `<h3>The Essence of the Avatar: Brahma-Kṣatra Synthesis</h3><p>Bhagavan Parashurāma, the sixth incarnation of Vishnu, represents the ultimate integration of two critical pillars of Dharmic society: <b>Brahma-tejas</b> (intellectual, spiritual, and scriptural power) and <b>Kṣatriya-vīrya</b> (martial, physical, and defensive power). In His physical form, He carries both the sacred thread (Yajnopavita) of a sage and the heavy battleaxe (Parashu) of a warrior, indicating that spiritual realization and absolute strength are not mutually exclusive, but rather complementary aspects of a single reality.</p><h3>Śāstra-Śastra Isomorphism</h3><p>In the Siddha Vidya tradition, there is a structural equivalence (isomorphism) between scriptural systems (Śāstra) and weapons systems (Śastra). Both are expressions of cosmic order (Ṛta) applied to different domains:</p><ul><li><b>Śāstra (Scripture):</b> Organizes consciousness and thought. Paninian grammar, Vedic logic, and acoustic phonetics govern the rules of expression and internal focus.</li><li><b>Śastra (Weaponry):</b> Organizes physical space and force. Defensive strategy, weapons geometry, and martial alignment govern the rules of physical action.</li></ul><p>Therefore, martial action is not random violence, but a precise, mathematically structured extension of scriptural law. Power is a form of acoustic and spatial alignment, governed by the same divine principles that dictate the universe.</p><h3>The Unbroken Paramparās</h3><p>Bhagavan Parashurāma initiated several key lineages (Paramparās) that continue to shape Indian knowledge systems:</p><h4>1. The Kalari & Dhanurveda Lineage</h4><p>After reclaiming the coastlands, Parashurāma established 108 <i>Kalaris</i> (training academies) across the region and taught the first martial system, <b>Kalaripayattu</b>. This lineage, codified in the Dhanurveda Upaveda, covers physical therapy, pressure points (Marmas), and weapon sciences, transmitting them to legendary warriors like Bhīṣma, Droṇa, and Karṇa.</p><h4>2. The Tantric & Śrī Vidyā Lineage</h4><p>In the spiritual realm, Lord Parashurāma is a key master in the Tantric and Shakta paths. Having received the advanced teachings of non-dual reality (Advaita) from Lord Dattātreya, He authored the <b>Parashurāma Kalpa Sūtra</b>. This sacred text is the supreme authority on the ritual grammar and practice of Śrī Vidyā Upāsana (the worship of the Divine Mother through the Sri Yantra).</p><h4>3. Bhūmi-Pratiṣṭhā (Consecration of Space)</h4><p>By throwing His celestial axe into the ocean, Lord Parashurāma reclaimed the lands of Konkan, Malabar, and Tulu Nadu. He consecrated this geography by establishing temples, shrines, and Vedic academies, ensuring the preservation of the sciences and arts under local sovereignty.</p>`,
+          image_url: 'ancient_weapons.png',
+          created_at: '2026-06-08T00:00:00'
+        },
+        {
+          id: 5,
+          category: 'research',
+          title: 'The Atharvaveda of City Planning: Prana, Protection, and the Blueprint of Madurai',
+          author: 'Siddha Council',
+          summary: 'Explore how the Atharvaveda provides the spiritual prana (life force) and energetic shield for sacred city planning, working in tandem with the Mayamatam and Agamas.',
+          content: `<h3>The Energetic Soul of Nagara Nirmana</h3><p>While the Shilpa Shastras (like the <i>Manasara</i>) and the Agamas provide the structural and geometric blueprint (the physical anatomy and measurements), the <b>Atharvaveda</b> provides the <i>prana</i> (life force), the ritual execution, and the protective wisdom required to make that physical structure actually "alive" and divine. Without the energetic rituals of the Atharvaveda, a city built using only the Agamas would just be a mathematically perfect, but ultimately "dead" pile of stones.</p><h3>The Wisdom (The Knowing): Earth as a Living Organism</h3><p>The Atharvaveda (housing the Sthapatya Veda) teaches that land is not dead dirt, but a living, breathing organism with energy meridians (Nadīs), similar to the human body. It gives the wisdom to identify the <i>marma sthanas</i> (vital energy points) of a geographical site so that the central temple (Brahmasthana) can be placed exactly on the earth's spiritual nerve center. Furthermore, by balancing the five elements (Pancha Bhoota) in the physical geography of the city, it prevents societal decay, poverty, and discord. Deep philosophical hymns are dedicated to <b>Vastospati</b> (the deity of physical spaces), showing that a city is a shared dwelling for humans, nature, and divine forces.</p><h3>The Execution (The Doing): Shielding and Hydrology</h3><p>The Atharvaveda guides the practical execution of consecration and protection. Before building, the land must be pacified and healed using specific purification rituals (Bhoomi Pujan and Vastu Shanti), utilizing hymns like <b>Book 3, Hymn 12</b> to invoke the creator Tvastar for foundation-raising. Border protection is established through <i>Nagara Raksha</i>, utilizing Rakshoghna and Krivinashana hymns to project energetic shields at the outer walls and the four cardinal gates. Water hydrology, invoking the rain deity Parjanya, guides the digging of temple tanks (like the Potramarai Kulam in Madurai) and river alignments to ensure prosperity. Class zoning is structured under Atharvanic principles of statecraft to maintain social harmony.</p><h3>The limits & Hand-off: The Anesthetic vs the Scalpel</h3><p>To understand the Atharvaveda's effectiveness, one must also recognize its limits. It will not detail the exact width of streets, the proportions of Gopurams, or which stone to carve. For these structural measurements, it hands off to the Agamas (Kamikagama) and Shilpa Shastras (Mayamatam). Thus, the Atharvaveda behaves like the <b>anesthetic, life-support, and blessing</b> (spiritual execution) to the <b>scalpel and anatomical charts</b> (structural execution) of the Shastras. Both are mandatory to construct a living temple city.</p>`,
+          image_url: 'flying_manuscript.png',
+          created_at: '2026-06-04T00:00:00'
+        },
+        {
+          id: 4,
+          category: 'research',
+          title: 'The Sacred Geometry of Nagara Nirmana: How the Divine Reality is Built',
+          author: 'Siddha Council',
+          summary: 'A deep dive into the Vastu Purusha Mandala, the 9x9 Paramasayika grid, and the living lotus geometry of Madurai Sthalam.',
+          content: `<h3>The Sacred Texts of Nagara Nirmana</h3><p>While the term 'Samhita' broadly refers to compendiums or collections of knowledge, the rules for building a divine city are found across Shilpa Shastras (architectural manuals), Agamas (temple and societal codes), and Puranic Samhitas.</p><h4>A. The Shilpa Shastras (The Architectural Manuals)</h4><ul><li><b>Manasara (Manasara Shilpa Shastra):</b> This is the ultimate encyclopedia of Vastu. It contains a specific section called Nagara Vidhana (Rules for Towns). It categorizes settlements into eight types (from a small village to a massive capital city) and explains how to lay out the Vastu Purusha Mandala (the cosmic grid) to ensure the city aligns with solar and magnetic energies.</li><li><b>Mayamatam (Mayamata):</b> Attributed to the divine architect Maya Danava, this text is the absolute authority on Dravidian (South Indian) architecture. It meticulously details how to build temple cities, the exact dimensions of streets, and the zoning of different castes and professions around the central temple.</li><li><b>Samarangana Sutradhara:</b> Written by King Bhoja (11th century), this text deals extensively with Nagara (city) planning, focusing on royal capitals, the layout of the central palace/temple, and the aesthetic geometry of the city.</li><li><b>Aparajita Priccha:</b> A 12th-century text formatted as a dialogue. It contains exhaustive details on town planning, street widths (Rajamarga), drainage, and the placement of markets and guilds.</li></ul><h4>B. The Samhitas and Puranas</h4><ul><li><b>Brihat Samhita (by Varahamihira):</b> Chapter 53 (Vastu-vidya) provides rules for selecting land, testing soil, and laying out the grid for a city. It dictates that a city should be shaped like a square, rectangle, or circle, with the primary deity at the exact center.</li><li><b>Vishnudharmottara Purana:</b> Contains chapters dedicated to Nagara Nirmana, emphasizing that a city must be protected by water bodies (moats/rivers) and walls, with the temple acting as the spiritual anchor.</li><li><b>Agni Purana & Matsya Purana:</b> Both contain detailed encyclopedic chapters on town planning, specifying the widths of concentric streets and the placement of different social classes (Varnas) based on their proximity to the divine center.</li></ul><h4>C. The Agamas (The Living Codes of the Temple City)</h4><ul><li><b>Kamikagama, Karanagama, and Suprabhedagama:</b> In South India, the Agamas are the supreme law. They do not just dictate how to carve the deity; they dictate how the entire town must be built around the deity. They prescribe the Prakaras (concentric rectangular walls and streets) that protect the sanctum from the chaotic energies of the outside world.</li></ul><h3>Blueprint Details</h3><p>According to these texts, a divine city is built using the Vastu Purusha Mandala. For a major city, a grid of 81 squares (9x9), known as the <b>Paramasayika mandala</b>, is drawn on the earth.</p><ul><li><b>The Brahmasthana (The Divine Center):</b> The central squares of the grid are the Brahmasthana. This area is considered pure consciousness. No mortal is allowed to live here. It is exclusively reserved for the main Temple.</li><li><b>The Zoning of Samsara (Worldly Life):</b> Concentric rings zoning different classes of society based on energy structures outward from the core.</li></ul>`,
+          image_url: 'sacred_city.png',
+          created_at: '2026-06-04T00:00:00'
+        },
+        {
+          id: 1,
+          category: 'research',
+          title: 'Sacred Acoustics & Cardiac Rhythms: The Geometry of Chidambaram',
+          author: 'Vibhas Peruri & Council',
+          summary: 'An empirical exploration of how the Nataraja temple dimensions resonate with the human heart rate variability (HRV).',
+          content: `<p>The ancient Nataraja temple in Chidambaram is a structural masterwork designed to stabilize human bio-energetic fields. By analyzing its dimensions, we find that the 21,600 roof tiles and 72,000 nails mirror the daily respiration rate and nadis of the human body.</p><p>Vocal and sound resonances created inside these stone chambers trigger vagal nerve stimulation and parasympathetic cardiac shifts, validating physical alignment with higher spiritual systems.</p>`,
+          image_url: 'sacred_city.png',
+          created_at: '2026-06-01T00:00:00'
+        },
+        {
+          id: 2,
+          category: 'story',
+          title: 'The Descent of the Astra: Parashurama\'s Mahendra Training',
+          author: 'Siddha Tradition',
+          summary: 'Explore the legends of Mount Mahendra, where Sage Parashurama initiated warriors into higher dimensions of weapon acoustics.',
+          content: `<p>The scriptures of Dhanurveda outline the distinction between simple physical weapons (Śāstras) and mental sound-resonated weapons (Astras). On Mount Mahendra, the warrior-sage Parashurama trained Drona and Karna. An Astra was not propelled by gunpowder, but by the focused concentration (Dharana) and vocal resonance (Mantra) of the practitioner.</p><p>This training demanded complete control of the vital breaths, matching the chest resonance with laryngeal and sinus projections to anchor sound vibrations in physical structures. The lesson of Mount Mahendra remains: power is a form of acoustic alignment, and only a steady mind can command force without destruction.</p>`,
+          image_url: 'ancient_weapons.png',
+          created_at: '2026-05-28T00:00:00'
+        },
+        {
+          id: 3,
+          category: 'magazine',
+          title: 'Era of Siddhas Magazine — Issue I: Resonating Temple Cities',
+          author: 'Siddha Editorial',
+          summary: 'Our launch edition covering Vastu Purusha Mandala layouts, town thermodynamic principles, and spiritual architecture.',
+          content: `<p>Welcome to the first edition of the Era of Siddhas Magazine. In this edition, we examine the ancient town planning models outlined in the Samarangana Sutradhara. By setting the thermodynamic grids and central space (Brahma Sthana) open to the sky, ancient architects created natural cooling drafts that kept temples comfortable during harsh monsoons.</p>`,
+          image_url: 'flying_manuscript.png',
+          created_at: '2026-05-25T00:00:00'
+        }
+      ];
+    }
+    renderArticles();
+    
+    // Check if query parameters specify auto-opening an article
+    const urlParams = new URLSearchParams(window.location.search);
+    const artId = parseInt(urlParams.get('article'));
+    if (!isNaN(artId)) {
+      openReader(artId);
+    }
+  }
+
+  // Render articles dynamically
+  function renderArticles() {
+    const grid = document.getElementById('articlesGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+
+    const searchQuery = document.getElementById('searchInput').value.toLowerCase().trim();
+
+    const filtered = allArticles.filter(art => {
+      const matchesCategory = activeFilter === 'all' || art.category === activeFilter;
+      const matchesSearch = art.title.toLowerCase().includes(searchQuery) || 
+                            art.summary.toLowerCase().includes(searchQuery) ||
+                            art.author.toLowerCase().includes(searchQuery) ||
+                            art.category.toLowerCase().includes(searchQuery);
+      return matchesCategory && matchesSearch;
+    });
+
+    if (filtered.length === 0) {
+      grid.innerHTML = `
+        <div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--text-muted);">
+          <p>No manuscripts are found under this gate. Ensure spelling is correct, or browse all.</p>
+        </div>
+      `;
+      return;
+    }
+
+    grid.innerHTML = filtered.map(art => {
+      const categoryLabels = {
+        magazine: 'Magazine',
+        article: 'Weekly Article',
+        blog: 'Blog',
+        research: 'Modern Research',
+        story: 'Itihasa & Purana'
+      };
+      const label = categoryLabels[art.category] || art.category.toUpperCase();
+      const date = new Date(art.created_at).toLocaleDateString('en-IN', {
+        day: 'numeric', month: 'short', year: 'numeric'
+      });
+      const fallbackImage = art.category === 'research' ? 'sacred_city.png' :
+                            art.category === 'story' ? 'ancient_weapons.png' : 'flying_manuscript.png';
+      const img = art.image_url || fallbackImage;
+
+      return `
+        <div class="article-card">
+          <div class="card-img-box">
+            <img src="${img}" alt="${art.title}" class="card-img">
+            <span class="card-badge">${label}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">${art.title}</h3>
+            <p class="card-summary">${art.summary}</p>
+            
+            <div class="card-actions">
+              <button class="card-btn" onclick="openReader(${art.id})">Read</button>
+              <button class="card-btn primary-btn" onclick="openGiftModal(${art.id})">Gift to World</button>
+            </div>
+
+            <div class="card-footer">
+              <span class="card-author">By ${art.author}</span>
+              <span>${date}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    bindCursorEvents();
+  }
+
+  // Switch category filter
+  function switchFilter(btn, filterKey) {
+    document.querySelectorAll('#categoryTabs .tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    activeFilter = filterKey;
+    renderArticles();
+  }
+
+  // Open manuscript reader modal
+  function openReader(id) {
+    const art = allArticles.find(a => a.id === id);
+    if (!art) return;
+
+    const categoryLabels = {
+      magazine: 'Magazine Edition',
+      article: 'Weekly Article',
+      blog: 'Blog Post',
+      research: 'Modern Research Validation',
+      story: 'Itihasa & Purana Story'
+    };
+
+    document.getElementById('reader-category').innerText = categoryLabels[art.category] || art.category.toUpperCase();
+    document.getElementById('reader-title').innerText = art.title;
+    document.getElementById('reader-meta').innerText = `By ${art.author} · Published on ${new Date(art.created_at).toLocaleDateString('en-IN')}`;
+    document.getElementById('reader-content').innerHTML = art.content;
+    document.getElementById('reader-modal').style.display = 'flex';
+    bindCursorEvents();
+  }
+
+  function closeReader() {
+    document.getElementById('reader-modal').style.display = 'none';
+  }
+
+  // Gifting modal triggers
+  function openGiftModal(id) {
+    const art = allArticles.find(a => a.id === id);
+    if (!art) return;
+    
+    selectedArticleId = id;
+    document.getElementById('giftModalTitle').innerText = `Gift: ${art.title}`;
+    document.getElementById('gift-modal').style.display = 'flex';
+    bindCursorEvents();
+  }
+
+  function closeGiftModal() {
+    document.getElementById('gift-modal').style.display = 'none';
+    document.getElementById('giftNotification').style.display = 'none';
+  }
+
+  // Gift Action 1: Copy direct share link
+  function giftViaCopyLink() {
+    if (!selectedArticleId) return;
+    
+    const shareUrl = `${window.location.origin}${window.location.pathname}?article=${selectedArticleId}`;
+    
+    navigator.clipboard.writeText(shareUrl).then(() => {
+      showGiftNotification("Direct share link copied to clipboard! Transmitting rishi gnana...");
+      incrementStatsCounter();
+      pushSimulationLedgerEvent(`Shared deep link for manuscript ID ${selectedArticleId}.`);
+    }).catch(err => {
+      console.error("Could not copy link: ", err);
+      showGiftNotification("Error copying link, please try again.");
+    });
+  }
+
+  // Gift Action 2: Download raw text manuscript
+  function giftViaTextDownload() {
+    if (!selectedArticleId) return;
+    const art = allArticles.find(a => a.id === selectedArticleId);
+    if (!art) return;
+
+    // Convert HTML to clean text
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = art.content;
+    const cleanContent = tempDiv.textContent || tempDiv.innerText || "";
+
+    const textContent = `================================================================
+ERA OF SIDDHAS GURUKULA — GITTED MANUSCRIPT
+================================================================
+TITLE: ${art.title}
+CATEGORY: ${art.category.toUpperCase()}
+AUTHOR: ${art.author}
+DATE: ${new Date(art.created_at).toLocaleDateString('en-IN')}
+----------------------------------------------------------------
+
+SUMMARY:
+${art.summary}
+
+----------------------------------------------------------------
+MANUSCRIPT CONTENT:
+
+${cleanContent}
+
+----------------------------------------------------------------
+This wisdom was gifted to the world via the Jnāna Dāna Gateway.
+Join the Sangha: https://vibhasperuri-art.github.io/ERA-OF-SIDDHAS/
+================================================================`;
+
+    const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `rishi_gnana_manuscript_${art.title.toLowerCase().replace(/[^a-z0-9]+/g, '_')}.txt`;
+    link.click();
+
+    showGiftNotification("Manuscript text file generated and downloaded! Transmitting...");
+    incrementStatsCounter();
+    pushSimulationLedgerEvent(`Downloaded manuscript "${art.title}" as offline text.`);
+  }
+
+  // Gift Action 3: Go to quote card generator and pre-load
+  function giftViaGraphicGenerator() {
+    if (!selectedArticleId) return;
+    const art = allArticles.find(a => a.id === selectedArticleId);
+    if (!art) return;
+
+    // Load details into generator form
+    document.getElementById('shlokaSelect').value = 'custom';
+    document.getElementById('cardTitleInput').value = art.title;
+    
+    // Clean content snippet
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = art.content;
+    const cleanText = tempDiv.textContent || tempDiv.innerText || "";
+    
+    document.getElementById('cardTextInput').value = art.summary;
+    document.getElementById('cardSubTextInput').value = `By ${art.author} — Published in the Gurukulam Archives.`;
+
+    closeGiftModal();
+    
+    // Scroll smoothly to generator
+    document.querySelector('.generator-section').scrollIntoView({ behavior: 'smooth' });
+    
+    drawCanvas();
+  }
+
+  // Visual success notification in modal
+  function showGiftNotification(msg) {
+    const notif = document.getElementById('giftNotification');
+    notif.innerText = msg;
+    notif.style.display = 'block';
+    setTimeout(() => {
+      notif.style.display = 'none';
+    }, 4000);
+  }
+
+  // Increment the global stats counter
+  function incrementStatsCounter() {
+    const counter = document.getElementById('statsCounter');
+    if (!counter) return;
+    let val = parseInt(counter.innerText.replace(/,/g, ''));
+    if (!isNaN(val)) {
+      val += 1;
+      counter.innerText = val.toLocaleString('en-IN');
+      
+      // Save counter progress to local storage
+      localStorage.setItem('era_of_siddhas_gift_count', val);
+    }
+  }
+
+  // Push new event to simulation ledger list
+  function pushSimulationLedgerEvent(desc) {
+    const list = document.getElementById('ledgerList');
+    if (!list) return;
+
+    const item = document.createElement('div');
+    item.className = 'ledger-item';
+    
+    // Pick anonymous avatar initials
+    const initials = 'SK';
+    
+    item.innerHTML = `
+      <div class="ledger-item-left">
+        <div class="ledger-avatar">${initials}</div>
+        <div><strong>Seeker</strong> ${desc.replace(/^\w/, c => c.toLowerCase())}</div>
+      </div>
+      <span class="ledger-time">Just now</span>
+    `;
+
+    list.insertBefore(item, list.firstChild);
+    
+    // Keep list to 8 items max
+    if (list.children.length > 8) {
+      list.removeChild(list.lastChild);
+    }
+  }
+
+  // Custom Cursor Logic
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursor-ring');
+
+  if (cursor && cursorRing) {
+    document.addEventListener('mousemove', (e) => {
+      cursor.style.left = e.clientX + 'px';
+      cursor.style.top = e.clientY + 'px';
+      cursorRing.style.left = e.clientX + 'px';
+      cursorRing.style.top = e.clientY + 'px';
+      if (!document.body.classList.contains('custom-cursor-active')) {
+        document.body.classList.add('custom-cursor-active');
+      }
+    });
+  }
+
+  function bindCursorEvents() {
+    document.querySelectorAll('a, button, .tab, .article-card, .theme-btn, .reader-close, .gift-close, select, input, textarea, .gift-option-card').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+  }
+
+  // Theme Management
+  function setTheme(btnElement, themeName) {
+    document.body.classList.remove('theme-fierce', 'theme-earthy', 'theme-mystical', 'theme-light');
+    document.body.classList.add(themeName);
+    localStorage.setItem('era_of_siddhas_theme', themeName);
+    document.querySelectorAll('.theme-btn').forEach(btn => {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-pressed', 'false');
+    });
+    
+    // Find active button and highlight
+    const btns = document.querySelectorAll('.theme-btn');
+    btns.forEach(btn => {
+      if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(themeName)) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
+      }
+    });
+    
+    // Re-draw canvas using new colors
+    drawCanvas();
+  }
+
+  // Initialization
+  document.addEventListener('DOMContentLoaded', () => {
+    // Search input binding
+    document.getElementById('searchInput').addEventListener('input', renderArticles);
+    
+    // Load theme
+    const activeTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+    setTheme(null, activeTheme);
+
+    // Initial counter load
+    const savedCount = localStorage.getItem('era_of_siddhas_gift_count');
+    if (savedCount) {
+      document.getElementById('statsCounter').innerText = parseInt(savedCount).toLocaleString('en-IN');
+    }
+
+    // Load articles and render
+    loadArticles();
+    
+    // Load default preset shloka
+    loadPresetShloka();
+  });
+</script>
+</body>
+</html>
