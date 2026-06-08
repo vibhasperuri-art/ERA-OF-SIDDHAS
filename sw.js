@@ -1,4 +1,4 @@
-const CACHE_NAME = 'era-of-siddhas-v4';
+const CACHE_NAME = 'era-of-siddhas-v5';
 const ASSETS = [
   './',
   './index.html',
