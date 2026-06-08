@@ -854,13 +854,25 @@ async def websocket_endpoint(websocket: WebSocket):
     except Exception:
         manager.disconnect(websocket)
 
-# Serve explicit routes
-@app.get("/")
-async def get_index():
-    return FileResponse("index.html")
+# Detect if running on Render (cloud) or locally
+IS_CLOUD = os.environ.get("RENDER", "") == "true" or os.environ.get("PORT", "") != ""
 
-# Serve all static files (fallback route, mounted at root)
-app.mount("/", StaticFiles(directory=".", html=True), name="static")
+if not IS_CLOUD:
+    # Local development: serve HTML files too
+    @app.get("/")
+    async def get_index():
+        return FileResponse("index.html")
+    app.mount("/", StaticFiles(directory=".", html=True), name="static")
+else:
+    # Cloud: only API endpoints, return info on root
+    @app.get("/")
+    async def root_info():
+        return {
+            "service": "Era of Siddhas API",
+            "status": "online",
+            "docs": "/docs",
+            "health": "/api/health"
+        }
 
 if __name__ == "__main__":
     import uvicorn
