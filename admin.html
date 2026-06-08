@@ -44,9 +44,153 @@
     color: var(--cream);
     font-family: 'EB Garamond', Georgia, serif;
     min-height: 100vh;
-    display: grid;
+  }
+  #dashboard-wrapper {
+    display: none;
     grid-template-columns: 220px 1fr;
     grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  /* GLASSMORPHIC PORTAL GATE OVERLAY */
+  #admin-gate-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(1, 9, 8, 0.9);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    transition: opacity 0.5s ease;
+  }
+  body.theme-light #admin-gate-overlay {
+    background: rgba(247, 242, 232, 0.9);
+  }
+  .gate-container {
+    background: var(--surface2);
+    border: 2px solid var(--gold-dim);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+    padding: 2.5rem 2rem;
+    color: var(--cream);
+    font-family: 'Cinzel', serif;
+  }
+  body.theme-light .gate-container {
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+  }
+  .gate-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .gate-sub {
+    font-size: 1.05rem;
+    color: var(--ash);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: 'EB Garamond', serif;
+  }
+  .gate-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--gold-dim);
+    margin-bottom: 1.5rem;
+  }
+  .gate-tab-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--ash);
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s;
+    border-bottom: 2px solid transparent;
+    outline: none;
+  }
+  .gate-tab-btn.active {
+    color: var(--gold);
+    border-bottom-color: var(--gold);
+    font-weight: 600;
+  }
+  .gate-form-panel {
+    display: none;
+  }
+  .gate-form-panel.active {
+    display: block;
+  }
+  .gate-group {
+    margin-bottom: 1.2rem;
+  }
+  .gate-label {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--ash);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+  }
+  .gate-input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(200, 146, 42, 0.2);
+    color: var(--cream);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.1rem;
+    padding: 0.75rem 1rem;
+    outline: none;
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  body.theme-light .gate-input {
+    background: rgba(255, 255, 255, 0.6);
+    color: var(--gold-pale);
+  }
+  .gate-input:focus {
+    border-color: var(--gold);
+  }
+  .gate-btn {
+    width: 100%;
+    font-family: 'Cinzel', serif;
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.8rem;
+    background: var(--gold);
+    color: var(--earth);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: bold;
+    margin-top: 1rem;
+    outline: none;
+  }
+  .gate-btn:hover {
+    background: #f0c060;
+    box-shadow: 0 0 10px rgba(200,146,42,0.4);
+  }
+  .gate-error {
+    color: var(--danger);
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    font-style: italic;
+    margin-top: 0.5rem;
+    text-align: center;
+    display: none;
   }
 
   /* TOP HEADER */
@@ -609,6 +753,61 @@
 <link rel="manifest" href="manifest.json">
 </head>
 <body>
+
+<!-- ADMIN PORTAL GATE OVERLAY -->
+<div id="admin-gate-overlay">
+  <div class="gate-container">
+    <div class="gate-logo">Gurukula Portal</div>
+    <div class="gate-sub">Admin Authentication & Onboarding</div>
+    
+    <div class="gate-tabs">
+      <button class="gate-tab-btn active" id="tabBtnLogin" onclick="switchGateTab('login')">Login</button>
+      <button class="gate-tab-btn" id="tabBtnRegister" onclick="switchGateTab('register')">Register</button>
+    </div>
+    
+    <!-- Login Form -->
+    <div class="gate-form-panel active" id="panelLogin">
+      <form id="gateLoginForm" onsubmit="handleGateLogin(event)">
+        <div class="gate-group">
+          <label class="gate-label" for="loginUser">Username</label>
+          <input class="gate-input" type="text" id="loginUser" required autocomplete="username">
+        </div>
+        <div class="gate-group">
+          <label class="gate-label" for="loginPass">Password</label>
+          <input class="gate-input" type="password" id="loginPass" required autocomplete="current-password">
+        </div>
+        <button class="gate-btn" type="submit">Authenticate 🗝</button>
+        <div class="gate-error" id="loginError"></div>
+      </form>
+    </div>
+    
+    <!-- Onboarding Form -->
+    <div class="gate-form-panel" id="panelRegister">
+      <form id="gateRegisterForm" onsubmit="handleGateRegister(event)">
+        <div class="gate-group">
+          <label class="gate-label" for="regName">Full Name</label>
+          <input class="gate-input" type="text" id="regName" placeholder="e.g. Maharishi Bharadwaja" required>
+        </div>
+        <div class="gate-group">
+          <label class="gate-label" for="regUser">Username</label>
+          <input class="gate-input" type="text" id="regUser" placeholder="e.g. bharadwaja" required autocomplete="username">
+        </div>
+        <div class="gate-group">
+          <label class="gate-label" for="regPass">Password</label>
+          <input class="gate-input" type="password" id="regPass" required autocomplete="new-password">
+        </div>
+        <div class="gate-group">
+          <label class="gate-label" for="regInvite">Invitation Code</label>
+          <input class="gate-input" type="password" id="regInvite" placeholder="Enter Gurukula Secret Code" required>
+        </div>
+        <button class="gate-btn" type="submit">Onboard Admin ⚜</button>
+        <div class="gate-error" id="regError"></div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div id="dashboard-wrapper">
 <a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to main content</a>
 
 <!-- HEADER -->
@@ -634,6 +833,9 @@
     <span class="admin-badge">Admin</span>
     <button class="btn-broadcast" onclick="document.getElementById('broadcastModal').classList.add('open')">
       ⚡ Broadcast Leela
+    </button>
+    <button class="btn-sm" onclick="logoutAdmin()" style="border-color: #ff4d4d; color: #ff4d4d; margin-left: 5px;">
+      Logout 🔓
     </button>
   </div>
 </header>
@@ -1175,8 +1377,133 @@
     </div>
   </div>
 </div>
+</div> <!-- end dashboard-wrapper -->
 
 <script>
+  // --- Admin Gate Authentication & Session Management ---
+  function checkAdminAccess() {
+    const role = localStorage.getItem('eos_role');
+    const user = localStorage.getItem('eos_user_name');
+    const wrapper = document.getElementById('dashboard-wrapper');
+    const overlay = document.getElementById('admin-gate-overlay');
+    
+    if (role === 'admin' && user) {
+      if (overlay) overlay.style.display = 'none';
+      if (wrapper) wrapper.style.display = 'grid';
+    } else {
+      if (overlay) overlay.style.display = 'flex';
+      if (wrapper) wrapper.style.display = 'none';
+    }
+  }
+
+  // Run initial check immediately
+  checkAdminAccess();
+
+  // Tab switching in the login gate
+  window.switchGateTab = function(tab) {
+    const btnLogin = document.getElementById('tabBtnLogin');
+    const btnRegister = document.getElementById('tabBtnRegister');
+    const panelLogin = document.getElementById('panelLogin');
+    const panelRegister = document.getElementById('panelRegister');
+    
+    if (tab === 'login') {
+      btnLogin.classList.add('active');
+      btnRegister.classList.remove('active');
+      panelLogin.classList.add('active');
+      panelRegister.classList.remove('active');
+    } else {
+      btnLogin.classList.remove('active');
+      btnRegister.classList.add('active');
+      panelLogin.classList.remove('active');
+      panelRegister.classList.add('active');
+    }
+  };
+
+  // Onboard / Signup Admin Form Handler
+  window.handleGateRegister = async function(event) {
+    event.preventDefault();
+    const errorDiv = document.getElementById('regError');
+    errorDiv.style.display = 'none';
+    errorDiv.textContent = '';
+    
+    const name = document.getElementById('regName').value.trim();
+    const username = document.getElementById('regUser').value.trim();
+    const password = document.getElementById('regPass').value;
+    const inviteCode = document.getElementById('regInvite').value.trim();
+    
+    if (!name || !username || !password || !inviteCode) {
+      errorDiv.textContent = 'All fields are required.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+    
+    if (window.EOS_API && typeof window.EOS_API.onboardAdmin === 'function') {
+      const res = await window.EOS_API.onboardAdmin(name, username, password, inviteCode);
+      if (res && res.status === 'success') {
+        alert('Admin registration successful! Please log in.');
+        switchGateTab('login');
+        document.getElementById('loginUser').value = username;
+      } else {
+        errorDiv.textContent = (res && res.detail) || 'Registration failed. Check your invite code or username.';
+        errorDiv.style.display = 'block';
+      }
+    } else {
+      errorDiv.textContent = 'API not available. Running in offline/simulation mode.';
+      errorDiv.style.display = 'block';
+    }
+  };
+
+  // Login Admin Form Handler
+  window.handleGateLogin = async function(event) {
+    event.preventDefault();
+    const errorDiv = document.getElementById('loginError');
+    errorDiv.style.display = 'none';
+    errorDiv.textContent = '';
+    
+    const username = document.getElementById('loginUser').value.trim();
+    const password = document.getElementById('loginPass').value;
+    
+    if (!username || !password) {
+      errorDiv.textContent = 'Both fields are required.';
+      errorDiv.style.display = 'block';
+      return;
+    }
+    
+    if (window.EOS_API && typeof window.EOS_API.loginAdmin === 'function') {
+      const res = await window.EOS_API.loginAdmin(username, password);
+      if (res && res.status === 'success') {
+        // Successful login
+        checkAdminAccess();
+        // Reload to update dynamic navbars on all windows
+        window.location.reload();
+      } else {
+        errorDiv.textContent = (res && res.detail) || 'Invalid username or password.';
+        errorDiv.style.display = 'block';
+      }
+    } else {
+      // Offline/simulation fallback
+      if (username === 'admin' && password === 'admin') {
+        localStorage.setItem('eos_role', 'admin');
+        localStorage.setItem('eos_user_name', 'admin');
+        checkAdminAccess();
+        window.location.reload();
+      } else {
+        errorDiv.textContent = 'Authentication failed. Use admin/admin for simulation mode.';
+        errorDiv.style.display = 'block';
+      }
+    }
+  };
+
+  // Logout Admin
+  window.logoutAdmin = function() {
+    if (confirm("Are you sure you want to lock the Gurukula portal and logout?")) {
+      localStorage.removeItem('eos_role');
+      localStorage.removeItem('eos_user_name');
+      checkAdminAccess();
+      window.location.reload();
+    }
+  };
+
   // Live time & date
   function updateTime() {
     const now = new Date();
