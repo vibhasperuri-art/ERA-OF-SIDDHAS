@@ -18,7 +18,6 @@ app = FastAPI(title="Era of Siddhas API & WebSocket Server")
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "*",
         "https://vibhasperuri-art.github.io",
         "http://127.0.0.1:8080",
         "http://localhost:8080",
