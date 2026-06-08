@@ -2,6 +2,7 @@ import os
 import json
 import sqlite3
 import asyncio
+import hashlib
 from datetime import datetime
 from typing import List, Dict, Optional
 from pydantic import BaseModel
@@ -28,6 +29,16 @@ DB_PATH = "database.db"
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+    
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS admins (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        username TEXT UNIQUE,
+        name TEXT,
+        password_hash TEXT,
+        created_at TEXT
+    )
+    """)
     
     cursor.execute("""
     CREATE TABLE IF NOT EXISTS seekers (
@@ -188,6 +199,16 @@ def init_db():
     conn.close()
 
 # Models
+class AdminOnboard(BaseModel):
+    name: str
+    username: str
+    password: str
+    invite_code: str
+
+class AdminLogin(BaseModel):
+    username: str
+    password: str
+
 class SeekerOnboard(BaseModel):
     name: str
     age: int
@@ -523,6 +544,65 @@ async def contribute_marathon(data: dict):
     return {"status": "error", "message": "Invalid type"}
 
 # ADMIN ENDPOINTS
+
+@app.post("/api/admin/onboard")
+async def onboard_admin(data: AdminOnboard):
+    if data.invite_code != "PARASHURAMA_108":
+        raise HTTPException(status_code=400, detail="Invalid invitation code")
+    
+    username = data.username.strip().lower().replace(" ", "_")
+    if not username:
+        raise HTTPException(status_code=400, detail="Invalid username")
+        
+    password_hash = hashlib.sha256(data.password.encode('utf-8')).hexdigest()
+    now_str = datetime.now().isoformat()
+    
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    existing = cursor.execute("SELECT id FROM admins WHERE username = ?", (username,)).fetchone()
+    if existing:
+        conn.close()
+        raise HTTPException(status_code=400, detail="Username already exists")
+        
+    try:
+        cursor.execute("""
+        INSERT INTO admins (username, name, password_hash, created_at)
+        VALUES (?, ?, ?, ?)
+        """, (username, data.name, password_hash, now_str))
+        conn.commit()
+    except sqlite3.IntegrityError:
+        conn.close()
+        raise HTTPException(status_code=400, detail="Username already exists")
+    except Exception as e:
+        conn.close()
+        raise HTTPException(status_code=500, detail=f"Database error: {str(e)}")
+        
+    conn.close()
+    return {"status": "success", "username": username}
+
+@app.post("/api/admin/login")
+async def login_admin(data: AdminLogin):
+    username = data.username.strip().lower().replace(" ", "_")
+    password_hash = hashlib.sha256(data.password.encode('utf-8')).hexdigest()
+    
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    
+    admin = cursor.execute("SELECT * FROM admins WHERE username = ? AND password_hash = ?", (username, password_hash)).fetchone()
+    conn.close()
+    
+    if not admin:
+        raise HTTPException(status_code=401, detail="Invalid username or password")
+        
+    admin_dict = dict(admin)
+    return {
+        "status": "success",
+        "username": admin_dict["username"],
+        "name": admin_dict["name"],
+        "role": "admin"
+    }
 
 @app.get("/api/admin/seekers")
 async def admin_get_seekers():
