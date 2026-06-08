@@ -1,6 +1,21 @@
 // js/api.js - Client side API wrapper & real-time WebSocket connection
-const API_BASE = window.location.origin + "/api";
-const WS_URL = (window.location.protocol === "https:" ? "wss://" : "ws://") + window.location.host + "/ws";
+
+// ─── Smart API URL: auto-detect local vs cloud ───
+// When running locally (localhost / 127.0.0.1 / file://), use local server.
+// When on GitHub Pages or any other host, use the Render cloud API.
+const RENDER_API_URL = "https://era-of-siddhas.onrender.com";
+const isLocal = (
+  window.location.hostname === "localhost" ||
+  window.location.hostname === "127.0.0.1" ||
+  window.location.protocol === "file:"
+);
+const API_BASE = isLocal
+  ? (window.location.protocol === "file:" ? "http://127.0.0.1:8080/api" : window.location.origin + "/api")
+  : RENDER_API_URL + "/api";
+const WS_URL = isLocal
+  ? "ws://127.0.0.1:8080/ws"
+  : RENDER_API_URL.replace("https://", "wss://").replace("http://", "ws://") + "/ws";
+
 
 window.EOS_API = {
   async onboardAdmin(name, username, password, inviteCode) {
