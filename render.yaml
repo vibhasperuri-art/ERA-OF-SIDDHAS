@@ -7,6 +7,9 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: "3.11"
+      - key: RENDER
+        value: "true"
       - key: EOS_INVITE_CODE
         value: PARASHURAMA_108
     plan: free
+    healthCheckPath: /api/health
