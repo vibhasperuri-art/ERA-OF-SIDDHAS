@@ -3,6 +3,39 @@ const API_BASE = window.location.origin + "/api";
 const WS_URL = (window.location.protocol === "https:" ? "wss://" : "ws://") + window.location.host + "/ws";
 
 window.EOS_API = {
+  async onboardAdmin(name, username, password, inviteCode) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/onboard`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, username, password, invite_code: inviteCode })
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API Error onboarding admin:", e);
+      return null;
+    }
+  },
+
+  async loginAdmin(username, password) {
+    try {
+      const res = await fetch(`${API_BASE}/admin/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+      });
+      const resData = await res.json();
+      if (res.ok && resData.status === "success") {
+        localStorage.setItem('eos_user_name', resData.username);
+        localStorage.setItem('eos_role', 'admin');
+      }
+      return resData;
+    } catch (e) {
+      console.error("API Error logging in admin:", e);
+      return null;
+    }
+  },
+
   async onboardSeeker(data) {
     try {
       const res = await fetch(`${API_BASE}/onboard`, {
@@ -353,6 +386,7 @@ function showSystemNotificationModal(data) {
 // Automatically connect WebSocket on page load and initialize connection indicator
 document.addEventListener("DOMContentLoaded", () => {
   // Inject CSS for indicator and profile elements in navbar
+  const role = localStorage.getItem('eos_role');
   const style = document.createElement("style");
   style.innerHTML = `
     .eos-connection-indicator {
@@ -373,6 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
     .profile-nav-btn:hover {
       box-shadow: 0 0 12px var(--accent-glow) !important;
     }
+    ${role !== 'admin' ? '.admin-tab { display: none !important; }' : ''}
   `;
   document.head.appendChild(style);
   
