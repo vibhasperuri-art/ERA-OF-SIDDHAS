@@ -147,6 +147,11 @@
     to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 
+  body.custom-cursor-active .custom-cursor,
+  body.custom-cursor-active .custom-cursor-ring {
+    opacity: 1 !important;
+  }
+
   /* GLASS NAV */
   .glass-nav {
     position: sticky;
@@ -1792,17 +1797,30 @@ Join the Sangha: https://vibhasperuri-art.github.io/ERA-OF-SIDDHAS/
   // Custom Cursor Logic
   const cursor = document.getElementById('cursor');
   const cursorRing = document.getElementById('cursor-ring');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
+  let cursorVisible = false;
 
   if (cursor && cursorRing) {
-    document.addEventListener('mousemove', (e) => {
-      cursor.style.left = e.clientX + 'px';
-      cursor.style.top = e.clientY + 'px';
-      cursorRing.style.left = e.clientX + 'px';
-      cursorRing.style.top = e.clientY + 'px';
-      if (!document.body.classList.contains('custom-cursor-active')) {
+    window.addEventListener('mousemove', (e) => {
+      if (!cursorVisible) {
         document.body.classList.add('custom-cursor-active');
+        cursorVisible = true;
       }
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      cursor.style.left = mouseX + 'px';
+      cursor.style.top = mouseY + 'px';
     });
+
+    function animateRing() {
+      ringX += (mouseX - ringX) * 0.2;
+      ringY += (mouseY - ringY) * 0.2;
+      cursorRing.style.left = ringX + 'px';
+      cursorRing.style.top = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
   }
 
   function bindCursorEvents() {
