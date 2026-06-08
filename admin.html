@@ -774,7 +774,10 @@
         </div>
         <div class="gate-group">
           <label class="gate-label" for="loginPass">Password</label>
-          <input class="gate-input" type="password" id="loginPass" required autocomplete="current-password">
+          <div style="position: relative; width: 100%;">
+            <input class="gate-input" type="password" id="loginPass" required autocomplete="current-password" style="padding-right: 2.5rem;">
+            <button type="button" onclick="togglePassVisibility('loginPass', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--ash); cursor: pointer; font-size: 1.1rem; outline: none;" title="Show password">👁️</button>
+          </div>
         </div>
         <button class="gate-btn" type="submit">Authenticate 🗝</button>
         <div class="gate-error" id="loginError"></div>
@@ -794,11 +797,17 @@
         </div>
         <div class="gate-group">
           <label class="gate-label" for="regPass">Password</label>
-          <input class="gate-input" type="password" id="regPass" required autocomplete="new-password">
+          <div style="position: relative; width: 100%;">
+            <input class="gate-input" type="password" id="regPass" required autocomplete="new-password" style="padding-right: 2.5rem;">
+            <button type="button" onclick="togglePassVisibility('regPass', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--ash); cursor: pointer; font-size: 1.1rem; outline: none;" title="Show password">👁️</button>
+          </div>
         </div>
         <div class="gate-group">
           <label class="gate-label" for="regInvite">Invitation Code</label>
-          <input class="gate-input" type="password" id="regInvite" placeholder="Enter Gurukula Secret Code" required>
+          <div style="position: relative; width: 100%;">
+            <input class="gate-input" type="password" id="regInvite" placeholder="Enter Gurukula Secret Code" required style="padding-right: 2.5rem;">
+            <button type="button" onclick="togglePassVisibility('regInvite', this)" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: var(--ash); cursor: pointer; font-size: 1.1rem; outline: none;" title="Show password">👁️</button>
+          </div>
         </div>
         <button class="gate-btn" type="submit">Onboard Admin ⚜</button>
         <div class="gate-error" id="regError"></div>
@@ -1381,6 +1390,21 @@
 
 <script>
   // --- Admin Gate Authentication & Session Management ---
+  window.togglePassVisibility = function(fieldId, btn) {
+    const field = document.getElementById(fieldId);
+    if (field) {
+      if (field.type === 'password') {
+        field.type = 'text';
+        btn.textContent = '🙈';
+        btn.title = 'Hide password';
+      } else {
+        field.type = 'password';
+        btn.textContent = '👁️';
+        btn.title = 'Show password';
+      }
+    }
+  };
+
   function checkAdminAccess() {
     const role = localStorage.getItem('eos_role');
     const user = localStorage.getItem('eos_user_name');
