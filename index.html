@@ -1324,8 +1324,8 @@
   <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce & Martial">Fierce & Martial</button>
   <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical & Ethereal">Mystical & Ethereal</button>
   <button class="theme-btn" onclick="setTheme(this, 'theme-light')" aria-pressed="false" aria-label="Switch theme to Parchment">Parchment</button>
-  <button class="theme-btn drone-toggle-btn" id="droneToggleBtn" onclick="toggleTapasyaDrone()" aria-label="Toggle Sound of Tapasya" title="Sound of Tapasya (Acoustic 108Hz Drone)">
-    <span id="droneIcon">🔇</span> <span id="droneText">Tapasya Drone</span>
+  <button class="theme-btn drone-toggle-btn" id="droneToggleBtn" onclick="toggleTapasyaDrone()" aria-label="Toggle Sangeetam Shruti" title="Sangeetam Shruti (Classical Tanpura 2 Kattai / D)">
+    <span id="droneIcon">🔇</span> <span id="droneText">Sangeetam Shruti</span>
   </button>
 </div>
 
@@ -2523,12 +2523,14 @@ function renderAnvayaBox() {
 }
 
 /* ──────────────────────────────────────────────────────────
-   TAPASYA DRONE (SYNTHETIC WEBAUDIO DRONE)
+   SANGEETAM SHRUTI — CLASSICAL TANPURA DRONE (D / 2 Kattai)
+   Harmonic Alignment: Pa (220Hz) - Jodi Sa (294Hz) - Kharaj Sa (147Hz) - Ga Shimmer (184Hz)
 ──────────────────────────────────────────────────────────── */
 let audioCtx = null;
-let droneGain = null;
-let droneOscs = [];
+let droneMasterGain = null;
+let droneNodes = [];
 let isDronePlaying = false;
+let droneCycleInterval = null;
 
 function toggleTapasyaDrone() {
   const btn = document.getElementById('droneToggleBtn');
@@ -2544,51 +2546,97 @@ function toggleTapasyaDrone() {
         audioCtx.resume();
       }
 
-      droneGain = audioCtx.createGain();
-      droneGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
-      droneGain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 2);
+      const now = audioCtx.currentTime;
 
-      // Low-pass warm filter
-      const filter = audioCtx.createBiquadFilter();
-      filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(450, audioCtx.currentTime);
+      // Master soothing volume with smooth exponential fade-in
+      droneMasterGain = audioCtx.createGain();
+      droneMasterGain.gain.setValueAtTime(0.0001, now);
+      droneMasterGain.gain.exponentialRampToValueAtTime(0.22, now + 2.5);
 
-      droneGain.connect(filter);
-      filter.connect(audioCtx.destination);
+      // Acoustic warming filter (emulates the resonant wooden resonator of a Miraj / Tanjavur Tanpura)
+      const bodyFilter = audioCtx.createBiquadFilter();
+      bodyFilter.type = 'lowpass';
+      bodyFilter.frequency.setValueAtTime(420, now);
+      bodyFilter.Q.setValueAtTime(1.2, now);
 
-      // Harmonics: 108Hz (fundamental Sa), 162Hz (perfect 5th Pa), 216Hz (octave Sa)
-      const freqs = [108, 162, 216];
-      droneOscs = freqs.map((f, i) => {
+      // Subtle presence peaking filter for gentle Jawari sweetness
+      const jawariFilter = audioCtx.createBiquadFilter();
+      jawariFilter.type = 'peaking';
+      jawariFilter.frequency.setValueAtTime(220, now);
+      jawariFilter.gain.setValueAtTime(2.5, now);
+      jawariFilter.Q.setValueAtTime(1.0, now);
+
+      droneMasterGain.connect(jawariFilter);
+      jawariFilter.connect(bodyFilter);
+      bodyFilter.connect(audioCtx.destination);
+
+      // Authentic Sangeetam Shruti Tuning (Base Sa = 146.83 Hz · D3 / 2 Kattai)
+      const baseSa = 146.83;
+      const strings = [
+        { name: "Panchama (Pa)",  freq: baseSa * 1.5,       vol: 0.16, detune: 0 },       // 220.25 Hz
+        { name: "Jodi Sa 1",      freq: baseSa * 2.0,       vol: 0.14, detune: 2.2 },     // 293.66 Hz (acoustic spread)
+        { name: "Jodi Sa 2",      freq: baseSa * 2.0,       vol: 0.14, detune: -2.2 },    // 293.66 Hz
+        { name: "Kharaj Sa (Sa)", freq: baseSa * 1.0,       vol: 0.22, detune: 0 },       // 146.83 Hz (deep ground)
+        { name: "Jawari Ga (Ga)", freq: baseSa * 1.25,      vol: 0.05, detune: 1.0 }      // 183.54 Hz (sacred overtone shimmer)
+      ];
+
+      droneNodes = strings.map((s, idx) => {
         const osc = audioCtx.createOscillator();
-        osc.type = i === 1 ? 'sine' : 'triangle';
-        osc.frequency.setValueAtTime(f, audioCtx.currentTime);
-        osc.detune.setValueAtTime((i - 1) * 3, audioCtx.currentTime);
-        osc.connect(droneGain);
+        const strGain = audioCtx.createGain();
+
+        osc.type = 'sine'; // Pure, soothing sine for acoustic softness
+        osc.frequency.setValueAtTime(s.freq, now);
+        osc.detune.setValueAtTime(s.detune, now);
+
+        // Individual string gain with organic swell
+        strGain.gain.setValueAtTime(s.vol, now);
+
+        // Organic slow acoustic breathing LFO (gentle rise and fall like an authentic Tanpura stroke)
+        const lfo = audioCtx.createOscillator();
+        const lfoGain = audioCtx.createGain();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(0.12 + (idx * 0.02), now); // ~8-second gentle cycle
+        lfoGain.gain.setValueAtTime(s.vol * 0.25, now);
+
+        lfo.connect(lfoGain.gain);
+        osc.connect(strGain);
+        strGain.connect(droneMasterGain);
+
         osc.start();
-        return osc;
+        lfo.start();
+
+        return { osc, strGain, lfo, lfoGain };
       });
 
       isDronePlaying = true;
       if (btn) btn.classList.add('playing');
-      if (icon) icon.textContent = '🔊';
-      if (text) text.textContent = 'Tapasya Drone Active';
+      if (icon) icon.textContent = '🪕';
+      if (text) text.textContent = 'Shruti Active (D)';
     } catch (e) {
-      console.warn("WebAudio drone could not initialize:", e);
+      console.warn("Sangeetam Shruti could not initialize:", e);
     }
   } else {
-    if (droneGain && audioCtx) {
-      droneGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+    if (droneMasterGain && audioCtx) {
+      const now = audioCtx.currentTime;
+      droneMasterGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
       setTimeout(() => {
-        droneOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch (e) {} });
-        droneOscs = [];
+        droneNodes.forEach(node => {
+          try {
+            node.osc.stop();
+            node.osc.disconnect();
+            node.lfo.stop();
+            node.lfo.disconnect();
+          } catch (e) {}
+        });
+        droneNodes = [];
         isDronePlaying = false;
-      }, 1250);
+      }, 1900);
     } else {
       isDronePlaying = false;
     }
     if (btn) btn.classList.remove('playing');
     if (icon) icon.textContent = '🔇';
-    if (text) text.textContent = 'Tapasya Drone';
+    if (text) text.textContent = 'Sangeetam Shruti';
   }
 }
 
