@@ -821,6 +821,275 @@
     color: var(--gold);
   }
 
+  /* ── COSMIC SHASTRA NEXUS ─────────────────────── */
+  .nexus-container {
+    max-width: 1200px;
+    margin: 4.5rem auto 1rem;
+    position: relative;
+    z-index: 2;
+  }
+  .nexus-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .nexus-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .nexus-tab-btn {
+    background: var(--bg-1);
+    border: 1px solid var(--gold-dim);
+    color: var(--parch-mid);
+    padding: 0.75rem 1.4rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+  }
+  .nexus-tab-btn:hover, .nexus-tab-btn.active {
+    background: var(--gold-dim);
+    color: var(--parchment);
+    border-color: var(--gold-bright);
+    box-shadow: 0 0 15px var(--glow);
+    transform: translateY(-2px);
+  }
+  .nexus-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .nexus-node {
+    background: var(--bg-1);
+    border: 1px solid var(--border-glass, rgba(196,137,42,0.2));
+    padding: 1.2rem 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
+    overflow: hidden;
+    border-radius: 6px;
+  }
+  .nexus-node::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, var(--glow), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .nexus-node:hover::before, .nexus-node.active::before {
+    opacity: 1;
+  }
+  .nexus-node:hover, .nexus-node.active {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 8px 25px var(--glow);
+  }
+  .nexus-node.active {
+    border-color: var(--gold-bright);
+    background: var(--bg-2);
+  }
+  .nexus-node-glyph {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--gold-bright);
+  }
+  .nexus-node-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.95rem;
+    color: var(--parchment);
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  .nexus-node-sanskrit {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    opacity: 0.85;
+  }
+  .nexus-telemetry-card {
+    background: var(--bg-1);
+    border: 1.5px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    position: relative;
+    transition: all 0.4s ease;
+  }
+  .nexus-telemetry-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+  }
+  .nexus-telemetry-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .nexus-telemetry-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── ANVAYA TRANSMISSION CHAMBER ─────────────── */
+  #anvaya {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    position: relative;
+    padding: 6rem 2rem;
+  }
+  .anvaya-header {
+    text-align: center;
+    max-width: 850px;
+    margin: 0 auto 3rem;
+  }
+  .anvaya-verse-nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .anvaya-verse-btn {
+    background: var(--bg-1);
+    border: 1px solid var(--gold-dim);
+    color: var(--parch-mid);
+    padding: 0.85rem 1.6rem;
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 4px;
+  }
+  .anvaya-verse-btn:hover, .anvaya-verse-btn.active {
+    border-color: var(--gold-bright);
+    background: var(--gold-dim);
+    color: var(--parchment);
+    box-shadow: 0 0 20px var(--glow);
+  }
+  .anvaya-display-box {
+    background: var(--bg-1);
+    border: 1.5px solid var(--gold-dim);
+    border-radius: 8px;
+    padding: 3rem 2.5rem;
+    position: relative;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.5);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .anvaya-shloka-banner {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--gold-dim);
+    border-left: 4px solid var(--gold-bright);
+    padding: 1.8rem 2rem;
+    border-radius: 4px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+  }
+  .anvaya-shloka-devanagari {
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: clamp(1.3rem, 2.8vw, 1.9rem);
+    color: var(--gold-bright);
+    line-height: 1.8;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 20px var(--glow);
+  }
+  .anvaya-shloka-meter {
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.85rem;
+    color: var(--parch-dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  .anvaya-strata-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  @media (max-width: 900px) {
+    .anvaya-strata-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .anvaya-stratum-card {
+    background: var(--bg-2);
+    border: 1px solid var(--gold-dim);
+    border-radius: 6px;
+    padding: 1.8rem 1.4rem;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+  }
+  .anvaya-stratum-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--gold);
+  }
+  .anvaya-stratum-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 1.4rem;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 0.4rem;
+  }
+  .anvaya-stratum-title {
+    font-family: 'Cinzel', serif;
+    font-size: 1.05rem;
+    color: var(--gold-bright);
+    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+  }
+  .anvaya-stratum-body {
+    font-family: 'EB Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: var(--parch-mid);
+  }
+  .anvaya-stratum-body strong {
+    color: var(--parchment);
+  }
+  .anvaya-root-chip {
+    display: inline-block;
+    background: rgba(196,137,42,0.12);
+    border: 1px solid var(--gold-dim);
+    padding: 0.2rem 0.5rem;
+    border-radius: 3px;
+    font-family: 'Noto Serif Devanagari', serif;
+    font-size: 0.85rem;
+    color: var(--gold);
+    margin: 0.2rem;
+  }
+
+  /* ── TAPASYA DRONE BUTTON ─────────────────────── */
+  .drone-toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(196,137,42,0.1);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+  }
+  .drone-toggle-btn.playing {
+    background: var(--gold);
+    color: var(--bg-deep);
+    box-shadow: 0 0 15px var(--gold-bright);
+    animation: dronePulse 2s infinite ease-in-out;
+  }
+  @keyframes dronePulse {
+    0%, 100% { box-shadow: 0 0 10px var(--gold); }
+    50% { box-shadow: 0 0 25px var(--gold-bright); }
+  }
+
   /* ── BEGIN CTA ─────────────────────────────── */
   #begin {
     background: var(--bg-2);
@@ -1051,10 +1320,13 @@
 
 <!-- ═══════════════════════════════ THEMES ══════════════════════════════ -->
 <div class="theme-switcher">
-  <button class="theme-btn active" onclick="setTheme(this, 'theme-light')" aria-pressed="true" aria-label="Switch theme to Parchment">Parchment</button>
-  <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')">Fierce & Martial</button>
-  <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')">Earthy & Ancient</button>
-  <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')">Mystical & Ethereal</button>
+  <button class="theme-btn active" onclick="setTheme(this, 'theme-earthy')" aria-pressed="true" aria-label="Switch theme to Earthy & Ancient">Earthy & Ancient</button>
+  <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce & Martial">Fierce & Martial</button>
+  <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical & Ethereal">Mystical & Ethereal</button>
+  <button class="theme-btn" onclick="setTheme(this, 'theme-light')" aria-pressed="false" aria-label="Switch theme to Parchment">Parchment</button>
+  <button class="theme-btn drone-toggle-btn" id="droneToggleBtn" onclick="toggleTapasyaDrone()" aria-label="Toggle Sound of Tapasya" title="Sound of Tapasya (Acoustic 108Hz Drone)">
+    <span id="droneIcon">🔇</span> <span id="droneText">Tapasya Drone</span>
+  </button>
 </div>
 
 <!-- ═══════════════════════════════ HERO ════════════════════════════════ -->
@@ -1082,9 +1354,9 @@
 </section>
 </div>
 
-<!-- ═══════════════════════ COSMOLOGY BANNER ════════════════════════════ -->
-<section id="cosmology" aria-hidden="true">
-  <div class="cosmo-text-scroll">
+<!-- ═══════════════════════ COSMOLOGY BANNER & NEXUS ════════════════════════════ -->
+<section id="cosmology" aria-label="Sanatana Dharma Cosmology Nexus">
+  <div class="cosmo-text-scroll" aria-hidden="true">
     <span class="cosmo-item"><strong>Shad Darshanas</strong> &nbsp;·&nbsp; Six Visions of Reality</span>
     <span class="cosmo-item"><strong>Upanishads</strong> &nbsp;·&nbsp; The Final Knowledge</span>
     <span class="cosmo-item"><strong>Agamas</strong> &nbsp;·&nbsp; Sacred Living Transmission</span>
@@ -1099,6 +1371,34 @@
     <span class="cosmo-item"><strong>Śāstras</strong> &nbsp;·&nbsp; The Fierce Sciences</span>
     <span class="cosmo-item"><strong>Chiranjivis</strong> &nbsp;·&nbsp; The Immortal Energies</span>
     <span class="cosmo-item"><strong>Parashurama</strong> &nbsp;·&nbsp; The Warrior-Sage</span>
+  </div>
+
+  <div class="nexus-container reveal-block">
+    <div class="nexus-header">
+      <p class="section-eyebrow">ब्रह्माण्ड दर्शनम् · Sanatana Dharma Cosmology</p>
+      <h2 class="section-title">The Cosmic Shastra Nexus</h2>
+      <p class="section-body" style="max-width: 820px; margin: 0 auto;">
+        Vedic epistemology is an interconnected architecture of metaphysics, cognitive science, mathematical order, and martial discipline. Select any pillar below to inspect its foundational sūtra alongside its modern scientific isomorphism.
+      </p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="nexus-tabs" role="tablist">
+      <button class="nexus-tab-btn active" onclick="switchNexusTab('darshanas', this)" role="tab" aria-selected="true">Shad Darshanas (6 Visions)</button>
+      <button class="nexus-tab-btn" onclick="switchNexusTab('upanishads', this)" role="tab" aria-selected="false">Prasthānatrayī & Upanishads</button>
+      <button class="nexus-tab-btn" onclick="switchNexusTab('sciences', this)" role="tab" aria-selected="false">Agamas & Applied Shastras</button>
+      <button class="nexus-tab-btn" onclick="switchNexusTab('chiranjivis', this)" role="tab" aria-selected="false">Ashta Chiranjivis (Immortal Energies)</button>
+    </div>
+
+    <!-- Node Grid Container -->
+    <div class="nexus-grid" id="nexusGrid">
+      <!-- Dynamically generated via JS -->
+    </div>
+
+    <!-- Telemetry Display Card -->
+    <div class="nexus-telemetry-card" id="nexusTelemetry">
+      <!-- Dynamically generated via JS -->
+    </div>
   </div>
 </section>
 
@@ -1127,39 +1427,72 @@
   </div>
 </section>
 
+<!-- ══════════════════════════ ANVAYA TRANSMISSION CHAMBER ════════════════════ -->
+<section id="anvaya">
+  <div class="section-inner reveal-block">
+    <div class="anvaya-header">
+      <p class="section-eyebrow">पदच्छेद & अन्वय · Multi-Layered Transmission</p>
+      <h2 class="section-title">The Anvaya Translation Chamber</h2>
+      <p class="section-body">
+        We never translate sacred texts into watered-down, passive English summaries. Every transmission is uncoiled across four uncompromising strata—preserving untranslated core Sanskrit roots while mapping their precise isomorphisms to modern physics, thermodynamics, and cognitive sovereignty.
+      </p>
+    </div>
+
+    <!-- Verse Selector Tabs -->
+    <div class="anvaya-verse-nav">
+      <button class="anvaya-verse-btn active" onclick="switchAnvayaVerse(0, this)">🔱 Bhagavan Parashurama (Astra-Shastra)</button>
+      <button class="anvaya-verse-btn" onclick="switchAnvayaVerse(1, this)">🌌 Isha Upanishad 1 (Dynamic Field)</button>
+      <button class="anvaya-verse-btn" onclick="switchAnvayaVerse(2, this)">⚡ Vishnu Purana (The True Vidya)</button>
+    </div>
+
+    <!-- Live Transmission Display -->
+    <div class="anvaya-display-box" id="anvayaBox">
+      <!-- Populated dynamically via JS -->
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════════════════ DEDICATION TO BHAGAVAN PARASHURAMA ════════════════════ -->
 <section id="dedication" style="padding: 6rem 2rem; background: var(--bg-1); position: relative; overflow: hidden; border-top: 1px solid var(--border-glass); border-bottom: 1px solid var(--border-glass);">
   <div class="section-inner reveal-block" style="max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 4rem; align-items: center; justify-content: center;">
     <div class="dedication-graphic" style="flex: 1 1 320px; display: flex; justify-content: center; position: relative;">
       <!-- Axe and Bow Graphic in SVG -->
-      <svg viewBox="0 0 200 200" style="width: 100%; max-width: 280px; height: auto; filter: drop-shadow(0 0 25px rgba(200, 146, 42, 0.45));" aria-hidden="true">
-        <!-- Circular aura -->
-        <circle cx="100" cy="100" r="75" fill="none" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="4 8" opacity="0.6"/>
-        <circle cx="100" cy="100" r="68" fill="none" stroke="var(--gold-bright)" stroke-width="0.4" opacity="0.4"/>
+      <svg viewBox="0 0 200 200" style="width: 100%; max-width: 320px; height: auto; filter: drop-shadow(0 0 35px var(--glow));" aria-hidden="true">
+        <!-- Circular aura & Concentric Mandalas -->
+        <circle cx="100" cy="100" r="88" fill="none" stroke="var(--gold-dim)" stroke-width="0.5" stroke-dasharray="2 6" opacity="0.4"/>
+        <circle cx="100" cy="100" r="78" fill="none" stroke="var(--gold)" stroke-width="0.8" stroke-dasharray="4 8" opacity="0.6"/>
+        <circle cx="100" cy="100" r="68" fill="none" stroke="var(--gold-bright)" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="100" cy="100" r="58" fill="none" stroke="var(--accent)" stroke-width="0.3" stroke-dasharray="1 3" opacity="0.6"/>
+
+        <!-- Sacred Devanagari Rune Ring -->
+        <text x="100" y="24" text-anchor="middle" fill="var(--gold-bright)" font-size="7" font-family="'Noto Serif Devanagari', serif" opacity="0.75" letter-spacing="2">ॐ नमः परशुहस्ताय</text>
+        <text x="100" y="184" text-anchor="middle" fill="var(--gold)" font-size="7" font-family="'Noto Serif Devanagari', serif" opacity="0.75" letter-spacing="2">शापादपि शरादपि</text>
         
         <!-- Axe (Parashu) -->
         <g transform="translate(100, 100) rotate(-45) translate(-100, -100)">
           <!-- Handle -->
-          <line x1="100" y1="25" x2="100" y2="175" stroke="var(--gold)" stroke-width="4.5" stroke-linecap="round"/>
-          <line x1="100" y1="25" x2="100" y2="175" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="var(--gold)" stroke-width="4.5" stroke-linecap="round"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="var(--gold-bright)" stroke-width="1.5" stroke-linecap="round"/>
           <!-- Handle grip wrap details -->
-          <line x1="97" y1="140" x2="103" y2="140" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="97" y1="150" x2="103" y2="150" stroke="var(--accent)" stroke-width="1.5"/>
-          <line x1="97" y1="160" x2="103" y2="160" stroke="var(--accent)" stroke-width="1.5"/>
+          <line x1="96" y1="135" x2="104" y2="135" stroke="var(--accent)" stroke-width="1.8"/>
+          <line x1="96" y1="145" x2="104" y2="145" stroke="var(--accent)" stroke-width="1.8"/>
+          <line x1="96" y1="155" x2="104" y2="155" stroke="var(--accent)" stroke-width="1.8"/>
+          <line x1="96" y1="165" x2="104" y2="165" stroke="var(--accent)" stroke-width="1.8"/>
           <!-- Blade -->
-          <path d="M 100 60 C 135 55, 145 65, 140 100 C 145 135, 135 145, 100 140 Z" fill="rgba(196, 137, 42, 0.15)" stroke="var(--gold-bright)" stroke-width="2.5" stroke-linejoin="round"/>
-          <path d="M 100 75 C 122 72, 128 78, 125 100 C 128 122, 122 128, 100 125 Z" fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.7"/>
-          <!-- Axe sharp edge highlights -->
-          <path d="M 140 100 C 138 78, 128 66, 118 63" fill="none" stroke="#fff" stroke-width="0.8" opacity="0.7"/>
+          <path d="M 100 55 C 140 50, 155 62, 148 100 C 155 138, 140 150, 100 145 Z" fill="rgba(196, 137, 42, 0.2)" stroke="var(--gold-bright)" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M 100 72 C 126 68, 134 76, 130 100 C 134 124, 126 132, 100 128 Z" fill="none" stroke="var(--gold)" stroke-width="0.8" opacity="0.8"/>
+          <!-- Axe sharp edge highlights with radiant white crest -->
+          <path d="M 148 100 C 145 74, 134 60, 120 57" fill="none" stroke="#fff" stroke-width="1.2" opacity="0.85"/>
+          <circle cx="100" cy="100" r="4" fill="var(--gold-bright)"/>
         </g>
 
         <!-- Bow (Dhanus) -->
         <g transform="translate(100, 100) rotate(45) translate(-100, -100)">
           <!-- Bow body -->
-          <path d="M 50 100 Q 100 35 150 100" fill="none" stroke="var(--gold)" stroke-width="3" stroke-linecap="round"/>
-          <path d="M 50 100 Q 100 35 150 100" fill="none" stroke="var(--gold-bright)" stroke-width="1" stroke-linecap="round" opacity="0.8"/>
+          <path d="M 45 100 Q 100 28 155 100" fill="none" stroke="var(--gold)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M 45 100 Q 100 28 155 100" fill="none" stroke="var(--gold-bright)" stroke-width="1.2" stroke-linecap="round" opacity="0.9"/>
           <!-- String -->
-          <line x1="48" y1="99" x2="152" y2="99" stroke="rgba(255, 255, 255, 0.4)" stroke-width="0.6"/>
+          <line x1="43" y1="99" x2="157" y2="99" stroke="rgba(255, 255, 255, 0.55)" stroke-width="0.8"/>
         </g>
       </svg>
     </div>
@@ -1777,9 +2110,497 @@ function setTheme(btnElement, themeName) {
   }
 }
 
-// Load persisted theme on start
-const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+// Load persisted theme on start (Defaults to Earthy & Ancient)
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-earthy';
 setTheme(null, initialTheme);
+
+/* ──────────────────────────────────────────────────────────
+   COSMIC SHASTRA NEXUS DATA & INTERACTION
+──────────────────────────────────────────────────────────── */
+const NEXUS_DATA = {
+  darshanas: [
+    {
+      name: "Sāṃkhya",
+      sanskrit: "सांख्य दर्शनम्",
+      rishi: "Kapila Muni",
+      glyph: "⚛️",
+      sutra: "सत्त्वरजस्तमसां साम्यावस्था प्रकृतिः प्रकृतेर्महान्...",
+      science: "Quantum Field Theory & The Measurement Observer",
+      analysis: "Sāṃkhya establishes the fundamental dual-aspect split between Prakṛti (unconscious thermodynamic mass-energy matrix) and Puruṣa (pure conscious observer). Modern physics encounters this exact boundary in the observer effect—wavefunction collapse requires the interaction of an observation node with the quantum continuum.",
+      pathUrl: "course_hub.html?track=samkhya"
+    },
+    {
+      name: "Nyāya",
+      sanskrit: "न्याय दर्शनम्",
+      rishi: "Akṣapāda Gautama",
+      glyph: "⚖️",
+      sutra: "प्रमाणप्रमेयसंशयप्रयोजनदृष्टान्तसिद्धान्तावयवतर्क...",
+      science: "Formal Epistemology & Automated Proof Verification",
+      analysis: "Nyāya establishes the 16 Pramāṇas (epistemic instruments of valid cognition). Long before European scholastic logic, Nyāya formulated the five-membered syllogism (Pañcāvayava) that forms the mathematical ancestor to modern automated theorem provers and computational proof theory.",
+      pathUrl: "course_hub.html?track=nyaya"
+    },
+    {
+      name: "Vaiśeṣika",
+      sanskrit: "वैशेषिक दर्शनम्",
+      rishi: "Kaṇāda Muni",
+      glyph: "🔬",
+      sutra: "सदकारणवन्नित्यम् । तस्य कार्यं लिङ्गम् ।",
+      science: "Discrete Particle Physics & Conservation Laws",
+      analysis: "Kaṇāda defined the Paramāṇu (indivisible discrete quantum of matter) which cannot be created or destroyed. Vaiśeṣika categorizes reality into Padārthas (categories of existence) and describes heat-induced chemical/alchemical transformation (Pīlupāka) identical to thermodynamics.",
+      pathUrl: "course_hub.html?track=vaisheshika"
+    },
+    {
+      name: "Yoga",
+      sanskrit: "योग दर्शनम्",
+      rishi: "Patañjali",
+      glyph: "🧘",
+      sutra: "योगश्चित्तवृत्तिनिरोधः । तदा द्रष्टुः स्वरूपेऽवस्थानम् ।",
+      science: "Neuro-Plastic Regulation & Attentional Control",
+      analysis: "Yoga is the rigorous empirical laboratory of internal consciousness. By decelerating default mode network (DMN) rumination through Citta-Vṛtti-Nirodha, the seeker shifts neural oscillatory patterns from chaotic high-beta distress into coherent alpha-theta sovereign witness consciousness.",
+      pathUrl: "course_hub.html?track=yoga"
+    },
+    {
+      name: "Mīmāṃsā",
+      sanskrit: "मीमांसा दर्शनम्",
+      rishi: "Jaimini",
+      glyph: "🔔",
+      sutra: "अथातो धर्मजिज्ञासा । चोदनालक्षणोऽर्थो धर्मः ।",
+      science: "Acoustic Resonance & Information Hermeneutics",
+      analysis: "Mīmāṃsā analyzes the immutable physics of vibration (Śabda-Brahma). It reveals that sound frequencies and geometric mantras generate standing wave patterns (cymatics) capable of structurally reorganizing physiological, cognitive, and spatial energetic states.",
+      pathUrl: "course_hub.html?track=mimamsa"
+    },
+    {
+      name: "Vedānta",
+      sanskrit: "वेदान्त दर्शनम्",
+      rishi: "Bādarāyaṇa / Ādi Śaṅkara",
+      glyph: "🌌",
+      sutra: "अथातो ब्रह्मजिज्ञासा । जन्माद्यस्य यतः ।",
+      science: "Unified Non-Local Ground State & Holographic Principle",
+      analysis: "Vedānta establishes Advaita (radical non-duality). Consciousness is not an emergent byproduct of wet neurological matter, but the fundamental non-local field (Brahman) from which relativistic space-time and matter condense.",
+      pathUrl: "course_hub.html?track=vedanta"
+    }
+  ],
+  upanishads: [
+    {
+      name: "Īśāvāsya",
+      sanskrit: "ईशावास्योपनिषद्",
+      rishi: "Yājñavalkya Lineage",
+      glyph: "⚡",
+      sutra: "ईशा वास्यमिदं सर्वं यत्किञ्च जगत्यां जगत् ।",
+      science: "Mass-Energy Flux & Non-Clinging Thermodynamics",
+      analysis: "Establishes that the universe is in constant vibrational oscillation (Jagat). Matter and energy are dynamic and cannot be possessed; true sovereignty lies in utilizing energy without thermodynamic friction (Tyāga).",
+      pathUrl: "interactive_lesson.html?lesson=isha"
+    },
+    {
+      name: "Kaṭha",
+      sanskrit: "कठोपनिषद्",
+      rishi: "Yama & Naciketā",
+      glyph: "🏹",
+      sutra: "आत्मानं रथिनं विद्धि शरीरं रथमेव तु...",
+      science: "Cognitive Executive Architecture & The Observer",
+      analysis: "The Chariot metaphor: The senses are horses, the mind is the reins, intellect (Buddhi) is the charioteer, and the Ātman is the sovereign rider. Matches modern cognitive neuroscience models of executive self-regulation.",
+      pathUrl: "interactive_lesson.html?lesson=katha"
+    },
+    {
+      name: "Māṇḍūkya",
+      sanskrit: "माण्डूक्योपनिषद्",
+      rishi: "Varuṇa Lineage",
+      glyph: "🌀",
+      sutra: "सर्वं ह्येतद् ब्रह्म अयमात्मा ब्रह्म सोऽयमात्मा चतुष्पात् ।",
+      science: "The 4 Strata of Conscious States (EEG Spectrum)",
+      analysis: "Examines the 4 states of reality: Jāgrat (Beta/waking), Svapna (Theta-REM/dream), Suṣupti (Delta/deep sleep), and Turīya (The unconditioned observer). Validated by electroencephalographic brainwave synchronization.",
+      pathUrl: "interactive_lesson.html?lesson=mandukya"
+    },
+    {
+      name: "Taittirīya",
+      sanskrit: "तैत्तिरीयोपनिषद्",
+      rishi: "Tittiri",
+      glyph: "🧬",
+      sutra: "स वा एष पुरुषोऽन्नरसमयः...",
+      science: "Nested Thermodynamic Hierarchies (Pañca-Kośa)",
+      analysis: "Maps human existence across 5 concentric energy sheaths: physical-metabolic (Annamaya), bio-pranic (Prāṇamaya), cognitive-sensory (Manomaya), higher-intellectual (Vijñānamaya), and pure bliss (Ānandamaya).",
+      pathUrl: "interactive_lesson.html?lesson=taittiriya"
+    }
+  ],
+  sciences: [
+    {
+      name: "Vāstu Vidyā",
+      sanskrit: "वास्तु शास्त्रम्",
+      rishi: "Maya & Viśvakarmā",
+      glyph: "📐",
+      sutra: "वास्तुशास्त्रं प्रवक्ष्यामि लोकानां हितकाम्यया...",
+      science: "Bio-Harmonic Spatial Thermodynamics",
+      analysis: "Aligns human architecture with Earth's magnetic flux, solar radiation angles, and geometric wave harmonics through the 81-grid Vastu Purusha Mandala and Ayādi dimensional formulas.",
+      pathUrl: "pillar_hub.html#pillar1"
+    },
+    {
+      name: "Rasa Śāstra",
+      sanskrit: "रस शास्त्रम्",
+      rishi: "Siddha Bhogar & Nāgārjuna",
+      glyph: "⚗️",
+      sutra: "यथा लोहे तथा देहे कर्तव्यः सूतको बुधैः...",
+      science: "Bio-Inorganic Metallurgy & Nanomedicine",
+      analysis: "The alchemy of mercury (Parada) and herbs to synthesize calcified nano-metallic ashes (Bhasmas). Demonstrates high-temperature metallurgical stability and cellular bioavailability.",
+      pathUrl: "pillar_hub.html#pillar3"
+    },
+    {
+      name: "Vimāna Śāstra",
+      sanskrit: "विमान शास्त्रम्",
+      rishi: "Maharṣi Bharadvāja",
+      glyph: "🛸",
+      sutra: "वेगसाम्याद्विमानं स्याद् व्योमयानाद्धि मानतः...",
+      science: "Advanced Propulsion & Atmospheric Aerodynamics",
+      analysis: "Details mechanical structures, multi-layered alloy casings (Lohas), and vortex-based motive propulsion principles recorded in ancient engineering manuscripts.",
+      pathUrl: "pillar_hub.html#pillar2"
+    },
+    {
+      name: "Astra Vidyā",
+      sanskrit: "अस्त्र विद्या",
+      rishi: "Bhagavān Paraśurāma",
+      glyph: "🔱",
+      sutra: "अग्रतः चतुरो वेदाः पृष्ठतः सशरं धनुः...",
+      science: "Ballistic Trajectories, Focus, & Defensive Sovereignty",
+      analysis: "The rigorous martial discipline of Dhanurveda and Kalaripayattu. Teaches 108 marmas (vital bio-energetic strike points) and sovereign kinetic defense governed by absolute ethical restraint.",
+      pathUrl: "pillar_hub.html#pillar3"
+    }
+  ],
+  chiranjivis: [
+    {
+      name: "Paraśurāma",
+      sanskrit: "भगवान् परशुरामः",
+      rishi: "6th Avatāra of Viṣṇu",
+      glyph: "🪓",
+      sutra: "ॐ नमो भगवते परशुरामाय नमः",
+      science: "Brahma-Kshatra Synthesis & Sovereign Tapasya",
+      analysis: "Supreme master of both scriptural intellect (Śāstra) and martial mastery (Śastra). He hurled His divine axe into the sea to reclaim and consecrate the western coastlines. The patron warrior-sage of our platform.",
+      pathUrl: "#dedication"
+    },
+    {
+      name: "Hanumān",
+      sanskrit: "महावीर हनुमान्",
+      rishi: "Rudra Avatāra",
+      glyph: "🔥",
+      sutra: "मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम्...",
+      science: "Bio-Energetic Mastery & Ashta Siddhis",
+      analysis: "The embodiment of perfected Prāṇāyāma, cognitive velocity, and uncompromising loyalty to Dharma. Holds mastery over the 8 mystical perfections (Aṇimā, Mahimā, etc.).",
+      pathUrl: "pillar_hub.html#pillar3"
+    },
+    {
+      name: "Vyāsa",
+      sanskrit: "वेदव्यासः",
+      rishi: "Bādarāyaṇa",
+      glyph: "📜",
+      sutra: "नमोऽस्तु ते व्यास विशालबुद्धे...",
+      science: "Information Architecture & Unified Compilation",
+      analysis: "Codified the fourfold Vedas, authored the Mahābhārata and Brahma Sūtras. Represents the ultimate intellectual discipline of information structuring across civilizational eras.",
+      pathUrl: "pillar_hub.html#pillar2"
+    },
+    {
+      name: "Mārkaṇḍeya",
+      sanskrit: "मार्कण्डेय ऋषिः",
+      rishi: "Mṛkaṇḍu Putra",
+      glyph: "⏳",
+      sutra: "त्र्यम्बकं यजामहे सुगन्धिं पुष्टिवर्धनम्...",
+      science: "Conquest of Time & Biological Regeneration",
+      analysis: "Conquered biological death at age 16 through unwavering devotion to Mahādeva and the transmission of the Mahāmṛtyuñjaya mantra. The embodiment of perpetual youth through Tapasya.",
+      pathUrl: "pillar_hub.html#pillar1"
+    }
+  ]
+};
+
+let currentNexusTab = 'darshanas';
+let currentNexusNode = 0;
+
+function switchNexusTab(tabKey, btn) {
+  currentNexusTab = tabKey;
+  currentNexusNode = 0;
+  document.querySelectorAll('.nexus-tab-btn').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-selected', 'false');
+  });
+  if (btn) {
+    btn.classList.add('active');
+    btn.setAttribute('aria-selected', 'true');
+  }
+  renderNexusGrid();
+}
+
+function selectNexusNode(index) {
+  currentNexusNode = index;
+  document.querySelectorAll('.nexus-node').forEach((node, idx) => {
+    node.classList.toggle('active', idx === index);
+  });
+  renderNexusTelemetry();
+}
+
+function renderNexusGrid() {
+  const container = document.getElementById('nexusGrid');
+  if (!container) return;
+  const nodes = NEXUS_DATA[currentNexusTab] || [];
+  container.innerHTML = nodes.map((node, i) => `
+    <div class="nexus-node ${i === currentNexusNode ? 'active' : ''}" onclick="selectNexusNode(${i})">
+      <span class="nexus-node-glyph">${node.glyph}</span>
+      <div class="nexus-node-name">${node.name}</div>
+      <div class="nexus-node-sanskrit">${node.sanskrit}</div>
+    </div>
+  `).join('');
+  renderNexusTelemetry();
+}
+
+function renderNexusTelemetry() {
+  const card = document.getElementById('nexusTelemetry');
+  if (!card) return;
+  const node = (NEXUS_DATA[currentNexusTab] || [])[currentNexusNode];
+  if (!node) return;
+
+  card.innerHTML = `
+    <div class="nexus-telemetry-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:0.5rem;">
+          <span style="font-size:1.8rem;">${node.glyph}</span>
+          <div>
+            <h3 style="font-family:'Cinzel Decorative',serif; font-size:1.4rem; color:var(--gold-bright); margin:0;">${node.name}</h3>
+            <div style="font-family:'Noto Serif Devanagari',serif; font-size:0.95rem; color:var(--gold);">${node.sanskrit} &nbsp;·&nbsp; ${node.rishi}</div>
+          </div>
+        </div>
+        <div style="background:rgba(0,0,0,0.3); border-left:3px solid var(--gold); padding:1rem 1.2rem; border-radius:4px; margin:1.2rem 0; font-family:'Noto Serif Devanagari',serif; font-size:1.05rem; color:var(--parchment); line-height:1.6;">
+          ${node.sutra}
+        </div>
+        <div style="display:flex; gap:1rem; align-items:center; margin-top:1.5rem;">
+          <a href="${node.pathUrl}" class="btn-primary" style="padding:0.6rem 1.4rem; font-size:0.85rem;">Enter Curriculum</a>
+          <span style="font-family:'Outfit',sans-serif; font-size:0.85rem; color:var(--parch-dim);">Verified Shastric Lineage</span>
+        </div>
+      </div>
+      <div>
+        <div style="font-family:'Cinzel',serif; font-size:0.85rem; letter-spacing:0.15em; color:var(--gold-bright); text-transform:uppercase; margin-bottom:0.4rem;">
+          Modern Scientific Isomorphism
+        </div>
+        <h4 style="font-family:'Outfit',sans-serif; font-size:1.15rem; color:var(--parchment); margin-bottom:1rem; font-weight:600;">
+          ${node.science}
+        </h4>
+        <p style="font-family:'EB Garamond',serif; font-size:1.1rem; line-height:1.75; color:var(--parch-mid); margin:0;">
+          ${node.analysis}
+        </p>
+      </div>
+    </div>
+  `;
+}
+
+/* ──────────────────────────────────────────────────────────
+   ANVAYA TRANSMISSION CHAMBER DATA & LOGIC
+──────────────────────────────────────────────────────────── */
+const ANVAYA_DATA = [
+  {
+    title: "Bhagavan Parashurama (Astra-Shastra Synthesis)",
+    devanagari: "अग्रतः चतुरो वेदाः पृष्ठतः सशरं धनुः ।<br>इदं ब्राह्मम् इदं क्षात्रं शापादपि शरादपि ॥",
+    meter: "अनुष्टुप् छन्दः · 32 Syllable Metric Cadence",
+    strata: [
+      {
+        num: "I",
+        title: "Anvaya & Root Preservation",
+        body: `
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">अग्रतः</span> <strong>Agraḥ:</strong> At the vanguard / forefront of civilization.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">चतुरो वेदाः</span> <strong>Caturaḥ Vedāḥ:</strong> The fourfold epistemological knowledge foundations.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">पृष्ठतः</span> <strong>Pṛṣṭhataḥ:</strong> At the rear / defense perimeter.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">सशरं धनुः</span> <strong>Saśaram Dhanuḥ:</strong> The armed bow with nocked arrow.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">ब्राह्मम्</span> <strong>Brāhmam:</strong> Intellectual illumination & spiritual tapas.</div>
+          <div><span class="anvaya-root-chip">क्षात्रम्</span> <strong>Kṣātram:</strong> Dynamic martial power & righteous kinetic force.</div>
+        `
+      },
+      {
+        num: "II",
+        title: "Modern Scientific Isomorphism",
+        body: `
+          <strong>Information-Theoretic Stability & Nash Equilibrium:</strong> Pure knowledge without defensive sovereign capability suffers immediate entropy loss under adversarial pressure. Pure physical violence without epistemic governance degenerates into chaotic ruin. Parashurama models the thermodynamically stable equilibrium: supreme intellectual computation governing unyielding defensive capability.
+        `
+      },
+      {
+        num: "III",
+        title: "Sovereign Living Realization",
+        body: `
+          <strong>No Cowardice Disguised as Peace:</strong> You are not permitted to cower in passive retreat and call it spirituality. Master the Shastras so your mind cannot be deceived; hone your discipline like hardened steel so Dharma cannot be extinguished. Ready by sovereign will, and ready by righteous action.
+        `
+      }
+    ]
+  },
+  {
+    title: "Isha Upanishad (Dynamic Field & Conservation)",
+    devanagari: "ईशा वास्यमिदꣲ सर्वं यत्किञ्च जगत्यां जगत् ।<br>तेन त्यक्तेन भुञ्जीथा मा गृधः कस्यस्विद्धनम् ॥",
+    meter: "शुक्ल यजुर्वेद संहिता ४०.१ (Śukla Yajurveda 40.1)",
+    strata: [
+      {
+        num: "I",
+        title: "Anvaya & Root Preservation",
+        body: `
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">ईशा</span> <strong>Īśā:</strong> By the Sovereign Supreme Consciousness.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">वास्यम्</span> <strong>Vāsyam:</strong> Inhabited, pervaded, and enveloped.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">जगत्</span> <strong>Jagat:</strong> That which is in perpetual vibrational oscillation.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">त्यक्तेन</span> <strong>Tyaktena:</strong> Through cognitive disidentification of ownership.</div>
+          <div><span class="anvaya-root-chip">भुञ्जीथाः</span> <strong>Bhuñjīthāḥ:</strong> Partake and experience existence with sovereign joy.</div>
+        `
+      },
+      {
+        num: "II",
+        title: "Modern Scientific Isomorphism",
+        body: `
+          <strong>Mass-Energy Equivalence ($E=mc^2$) & Field Conservation:</strong> The Sanskrit root <em>Jagat</em> literally denotes continuous vibrational flux. Modern quantum field theory confirms matter is simply localized excitation of the underlying universal field. Attempting to possess an oscillating wave creates thermodynamic friction (entropy). Detachment (<em>Tyāga</em>) is alignment with energy conservation.
+        `
+      },
+      {
+        num: "III",
+        title: "Sovereign Living Realization",
+        body: `
+          <strong>The Non-Clinging Sovereign:</strong> You are an active conscious node in a self-sustaining cosmic ocean. Walk through the world with supreme joy and zero attachment. You cannot hoard what was never yours, and you cannot lose what you already are.
+        `
+      }
+    ]
+  },
+  {
+    title: "Vishnu Purana (The Definition of Vidya)",
+    devanagari: "तत्कर्म यन्न बन्धाय सा विद्या या विमुक्तये ।<br>आयासायापरं कर्म विद्यान्या शिल्पनैपुणम् ॥",
+    meter: "विष्णु पुराण १.१९.४१ (Viṣṇu Purāṇa 1.19.41)",
+    strata: [
+      {
+        num: "I",
+        title: "Anvaya & Root Preservation",
+        body: `
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">तत्कर्म</span> <strong>Tat Karma:</strong> That alone constitutes true action.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">न बन्धाय</span> <strong>Na Bandhāya:</strong> Which does not forge psychological bondage.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">सा विद्या</span> <strong>Sā Vidyā:</strong> That alone is authentic knowledge/science.</div>
+          <div style="margin-bottom:0.5rem;"><span class="anvaya-root-chip">विमुक्तये</span> <strong>Vimuktaye:</strong> Which directly achieves liberation of awareness.</div>
+          <div><span class="anvaya-root-chip">शिल्पनैपुणम्</span> <strong>Śilpa-Naipuṇam:</strong> Mere mechanical technique or vocational craft.</div>
+        `
+      },
+      {
+        num: "II",
+        title: "Modern Scientific Isomorphism",
+        body: `
+          <strong>Cognitive Extraction Loops vs Meta-Awareness:</strong> Modern educational conditioning trains neural patterns for economic extraction (vocational dexterity / <em>Śilpa-Naipuṇam</em>), binding human agency to dopamine reward loops. Authentic Vidya restructures the meta-cognitive architecture of the mind, decoupling the observer from systemic conditioning.
+        `
+      },
+      {
+        num: "III",
+        title: "Sovereign Living Realization",
+        body: `
+          <strong>Rejecting the Decorated Cage:</strong> Refuse to mistake specialized craft for wisdom. If your education does not break your existential fear, sharpen your intellect, and set your spirit free, you have only acquired a more gilded set of shackles.
+        `
+      }
+    ]
+  }
+];
+
+let currentAnvayaVerse = 0;
+
+function switchAnvayaVerse(index, btn) {
+  currentAnvayaVerse = index;
+  document.querySelectorAll('.anvaya-verse-btn').forEach((b, i) => {
+    b.classList.toggle('active', i === index);
+  });
+  renderAnvayaBox();
+}
+
+function renderAnvayaBox() {
+  const box = document.getElementById('anvayaBox');
+  if (!box) return;
+  const verse = ANVAYA_DATA[currentAnvayaVerse];
+  if (!verse) return;
+
+  box.innerHTML = `
+    <div class="anvaya-shloka-banner">
+      <div class="anvaya-shloka-devanagari">${verse.devanagari}</div>
+      <div class="anvaya-shloka-meter">${verse.meter}</div>
+    </div>
+    <div class="anvaya-strata-grid">
+      ${verse.strata.map(st => `
+        <div class="anvaya-stratum-card">
+          <div class="anvaya-stratum-num">Stratum ${st.num}</div>
+          <h3 class="anvaya-stratum-title">${st.title}</h3>
+          <div class="anvaya-stratum-body">${st.body}</div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+/* ──────────────────────────────────────────────────────────
+   TAPASYA DRONE (SYNTHETIC WEBAUDIO DRONE)
+──────────────────────────────────────────────────────────── */
+let audioCtx = null;
+let droneGain = null;
+let droneOscs = [];
+let isDronePlaying = false;
+
+function toggleTapasyaDrone() {
+  const btn = document.getElementById('droneToggleBtn');
+  const icon = document.getElementById('droneIcon');
+  const text = document.getElementById('droneText');
+
+  if (!isDronePlaying) {
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      droneGain = audioCtx.createGain();
+      droneGain.gain.setValueAtTime(0.001, audioCtx.currentTime);
+      droneGain.gain.exponentialRampToValueAtTime(0.18, audioCtx.currentTime + 2);
+
+      // Low-pass warm filter
+      const filter = audioCtx.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(450, audioCtx.currentTime);
+
+      droneGain.connect(filter);
+      filter.connect(audioCtx.destination);
+
+      // Harmonics: 108Hz (fundamental Sa), 162Hz (perfect 5th Pa), 216Hz (octave Sa)
+      const freqs = [108, 162, 216];
+      droneOscs = freqs.map((f, i) => {
+        const osc = audioCtx.createOscillator();
+        osc.type = i === 1 ? 'sine' : 'triangle';
+        osc.frequency.setValueAtTime(f, audioCtx.currentTime);
+        osc.detune.setValueAtTime((i - 1) * 3, audioCtx.currentTime);
+        osc.connect(droneGain);
+        osc.start();
+        return osc;
+      });
+
+      isDronePlaying = true;
+      if (btn) btn.classList.add('playing');
+      if (icon) icon.textContent = '🔊';
+      if (text) text.textContent = 'Tapasya Drone Active';
+    } catch (e) {
+      console.warn("WebAudio drone could not initialize:", e);
+    }
+  } else {
+    if (droneGain && audioCtx) {
+      droneGain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 1.2);
+      setTimeout(() => {
+        droneOscs.forEach(o => { try { o.stop(); o.disconnect(); } catch (e) {} });
+        droneOscs = [];
+        isDronePlaying = false;
+      }, 1250);
+    } else {
+      isDronePlaying = false;
+    }
+    if (btn) btn.classList.remove('playing');
+    if (icon) icon.textContent = '🔇';
+    if (text) text.textContent = 'Tapasya Drone';
+  }
+}
+
+// Initialise Nexus and Anvaya on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  renderNexusGrid();
+  renderAnvayaBox();
+});
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  renderNexusGrid();
+  renderAnvayaBox();
+}
 
 // Custom Cursor Logic
 const cursor = document.getElementById('cursor');
