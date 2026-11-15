@@ -825,14 +825,23 @@
     <a href="gift_wisdom.html" class="nav-btn">Gift Wisdom</a>
     <a href="about.html" class="nav-btn">About</a>
     <a href="admin.html" class="nav-btn admin-tab">Admin</a>
-    <div style="display:flex; gap: 8px; margin-left: 10px;">
-      <button class="theme-btn" onclick="setTheme(this, 'theme-light')">Parchment</button>
+    <div style="display:flex; gap: 8px; margin-left: 10px; align-items:center;">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="true" aria-label="Switch theme to Earthy">Earthy</button>
       <button class="theme-btn" onclick="setTheme(this, 'theme-fierce')" aria-pressed="false" aria-label="Switch theme to Fierce">Fierce</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-earthy')" aria-pressed="false" aria-label="Switch theme to Earthy">Earthy</button>
-      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Myst<div class="sanctum-wrapper">
+      <button class="theme-btn" onclick="setTheme(this, 'theme-mystical')" aria-pressed="false" aria-label="Switch theme to Mystical">Mystical</button>
+      <button class="theme-btn" onclick="setTheme(this, 'theme-light')" aria-pressed="false" aria-label="Switch theme to Parchment">Parchment</button>
+      <button class="theme-btn drone-toggle-btn" id="droneToggleBtn" onclick="toggleTapasyaDrone()" aria-label="Toggle Sangeetam Shruti" title="Sangeetam Shruti (Classical Tanpura 2 Kattai / D)">
+        <span id="droneIcon">🔇</span> <span id="droneText">Shruti</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="sanctum-wrapper">
   <!-- Mode selector tabs -->
   <div class="dashboard-mode-tabs">
     <button class="mode-tab active" onclick="switchSannidhiMode(this, 'chat')">🔮 Socratic Chat</button>
+    <button class="mode-tab" onclick="switchSannidhiMode(this, 'journal')">📜 Digital Journal (Sādhanā)</button>
     <button class="mode-tab" onclick="switchSannidhiMode(this, 'wisdom')">📚 Wisdom Hub</button>
     <button class="mode-tab" onclick="switchSannidhiMode(this, 'glossary')">📖 Sanskrit Glossary</button>
   </div>
@@ -844,6 +853,58 @@
       <button class="tab" onclick="switchPillar(this, 'rājya')">Rājya Palanam (Governance)</button>
       <button class="tab" onclick="switchPillar(this, 'yuddham')">Yuddham (Action)</button>
     </div>
+
+    <!-- Grahana-Dharana Shakti Seeker Status Banner -->
+    <div class="grahana-telemetry-banner" style="background: var(--bg-glass); border: 1.5px solid var(--border-glass); border-radius: 12px; padding: 1.2rem 1.6rem; margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div style="display: flex; align-items: center; gap: 14px;">
+        <div style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-secondary); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; border: 1.5px solid var(--gold-bright); box-shadow: 0 0 15px var(--glow);" id="seekerRankBadge">
+          🌱
+        </div>
+        <div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.8rem; letter-spacing: 0.15em; color: var(--gold-bright); text-transform: uppercase;">Gurukulam Adhikāra (Stage)</div>
+          <div style="font-family: 'Cinzel Decorative', serif; font-size: 1.25rem; color: var(--text-primary); font-weight: 700;" id="seekerRankText">Mumukṣu (मुमुक्षु · Level 1)</div>
+        </div>
+      </div>
+      
+      <!-- Live Metrics -->
+      <div style="display: flex; gap: 2rem; align-items: center; flex-wrap: wrap;">
+        <div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Grahana Śakti (Grasp)</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 100px; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; border: 1px solid var(--border-glass);">
+              <div id="grahanaMeterBar" style="width: 60%; height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-bright)); transition: width 0.5s ease;"></div>
+            </div>
+            <span id="grahanaScoreText" style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: var(--gold-bright); font-weight: 600;">60%</span>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 4px;">Dhāraṇa Śakti (Retention)</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="width: 100px; height: 8px; background: rgba(0,0,0,0.4); border-radius: 4px; overflow: hidden; border: 1px solid var(--border-glass);">
+              <div id="dharanaMeterBar" style="width: 50%; height: 100%; background: linear-gradient(90deg, var(--accent), var(--gold)); transition: width 0.5s ease;"></div>
+            </div>
+            <span id="dharanaScoreText" style="font-family: 'Outfit', sans-serif; font-size: 0.85rem; color: var(--gold-bright); font-weight: 600;">50%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Guru's Mirror Trigger Banner (Hidden by default, emerges on ego detection) -->
+    <div id="gurus-mirror-alert" style="display: none; background: rgba(181, 42, 42, 0.15); border: 1.5px solid var(--accent); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+        <span style="font-size: 1.4rem;">🪞</span>
+        <h4 style="font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-bright); margin: 0;">The Guru's Mirror (गुरु-दर्पणम्)</h4>
+        <span style="margin-left: auto; font-family: 'Outfit', sans-serif; font-size: 0.75rem; background: rgba(255, 77, 77, 0.2); padding: 3px 8px; border-radius: 10px; color: var(--gold-bright); text-transform: uppercase;">Private Ego Reflection</span>
+      </div>
+      <p style="font-family: 'Noto Serif Devanagari', serif; font-size: 1.15rem; color: var(--text-primary); margin: 0.8rem 0; line-height: 1.6; text-align: center;" id="mirrorVerseSanskrit">
+        यदा किञ्चिज्ज्ञोऽहं द्विप इव मदान्धः समभवम् । तदा सर्वज्ञोऽस्मीत्यभवदवलिप्तं मम मनः ॥
+      </p>
+      <p style="font-family: 'EB Garamond', serif; font-size: 1rem; color: var(--text-muted); font-style: italic; margin: 0; text-align: center;" id="mirrorVerseMeaning">
+        "When I knew only a little, I was blinded by vanity like an elephant in rut; but when in the presence of the wise, my delusion vanished like a fever." — Nīti Śatakam 8
+      </p>
+    </div>
+
     <div class="glass-card" id="content-card">
       <div class="shloka-sanskrit" id="shloka-sanskrit-box">
         कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br>
@@ -894,6 +955,55 @@
           <p><strong>Privacy:</strong> Your reflections are stored locally and on our server. They are never shared with third parties or used for model training.</p>
           <p><strong>Integrity:</strong> All content is verified against traditional Sanskrit systems (Vyākaraṇa and Uccāraṇa).</p>
         </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- Digital Journal View (Sādhanā Patrikā) -->
+  <div id="sannidhi-journal-view" style="display: none;">
+    <div class="glass-card" style="padding: 2.5rem 2rem;">
+      <div class="hub-header" style="text-align: center; margin-bottom: 2rem;">
+        <p class="section-eyebrow" style="color: var(--accent); font-family: 'Cinzel', serif; font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase;">साधना पत्रिका · Digital Inward Journal</p>
+        <h2 class="page-title" style="font-family: 'Cinzel Decorative', serif; font-size: 2.2rem; color: var(--gold-bright); margin-bottom: 0.5rem;">Sādhanā Reflection Journal</h2>
+        <p style="font-family: 'EB Garamond', serif; font-size: 1.15rem; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.7;">
+          Capture your deep realizations, doubts, and Ganita calculations. Privacy as Dharma: Every entry remains on your private altar unless explicitly offered to the Sangha.
+        </p>
+      </div>
+
+      <!-- Journal Entry Composer -->
+      <div style="background: rgba(0,0,0,0.3); border: 1.5px solid var(--border-glass); border-radius: 12px; padding: 2rem; margin-bottom: 2.5rem;">
+        <div style="display: flex; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
+          <select id="journalPillarSelect" style="background: var(--bg-secondary); border: 1px solid var(--border-glass); color: var(--text-primary); padding: 0.6rem 1rem; border-radius: 6px; font-family: 'Outfit', sans-serif;">
+            <option value="nagara">Pillar I: Nagara Nirmāṇa (Vāstu & Sacred Space)</option>
+            <option value="rājya">Pillar II: Rājya Pālanam (Governance & Darśanas)</option>
+            <option value="yuddham">Pillar III: Yuddham (Martial Tapasya & Action)</option>
+            <option value="upanishad">Brahmavidyā: Upanishadic Realization</option>
+            <option value="general">Antar-Vicāra (General Contemplation)</option>
+          </select>
+          <input type="text" id="journalTitleInput" placeholder="Reflection title or shloka reference..." style="flex: 1; min-width: 200px; background: var(--bg-secondary); border: 1px solid var(--border-glass); color: var(--text-primary); padding: 0.6rem 1rem; border-radius: 6px; font-family: 'Outfit', sans-serif;">
+        </div>
+
+        <textarea id="journalBodyInput" placeholder="Write your reflection here. Sincerity and Viveka are evaluated..." style="width: 100%; min-height: 140px; background: var(--bg-secondary); border: 1px solid var(--border-glass); color: var(--text-primary); padding: 1rem; border-radius: 8px; font-family: 'EB Garamond', serif; font-size: 1.15rem; line-height: 1.7; box-sizing: border-box; resize: vertical; margin-bottom: 1rem;"></textarea>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <label style="display: flex; align-items: center; gap: 8px; font-family: 'Outfit', sans-serif; font-size: 0.9rem; color: var(--text-muted); cursor: pointer;">
+            <input type="checkbox" id="journalConsentCheckbox" style="accent-color: var(--gold-bright);">
+            <span>I explicitly consent to share this reflection with the Sangha (Leave unchecked for private altar)</span>
+          </label>
+          <button class="submit-btn" onclick="saveJournalEntry()" style="padding: 0.75rem 2rem; font-family: 'Cinzel', serif; font-size: 0.95rem; border-radius: 6px; background: var(--gold-dim); border: 1px solid var(--gold-bright); color: var(--parchment); cursor: pointer;">
+            Record Reflection
+          </button>
+        </div>
+      </div>
+
+      <!-- Journal History List -->
+      <div>
+        <h3 style="font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--gold-bright); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px;">
+          <span>📖</span> Your Recorded Transmissions
+        </h3>
+        <div id="journalEntriesList" style="display: flex; flex-direction: column; gap: 1.2rem;">
+          <!-- Dynamically populated entries -->
+        </div>
       </div>
     </div>
   </div>
@@ -1160,6 +1270,193 @@ const samkshepaRamayanaShlokas = [
   }
 ];
 
+/* ──────────────────────────────────────────────────────────
+   GRAHANA-DHARANA SHAKTI TELEMETRY ENGINE
+──────────────────────────────────────────────────────────── */
+const ADHIKARA_STAGES = [
+  { level: 1, name: "Mumukṣu (मुमुक्षु)", desc: "Seeker of Truth · Foundational Inquirer", badge: "🌱", minScore: 0 },
+  { level: 2, name: "Śiṣya (शिष्य)", desc: "Disciplined Disciple · Systematic Practitioner", badge: "🌿", minScore: 65 },
+  { level: 3, name: "Sādhaka (साधक)", desc: "Tapasya Adept · Living the Dharma", badge: "🔱", minScore: 80 },
+  { level: 4, name: "Siddha (सिद्ध)", desc: "Master of Sovereign Vidya · Free Knower", badge: "☀️", minScore: 92 }
+];
+
+function getSeekerStage(score) {
+  for (let i = ADHIKARA_STAGES.length - 1; i >= 0; i--) {
+    if (score >= ADHIKARA_STAGES[i].minScore) return ADHIKARA_STAGES[i];
+  }
+  return ADHIKARA_STAGES[0];
+}
+
+function updateGrahanaTelemetry(gScore, dScore) {
+  const gBar = document.getElementById('grahanaMeterBar');
+  const dBar = document.getElementById('dharanaMeterBar');
+  const gText = document.getElementById('grahanaScoreText');
+  const dText = document.getElementById('dharanaScoreText');
+  const rankBadge = document.getElementById('seekerRankBadge');
+  const rankText = document.getElementById('seekerRankText');
+
+  const grahanaVal = Math.min(100, Math.max(10, Math.round(gScore)));
+  const dharanaVal = Math.min(100, Math.max(10, Math.round(dScore)));
+
+  if (gBar) gBar.style.width = grahanaVal + '%';
+  if (dBar) dBar.style.width = dharanaVal + '%';
+  if (gText) gText.textContent = grahanaVal + '%';
+  if (dText) dText.textContent = dharanaVal + '%';
+
+  const compositeScore = (grahanaVal + dharanaVal) / 2;
+  const stage = getSeekerStage(compositeScore);
+
+  if (rankBadge) rankBadge.textContent = stage.badge;
+  if (rankText) rankText.textContent = `${stage.name} · Level ${stage.level}`;
+
+  localStorage.setItem('eos_grahana_score', grahanaVal);
+  localStorage.setItem('eos_dharana_score', dharanaVal);
+  localStorage.setItem('eos_adhikara_stage', stage.name);
+}
+
+function initGrahanaTelemetry() {
+  const savedG = parseInt(localStorage.getItem('eos_grahana_score') || '60', 10);
+  const savedD = parseInt(localStorage.getItem('eos_dharana_score') || '50', 10);
+  updateGrahanaTelemetry(savedG, savedD);
+}
+
+/* ──────────────────────────────────────────────────────────
+   THE GURU'S MIRROR & SOCRATIC EVALUATOR
+──────────────────────────────────────────────────────────── */
+const GURU_MIRROR_SHLOKAS = [
+  {
+    sanskrit: "यदा किञ्चिज्ज्ञोऽहं द्विप इव मदान्धः समभवम् ।<br>तदा सर्वज्ञोऽस्मीत्यभवदवलिप्तं मम मनः ॥<br>यदा किञ्चित्किञ्चिद् बुधजनसकाशादवगतं ।<br>तदा मूर्खोऽस्मीति ज्वर इव मदो मे व्यपगतः ॥",
+    meaning: "When I knew only a little, I was blinded by vanity like an elephant in rut, thinking 'I know everything!' But when in the presence of the wise I learned deeper truth, I realized my limitation, and my fever of pride vanished."
+  },
+  {
+    sanskrit: "विद्या ददाति विनयं विनयाद् याति पात्रताम् ।<br>पात्रत्वात् धनमाप्नोति धनात् धर्मं ततः सुखम् ॥",
+    meaning: "Authentic Vidya bestows humility; from humility arises worthiness and true capacity. Without humility, knowledge degenerates into poison."
+  },
+  {
+    sanskrit: "अहङ्कारं बलं दर्पं कामं क्रोधं परिग्रहम् ।<br>विमुच्य निर्ममः शान्तो ब्रह्मभूयाय कल्पते ॥",
+    meaning: "Casting aside ego, force, arrogance, desire, and possessiveness, free from the notion of 'mine', tranquil—such a one is fit for the sovereign realization."
+  }
+];
+
+function checkEgo(text) {
+  const egoRegex = /\b(already know|so easy|i am enlightened|i know everything|superior|foolish question|waste of time|mastered it all|don't need guru|above dharma|trivial|pointless)\b/i;
+  return egoRegex.test(text);
+}
+
+function triggerGurusMirror() {
+  const mirrorBox = document.getElementById('gurus-mirror-alert');
+  if (!mirrorBox) return;
+  const shloka = GURU_MIRROR_SHLOKAS[Math.floor(Math.random() * GURU_MIRROR_SHLOKAS.length)];
+  const sanskritEl = document.getElementById('mirrorVerseSanskrit');
+  const meaningEl = document.getElementById('mirrorVerseMeaning');
+  if (sanskritEl) sanskritEl.innerHTML = shloka.sanskrit;
+  if (meaningEl) meaningEl.innerHTML = `"${shloka.meaning}"`;
+  mirrorBox.style.display = 'block';
+}
+
+function generateSocraticResponse(pillar, text, turn) {
+  const isEgo = checkEgo(text);
+  if (isEgo) {
+    triggerGurusMirror();
+    return {
+      text: "Pride is the primary shadow that masquerades as realization. If your intellect has already mastered the Shastras, why does a single mirror make you defensive? The Gurukulam is not a showroom for your vanity; it is an anvil to forge your ego into dust. Stand before the mirror above and contemplate again.",
+      grahana: 35,
+      dharana: 30,
+      complete: false
+    };
+  }
+
+  const norm = pillar.toLowerCase();
+  const wordCount = text.split(/\s+/).length;
+  const lower = text.toLowerCase();
+
+  let gScore = Math.min(95, 55 + wordCount * 2);
+  let dScore = Math.min(95, 50 + wordCount * 2);
+
+  if (norm.includes('nagara')) {
+    if (turn === 1) {
+      if (lower.includes('space') || lower.includes('empty') || lower.includes('center') || lower.includes('brahma')) {
+        gScore += 10;
+        return {
+          text: "You correctly identify the Brahmasthana as open unconstructed space. But here is the razor-edge test: If the physical center of a temple city is kept empty to allow divine prana to circulate, what is the empty center in your own daily schedule? Or is your waking life so cluttered with noise that no divine reality can enter?",
+          grahana: gScore,
+          dharana: dScore,
+          complete: false
+        };
+      }
+      return {
+        text: "You speak of the physical geometry, but architecture without consciousness is merely stacked stone. How does the 9x9 Paramasayika mandala map onto the human body? If the walls protect the sanctuary from the outside, who protects your mind from chaotic impressions?",
+        grahana: gScore,
+        dharana: dScore,
+        complete: false
+      };
+    } else if (turn === 2) {
+      return {
+        text: "A sharp reflection. But consider this: If a seeker relies strictly on auspicious direction (Vāstu) to find peace, does their consciousness not remain hostage to physical orientation? Can a bound spirit be liberated merely by facing the East?",
+        grahana: gScore + 5,
+        dharana: dScore + 10,
+        complete: false
+      };
+    } else {
+      return {
+        text: "Profound and verified. The Shilpa Shastras declare: 'Yatha Pinde Tatha Brahmande'—as in the microcosm, so in the cosmic architecture. When the inner Brahmasthana is cleared of ego, every action becomes a Pradakshina of the Divine. Your Grahana-Dharana transmission of Nagara Nirmana is validated. The Gurukulam gates open before you.",
+        grahana: 92,
+        dharana: 90,
+        complete: true
+      };
+    }
+  }
+
+  if (norm.includes('rājya') || norm.includes('rajya')) {
+    if (turn === 1) {
+      return {
+        text: "You speak of duty and governance. But when an administrator or leader is surrounded by sycophants and the intoxication of authority, how does he distinguish honest Dharmic council from the echo chamber of his own ambition? What is your unbending mirror?",
+        grahana: gScore,
+        dharana: dScore,
+        complete: false
+      };
+    } else if (turn === 2) {
+      return {
+        text: "You speak of vigilance. Yet the very act of governing carries the insidious burden of doership (Kartṛtva). If you believe you are the supreme defender of Dharma, has pride not already conquered your crown? How do you act as a mere instrument (Nimitta)?",
+        grahana: gScore + 5,
+        dharana: dScore + 10,
+        complete: false
+      };
+    } else {
+      return {
+        text: "The razor-edge of the Artha Shastra and Shad Darshanas is grasped. The sovereign ruler acts solely as a trustee (Nimitta-matra) of Rta—the cosmic order. He who governs his own breath and senses alone possesses the right to govern a state. Your Grahana-Dharana transmission of Rajya Palanam is sealed.",
+        grahana: 94,
+        dharana: 92,
+        complete: true
+      };
+    }
+  }
+
+  // Pillar 3: Yuddham
+  if (turn === 1) {
+    return {
+      text: "Fierce action is easy when fueled by anger, pride, or fear. But Lord Parashurama and the Bhagavad Gita demand action without attachment to fruits (Nishkama). If you burn away personal attachment, where does the relentless warrior fire to confront adharma come from? Does detachment not risk sliding into cowardice?",
+      grahana: gScore,
+      dharana: dScore,
+      complete: false
+    };
+  } else if (turn === 2) {
+    return {
+      text: "If you say you fight because it is cosmic duty, who determines what is righteous in the fog of battle? When you draw the celestial arrow (Astra), does your mind remain steady enough to hold cosmic destruction accountable to absolute ethics?",
+      grahana: gScore + 5,
+      dharana: dScore + 10,
+      complete: false
+    };
+  } else {
+    return {
+      text: "You have arrived at the fierce heart of the Kshatra-Virya. Action without attachment is not passive; it is the unbound flow of cosmic intelligence through an ego-less warrior. You fight not for personal trophies, but because the eternal order must be defended. The blessing of Bhagavan Parashurama rests upon your resolve.",
+      grahana: 96,
+      dharana: 95,
+      complete: true
+    };
+  }
+}
+
 async function sendChatMessage() {
   const textarea = document.getElementById('reflection-textarea');
   const btn = document.getElementById('send-chat-btn');
@@ -1196,25 +1493,20 @@ async function sendChatMessage() {
         chatSuccess = true;
       }
     } catch (e) {
-      console.error("API Error in Socratic Guru chat, falling back to simulation:", e);
+      console.error("API Error in Socratic Guru chat, falling back to dynamic simulation:", e);
     }
   }
   
   if (!chatSuccess) {
-    // Local / Offline fallback
     const userMsgCount = chatHistory[normPillar].filter(m => m.sender === 'user').length;
-    if (userMsgCount === 1) {
-      responseText = "You speak of physical placement, but how does the empty center connect to the space within your own heart?";
-    } else if (userMsgCount === 2) {
-      responseText = "But if you rely on outer geometry, does your mind not remain bound to form?";
-    } else {
-      responseText = "Indeed. The macrocosm and microcosm align, and the Brahmasthana merges with the infinite. Your transmission is complete.";
-      isComplete = true;
-    }
+    const evaluation = generateSocraticResponse(normPillar, text, userMsgCount);
+    responseText = evaluation.text;
+    isComplete = evaluation.complete;
+    updateGrahanaTelemetry(evaluation.grahana, evaluation.dharana);
   }
   
   // Smooth delay for typing realism
-  await new Promise(r => setTimeout(r, 1200));
+  await new Promise(r => setTimeout(r, 1100));
   
   // Hide typing indicator and enable inputs
   document.getElementById('typing-indicator').style.display = 'none';
@@ -1251,6 +1543,218 @@ async function sendChatMessage() {
     showCompletionModal();
   }
 }
+
+/* ──────────────────────────────────────────────────────────
+   DIGITAL JOURNAL (SĀDHANĀ PATRIKĀ) CORE
+──────────────────────────────────────────────────────────── */
+function saveJournalEntry() {
+  const pillar = document.getElementById('journalPillarSelect').value;
+  const title = document.getElementById('journalTitleInput').value.trim() || "Untitled Inward Transmission";
+  const body = document.getElementById('journalBodyInput').value.trim();
+  const consent = document.getElementById('journalConsentCheckbox').checked;
+
+  if (!body) {
+    alert("Please enter your reflection before recording in your Sādhanā Patrikā.");
+    return;
+  }
+
+  // Evaluate Viveka & Grahana score
+  const wordCount = body.split(/\s+/).length;
+  const score = Math.min(98, Math.max(50, 60 + Math.round(wordCount * 1.5)));
+
+  const entry = {
+    id: Date.now(),
+    pillar: pillar,
+    title: title,
+    body: body,
+    consent: consent,
+    score: score,
+    date: new Date().toISOString()
+  };
+
+  let entries = JSON.parse(localStorage.getItem('eos_journal_entries') || '[]');
+  entries.unshift(entry);
+  localStorage.setItem('eos_journal_entries', JSON.stringify(entries));
+
+  // Sync to API if online
+  if (window.EOS_API && typeof window.EOS_API.saveReflection === 'function') {
+    const status = consent ? 'shared' : 'private';
+    window.EOS_API.saveReflection(pillar, "journal", `${title}\n\n${body}`, status);
+  }
+
+  // Clear composer
+  document.getElementById('journalTitleInput').value = '';
+  document.getElementById('journalBodyInput').value = '';
+  document.getElementById('journalConsentCheckbox').checked = false;
+
+  updateGrahanaTelemetry(score, score - 5);
+  renderJournalEntries();
+  alert("Your reflection has been sanctified and recorded on your private altar.");
+}
+
+function renderJournalEntries() {
+  const container = document.getElementById('journalEntriesList');
+  if (!container) return;
+  const entries = JSON.parse(localStorage.getItem('eos_journal_entries') || '[]');
+
+  if (entries.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 2.5rem; border: 1px dashed var(--border-glass); border-radius: 12px; color: var(--text-muted); font-family: 'EB Garamond', serif; font-size: 1.15rem;">
+        No journal entries recorded yet. Sit in silence, contemplate your study, and compose your first transmission above.
+      </div>
+    `;
+    return;
+  }
+
+  const pillarLabels = {
+    nagara: "Nagara Nirmāṇa",
+    rājya: "Rājya Pālanam",
+    yuddham: "Yuddham",
+    upanishad: "Brahmavidyā",
+    general: "Antar-Vicāra"
+  };
+
+  container.innerHTML = entries.map(e => `
+    <div style="background: var(--bg-glass); border: 1px solid var(--border-glass); border-left: 4px solid var(--gold-bright); border-radius: 8px; padding: 1.5rem; transition: transform 0.2s;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.6rem; flex-wrap: wrap; gap: 0.5rem;">
+        <div>
+          <span style="font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.1em; color: var(--gold-bright); text-transform: uppercase;">
+            ${pillarLabels[e.pillar] || e.pillar}
+          </span>
+          <h4 style="font-family: 'Cinzel', serif; font-size: 1.15rem; color: var(--text-primary); margin: 0.2rem 0 0;">
+            ${e.title}
+          </h4>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span style="font-family: 'Outfit', sans-serif; font-size: 0.75rem; padding: 2px 8px; border-radius: 10px; background: ${e.consent ? 'rgba(77, 245, 226, 0.15)' : 'rgba(255, 255, 255, 0.08)'}; color: ${e.consent ? 'var(--gold-bright)' : 'var(--text-muted)'}; border: 1px solid var(--border-glass);">
+            ${e.consent ? '🌐 Shared to Sangha' : '🔒 Private Altar'}
+          </span>
+          <span style="font-family: 'Outfit', sans-serif; font-size: 0.8rem; color: var(--gold-bright); font-weight: 600;">
+            Viveka: ${e.score}%
+          </span>
+        </div>
+      </div>
+      <p style="font-family: 'EB Garamond', serif; font-size: 1.05rem; line-height: 1.7; color: var(--text-muted); margin: 0; white-space: pre-wrap;">
+        ${e.body}
+      </p>
+      <div style="margin-top: 0.8rem; font-family: 'Outfit', sans-serif; font-size: 0.75rem; color: var(--text-muted); opacity: 0.7;">
+        Recorded on ${new Date(e.date).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' })}
+      </div>
+    </div>
+  `).join('');
+}
+
+/* ──────────────────────────────────────────────────────────
+   SANGEETAM SHRUTI — CLASSICAL TANPURA DRONE (D / 2 Kattai)
+──────────────────────────────────────────────────────────── */
+let audioCtx = null;
+let droneMasterGain = null;
+let droneNodes = [];
+let isDronePlaying = false;
+
+function toggleTapasyaDrone() {
+  const btn = document.getElementById('droneToggleBtn');
+  const icon = document.getElementById('droneIcon');
+  const text = document.getElementById('droneText');
+
+  if (!isDronePlaying) {
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      const now = audioCtx.currentTime;
+
+      droneMasterGain = audioCtx.createGain();
+      droneMasterGain.gain.setValueAtTime(0.0001, now);
+      droneMasterGain.gain.exponentialRampToValueAtTime(0.22, now + 2.5);
+
+      const bodyFilter = audioCtx.createBiquadFilter();
+      bodyFilter.type = 'lowpass';
+      bodyFilter.frequency.setValueAtTime(420, now);
+      bodyFilter.Q.setValueAtTime(1.2, now);
+
+      const jawariFilter = audioCtx.createBiquadFilter();
+      jawariFilter.type = 'peaking';
+      jawariFilter.frequency.setValueAtTime(220, now);
+      jawariFilter.gain.setValueAtTime(2.5, now);
+      jawariFilter.Q.setValueAtTime(1.0, now);
+
+      droneMasterGain.connect(jawariFilter);
+      jawariFilter.connect(bodyFilter);
+      bodyFilter.connect(audioCtx.destination);
+
+      const baseSa = 146.83;
+      const strings = [
+        { freq: baseSa * 1.5,  vol: 0.16, detune: 0 },
+        { freq: baseSa * 2.0,  vol: 0.14, detune: 2.2 },
+        { freq: baseSa * 2.0,  vol: 0.14, detune: -2.2 },
+        { freq: baseSa * 1.0,  vol: 0.22, detune: 0 },
+        { freq: baseSa * 1.25, vol: 0.05, detune: 1.0 }
+      ];
+
+      droneNodes = strings.map((s, idx) => {
+        const osc = audioCtx.createOscillator();
+        const strGain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(s.freq, now);
+        osc.detune.setValueAtTime(s.detune, now);
+        strGain.gain.setValueAtTime(s.vol, now);
+
+        const lfo = audioCtx.createOscillator();
+        const lfoGain = audioCtx.createGain();
+        lfo.type = 'sine';
+        lfo.frequency.setValueAtTime(0.12 + (idx * 0.02), now);
+        lfoGain.gain.setValueAtTime(s.vol * 0.25, now);
+
+        lfo.connect(lfoGain.gain);
+        osc.connect(strGain);
+        strGain.connect(droneMasterGain);
+
+        osc.start();
+        lfo.start();
+        return { osc, strGain, lfo, lfoGain };
+      });
+
+      isDronePlaying = true;
+      if (btn) btn.classList.add('playing');
+      if (icon) icon.textContent = '🪕';
+      if (text) text.textContent = 'Shruti Active';
+    } catch (e) {
+      console.warn("Sangeetam Shruti could not initialize:", e);
+    }
+  } else {
+    if (droneMasterGain && audioCtx) {
+      const now = audioCtx.currentTime;
+      droneMasterGain.gain.exponentialRampToValueAtTime(0.0001, now + 1.8);
+      setTimeout(() => {
+        droneNodes.forEach(node => {
+          try {
+            node.osc.stop();
+            node.osc.disconnect();
+            node.lfo.stop();
+            node.lfo.disconnect();
+          } catch (e) {}
+        });
+        droneNodes = [];
+        isDronePlaying = false;
+      }, 1900);
+    } else {
+      isDronePlaying = false;
+    }
+    if (btn) btn.classList.remove('playing');
+    if (icon) icon.textContent = '🔇';
+    if (text) text.textContent = 'Shruti';
+  }
+}
+
+// Initialise Grahana Telemetry on start
+document.addEventListener('DOMContentLoaded', () => {
+  initGrahanaTelemetry();
+});
 
 function showCompletionModal() {
   let completed = JSON.parse(localStorage.getItem('era_of_siddhas_completed') || '{}');
@@ -1365,9 +1869,14 @@ function switchSannidhiMode(btn, mode) {
   sannidhiActiveMode = mode;
 
   document.getElementById('sannidhi-chat-view').style.display = mode === 'chat' ? 'block' : 'none';
+  const journalView = document.getElementById('sannidhi-journal-view');
+  if (journalView) journalView.style.display = mode === 'journal' ? 'block' : 'none';
   document.getElementById('sannidhi-wisdom-view').style.display = mode === 'wisdom' ? 'block' : 'none';
   document.getElementById('sannidhi-glossary-view').style.display = mode === 'glossary' ? 'block' : 'none';
 
+  if (mode === 'journal') {
+    renderJournalEntries();
+  }
   if (mode === 'wisdom' && allSannidhiArticles.length === 0) {
     loadSannidhiWisdom();
   }
@@ -1648,9 +2157,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Load persisted theme on start
-const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-light';
+// Load persisted theme on start (Default: Earthy & Ancient)
+const initialTheme = localStorage.getItem('era_of_siddhas_theme') || 'theme-earthy';
 setTheme(null, initialTheme);
+initGrahanaTelemetry();
 
 // Parse url param for starting pillar
 const urlParams = new URLSearchParams(window.location.search);
